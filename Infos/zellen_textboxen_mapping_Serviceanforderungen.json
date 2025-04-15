@@ -1,0 +1,182 @@
+[
+  {
+    "Zelle": "B3",
+    "Feldname": "tb_Auftragsnummer"
+  },
+  {
+    "Zelle": "F5",
+    "Feldname": "tb_SB"
+  },
+  {
+    "Zelle": "F4",
+    "Feldname": "tb_VI"
+  },
+  {
+    "Zelle": "B4",
+    "Feldname": "dp_Druckdatum"
+  },
+  {
+    "Zelle": "F7",
+    "Feldname": "dp_Besuchsdatum_Start"
+  },
+  {
+    "Zelle": "F9",
+    "Feldname": "dp_Besuchsdatum_Ende"
+  },
+  {
+    "Zelle": "B5",
+    "Feldname": "tb_Servicetechniker_Anforderung"
+  },
+  {
+    "Zelle": "B7",
+    "Feldname": "tb_Kunde_Anforderung"
+  },
+  {
+    "Zelle": "F11",
+    "Feldname": "tb_Anschrift_1_Anforderung"
+  },
+  {
+    "Zelle": "F13",
+    "Feldname": "tb_Anschrift_2_Anforderung"
+  },
+  {
+    "Zelle": "F15",
+    "Feldname": "tb_Land"
+  },
+  {
+    "Zelle": "B11",
+    "Feldname": "tb_Ansprechpartner_Anforderung"
+  },
+  {
+    "Zelle": "B9",
+    "Feldname": "tb_KundenNr"
+  },
+  {
+    "Zelle": "B13",
+    "Feldname": "tb_End_Kunde"
+  },
+  {
+    "Zelle": "B15",
+    "Feldname": "tb_EndKunde_KundenNR"
+  },
+  {
+    "Zelle": "A18",
+    "Feldname": "cb_Maschinentyp_1"
+  },
+  {
+    "Zelle": "A19",
+    "Feldname": "cb_Maschinentyp_2"
+  },
+  {
+    "Zelle": "A20",
+    "Feldname": "cb_Maschinentyp_3"
+  },
+  {
+    "Zelle": "A21",
+    "Feldname": "cb_Maschinentyp_4"
+  },
+  {
+    "Zelle": "B18",
+    "Feldname": "cb_BauGröße_1"
+  },
+  {
+    "Zelle": "B19",
+    "Feldname": "cb_BauGröße_2"
+  },
+  {
+    "Zelle": "B20",
+    "Feldname": "cb_BauGröße_3"
+  },
+  {
+    "Zelle": "B21",
+    "Feldname": "cb_BauGröße_4"
+  },
+  {
+    "Zelle": "D18",
+    "Feldname": "tb_MaschNr_1"
+  },
+  {
+    "Zelle": "D19",
+    "Feldname": "tb_MaschNr_2"
+  },
+  {
+    "Zelle": "D20",
+    "Feldname": "tb_MaschNr_3"
+  },
+  {
+    "Zelle": "D21",
+    "Feldname": "tb_MaschNr_4"
+  },
+  {
+    "Zelle": "G18",
+    "Feldname": "tb_Auslieferung_1"
+  },
+  {
+    "Zelle": "G19",
+    "Feldname": "tb_Auslieferung_2"
+  },
+  {
+    "Zelle": "G20",
+    "Feldname": "tb_Auslieferung_3"
+  },
+  {
+    "Zelle": "G21",
+    "Feldname": "tb_Auslieferung_4"
+  },
+  {
+    "Zelle": "B23",
+    "Feldname": "tb_Material"
+  },
+  {
+    "Zelle": "E23",
+    "Feldname": "tb_Endprodukt"
+  },
+  {
+    "Zelle": "H23",
+    "Feldname": "tb_Recyclateinsatz"
+  },
+  {
+    "Zelle": "C26",
+    "Feldname": "cb_Anreise"
+  },
+  {
+    "Zelle": "C27",
+    "Feldname": "tb_melden_bei"
+  },
+  {
+    "Zelle": "C28",
+    "Feldname": "tb_wann"
+  },
+  {
+    "Zelle": "C29",
+    "Feldname": "cb_Besuchsgrund"
+  },
+  {
+    "Zelle": "C30",
+    "Feldname": "cb_Kostenübernahme"
+  },
+  {
+    "Zelle": "A34",
+    "Feldname": "tb_Teile_Sonderwerkzeuge"
+  },
+  {
+    "Zelle": "A35",
+    "Feldname": "tb_Teile_Sonderwerkzeuge2"
+  },
+  {
+    "Zelle": "A37",
+    "Feldname": "tb_Aufgabenstellung_1"
+  },
+  {
+    "Zelle": "A38",
+    "Feldname": "tb_Aufgabenstellung_2"
+  },
+  {
+    "Zelle": "A39",
+    "Feldname": "tb_Aufgabenstellung_3"
+  },
+  {
+    "Zelle": "A45",
+    "Feldname": "tb_Durchfuehrung"
+  }
+]

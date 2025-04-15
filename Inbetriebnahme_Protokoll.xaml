@@ -1,0 +1,981 @@
+﻿<UserControl x:Class="ServiceTool.Inbetriebnahme_Protokoll"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServiceTool"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="1200"
+             Background="#FF969696">
+    <UserControl.Resources>
+        <!-- Stildefinition für alle Labels -->
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#B7D7B3"/>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer x:Name="IBNP_Scrollviewer">
+        <Grid x:Name="test">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.35*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--5-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--10-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--15-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--20-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--25-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--30-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--35-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--40-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--45-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--50-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--55-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition Height="10"/>
+                <!--60-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--65-->
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+               
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="16" Grid.Row="1" Margin="0,0,0,10">
+                <Label x:Name="lbl_IBNP" Content="Inbetriebnahmeprotokoll" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,0,1" Grid.Column="13" Grid.ColumnSpan="2"  Grid.Row="1" Margin="0,0,0,10">
+                <Label >
+                    <Image Source="Bilder/gneuss_png_1.png" Height="41" Width="91" />
+                </Label>
+            </Border>
+
+
+            <ComboBox x:Name="CB_SeiteAuswählen" Grid.Column="7" Grid.ColumnSpan="3" SelectionChanged="SiteSelected">
+                <ComboBoxItem x:Name="CB_Item1_SeiteAuswählen" Content="Maschine 1" Visibility="Collapsed"/>
+                <ComboBoxItem x:Name="CB_Item2_SeiteAuswählen" Content="Maschine 2" Visibility="Collapsed"/>
+                <ComboBoxItem x:Name="CB_Item3_SeiteAuswählen" Content="Maschine 3" Visibility="Collapsed"/>
+                <ComboBoxItem x:Name="CB_Item4_SeiteAuswählen" Content="Maschine 4" Visibility="Collapsed"/>
+            </ComboBox>
+
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0" Grid.Row="2" Grid.ColumnSpan="3">
+                <Label Content="Kunde" x:Name="lbl_Kunde"/>
+            </Border>
+            <TextBox x:Name="tb_Kunde_ibnProtokoll" TabIndex="0" Grid.Row="2" Grid.Column="3"  Grid.ColumnSpan="4"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0" Grid.Row="3" Grid.ColumnSpan="3">
+                <Label Content="Ansprechpartner" x:Name="lbl_Ansprechpartner"/>
+            </Border>
+            <TextBox x:Name="tb_Ansprechpartner_ibnProtokoll" TabIndex="1" Grid.Row="3" Grid.Column="3"  Grid.ColumnSpan="4"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0" Grid.Row="4" Grid.ColumnSpan="3">
+                <Label Content="Versuchsaufbau" x:Name="lbl_Versuchsaufbau"/>
+            </Border>
+            <TextBox x:Name="tb_Versuchsaufbau_ibnProtokoll" TabIndex="2" Grid.Row="4" Grid.Column="3"  Grid.ColumnSpan="4"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,0,0,0" Grid.Row="5" Grid.ColumnSpan="3">
+                <Label Content="Material" x:Name="lbl_Material"/>
+            </Border>
+            <TextBox x:Name="tb_KundeMaterial_ibnProtokoll" TabIndex="3" Grid.Row="5" Grid.Column="3"  Grid.ColumnSpan="4"/>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5,0,0,5" Grid.Row="6" Grid.ColumnSpan="3" >
+                <Label Content="Viskosität" x:Name="lbl_Viskosität"/>
+            </Border>
+            <TextBox x:Name="tb_Viskosität_ibnProtokoll" TabIndex="4" Grid.Row="6" Grid.Column="3"  Grid.ColumnSpan="4" Margin="0,0,0,5"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="8">
+                <Label Content="Filtertyp" x:Name="lbl_Filtertyp" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox x:Name="tb_Filtertyp_ibnProtokoll" TabIndex="5" Grid.Row="3" Grid.Column="11" Grid.ColumnSpan="3"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="8">
+                <Label Content="Serien-Nr" x:Name="lbl_SerienNr" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox x:Name="tb_SerienNr_ibnProtokoll" TabIndex="6" Grid.Row="4" Grid.Column="11" Grid.ColumnSpan="3"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="8">
+                <Label Content="Vorspannung" x:Name="lbl_Vorspannung" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox x:Name="tb_Vorspannung_ibnProtokoll" TabIndex="7" Grid.Row="5" Grid.Column="11" Grid.ColumnSpan="2"/>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="5" Grid.Column="13">
+                <Label Grid.Row="5" Grid.Column="13" Content="Bar"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="8" Margin="0,0,0,5">
+                <Label Content="Unterlegung LR:" x:Name="lbl_Unterlegung" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox x:Name="tb_UnterlegungLR_ibnProtokoll" TabIndex="8" Grid.Row="6" Grid.Column="11" Margin="0,0,0,5"/>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="6"  Grid.Column="12" Margin="0,0,0,5">
+                <Label Content="ZP :" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox x:Name="tb_UnterlegungZP_ibnProtokoll" TabIndex="9" Grid.Row="6" Grid.Column="13" Margin="0,0,0,5"/>
+
+            <!--Tabelle 1 Prozeßparameter-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="7"  Grid.ColumnSpan="16" Grid.Column="0" Margin="0,5,0,5" >
+                <Label Content="Prozessparameter" x:Name="lbl_Prozessparameter" HorizontalContentAlignment="Center" FontSize="15" FontWeight="Bold"/>
+            </Border>
+
+            <Border BorderBrush="Black" Background="#B7D7B3" BorderThickness="1" Grid.RowSpan="3" Grid.Column="0" Grid.Row="8">
+                <StackPanel>
+                    <Label Content="lfd." FontSize="7"/>
+                    <Label Content="Nr." FontSize="7"/>
+                    <Label Content=""/>
+                </StackPanel>
+            </Border>
+            
+            <Label Grid.Row="11" Content="1" Grid.RowSpan="2"/>
+            <Label Grid.Row="13" Content="2" Grid.RowSpan="2"/>
+            <Label Grid.Row="15" Content="3" Grid.RowSpan="2"/>
+            <Label Grid.Row="17" Content="4" Grid.RowSpan="2"/>
+            
+            <!--Spalte 1-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="8" Grid.RowSpan="3" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Druck P1" x:Name="lbl_DruckP1" FontSize="9"/>
+                    <Label Content="vor Filter" x:Name="lbl_vorFilterP1" FontSize="9"/>
+                    <Label Content="(bar)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+
+            <TextBox x:Name="tb_Druck_P1_1_ibnProtokoll" TabIndex="11" Grid.Row="11" Grid.Column="1" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P1_2_ibnProtokoll" TabIndex="26" Grid.Row="13" Grid.Column="1" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P1_3_ibnProtokoll" TabIndex="41" Grid.Row="15" Grid.Column="1" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P1_4_ibnProtokoll" TabIndex="56" Grid.Row="17" Grid.Column="1" Grid.RowSpan="2"/>
+
+            <!--Spalte 2-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2" Grid.Row="8" Grid.RowSpan="3" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Druck P2" x:Name="lbl_DruckP2" FontSize="9"/>
+                    <Label Content="nach Filter" x:Name="lbl_nachFilterP2" FontSize="9"/>
+                    <Label Content="(bar)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Druck_P2_1_ibnProtokoll" TabIndex="12" Grid.Row="11" Grid.Column="2" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P2_2_ibnProtokoll" TabIndex="27" Grid.Row="13" Grid.Column="2" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P2_3_ibnProtokoll" TabIndex="42" Grid.Row="15" Grid.Column="2" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Druck_P2_4_ibnProtokoll" TabIndex="57" Grid.Row="17" Grid.Column="2" Grid.RowSpan="2"/>
+
+            <!--Spalte 3-->
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3" Grid.Row="8" Grid.RowSpan="3" Background="#B7D7B3">
+                <StackPanel>
+                    <Grid Grid.Row="8" Grid.Column="3" Background="#B7D7B3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Column="0" Content="D" FontSize="9" FontFamily="Symbol" HorizontalAlignment="Right"/>
+                        <Label Grid.Column="1" Content="p" FontSize="9" HorizontalAlignment="Left"/>
+                    </Grid>
+                    <Label Content=""/>
+                    <Label Content="(bar)" FontSize="9"/>
+                    </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_p_1_ibnProtokoll" TabIndex="13" Grid.Row="11" Grid.Column="3" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_p_2_ibnProtokoll" TabIndex="28" Grid.Row="13" Grid.Column="3" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_p_3_ibnProtokoll" TabIndex="43" Grid.Row="15" Grid.Column="3" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_p_4_ibnProtokoll" TabIndex="58" Grid.Row="17" Grid.Column="3" Grid.RowSpan="2"/>
+
+            <!--Spalte 4-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="4" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Masse-" x:Name="lbl_Masse" FontSize="9"/>
+                    <Label Content="Temp." x:Name="lbl_Temp_Masse" FontSize="9"/>
+                    <Label Content="tm(°C)" FontSize="9"/>
+                </StackPanel>
+            </Border>            
+            <TextBox x:Name="tb_MasseTemp_1_ibnProtokoll" TabIndex="14" Grid.Row="11" Grid.Column="4" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_MasseTemp_2_ibnProtokoll" TabIndex="29" Grid.Row="13" Grid.Column="4" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_MasseTemp_3_ibnProtokoll" TabIndex="44" Grid.Row="15" Grid.Column="4" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_MasseTemp_4_ibnProtokoll" TabIndex="59" Grid.Row="17" Grid.Column="4" Grid.RowSpan="2"/>
+
+            <!--Spalte 5-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="5" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="n" FontSize="9"/>
+                    <Label Content="Extruder" FontSize="9"/>
+                    <Label Content="(1/min)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_nExtruder_1_ibnProtokoll" TabIndex="15" Grid.Row="11" Grid.Column="5" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_nExtruder_2_ibnProtokoll" TabIndex="30" Grid.Row="13" Grid.Column="5" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_nExtruder_3_ibnProtokoll" TabIndex="45" Grid.Row="15" Grid.Column="5" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_nExtruder_4_ibnProtokoll" TabIndex="60" Grid.Row="17" Grid.Column="5" Grid.RowSpan="2"/>
+
+            <!--Spalte 6-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="6" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Pumpe" x:Name="lbl_Pumpe" FontSize="9"/>
+                    <Label Content="" FontSize="9"/>
+                    <Label Content="(1/min)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Pumpe_1_ibnProtokoll" TabIndex="16" Grid.Row="11" Grid.Column="6" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Pumpe_2_ibnProtokoll" TabIndex="31" Grid.Row="13" Grid.Column="6" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Pumpe_3_ibnProtokoll" TabIndex="46" Grid.Row="15" Grid.Column="6" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Pumpe_4_ibnProtokoll" TabIndex="61" Grid.Row="17" Grid.Column="6" Grid.RowSpan="2"/>
+
+            <!--Spalte 7-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="7" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Q" FontSize="9"/>
+                    <Label Content="" FontSize="9"/>
+                    <Label Content="(Kg/H)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Q_1_ibnProtokoll" TabIndex="17" Grid.Row="11" Grid.Column="7" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Q_2_ibnProtokoll" TabIndex="32" Grid.Row="13" Grid.Column="7" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Q_3_ibnProtokoll" TabIndex="47" Grid.Row="15" Grid.Column="7" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Q_4_ibnProtokoll" TabIndex="62" Grid.Row="17" Grid.Column="7" Grid.RowSpan="2"/>
+
+            <!--Spalte 8-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="8" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Filter" FontSize="9"/>
+                    <Label Content="Siebe" x:Name="lbl_Siebe1" FontSize="9"/>
+                    <Label Content="(μm)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Siebe_1_ibnProtokoll" TabIndex="18" Grid.Row="11" Grid.Column="8" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Siebe_2_ibnProtokoll" TabIndex="33" Grid.Row="13" Grid.Column="8" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Siebe_3_ibnProtokoll" TabIndex="48" Grid.Row="15" Grid.Column="8" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Siebe_4_ibnProtokoll" TabIndex="63" Grid.Row="17" Grid.Column="8" Grid.RowSpan="2"/>
+
+            <!--Spalte 9-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="9" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Rückspül-" x:Name="lbl_Rueckspuel1" FontSize="9"/>
+                    <Label Content="verlust" x:Name="lbl_Verlust1" FontSize="9"/>
+                    <Label Content="1x(gr)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Rückspülverlust_1x_1_ibnProtokoll" TabIndex="19" Grid.Row="11" Grid.Column="9" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_1x_2_ibnProtokoll" TabIndex="34" Grid.Row="13" Grid.Column="9" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_1x_3_ibnProtokoll" TabIndex="49" Grid.Row="15" Grid.Column="9" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_1x_4_ibnProtokoll" TabIndex="64" Grid.Row="17" Grid.Column="9" Grid.RowSpan="2"/>
+
+            <!--Spalte 10-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="10" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Rückspül-" x:Name="lbl_Rueckspuel2" FontSize="9"/>
+                    <Label Content="verlust" x:Name="lbl_Verlust2" FontSize="9"/>
+                    <Label Content="10x(gr)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Rückspülverlust_10x_1_ibnProtokoll" TabIndex="20" Grid.Row="11" Grid.Column="10" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_10x_2_ibnProtokoll" TabIndex="35" Grid.Row="13" Grid.Column="10" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_10x_3_ibnProtokoll" TabIndex="50" Grid.Row="15" Grid.Column="10" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_10x_4_ibnProtokoll" TabIndex="65" Grid.Row="17" Grid.Column="10" Grid.RowSpan="2"/>
+
+            <!--Spalte 11-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="11" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="RS Verlust" x:Name="lbl_RSVerlust" FontSize="9"/>
+                    <Label Content="in %" x:Name="lbl_inPercent" FontSize="9"/>
+                    <Label Content="von Q" x:Name="lbl_vonQ" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Rückspülverlust_Prozent_1_ibnProtokoll" TabIndex="21" Grid.Row="11" Grid.Column="11" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_Prozent_2_ibnProtokoll" TabIndex="36" Grid.Row="13" Grid.Column="11" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_Prozent_3_ibnProtokoll" TabIndex="51" Grid.Row="15" Grid.Column="11" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Rückspülverlust_Prozent_4_ibnProtokoll" TabIndex="66" Grid.Row="17" Grid.Column="11" Grid.RowSpan="2"/>
+
+            <!--Spalte 12-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="12" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Hub-" x:Name="lbl_Hub1" FontSize="9"/>
+                    <Label Content="länge" x:Name="lbl_laenge1" FontSize="9"/>
+                    <Label Content="(mm)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Hub_Länge_1_ibnProtokoll" TabIndex="22" Grid.Row="11" Grid.Column="12" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Hub_Länge_2_ibnProtokoll" TabIndex="37" Grid.Row="13" Grid.Column="12" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Hub_Länge_3_ibnProtokoll" TabIndex="52" Grid.Row="15" Grid.Column="12" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Hub_Länge_4_ibnProtokoll" TabIndex="67" Grid.Row="17" Grid.Column="12" Grid.RowSpan="2"/>
+
+            <!--Spalte 13-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="13" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Spül-" x:Name="lbl_Spuel" FontSize="9"/>
+                    <Label Content="druck" x:Name="lbl_Druck1" FontSize="9"/>
+                    <Label Content="(bar)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Spüldruck_1_ibnProtokoll" TabIndex="23" Grid.Row="11" Grid.Column="13" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Spüldruck_2_ibnProtokoll" TabIndex="38" Grid.Row="13" Grid.Column="13" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Spüldruck_3_ibnProtokoll" TabIndex="53" Grid.Row="15" Grid.Column="13" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Spüldruck_4_ibnProtokoll" TabIndex="68" Grid.Row="17" Grid.Column="13" Grid.RowSpan="2"/>
+
+            <!--Spalte 14-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="14" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Antriebs-" x:Name="lbl_Antriebs" FontSize="9"/>
+                    <Label Content="kraft" x:Name="lbl_kraft" FontSize="9"/>
+                    <Label Content="(bar/kN)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Antrieb_1_ibnProtokoll" TabIndex="24" Grid.Row="11" Grid.Column="14" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Antrieb_2_ibnProtokoll" TabIndex="39" Grid.Row="13" Grid.Column="14" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Antrieb_3_ibnProtokoll" TabIndex="54" Grid.Row="15" Grid.Column="14" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Antrieb_4_ibnProtokoll" TabIndex="69" Grid.Row="17" Grid.Column="14" Grid.RowSpan="2"/>
+
+            <!--Spalte 15-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="3" Grid.Column="15" Grid.Row="8" Background="#B7D7B3">
+                <StackPanel>
+                    <Label Content="Vor-" x:Name="lbl_Vor1" FontSize="9"/>
+                    <Label Content="flutpin" x:Name="lbl_Flutpin1" FontSize="9"/>
+                    <Label Content="(mm)" FontSize="9"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_Vorflutpin_1_ibnProtokoll" TabIndex="25" Grid.Row="11" Grid.Column="15" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Vorflutpin_2_ibnProtokoll" TabIndex="40" Grid.Row="13" Grid.Column="15" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Vorflutpin_3_ibnProtokoll" TabIndex="55" Grid.Row="15" Grid.Column="15" Grid.RowSpan="2"/>
+            <TextBox x:Name="tb_Vorflutpin_4_ibnProtokoll" TabIndex="70" Grid.Row="17" Grid.Column="15" Grid.RowSpan="2"/>
+            
+            <!--Lückenfüller-->
+            <Label Grid.Row="24" Background="#FF969696"/>
+
+            <!--Tabelle 2 Filtersteuerung-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="25" Grid.ColumnSpan="16" Margin="0,0,0,5" >
+                <Label Content="Filtersteuerung" x:Name="lbl_Filtersteuerung" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="15"/>
+            </Border>
+            
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="42" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
+                <Label Content="KSF" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5" Background="#B7D7B3">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="RSF Normal/" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="*Fast Betrieb" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+            
+            <!--Lückenfüller-->
+            <Label Grid.Row="41" Background="#FF969696" />
+            
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="36" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
+                <Label Content="SFX/SFXR/SF" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            </Border>
+            <!--Lückenfüller-->
+            <Label Grid.Row="47" Background="#FF969696" />
+
+
+            <!--Spalte 1-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="3" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label  Content="T1"/>
+                    <Label Content="A.-Hub" x:Name="lbl_AHub1"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T1_RSF_AHub1_ibnProtokoll" TabIndex="91" Grid.Row="30" Grid.Column="3"/>
+            <TextBox x:Name="tb_FSteuerung_T1_RSF_AHub2_ibnProtokoll" TabIndex="104" Grid.Row="31" Grid.Column="3"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="3" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="A.-Hub" x:Name="lbl_AHub3"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T1_SFX_AHub1_ibnProtokoll" TabIndex="117" Grid.Row="38" Grid.Column="3"/>
+            <TextBox x:Name="tb_FSteuerung_T1_SFX_AHub2_ibnProtokoll" TabIndex="129" Grid.Row="39" Grid.Column="3"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="3" Grid.RowSpan="2">
+                <StackPanel>                    
+                    <Label Content="MV A ->"/>
+                    <Label Content=""/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T1_MVA1_ibnProtokoll" TabIndex="71" Grid.Row="44" Grid.Column="3"/>
+            <TextBox x:Name="tb_FSteuerung_T1_MVA2_ibnProtokoll" TabIndex="79" Grid.Row="45" Grid.Column="3"/>
+
+            <!--Spalte 2-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="4" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T2"/>
+                    <Label Content="L.-Hub" x:Name="lbl_LHub1"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T2_RSF_LHub1_ibnProtokoll" TabIndex="92" Grid.Row="30" Grid.Column="4"/>
+            <TextBox x:Name="tb_FSteuerung_T2_RSF_LHub2_ibnProtokoll" TabIndex="105" Grid.Row="31" Grid.Column="4"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="4" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="L.-Hub" x:Name="lbl_LHub3"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T2_SFX_LHub1_ibnProtokoll" TabIndex="118" Grid.Row="38" Grid.Column="4"/>
+            <TextBox x:Name="tb_FSteuerung_T2_SFX_LHub2_ibnProtokoll" TabIndex="130" Grid.Row="39" Grid.Column="4"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="4" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="MV B"/>
+                    <Label Content="Pfeil nach links" HorizontalContentAlignment="Right" VerticalContentAlignment="Top"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T2_MVB1_ibnProtokoll" TabIndex="72" Grid.Row="44" Grid.Column="4"/>
+            <TextBox x:Name="tb_FSteuerung_T2_MVB2_ibnProtokoll" TabIndex="80" Grid.Row="45" Grid.Column="4"/>
+
+            <!--Spalte 3-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="5" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T3"/>
+
+                    <Label Content="Takt-" x:Name="lbl_Takt1" />
+                    <Label Content="zeit" x:Name="lbl_Zeit1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T3_RSF_Taktzeit1_ibnProtokoll" TabIndex="93" Grid.Row="30" Grid.Column="5"/>
+            <TextBox x:Name="tb_FSteuerung_T3_RSF_Taktzeit2_ibnProtokoll" TabIndex="106" Grid.Row="31" Grid.Column="5"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="5" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Takt-" x:Name="lbl_Takt2"/>
+                    <Label Content="zeit" x:Name="lbl_Zeit2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T3_SFX_Taktzeit1_ibnProtokoll" TabIndex="119" Grid.Row="38" Grid.Column="5"/>
+            <TextBox x:Name="tb_FSteuerung_T3_SFX_Taktzeit2_ibnProtokoll" TabIndex="131" Grid.Row="39" Grid.Column="5"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="5" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Filter-" x:Name="lbl_Filter1"/>
+                    <Label Content="standzeit" x:Name="lbl_standzeit1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T3_Standzeit1_ibnProtokoll" TabIndex="73" Grid.Row="44" Grid.Column="5"/>
+            <TextBox x:Name="tb_FSteuerung_T3_Standzeit2_ibnProtokoll" TabIndex="81" Grid.Row="45" Grid.Column="5"/>
+
+            <!--Spalte 4-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="6" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T4"/>
+
+                    <Label Content="*A.-Hub" x:Name="lbl_AHub2"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T4_RSF_AHUB1_ibnProtokoll" TabIndex="94" Grid.Row="30" Grid.Column="6"/>
+            <TextBox x:Name="tb_FSteuerung_T4_RSF_AHUB2_ibnProtokoll" TabIndex="107" Grid.Row="31" Grid.Column="6"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="6" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Vorflut-" x:Name="lbl_Vorflut1"/>
+                    <Label Content="zeit" x:Name="lbl_Zeit3"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T4_SFX_Vorflutzeit1_ibnProtokoll" TabIndex="120" Grid.Row="38" Grid.Column="6"/>
+            <TextBox x:Name="tb_FSteuerung_T4_SFX_Vorflutzeit2_ibnProtokoll" TabIndex="132" Grid.Row="39" Grid.Column="6"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="6" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Flut-" x:Name="lbl_Flut1"/>
+                    <Label Content="dauer" x:Name="lbl_Dauer"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T4_Flutdauer1_ibnProtokoll" TabIndex="74" Grid.Row="44" Grid.Column="6"/>
+            <TextBox x:Name="tb_FSteuerung_T4_Flutdauer2_ibnProtokoll" TabIndex="82" Grid.Row="45" Grid.Column="6"/>
+            
+
+            <!--Spalte 5-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="7" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T5"/>
+
+                    <Label Content="*L.-Hub" x:Name="lbl_LHub2"/>
+                    <Label Content="Filter"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T5_RSF_LHUB1_ibnProtokoll" TabIndex="95" Grid.Row="30" Grid.Column="7"/>
+            <TextBox x:Name="tb_FSteuerung_T5_RSF_LHUB2_ibnProtokoll" TabIndex="108" Grid.Row="31" Grid.Column="7"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="7" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Vorflut-" x:Name="lbl_Vorflut2"/>
+                    <Label Content="Change"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T5_SFX_VorflutChange1_ibnProtokoll" TabIndex="121" Grid.Row="38" Grid.Column="7"/>
+            <TextBox x:Name="tb_FSteuerung_T5_SFX_VorflutChange2_ibnProtokoll" TabIndex="133" Grid.Row="39" Grid.Column="7"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="7" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Pause 1" x:Name="lbl_Pause1"/>
+                    <Label Content="n.1.Nest" x:Name="lbl_n1Nest"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T5_Pause1_ibnProtokoll" TabIndex="75" Grid.Row="44" Grid.Column="7"/>
+            <TextBox x:Name="tb_FSteuerung_T5_Pause2_ibnProtokoll" TabIndex="83" Grid.Row="45" Grid.Column="7"/>
+
+            <!--Spalte 6-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="8" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T6"/>
+
+                    <Label Content="S.-Kolben" x:Name="lbl_SKolben1"/>
+                    <Label Content="vor" x:Name="lbl_Vor2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T6_RSF_SKolbenVor1_ibnProtokoll" TabIndex="96" Grid.Row="30" Grid.Column="8"/>
+            <TextBox x:Name="tb_FSteuerung_T6_RSF_SKolbenVor2_ibnProtokoll" TabIndex="109" Grid.Row="31" Grid.Column="8"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="8" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Filter" x:Name="lbl_Filter4"/>
+                    <Label Content="Soll-Druck" x:Name="lbl_SollDruck2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T6_SFX_SollDruck1_ibnProtokoll" TabIndex="122" Grid.Row="38" Grid.Column="8"/>
+            <TextBox x:Name="tb_FSteuerung_T6_SFX_SollDruck2_ibnProtokoll" TabIndex="134" Grid.Row="39" Grid.Column="8"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="8" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Filter" x:Name="lbl_Filter2"/>
+                    <Label Content="Soll-Druck" x:Name="lbl_SollDruck1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T6_SollDruck1_ibnProtokoll" TabIndex="76" Grid.Row="44" Grid.Column="8"/>
+            <TextBox x:Name="tb_FSteuerung_T6_SollDruck2_ibnProtokoll" TabIndex="84" Grid.Row="45" Grid.Column="8"/>
+
+            <!--Spalte 7-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="9" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Grid.Row="27" Grid.Column="9" Content="T7"/>
+
+                    <Label Content="S-.Kolben" x:Name="lbl_SKolben2"/>
+                    <Label Content="zurück" x:Name="lbl_zurueck1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T7_RSF_SKolbenZurück1_ibnProtokoll" TabIndex="97" Grid.Row="30" Grid.Column="9"/>
+            <TextBox x:Name="tb_FSteuerung_T7_RSF_SKolbenZurück2_ibnProtokoll" TabIndex="110" Grid.Row="31" Grid.Column="9"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="9" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Filter" x:Name="lbl_Filter5"/>
+                    <Label Content="Min.Druck" x:Name="lbl_MinDruck2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T7_SFX_MinDruck1_ibnProtokoll" TabIndex="123" Grid.Row="38" Grid.Column="9"/>
+            <TextBox x:Name="tb_FSteuerung_T7_SFX_MinDruck2_ibnProtokoll" TabIndex="135" Grid.Row="39" Grid.Column="9"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="9" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Filter" x:Name="lbl_Filter3"/>
+                    <Label Content="Min.Druck" x:Name="lbl_MinDruck1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T7_MinDruck1_ibnProtokoll" TabIndex="77" Grid.Row="44" Grid.Column="9"/>
+            <TextBox x:Name="tb_FSteuerung_T7_MinDruck2_ibnProtokoll" TabIndex="85" Grid.Row="45" Grid.Column="9"/>
+
+            <!--Spalte 8-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="10" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T8"/>
+
+                    <Label Content="*S.-Kolben" x:Name="lbl_SKolben3"/>
+                    <Label Content="vor" x:Name="lbl_Vor3"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T8_RSF_SKolbenVor1_ibnProtokoll" TabIndex="98" Grid.Row="30" Grid.Column="10"/>
+            <TextBox x:Name="tb_FSteuerung_T8_RSF_SKolbenVor2_ibnProtokoll" TabIndex="111" Grid.Row="31" Grid.Column="10"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="10" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Betriebs-" x:Name="lbl_Betriebs2"/>
+                    <Label Content="art" x:Name="lbl_Art2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T8_SFX_Betriebsart1_ibnProtokoll" TabIndex="124" Grid.Row="38" Grid.Column="10"/>
+            <TextBox x:Name="tb_FSteuerung_T8_SFX_Betriebsart2_ibnProtokoll" TabIndex="136" Grid.Row="39" Grid.Column="10"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="42" Grid.Column="10" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Betriebs-" x:Name="lbl_Betriebs1"/>
+                    <Label Content="art" x:Name="lbl_Art1"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T8_Betriebsart1_ibnProtokoll" TabIndex="78" Grid.Row="44" Grid.Column="10"/>
+            <TextBox x:Name="tb_FSteuerung_T8_Betriebsart2_ibnProtokoll" TabIndex="86" Grid.Row="45" Grid.Column="10"/>
+
+            <!--Spalte 9-->
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="11" Grid.RowSpan="3" >                
+                <StackPanel>
+                    <Label Content="T9"/>
+                    <Label Content="*S.-Kolben" x:Name="lbl_SKolben4"/>
+                    <Label Content="zurück" x:Name="lbl_zurueck2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T9_RSF_SKolbenZurück1_ibnProtokoll" TabIndex="99" Grid.Row="30" Grid.Column="11"/>
+            <TextBox x:Name="tb_FSteuerung_T9_RSF_KolbenZurück2_ibnProtokoll" TabIndex="112" Grid.Row="31" Grid.Column="11"/>          
+            
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="11" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Vor/Diff-" x:Name="lbl_VorDiff"/>
+                    <Label Content="druck" x:Name="lbl_Druck2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_T9_SFX_VorDiffDruck1_ibnProtokoll" TabIndex="125" Grid.Row="38" Grid.Column="11"/>
+            <TextBox x:Name="tb_FSteuerung_T9_SFX_VorDiffDruck2_ibnProtokoll" TabIndex="137" Grid.Row="39" Grid.Column="11"/>
+            
+            <Border BorderBrush="Black" BorderThickness="1.3,1.3,0,0" Grid.Row="42" Grid.Column="11" Grid.RowSpan="1">
+                <TextBox  Text="VIS" FontWeight="Bold" IsReadOnly="True"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1.3,0,0,0" Grid.Row="43" Grid.Column="11">
+                <Label x:Name="lbl_dBlech"  Content="d blech" FontWeight="Bold" Background="White"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1.3,0,0,0" Grid.Row="44" Grid.Column="11">
+                <TextBox Text="kp" FontWeight="Bold" IsReadOnly="True"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1.3,0,0,1.3" Grid.Row="45" Grid.Column="11">
+                <TextBox Text="kk" FontWeight="Bold" IsReadOnly="True"/>
+            </Border>
+
+            <!--Spalte 10-->
+            <Border BorderBrush="Black" BorderThickness="0,1.3,1.3,0" Grid.Row="42" Grid.Column="12">
+                <TextBox x:Name="tb_VIS_KSF_ibnProtokoll" TabIndex="87"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1.3,0" Grid.Row="43" Grid.Column="12">
+                <TextBox x:Name="tb_dBlech_KSF_ibnProtokoll" TabIndex="88"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1.3,0" Grid.Row="44" Grid.Column="12">
+                <TextBox x:Name="tb_kp_KSF_ibnProtokoll" TabIndex="89"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1.3,1.3" Grid.Row="45" Grid.Column="12">
+                <TextBox x:Name="tb_kk_KSF_ibnProtokoll" TabIndex="90"/>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="12" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T10"/>
+                    <Label Content="Anzahl" x:Name="lbl_Anzahl1"/>
+                    <Label Content="Siebe" x:Name="lbl_Siebe2"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_RSF_AnzahlSiebe1_ibnProtokoll" TabIndex="100" Grid.Row="30" Grid.Column="12"/>
+            <TextBox x:Name="tb_FSteuerung_RSF_AnzahlSiebe2_ibnProtokoll" TabIndex="113" Grid.Row="31" Grid.Column="12"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="12" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Vorflut." x:Name="lbl_Vorflut3"/>
+                    <Label Content="Maß A" x:Name="lbl_MassA"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_SFX_VorflutMaßA1_ibnProtokoll" TabIndex="126" Grid.Row="38" Grid.Column="12"/>
+            <TextBox x:Name="tb_FSteuerung_SFX_VorflutMaßA2_ibnProtokoll" TabIndex="138" Grid.Row="39" Grid.Column="12"/>
+            
+            <!--Spalte 11-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="41" Grid.Column="11" Grid.ColumnSpan="5" Margin="0,5,0,0">
+                <Label Grid.Row="27" Grid.Column="13" x:Name="lbl_KorrekteSteuerung" Content="Korrekte Funktion der Steuerung" />
+            </Border>
+            <CheckBox x:Name="checkB_FSteuerung_Siebscheibendrehung" Grid.Row="42" Grid.Column="13" Grid.ColumnSpan="1" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <Label Content="Siebscheibendrehung" Grid.Row="42" Grid.Column="14" Grid.ColumnSpan="3" Background="#FF969696" x:Name="lbl_Siebscheibendrehung"/>
+            <CheckBox x:Name="checkB_FSteuerung_Antriebskraftmessung" Grid.Row="43" Grid.Column="13" Grid.ColumnSpan="1" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <Label Content="Antriebskraftmessung" Grid.Row="43" Grid.Column="14" Grid.ColumnSpan="3" Background="#FF969696" x:Name="lbl_Antriebskraftmessung"/>
+            <CheckBox x:Name="checkB_FSteuerung_HubSchußkolben" Grid.Row="44" Grid.Column="13" Grid.ColumnSpan="1" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <Label Content="Hub Schußkolben" Grid.Row="44" Grid.Column="14" Grid.ColumnSpan="3" Background="#FF969696" x:Name="lbl_HubShusskolben" />
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="32" Background="#FF969696" />
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="27" Grid.Column="13" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="T11"/>
+                    <Label Content="Takte/" x:Name="lbl_Takte"/>
+                    <Label Content="Umdreh." x:Name="lbl_Umdrehung"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_RSF_Umdrehung1_ibnProtokoll" TabIndex="101" Grid.Row="30" Grid.Column="13"/>
+            <TextBox x:Name="tb_FSteuerung_RSF_Umdrehung2_ibnProtokoll" TabIndex="114" Grid.Row="31" Grid.Column="13"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="13" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Stellung" x:Name="lbl_Stellung"/>
+                    <Label Content="Rampe" x:Name="lbl_Rampe"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_SFX_StellungRampe1_ibnProtokoll" TabIndex="127" Grid.Row="38" Grid.Column="13"/>
+            <TextBox x:Name="tb_FSteuerung_SFX_StellungRampe2_ibnProtokoll" TabIndex="139" Grid.Row="39" Grid.Column="13"/>
+            
+            <!--Spalte 12-->
+            <Label Grid.Row="27" Grid.Column="14" Grid.ColumnSpan="2" Content="T12" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1.3,1.3,1.3,0"/>
+            
+            <Border BorderBrush="Black" BorderThickness="1.3,0,1.3,0" Grid.Row="28" Grid.Column="14" Grid.ColumnSpan="2">
+                <Label Content="Schusskolben %" x:Name="lbl_Schusskolben"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1.3,0,0,1.3" Grid.Row="29" Grid.Column="14" >
+                <Label Content="vor" x:Name="lbl_Vor4"/>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_RSF_SchusskolbenVor1_ibnProtokoll" TabIndex="102" Grid.Row="30" Grid.Column="14"/>
+            <TextBox x:Name="tb_FSteuerung_RSF_SchusskobenVor2_ibnProtokoll" TabIndex="115" Grid.Row="31" Grid.Column="14"/>
+
+            <Border BorderBrush="Black" BorderThickness="1.3" Grid.Row="36" Grid.Column="14" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="Ø Ablauf -" x:Name="lbl_Ablauf"/>
+                    <Label Content="düse(mm)" x:Name="lbl_Duese"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_SFX_Ablauf1_ibnProtokoll" TabIndex="128" Grid.Row="38" Grid.Column="14"/>
+            <TextBox x:Name="tb_FSteuerung_SFX_Ablauf2_ibnProtokoll" TabIndex="140" Grid.Row="39" Grid.Column="14"/>
+            
+            <!--Spalte 13-->
+            <Border BorderBrush="Black" BorderThickness="0,0,1.3,1.3" Grid.Row="29" Grid.Column="15">
+                <Label Content="zurück" x:Name="lbl_zurueck3"/>
+            </Border>
+            <TextBox x:Name="tb_FSteuerung_RSF_SchusskolbenZurück1_ibnProtokoll" TabIndex="103" Grid.Row="30" Grid.Column="15"/>
+            <TextBox x:Name="tb_FSteuerung_RSF_SchusskolbenZurück2_ibnProtokoll" TabIndex="116" Grid.Row="31" Grid.Column="15"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="49" Grid.Column="1" Grid.ColumnSpan="4" >
+                <Label Content="Spitzenwerte als Fotoanhang dokumentieren" FontWeight="Bold" x:Name="lbl_SpitzenAsFoto"/>
+            </Border>
+            <CheckBox x:Name="checkB_Spitzenwerte_Foto_JA_ibnProtokoll" Grid.Row="49" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <Label Content="Ja" Grid.Row="49" Grid.Column="6" Grid.ColumnSpan="1" Background="#FF969696" x:Name="lbl_Ja"/>
+            <CheckBox x:Name="checkB_Spitzenwerte_Foto_NEIN_ibnProtokoll" Grid.Row="49" Grid.Column="7" HorizontalAlignment="Right" Grid.ColumnSpan="1" VerticalAlignment="Center"/>
+            <Label Content="Nein, weil:" Grid.Row="49" Grid.Column="8" Grid.ColumnSpan="1" Background="#FF969696" x:Name="lbl_Nein"/>
+            <TextBox x:Name="tb_Fotoanhang_ibnProtokoll" TabIndex="141" Grid.Row="49" Grid.Column="9" Grid.ColumnSpan="3" />
+            
+            <!--Lückenfüller-->
+            <Label Grid.Row="51" Background="#FF969696"/>
+
+            <!--Tabelle 3 Temperaturprofil-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="52" Grid.ColumnSpan="16" Margin="0,0,0,5" >
+                <Label Content="Temperaturprofil in Extrusionsrichtung" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="15" x:Name="lbl_TempProfilExtrusionsRichtung"/>
+            </Border>
+            
+            
+            <!--Spalte 1-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="1">
+                <Label Content="Zone"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="55" Grid.Column="1"  >
+                <Label Content="Bezeichnung" x:Name="lbl_Bezeichnung"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="56" Grid.Column="1">
+                <Label Content="°C"/>
+            </Border>
+
+            <!--Spalte 2-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="2">
+                <Label Content="1"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone1_Bezeichnung" TabIndex="142" Grid.Row="55" Grid.Column="2"/>
+            <TextBox x:Name="tb_TempProfil_Zone1_Celsius" TabIndex="143" Grid.Row="56" Grid.Column="2"/>
+
+            <!--Spalte 3-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="3">
+                <Label Content="2"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone2_Bezeichnung" TabIndex="144" Grid.Row="55" Grid.Column="3"/>
+            <TextBox x:Name="tb_TempProfil_Zone2_Celsius" TabIndex="145" Grid.Row="56" Grid.Column="3"/>
+
+            <!--Spalte 4-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="4">
+                <Label Content="3"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone3_Bezeichnung" TabIndex="146" Grid.Row="55" Grid.Column="4"/>
+            <TextBox x:Name="tb_TempProfil_Zone3_Celsius" TabIndex="147" Grid.Row="56" Grid.Column="4"/>
+
+            <!--Spalte 5-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="5">
+                <Label Content="4"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone4_Bezeichnung" TabIndex="148" Grid.Row="55" Grid.Column="5"/>
+            <TextBox x:Name="tb_TempProfil_Zone4_Celsius" TabIndex="149" Grid.Row="56" Grid.Column="5"/>
+
+            <!--Spalte 6-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="6">
+                <Label Content="5"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone5_Bezeichnung" TabIndex="150" Grid.Row="55" Grid.Column="6"/>
+            <TextBox x:Name="tb_TempProfil_Zone5_Celsius" TabIndex="151" Grid.Row="56" Grid.Column="6"/>
+
+            <!--Spalte 7-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="7">
+                <Label Content="6"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone6_Bezeichnung" TabIndex="152" Grid.Row="55" Grid.Column="7"/>
+            <TextBox x:Name="tb_TempProfil_Zone6_Celsius" TabIndex="153" Grid.Row="56" Grid.Column="7"/>
+
+            <!--Spalte 8-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="8">
+                <Label Content="7"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone7_Bezeichnung" TabIndex="154" Grid.Row="55" Grid.Column="8"/>
+            <TextBox x:Name="tb_TempProfil_Zone7_Celsius" TabIndex="155" Grid.Row="56" Grid.Column="8"/>
+
+            <!--Spalte 9-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="9">
+                <Label Content="8"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone8_Bezeichnung" TabIndex="156" Grid.Row="55" Grid.Column="9"/>
+            <TextBox x:Name="tb_TempProfil_Zone8_Celsius" TabIndex="157" Grid.Row="56" Grid.Column="9"/>
+
+            <!--Spalte 10-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="10">
+                <Label Content="9"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone9_Bezeichnung" TabIndex="158" Grid.Row="55" Grid.Column="10"/>
+            <TextBox x:Name="tb_TempProfil_Zone9_Celsius" TabIndex="159" Grid.Row="56" Grid.Column="10"/>
+
+            <!--Spalte 11-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="11">
+                <Label Content="10"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone10_Bezeichnung" TabIndex="160" Grid.Row="55" Grid.Column="11"/>
+            <TextBox x:Name="tb_TempProfil_Zone10_Celsius" TabIndex="161" Grid.Row="56" Grid.Column="11"/>
+
+            <!--Spalte 12-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="12">
+                <Label Content="11"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone11_Bezeichnung" TabIndex="162" Grid.Row="55" Grid.Column="12"/>
+            <TextBox x:Name="tb_TempProfil_Zone11_Celsius" TabIndex="163" Grid.Row="56" Grid.Column="12"/>
+
+            <!--Spalte 13-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="13">
+                <Label Content="12"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone12_Bezeichnung" TabIndex="164" Grid.Row="55" Grid.Column="13"/>
+            <TextBox x:Name="tb_TempProfil_Zone12_Celsius" TabIndex="165" Grid.Row="56" Grid.Column="13"/>
+
+            <!--Spalte 14-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="14">
+                <Label Content="13"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone13_Bezeichnung" TabIndex="166" Grid.Row="55" Grid.Column="14"/>
+            <TextBox x:Name="tb_TempProfil_Zone13_Celsius" TabIndex="167" Grid.Row="56" Grid.Column="14"/>
+
+            <!--Spalte 15-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="54" Grid.Column="15">
+                <Label Content="14"/>
+            </Border>
+            <TextBox x:Name="tb_TempProfil_Zone14_Bezeichnung" TabIndex="168" Grid.Row="55" Grid.Column="15"/>
+            <TextBox x:Name="tb_TempProfil_Zone14_Celsius" TabIndex="169" Grid.Row="56" Grid.Column="15"/>
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="60" Content="" Background="#FF969696"/>
+            
+<!--TODO Checkboxen vom Content trennen durch zusätzliches label-->
+            <CheckBox x:Name="checkB_KTempMessung_ibnProtokoll" Grid.Row="61" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label Grid.Row="61" x:Name="lbl_Kundentemperaturmessung" Grid.Column="1" Grid.ColumnSpan="5" Background="#FF969696" Content="Kundentemperaturmessung (Blocktemperatur) korrekt"/>
+
+            <CheckBox x:Name="checkB_Druckabschaltung_ibnProtokoll" Grid.Row="63" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label Grid.Row="63" x:Name="lbl_Druckabschlatung" Grid.Column="1" Grid.ColumnSpan="5" Background="#FF969696" Content="Druckabschaltung Filtervordruck überprüft/getestet"/>
+
+            <CheckBox x:Name="checkB_EingestellteBar_ibnProtokoll" Grid.Row="63" VerticalAlignment="Center" HorizontalAlignment="left" Grid.ColumnSpan="1" Grid.Column="8" />
+            <Label  x:Name="lbl_EingestelltAuf" Content="Eingestellt auf" Grid.Row="63" Grid.Column="8" HorizontalAlignment="Center" Grid.ColumnSpan="2" Background="#FF969696" />
+            <TextBox x:Name="tb_EingestellteBar_ibnProtokoll" TabIndex="170" Grid.Row="63" Grid.Column="10"/>
+            <Label Grid.Row="63" Grid.Column="11" Content="bar" HorizontalContentAlignment="Left" Background="#FF969696"/>
+            
+            <CheckBox x:Name="checkB_Abschaltung_Elektrisch_ibnProtokoll" Grid.Row="64" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label x:Name="lbl_AbschaltungElektrisch"  Content="Abschaltung elektrisch" Grid.Row="64" Grid.Column="1" Grid.ColumnSpan="2" Background="#FF969696"/>
+
+            <CheckBox x:Name="checkB_Abschaltung_mechanisch_ibnProtokoll" Grid.Row="64"  Grid.Column="5" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label x:Name="lbl_AbschaltungMechanisch"  Content="mechanisch" Grid.Row="64" Grid.Column="6" Grid.ColumnSpan="2" Background="#FF969696"/>
+
+            <CheckBox x:Name="checkB_KeinAbschaltung_ibnProtokoll" Grid.Row="64" Grid.Column="8" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Label x:Name="lbl_KeineAbschaltung"  Grid.Row="64" Grid.Column="8" Content="Keine Abschaltung(Kunde geschult)" Background="#FF969696" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+
+            <Label Grid.Row="66" Content="" Background="#FF969696"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="67" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="2">
+                <InkCanvas x:Name="ic_Unterschrift_Kunde_ibnProtokoll" Grid.RowSpan="2" Height="60"/>
+            </Border>
+            <Label Grid.Row="70" Grid.Column="1" Grid.ColumnSpan="5" HorizontalContentAlignment="Center" x:Name="lbl_UnterschriftKunde" Content="Unterschrift Kunde"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="67" Grid.ColumnSpan="5" Grid.Column="8" Grid.RowSpan="2">
+                <InkCanvas x:Name="ic_Unterschrift_Servicetechniker_ibnProtokoll" Grid.RowSpan="2" Height="60"/>
+            </Border>
+            <Label Grid.Row="70" Grid.Column="8" Grid.ColumnSpan="5" HorizontalContentAlignment="Center" x:Name="lbl_UnterschriftServicetechnicker" Content="Ort, Datum, Unterschrift Servicetechnicker"/>
+
+                        
+            <!--Design Linien-->
+            <Label Grid.Row="59" Grid.ColumnSpan="16" Background="Black" Margin="0,5,0,0"/>
+            <Label Grid.Row="65" Grid.ColumnSpan="16" Background="Black" Margin="0,5,0,0"/>
+
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

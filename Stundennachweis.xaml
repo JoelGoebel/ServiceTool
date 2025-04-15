@@ -1,0 +1,557 @@
+﻿<UserControl x:Class="ServiceTool.Stundennachweis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServiceTool"
+             mc:Ignorable="d" d:DesignWidth="2100" Height="1020">
+    <UserControl.Resources>
+        <!-- Stildefinition für alle Labels -->
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#B7D7B3"/>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid Background="#FF969696">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1.25*"/>
+                <ColumnDefinition Width="1.6*"/>
+                <ColumnDefinition Width="1.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--5-->
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--10-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--15-->
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--20-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--25-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--30-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="2.25*"/>
+                <!--35-->
+                <RowDefinition Height="2.25*"/>
+                <RowDefinition Height="2.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--40-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--45-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25"/>
+                <RowDefinition Height="5"/>
+                <!--50-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--55-->
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="1.25*"/>
+                <!--60-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="5"/>
+                <!--65-->
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.65*"/>
+                <RowDefinition Height="1.65*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <!--70-->
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+            </Grid.RowDefinitions>
+            <!-- ab Hier werden die Elemente Definiert und Platziert-->
+
+            <!--Kopfzeile-->
+            <Label Grid.Row="0" Grid.Column="0" Background="#FF969696">
+                <Image Source="Bilder/gneuss_png_1.png" />
+            </Label>
+
+            <TextBlock Margin="0,0,0,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="11" TextWrapping="WrapWithOverflow" Text="Stundennachweis &#x0a;Service Visitreport" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+
+            <TextBlock Margin="0,0,0,5" Grid.Row="0" Grid.Column="12" Grid.ColumnSpan="3" HorizontalAlignment="Right" Text="Service-Techniker: &#x0a; Service technican:" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBox x:Name="tb_Servicetechiker_Stunden" Margin="0,0,0,5" Grid.Row="0" Grid.Column="15" Grid.ColumnSpan="3" FontSize="17" FontWeight="Bold" Text="tb_Servicetechniker_Anforderung" TextAlignment="Center"/>
+
+            <Label Grid.Row="1" Grid.ColumnSpan="18" Background="Black"/>
+
+            <!--Kunde Name/Adresse/Ansprechpartner-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                <Label HorizontalContentAlignment="Center" Content="Kunde/Customer:" FontSize="15" FontWeight="Bold" VerticalContentAlignment="Center"/>
+            </Border>
+            <TextBox Margin="0,5,0,0" x:Name="tb_Kunde_Stunden" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" FontSize="15" Text="tb_Kunde_Anforderung" TextAlignment="Center"/>
+
+            <Border Margin="0,5,0,0" BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="2">
+                <Label Content="Anschrift/Address:" FontSize="15" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Border>
+            <TextBox Margin="0,5,0,0" Grid.Row="2" Grid.Column="13" Grid.ColumnSpan="3" x:Name="tb_Anschrift_1_Stunden" FontSize="15" Text="tb_Anschrift_1_Anforderung" TextAlignment="Center"/>
+            <TextBox  Grid.Row="3" Grid.Column="13" Grid.ColumnSpan="3" FontSize="15" x:Name="tb_Anschrift_2_Stunden" Text="tb_Anschrift_2_Anforderung" TextAlignment="Center"/>
+
+            <Border Margin="0,0,0,5" BorderBrush="Black" BorderThickness="1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                <Label HorizontalContentAlignment="Center" FontSize="13" FontWeight="Bold" Content="Ansprechpartner vor Ort/Abteilung -Contact person on site/department:"/>
+            </Border>
+            <TextBox Margin="0,0,0,5" x:Name="tb_Ansprechpartner_Stunden" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" FontSize="13" TextAlignment="Center" Text="tb_Ansprechpartner_Anforderung"/>
+
+            <Label Grid.Row="5" Grid.ColumnSpan="18" Background="Black"/>
+
+            <!--Reise Fahrzeug-->
+            <Border Margin="0,5,0,5" BorderBrush="Black" BorderThickness="1" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                <Label  FontSize="15" FontWeight="Bold" Content="Verkehrsmittel/Means of transport:" HorizontalContentAlignment="Center"/>
+            </Border>
+
+            <ComboBox Margin="0,5,0,5" x:Name="cb_Verkehrsmittel_Stunden" Grid.Row="6" Grid.Column="3" FontSize="15" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" >
+                <ComboBoxItem>PKW</ComboBoxItem>
+                <ComboBoxItem>Flugzeug</ComboBoxItem>
+                <ComboBoxItem>Bahn</ComboBoxItem>
+            </ComboBox>
+
+            <Label Grid.Row="7" Grid.ColumnSpan="18" Background="Black"/>
+
+            <!--Reisezeit-->
+            <Label Background="#FF969696" Content="Reisezeit/Travel time" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="8" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <Label Background="#FF969696" Content="Anreise Datum (arrival):" FontSize="15" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="dp_AnreiseDatum_Stunden" Grid.Row="9" Grid.Column="2" TabIndex="0" />
+
+            <Label Background="#FF969696" Content="Abreise Datum (depature):" FontSize="15" Grid.Row="10" Margin="0,0,0,5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="dp_AbreiseDatum_Stunden" TabIndex="6" Grid.Row="10" Margin="0,0,0,5" Grid.Column="2"/>
+
+            <Label Background="#FF969696" Content="von/from:" FontSize="15" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cb_Anreise_Fahrtbeginn_Stunden" FontSize="15" Grid.Row="9" TabIndex="1" Grid.Column="4" SelectionChanged="cb_Anreise_Fahrtbeginn_Stunden_SelectionChanged"/>
+
+            <Label Content="Ankunft Datum:" Background="#FF969696" Grid.Row="9" Grid.Column="5"  FontSize="15" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="dp_AnreiseDatumAnkunft_Stunden" TabIndex="2" Grid.Row="9" FontSize="15" Grid.Column="6" Grid.ColumnSpan="2" />
+
+            <Label Content="bis/to:" Background="#FF969696" Grid.Row="9" Grid.Column="8" HorizontalAlignment="Right" FontSize="15"/>
+            <ComboBox x:Name="cb_Anreise_Fahrtende_Stunden" TabIndex="3" Grid.Row="9" Grid.Column="9" FontSize="15" SelectionChanged="cb_Anreise_Fahrtende_Stunden_SelectionChanged"/>
+
+            <Label Background="#FF969696" Content="von/from:" FontSize="15" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cb_Abreise_Fahrtbeginn_Stunden" TabIndex="7" Grid.Row="10" FontSize="15" Margin="0,0,0,5" Grid.Column="4" SelectionChanged="cb_Abreise_Fahrtbeginn_Stunden_SelectionChanged"/>
+
+            <Label Background="#FF969696" Content="Ankunft Datum:" FontSize="15" Grid.Row="10" Margin="0,0,0,5" Grid.Column="5" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="dp_AbreiseDatumAnkunft_Stunden" TabIndex="8" FontSize="15" Grid.Row="10" Margin="0,0,0,5" Grid.Column="6" Grid.ColumnSpan="2"/>
+
+            <Label Background="#FF969696" Content="bis/to:" Grid.Row="10" Grid.Column="8" FontSize="15" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cb_Abreise_Fahrtende_Stunden" Grid.Row="10" TabIndex="9" FontSize="15" Margin="0,0,0,5" Grid.Column="9" SelectionChanged="cb_Abreise_Fahrtende_Stunden_SelectionChanged"/>
+
+            <Label Background="#FF969696" Grid.Row="9" Grid.Column="10" Content="-" FontWeight="Bold" FontSize="15" HorizontalContentAlignment="Center"/>
+            <Label Background="#FF969696" Grid.Row="10" Margin="0,0,0,5" Grid.Column="10" Content="-" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+
+            <Label Background="#FF969696" Content="Pause/Break" Grid.Row="8" Grid.Column="9" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Right" FontWeight="Bold"/>
+            <ComboBox x:Name="cb_Anreise_Pause_Stunden" TabIndex="4" Grid.Row="9" Grid.Column="11" FontSize="15" SelectionChanged="cb_Anreise_Pause_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Abreise_Pause_Stunden" Margin="0,0,0,0" TabIndex="10" Grid.Row="10" Grid.Column="11" FontSize="15" SelectionChanged="cb_Abreise_Pause_Stunden_SelectionChanged"/>
+
+            <Label Background="#FF969696" Content="= Std./hours:" Grid.Row="9" Grid.Column="12" FontSize="15" HorizontalAlignment="Center"/>
+            <TextBox x:Name="tb_Anreisedauer_Gesamt_Stunden" Focusable="False" Grid.Row="9" FontSize="15" Grid.Column="13"/>
+
+            <Label Background="#FF969696" Content="= Std./hours:" Margin="0,0,0,5" Grid.Row="10" Grid.Column="12" FontSize="15" HorizontalAlignment="Center"/>
+            <TextBox x:Name="tb_Abreisedauer_Gesamt_Stunden" Focusable="False" Margin="0,0,0,5" Grid.Row="10" Grid.Column="13" FontSize="15"/>
+
+            <Label Background="#FF969696" Content="Km:" Grid.Row="9" Grid.Column="14" FontSize="15" HorizontalAlignment="Center"/>
+            <TextBox x:Name="tb_AnreiseWeg_Stunden" TabIndex="5" Grid.Row="9" FontSize="15" Grid.Column="15"/>
+
+            <Label Background="#FF969696" Content="Km:" Margin="0,0,0,5" Grid.Row="10" FontSize="15" Grid.Column="14" HorizontalAlignment="Center"/>
+            <TextBox x:Name="tb_AbreiseWeg_Stunden" TabIndex="11" Margin="0,0,0,5" FontSize="15" Grid.Row="10" Grid.Column="15"/>
+
+            <Label Grid.Row="11" Grid.ColumnSpan="18" Background="Black"/>
+
+            <!--Tabelle Arbeitszeit-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="18" Margin="0,5,0,5" >
+                <Label Content="Arbeitszeit/Working time" HorizontalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            </Border>
+            <!--Spalte Wochentag-->
+            <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Row="13" Grid.Column="1">
+                <Label Content="Tag" FontSize="15"  VerticalAlignment="Bottom"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="14" Grid.Column="1">
+                <Label Content="Day" Grid.Row="14" FontSize="15" Grid.Column="0"/>
+            </Border>
+            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="16" Grid.Column="1">
+                <Label Content="Mo" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="16" Content="2. Schicht" Click="Schicht2Hinzufügen_Mo"/>
+            <Label x:Name="lbl_Schicht2_Mo" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="17" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="18" Grid.Column="1">
+                <Label Content="Di/Tu" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="18" Content="2. Schicht" Click="Schicht2Hinzufügen_Di"/>
+            <Label x:Name="lbl_Schicht2_Di" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="19" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="20" Grid.Column="1">
+                <Label Content="Mi/We" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="20" Content="2. Schicht" Click="Schicht2Hinzufügen_Mi"/>
+            <Label x:Name="lbl_Schicht2_Mi" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="21" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="22" Grid.Column="1">
+                <Label Content="Do/Th" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="22" Content="2. Schicht" Click="Schicht2Hinzufügen_Do"/>
+            <Label x:Name="lbl_Schicht2_Do" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="23" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="24" Grid.Column="1">
+                <Label Content="Fr" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="24" Content="2. Schicht" Click="Schicht2Hinzufügen_Fr"/>
+            <Label x:Name="lbl_Schicht2_Fr" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="25" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="26" Grid.Column="1">
+                <Label Content="Sa" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="26" Content="2. Schicht" Click="Schicht2Hinzufügen_Sa"/>
+            <Label x:Name="lbl_Schicht2_Sa" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="27" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="28" Grid.Column="1">
+                <Label Content="So/Su" FontSize="15"/>
+            </Border>
+            <Button Grid.Row="28" Content="2. Schicht" Click="Schicht2Hinzufügen_So"/>
+            <Label x:Name="lbl_Schicht2_So" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="29" Content="Schicht 2" FontSize="15" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+
+
+            <!--Spalte Datum-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="2">
+                <Label Content="Datum" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="2">
+                <Label Content="Date"  FontSize="15"/>
+            </Border>
+            <DatePicker x:Name="dp_Datum_Mo_Stunden" Grid.Row="16" TabIndex="12" Grid.Column="2" FontSize="15" SelectedDateChanged="SetAllDateForThisWeek"/>
+            <DatePicker x:Name="dp_Datum_Di_Stunden" Grid.Row="18" Grid.Column="2" FontSize="15"/>
+            <DatePicker x:Name="dp_Datum_Mi_Stunden" Grid.Row="20" Grid.Column="2" FontSize="15"/>
+            <DatePicker x:Name="dp_Datum_Do_Stunden" Grid.Row="22" Grid.Column="2" FontSize="15"/>
+            <DatePicker x:Name="dp_Datum_Fr_Stunden" Grid.Row="24" Grid.Column="2" FontSize="15"/>
+            <DatePicker x:Name="dp_Datum_Sa_Stunden" Grid.Row="26" Grid.Column="2" FontSize="15"/>
+            <DatePicker x:Name="dp_Datum_So_Stunden" Grid.Row="28" Grid.Column="2" FontSize="15"/>
+            <!--Spalte Startzeit-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="3">
+                <Label Content="Von" VerticalAlignment="Bottom"  FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="3">
+                <Label Content="From" FontSize="15"/>
+            </Border>
+            <ComboBox x:Name="cb_Von_Mo_Stunden" TabIndex="13" Grid.Row="16" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Mo_S2_Stunden" TabIndex="13" Grid.Row="17" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Di_Stunden" TabIndex="17" Grid.Row="18" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Di_S2_Stunden" TabIndex="17" Grid.Row="19" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Mi_Stunden" TabIndex="21" Grid.Row="20" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Mi_S2_Stunden" TabIndex="21" Grid.Row="21" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Do_Stunden" TabIndex="25" Grid.Row="22" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Do_S2_Stunden" TabIndex="25" Grid.Row="23" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Fr_Stunden" TabIndex="29" Grid.Row="24" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Fr_S2_Stunden" TabIndex="29" Grid.Row="25" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Sa_Stunden" TabIndex="33" Grid.Row="26" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Sa_S2_Stunden" TabIndex="33" Grid.Row="27" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_So_Stunden" TabIndex="37" Grid.Row="28" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_So_S2_Stunden" TabIndex="37" Grid.Row="29" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+
+            <!--Spalte Feeeeeiiieraaabeeend-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="4">
+                <Label Content="Bis" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="4">
+                <Label Content="To" FontSize="15"/>
+            </Border>
+            <ComboBox x:Name="cb_Bis_Mo_Stunden" TabIndex="14" Grid.Row="16" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Mo_S2_Stunden" TabIndex="14" Grid.Row="17" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Di_Stunden" TabIndex="18" Grid.Row="18" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Di_S2_Stunden" TabIndex="18" Grid.Row="19" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Mi_Stunden" TabIndex="22" Grid.Row="20" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Mi_S2_Stunden" TabIndex="22" Grid.Row="21" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Do_Stunden" TabIndex="26" Grid.Row="22" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Do_S2_Stunden" TabIndex="26" Grid.Row="23" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Fr_Stunden" TabIndex="30" Grid.Row="24" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Fr_S2_Stunden" TabIndex="30" Grid.Row="25" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Sa_Stunden" TabIndex="34" Grid.Row="26" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Sa_S2_Stunden" TabIndex="34" Grid.Row="27" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_So_Stunden" TabIndex="38" Grid.Row="28" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_So_S2_Stunden" TabIndex="38" Grid.Row="29" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+
+            <!--Spalte Pause-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="5">
+                <Label Content="Pause"  FontSize="15" VerticalAlignment="Bottom"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="5">
+                <Label Content="Break"  FontSize="15"/>
+            </Border>
+            <ComboBox x:Name="cb_Pause_Mo_Stunden" TabIndex="15" Grid.Row="16" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Mo_S2_Stunden" TabIndex="15" Grid.Row="17" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Di_Stunden" TabIndex="19" Grid.Row="18" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Di_S2_Stunden" TabIndex="19" Grid.Row="19" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Mi_Stunden" TabIndex="23" Grid.Row="20" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Mi_S2_Stunden" TabIndex="23" Grid.Row="21" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Do_Stunden" TabIndex="27" Grid.Row="22" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Do_S2_Stunden" TabIndex="27" Grid.Row="23" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Fr_Stunden" TabIndex="31" Grid.Row="24" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Fr_S2_Stunden" TabIndex="31" Grid.Row="25" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Sa_Stunden" TabIndex="35" Grid.Row="26" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Sa_S2_Stunden" TabIndex="35" Grid.Row="27" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_So_Stunden" TabIndex="39" Grid.Row="28" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_So_S2_Stunden" TabIndex="39" Grid.Row="29" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+
+            <!--Spalte Bemerkun/Art der Arbeit-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.ColumnSpan="4" Grid.Row="13" Grid.Column="6">
+                <Label Content="Bemerkung/Art der Arbeit" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.ColumnSpan="4" Grid.Row="14" Grid.Column="6">
+                <Label Content="Note/Kind of work" HorizontalContentAlignment="Center"  FontSize="15"/>
+            </Border>
+            <TextBox x:Name="tb_Bemerkung_Mo_Stunden" TabIndex="16" Grid.Row="16" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Mo_S2_Stunden" TabIndex="16" Grid.Row="17" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_Di_Stunden" TabIndex="20" Grid.Row="18" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Di_S2_Stunden" TabIndex="20" Grid.Row="19" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_Mi_Stunden" TabIndex="24" Grid.Row="20" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Mi_S2_Stunden" TabIndex="24" Grid.Row="21" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_Do_Stunden" TabIndex="28" Grid.Row="22" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Do_S2_Stunden" TabIndex="28" Grid.Row="23" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_Fr_Stunden" TabIndex="32" Grid.Row="24" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Fr_S2_Stunden" TabIndex="32" Grid.Row="25" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_Sa_Stunden" TabIndex="36" Grid.Row="26" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_Sa_S2_Stunden" TabIndex="36" Grid.Row="27" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+            <TextBox x:Name="tb_Bemerkung_So_Stunden" TabIndex="40" Grid.Row="28" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15"/>
+            <TextBox x:Name="tb_Bemerkung_So_S2_Stunden" TabIndex="40" Grid.Row="29" Grid.Column="6" Grid.ColumnSpan="4" FontSize="15" Visibility="Collapsed"/>
+
+            <!--Spalte Normale Arbeitszeit-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="10" Grid.ColumnSpan="2">
+                <Label Content="Normal Std." HorizontalContentAlignment="Center" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="10" Grid.ColumnSpan="2">
+                <Label Content="Regular working time" HorizontalContentAlignment="Center" FontSize="15"/>
+            </Border>
+            <TextBox x:Name="tb_NormalStd_Mo_Stunden" Grid.Row="16" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Mo_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Di_Stunden" Grid.Row="18" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Di_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Mi_Stunden" Grid.Row="20" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Mi_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Do_Stunden" Grid.Row="22" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Do_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Fr_Stunden" Grid.Row="24" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Fr_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Sa_Stunden" Grid.Row="26" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_So_Stunden" Grid.Row="28" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+
+            <!--Spalte Überstunden-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0"  Grid.Row="13" Grid.Column="12">
+                <Label Content="Überstunden" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="12">
+                <Label Content="Overtime" FontSize="15"/>
+            </Border>
+            <TextBox x:Name="tb_Ueberstunden_Mo_Stunden" Grid.Row="16" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Di_Stunden" Grid.Row="18" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Mi_Stunden" Grid.Row="20" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Do_Stunden" Grid.Row="22" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Fr_Stunden" Grid.Row="24" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Sa_Stunden" Grid.Row="26" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_So_Stunden" Grid.Row="28" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+
+            <!--Spalte Nachtarbeit-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0"  Grid.Row="13" Grid.Column="13">
+                <Label Content="Nachtarbeit Std." VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="13">
+                <Label Content="Nightwork Hours" FontSize="15"/>
+            </Border>
+            <TextBox x:Name="tb_Nachtarbeit_Mo_Stunden" Grid.Row="16" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Di_Stunden" Grid.Row="18" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Mi_Stunden" Grid.Row="20" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Do_Stunden" Grid.Row="22" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Fr_Stunden" Grid.Row="24" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Sa_Stunden" Grid.Row="26" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_So_Stunden" Grid.Row="28" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+
+            <!--Spalte Gesamtarbeitszeit-->
+            <Border BorderBrush="Black" BorderThickness="0,1,1,0"  Grid.Row="13" Grid.Column="14" Grid.ColumnSpan="3">
+                <Label Content="Gesamt" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="14" Grid.ColumnSpan="3">
+                <Label Content="Total" HorizontalContentAlignment="Center" FontSize="15"/>
+            </Border>
+            <TextBox x:Name="tb_GesamtStd_Mo_Stunden" Grid.Row="16" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Di_Stunden" Grid.Row="18" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Mi_Stunden" Grid.Row="20" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Do_Stunden" Grid.Row="22" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Fr_Stunden" Grid.Row="24" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Sa_Stunden" Grid.Row="26" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_So_Stunden" Grid.Row="28" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <!--Gesamte Arbeitszeit untere Spalte-->
+            <Label Content="Gesamt/Total" Grid.Row="30" Grid.Column="1" HorizontalContentAlignment="Right" Grid.ColumnSpan="9" FontWeight="Bold" FontSize="15"/>
+            <TextBox x:Name="tb_GesamteWoche_NormalStd_Stunden" Grid.Row="30" Grid.Column="10" Grid.ColumnSpan="2" FontSize="15"/>
+            <TextBox x:Name="tb_GesamteWoche_UeberStd_Stunden" Grid.Row="30" Grid.Column="12" FontSize="15"/>
+            <TextBox x:Name="tb_GesamteWoche_NachtStd_Stunden" Grid.Row="30" Grid.Column="13" FontSize="15"/>
+            <TextBox x:Name="tb_GesamteWoche_AlleStd_Stunden" Grid.Row="30" Grid.Column="14" Grid.ColumnSpan="3" FontSize="15"/>
+
+            <!--Tabellen Linien-->
+            
+            <Label Grid.Column="0" Grid.Row="31" Grid.ColumnSpan="18" Background="Black" Margin="0,5,0,0"/>
+
+            <!--Notizen Bereich-->
+            <Border BorderBrush="Black" BorderThickness="1"  Grid.Row="32" Grid.Column="0" Grid.ColumnSpan="18" Margin="0,5,0,0">
+                <Label Content="Bericht/Report:" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            </Border>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="33" Grid.Column="1" Grid.RowSpan="15" Grid.ColumnSpan="16">
+                <TextBox
+                    x:Name="tb_Bericht_Stundennachweis"
+                        AcceptsReturn="True" TabIndex="41"
+                    TextWrapping="Wrap"
+                    Margin="5" FontSize="16"
+                    Grid.Row="33" Grid.Column="1"
+                    Grid.RowSpan="15" Grid.ColumnSpan="16" Foreground="Black"
+                    />
+            </ScrollViewer>
+
+            <Label Grid.Row="49" Grid.ColumnSpan="18" Background="Black"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="50" Grid.Column="0" Grid.ColumnSpan="18" Margin="0,5,0,0">
+                <Label Content="Schulung/Training" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            </Border>
+
+
+            <Label Background="#FF969696" Grid.Row="51" Grid.Column="9" Grid.ColumnSpan="3" Content="Troubleshooting/Störungsbeseitigung"/>
+            <CheckBox x:Name="checkb_Störungsbeseitigung_Stunden" Grid.Row="51" Grid.Column="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="51" Grid.Column="5" Grid.ColumnSpan="3" Content="Operation of whole equipment/Bedienung aller Anlagenteile"/>
+            <CheckBox x:Name="checkb_Bedienung_Stunden" Grid.Row="51" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="51" Grid.Column="1" Grid.ColumnSpan="3" Content="Setup/Aufbau"/>
+            <CheckBox x:Name="checkb_Aufbau_Stunden" Grid.Row="51" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="52" Grid.Column="1" Grid.ColumnSpan="3" Content="Operating principle/Funktionsweise"/>
+            <CheckBox x:Name="checkb_Funktionsweise_Stunden" Grid.Row="52" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="52" Grid.Column="5" Grid.ColumnSpan="3" Content="Safety Instructions/ Sicherheitsvorschriften"/>
+            <CheckBox x:Name="checkb_Sicherheitsvorschriften_Stunden" Grid.Row="52" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="53" Grid.Column="1" Grid.ColumnSpan="3" Content="Briefing control system/ Einweisung in Steuerung"/>
+            <CheckBox x:Name="checkb_Einweisung_Stunden" Grid.Row="53" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <Label Background="#FF969696" Grid.Row="53" Grid.Column="5" Grid.ColumnSpan="3" Content="Maintenance / Wartung"/>
+            <CheckBox x:Name="checkb_Wartung_Stunden" Grid.Row="53" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <CheckBox x:Name="checkb_Sonstiges2_Stunden" Grid.Row="53" Grid.Column="8" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="100,0,0,0"/>
+            <TextBox x:Name="TB_Sonstoges2_Stunden" Grid.Row="53" Grid.Column="9" Grid.ColumnSpan="3"/>
+
+            <TextBox x:Name="TB_Sonstiges_Stunden" Grid.Row="54" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <CheckBox x:Name="checkb_Sonstiges_Stunden" Grid.Row="54" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="54" Grid.Column="4" Grid.ColumnSpan="8" Text="Bedienungsanleitung ist unbedingt zu beachten/ In any case the operating instructions need to be considered" />
+
+            <Label Grid.Row="55" Grid.ColumnSpan="18" Background="Black"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="56" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,5,0,0">
+                <Label HorizontalContentAlignment="Center" Content="!  Maschinenabnahme gemäß Auftragsbestätigung  !" FontWeight="Bold" FontSize="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="57" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,5">
+                <Label HorizontalContentAlignment="Center" Content="!  Machine acceptance as per order confirmation  !" FontWeight="Bold" FontSize="15"/>
+            </Border>
+
+            <DatePicker FontSize="15" TabIndex="42" FontWeight="Bold" Margin="0,5,0,0" Text="Datum/Date:" x:Name="dp_Datum_Abnahme_Stunden" Grid.Column="5" Grid.Row="56" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+            <Label Content="Unterschrift Service-Technicker" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="15" FontWeight="Bold" Grid.Column="8" Grid.Row="56" Grid.RowSpan="1" Grid.ColumnSpan="4" Background="#FF969696" />
+            <Label Content="Signature Service Technican:" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="15" FontWeight="Bold" Grid.Column="8" Grid.Row="57" Grid.RowSpan="1" Grid.ColumnSpan="4" Background="#FF969696" />
+            <InkCanvas x:Name="ic_Unterschrift_Technicker" Width="693" Grid.Row="56" Grid.Column="12" Grid.RowSpan="2" Grid.ColumnSpan="6" Height="57" Background="White"/>
+
+            <Label Grid.Row="58" Grid.ColumnSpan="18" Background="Black"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="59" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,5,0,5">
+                <Label Content="Wie zufrieden sind Sie mit unseren Produkten?" FontSize="15" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="60" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,5">
+                <Label Content="How satisfied are you with our products?" FontSize="15" FontWeight="Bold"/>
+            </Border>
+            <CheckBox x:Name="checkb_ZufriedenheitProduckt_Hoch_Stunden" Grid.Row="59" Grid.Column="5" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="checkb_ZufriedenheitProduckt_Mittel_Stunden" Grid.Row="59" Grid.Column="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="checkb_ZufriedenheitProduckt_Niedrig_Stunden" Grid.Row="59" Grid.Column="7" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label Grid.Row="61" Grid.Column="5" Content="J" FontSize="20" FontFamily="Wingdings" FontWeight="Bold" Foreground="Green" HorizontalContentAlignment="Center" Background="#FF969696"/>
+            <Label Grid.Row="61" Grid.Column="6" Content="K" FontSize="20" FontFamily="Wingdings" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF969696"/>
+            <Label Grid.Row="61" Grid.Column="7" Content="L" FontSize="20" FontFamily="Wingdings" FontWeight="Bold" Foreground="Red" HorizontalContentAlignment="Center" Background="#FF969696"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="62" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,5,0,0">
+                <Label Content="Wie zufrieden sind Sie mit dem Gneuß-Support?" FontSize="15" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="63" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,5,0,5">
+                <Label Content="How satisfied are you with the Gneuß support?" FontSize="15" FontWeight="Bold"/>
+            </Border>
+            <CheckBox x:Name="checkb_ZufriedenheitSupport_Hoch_Stunden" Grid.Row="62" Grid.Column="5" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="checkb_ZufriedenheitSupport_Mittel_Stunden" Grid.Row="62" Grid.Column="6" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <CheckBox x:Name="checkb_ZufriedenheitSupport_Niedrig_Stunden" Grid.Row="62" Grid.Column="7" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label Grid.Row="64" Grid.ColumnSpan="18" Background="Black"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="66" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,5,0,5">
+                <Label Content="Ort/Place:" FontSize="15" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="66" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,5,0,5">
+                <TextBox x:Name="tb_Ort_UnterschriftKunde_Stunden" TabIndex="43"/>
+            </Border>
+            <DatePicker Margin="0,5,0,5" TabIndex="44" x:Name="dp_Datum_UnterschriftKunde_Stunden" Grid.Row="66" Grid.ColumnSpan="3" Grid.Column="6" Grid.RowSpan="1" Text="Datum/Date:" FontSize="15" FontWeight="Bold"/>
+            <InkCanvas Margin="0,5,0,5" x:Name="ic_UnterschriftKunde_Stunden" Grid.Row="66" Grid.ColumnSpan="6" Grid.Column="9" Grid.RowSpan="1" Height="60" Width="680" Background="White"/>
+            <Border Grid.Row="65" Grid.ColumnSpan="18" BorderBrush="Black" BorderThickness="1" Margin="0,5,0,0">
+                <Label  Content="Unsterschrift Kunde/Signature Customer" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            </Border>
+
+            <Label Grid.Row="67" Grid.Column="7" Grid.ColumnSpan="3" HorizontalContentAlignment="Right" Background="#FF969696" Content="Name des Unterschreibenden" Margin="0,0,0,15" FontSize="13" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="tb_NameOfSignature" Grid.Row="67" Grid.Column="10" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,15"/>
+            <Label Grid.Row="68" Grid.ColumnSpan="18" Grid.RowSpan="3" Content=" " Background="#FF969696" FontSize="20"/>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

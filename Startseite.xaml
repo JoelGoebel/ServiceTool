@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ServiceTool.Startseite"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServiceTool"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="#FF969696">
+    <UserControl.Resources>
+        <!-- Stildefinition für alle Labels -->
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#B7D7B3"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <StackPanel Margin="10">
+
+            <!-- Direkte Suche nach Auftragsnummer -->
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,10">
+                <Label Content="Aufträge durchsuchen" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            </Border>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                    <Label Content="Auftragsnummer:" Width="130" FontSize="15"  />
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <TextBox Name="tb_Auftragsnummer" VerticalContentAlignment="Center" KeyDown="AuftragsNrSucheStarten" Width="160" FontSize="15" />
+                </Border>
+            </StackPanel>
+            <Button x:Name="btn_AuftragsNr_suchen" FontSize="15" HorizontalAlignment="Left" Content="Suche nach Auftrag" Width="295" Click="btn_AuftragsNr_suchen_Click" Margin="0,0,0,0"/>
+
+            <!-- Suche nach Land, Kundenfirmenname und AbDatum -->
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,10,0,10" >
+                <Label Content="Suche nach Land / Firmenname / Ab Datum" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" />
+            </Border>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                    <Label Content="Land:" FontSize="15" Width="130"   />
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1" Width="160">
+                    <TextBox Name="tb_Land_Startseite" KeyDown="StarteTabellenFilter" VerticalContentAlignment="Center" FontSize="15" Width="160" />
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <Label Content="Firmenname:" FontSize="15" Width="130"  />
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0,1,1,1" Width="160">
+                    <TextBox Name="tb_KundenFirmenName_Startseite" KeyDown="StarteTabellenFilter" VerticalContentAlignment="Center" FontSize="15" Width="160" />
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <Label Content="Ab Datum:" Width="130" FontSize="15"  />
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0,1,1,1" Width="160">
+                    <DatePicker KeyDown="StarteTabellenFilter" VerticalContentAlignment="Center" FontSize="15" Name="dp_AbDatum_Startseite" Width="160"/>
+                </Border>
+            </StackPanel>
+            <Button HorizontalAlignment="Left" Content="Suche" FontSize="15" Width="295" Click="OnSearchClick" Margin="0,10,0,5"/>
+            <Button HorizontalAlignment="Left" Content="Suche zurück setzen" FontSize="15" Width="295" Click="ResetSearch" Margin="0,0,0,10"/>
+
+            <!-- DataGrid für die Anzeige der Ergebnisse -->
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,20,0,0">
+                <DataGrid Name="dataGrid" SelectionChanged="InsertAuftragsNrWhenRowSelected" AutoGenerateColumns="True" Height="600" FontSize="15"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

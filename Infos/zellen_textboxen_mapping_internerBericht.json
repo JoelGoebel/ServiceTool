@@ -1,0 +1,282 @@
+[
+  {
+    "Zelle": "B4",
+    "Feldname": "tb_Vorspannung"
+  },
+  {
+    "Zelle": "B6",
+    "Feldname": "TB_Drehmoment_M_Einstelldaten"
+  },
+  {
+    "Zelle": "B7",
+    "Feldname": "TB_Drehmoment_T1_Einstelldaten"
+  },
+  {
+    "Zelle": "B8",
+    "Feldname": "TB_Drehmoment_B1_Einstelldaten"
+  },
+  {
+    "Zelle": "B9",
+    "Feldname": "TB_Drehmoment_T2_Einstelldaten"
+  },
+  {
+    "Zelle": "B10",
+    "Feldname": "TB_Drehmoment_T3_Einstelldaten"
+  },
+  {
+    "Zelle": "B11",
+    "Feldname": "TB_Drehmoment_B2_Einstelldaten"
+  },
+  {
+    "Zelle": "B12",
+    "Feldname": "TB_Drehmoment_B3_Einstelldaten"
+  },
+  {
+    "Zelle": "B13",
+    "Feldname": "TB_Drehmoment_T4_Einstelldaten"
+  },
+  {
+    "Zelle": "B14",
+    "Feldname": "TB_Drehmoment_B4_Einstelldaten"
+  },
+  {
+    "Zelle": "B15",
+    "Feldname": "TB_Drehmoment_TB0_Einstelldaten"
+  },
+  {
+    "Zelle": "B16",
+    "Feldname": "TB_Drehmoment_D0_Einstelldaten"
+  },
+  {
+    "Zelle": "B17",
+    "Feldname": "TB_Drehmoment_Sonstige_Einstelldaten"
+  },
+  {
+    "Zelle": "D6",
+    "Feldname": "CB_Einheit_M"
+  },
+  {
+    "Zelle": "D7",
+    "Feldname": "CB_Einheit_T1"
+  },
+  {
+    "Zelle": "D8",
+    "Feldname": "CB_Einheit_B1"
+  },
+  {
+    "Zelle": "D9",
+    "Feldname": "CB_Einheit_T2"
+  },
+  {
+    "Zelle": "D10",
+    "Feldname": "CB_Einheit_T3"
+  },
+  {
+    "Zelle": "D11",
+    "Feldname": "CB_Einheit_B2"
+  },
+  {
+    "Zelle": "D12",
+    "Feldname": "CB_Einheit_B3"
+  },
+  {
+    "Zelle": "D13",
+    "Feldname": "CB_Einheit_T4"
+  },
+  {
+    "Zelle": "D14",
+    "Feldname": "CB_Einheit_B4"
+  },
+  {
+    "Zelle": "D15",
+    "Feldname": "CB_Einheit_TB0"
+  },
+  {
+    "Zelle": "D16",
+    "Feldname": "CB_Einheit_D0"
+  },
+  {
+    "Zelle": "D17",
+    "Feldname": "CB_Einheit_Sonstige"
+  },
+  {
+    "Zelle": "F6",
+    "Feldname": "TB_UnterlegungLR_Einstelldaten"
+  },
+  {
+    "Zelle": "F8",
+    "Feldname": "TB_UnterlegungZP_Einstelldaten"
+  },
+  {
+    "Zelle": "A22",
+    "Feldname": "tb_Spaltmass"
+  },
+  {
+    "Zelle": "A26",
+    "Feldname": "tb_Referenzmass_rotor"
+  },
+  {
+    "Zelle": "C29",
+    "Feldname": "tb_Bestriebsstunden"
+  },
+  {
+    "Zelle": "B32",
+    "Feldname": "cb_Bewertung_Gneuss"
+  },
+  {
+    "Zelle": "E32",
+    "Feldname": "cb_Bewertung_Kunde"
+  },
+  {
+    "Zelle": "A39",
+    "Feldname": "tb_Durchfuehrung_internerbericht"
+  },
+  {
+    "Zelle": "D47",
+    "Feldname": "cb_Aufgabe_Erfolgt"
+  },
+  {
+    "Zelle": "A49",
+    "Feldname": "tb_AbweichendeAufgaben_internerbericht"
+  },
+  {
+    "Zelle": "C51",
+    "Feldname": "cb_FazitAufgabe"
+  },
+  {
+    "Zelle": "B54",
+    "Feldname": "cb_Problem_GKT"
+  },
+  {
+    "Zelle": "B55",
+    "Feldname": "cb_Problem_Kunde"
+  },
+  {
+    "Zelle": "B56",
+    "Feldname": "tb_Bemerkung_Ursache"
+  },
+  {
+    "Zelle": "B62",
+    "Feldname": "tb_1_RestAufgabe"
+  },
+  {
+    "Zelle": "B63",
+    "Feldname": "tb_2_RestAufgabe"
+  },
+  {
+    "Zelle": "B64",
+    "Feldname": "tb_3_RestAufgabe"
+  },
+  {
+    "Zelle": "B65",
+    "Feldname": "tb_4_RestAufgabe"
+  },
+  {
+    "Zelle": "B66",
+    "Feldname": "tb_5_RestAufgabe"
+  },
+  {
+    "Zelle": "B67",
+    "Feldname": "tb_6_RestAufgabe"
+  },
+  {
+    "Zelle": "B68",
+    "Feldname": "tb_7_RestAufgabe"
+  },
+  {
+    "Zelle": "B69",
+    "Feldname": "tb_8_RestAufgabe"
+  },
+  {
+    "Zelle": "F62",
+    "Feldname": "tb_1_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F63",
+    "Feldname": "tb_2_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F64",
+    "Feldname": "tb_3_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F65",
+    "Feldname": "tb_4_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F66",
+    "Feldname": "tb_5_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F67",
+    "Feldname": "tb_6_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F68",
+    "Feldname": "tb_7_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "F69",
+    "Feldname": "tb_8_Zuständig_restaufgaben"
+  },
+  {
+    "Zelle": "G62",
+    "Feldname": "tb_1_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G63",
+    "Feldname": "tb_2_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G64",
+    "Feldname": "tb_3_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G65",
+    "Feldname": "tb_4_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G66",
+    "Feldname": "tb_5_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G67",
+    "Feldname": "tb_6_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G68",
+    "Feldname": "tb_7_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "G69",
+    "Feldname": "tb_8_Termin_restaufgaben"
+  },
+  {
+    "Zelle": "A72",
+    "Feldname": "tb_Schwachstellen"
+  },
+  {
+    "Zelle": "A78",
+    "Feldname": "checkb_Anhang_inbetriebnahmeprotokoll"
+  },
+  {
+    "Zelle": "A79",
+    "Feldname": "checkb_Anhang_Servicecheckliste"
+  },
+  {
+    "Zelle": "A80",
+    "Feldname": "checkb_Anhang_Sonstige"
+  },
+  {
+    "Zelle": "D80",
+    "Feldname": "tb_sonstigerAnhang_1"
+  },
+  {
+    "Zelle": "D81",
+    "Feldname": "tb_sonstigerAnhang_2"
+  },
+  {
+    "Zelle": "D82",
+    "Feldname": "tb_sonstigerAnhang_3"
+  }
+]

@@ -1,0 +1,307 @@
+[
+  {
+    "Deutsch": "Inbetriebnahmeprotokoll MRS",
+    "Englisch": "Comissioning Data Sheet MRS",
+    "LBL_Names": "lbl_InbetriebnahmeprotokollMRS"
+  },
+  {
+    "Deutsch": "Kunde",
+    "Englisch": "Customer",
+    "LBL_Names": "lbl_Kunde"
+  },
+  {
+    "Deutsch": "Ansprechpartner",
+    "Englisch": "Contact",
+    "LBL_Names": "lbl_Ansprechpartner"
+  },
+  {
+    "Deutsch": "Versuchsaufbau",
+    "Englisch": "Line configuration",
+    "LBL_Names": "lbl_Versuchsaufbau"
+  },
+  {
+    "Deutsch": "Material",
+    "Englisch": "Material",
+    "LBL_Names": "lbl_Material"
+  },
+  {
+    "Deutsch": "Extruder Typ",
+    "Englisch": "Extruder type",
+    "LBL_Names": "lbl_ExtruderTyp"
+  },
+  {
+    "Deutsch": "Serien-Nr",
+    "Englisch": "Serial-No.",
+    "LBL_Names": "lbl_SerienNr"
+  },
+  {
+    "Deutsch": "Endprodukt",
+    "Englisch": "Final product",
+    "LBL_Names": "lbl_Endprodukt"
+  },
+  {
+    "Deutsch": "Beschaffenheit",
+    "Englisch": "shape",
+    "LBL_Names": "lbl_Beschaffenheit"
+  },
+  {
+    "Deutsch": "Beheizung/Kühlung",
+    "Englisch": "Heating/Cooling",
+    "LBL_Names": "lbl_BeheizungKuehlung"
+  },
+  {
+    "Deutsch": "Nr.",
+    "Englisch": "No.",
+    "LBL_Names": "lbl_Nr"
+  },
+  {
+    "Deutsch": "Bezeichnung",
+    "Englisch": "Designation",
+    "LBL_Names": "lbl_Bezeichnung"
+  },
+  {
+    "Deutsch": "°C Ist-Wert",
+    "Englisch": "°C actual value",
+    "LBL_Names": "lbl_IstWert_Temp"
+  },
+  {
+    "Deutsch": "°C Soll-Wert",
+    "Englisch": "°C set point",
+    "LBL_Names": "lbl_SollWert_Temp"
+  },
+  {
+    "Deutsch": "Kühlung Einzug",
+    "Englisch": "Cooling feeding zone",
+    "LBL_Names": "lbl_KuehlungEinzug"
+  },
+  {
+    "Deutsch": "Schneckenkühlung.",
+    "Englisch": "screw cooling",
+    "LBL_Names": "lbl_Schneckenkuehlung"
+  },
+  {
+    "Deutsch": "Industriekühler / Vakuum",
+    "Englisch": "chiller vacuum",
+    "LBL_Names": "lbl_IndustriekuehlerVakuum"
+  },
+  {
+    "Deutsch": "Bemerkung",
+    "Englisch": "Remarks",
+    "LBL_Names": "lbl_Bemerkung"
+  },
+  {
+    "Deutsch": "Steuerung MRS",
+    "Englisch": "Control MRS",
+    "LBL_Names": "lbl_SteuerungMRS"
+  },
+  {
+    "Deutsch": "Regelung",
+    "Englisch": "Control loops",
+    "LBL_Names": "lbl_Regelungen"
+  },
+  {
+    "Deutsch": "Sonstige feste Einstellparameter",
+    "Englisch": "Other fix parameter settings",
+    "LBL_Names": "lbl_SonstigeEinstellparameter"
+  },
+  {
+    "Deutsch": "Viskosimeter",
+    "Englisch": "Viscosimeter",
+    "LBL_Names": "lbl_Viskosimeter"
+  },
+  {
+    "Deutsch": "Vakuum",
+    "Englisch": "Vacuum",
+    "LBL_Names": "lbl_Vakuum"
+  },
+  {
+    "Deutsch": "Prozessparameter",
+    "Englisch": "Process parameter",
+    "LBL_Names": "lbl_Prozessparameter"
+  },
+  {
+    "Deutsch": "Nr.",
+    "Englisch": "No.",
+    "LBL_Names": "lbl_Nr1"
+  },
+  {
+    "Deutsch": "Zeit",
+    "Englisch": "Time",
+    "LBL_Names": "lbl_Zeit"
+  },
+  {
+    "Deutsch": "Regelung",
+    "Englisch": "Control",
+    "LBL_Names": "lbl_Regelung"
+  },
+  {
+    "Deutsch": "ein aus",
+    "Englisch": "on off",
+    "LBL_Names": "lbl_EinAus"
+  },
+  {
+    "Deutsch": "Pumpe",
+    "Englisch": "Pump",
+    "LBL_Names": "lbl_Pumpe"
+  },
+  {
+    "Deutsch": "Auslastung",
+    "Englisch": "Load",
+    "LBL_Names": "lbl_Auslastung"
+  },
+  {
+    "Deutsch": "Drehzahl Extruder",
+    "Englisch": "Extruder speed",
+    "LBL_Names": "lbl_DrehzahlExtruder"
+  },
+  {
+    "Deutsch": "Auslastung",
+    "Englisch": "Load",
+    "LBL_Names": "lbl_Auslastung2"
+  },
+  {
+    "Deutsch": "Soll",
+    "Englisch": "setpoint",
+    "LBL_Names": "lbl_Soll"
+  },
+  {
+    "Deutsch": "Vakuum",
+    "Englisch": "Vacuum",
+    "LBL_Names": "lbl_Vakuum2"
+  },
+  {
+    "Deutsch": "soll/ist",
+    "Englisch": "set/act.",
+    "LBL_Names": "lbl_SollIst"
+  },
+  {
+    "Deutsch": "Viskosimeter",
+    "Englisch": "Viscosimeter",
+    "LBL_Names": "lbl_Viskosimeter2"
+  },
+  {
+    "Deutsch": "Viskosität",
+    "Englisch": "Viscosity",
+    "LBL_Names": "lbl_Viskositaet"
+  },
+  {
+    "Deutsch": "Scherung",
+    "Englisch": "Shear rate",
+    "LBL_Names": "lbl_Scherung"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "downstr.",
+    "LBL_Names": "lbl_downstr"
+  },
+  {
+    "Deutsch": "n.Eintrag",
+    "Englisch": "feed zone",
+    "LBL_Names": "lbl_NEintrag"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "downstr.",
+    "LBL_Names": "lbl_downstr2"
+  },
+  {
+    "Deutsch": "n.MRS",
+    "Englisch": "MRS",
+    "LBL_Names": "lbl_NMrs"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "downstr.",
+    "LBL_Names": "lbl_downstr3"
+  },
+  {
+    "Deutsch": "n.Austrag",
+    "Englisch": "discharge",
+    "LBL_Names": "lbl_nAustrag"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "upstream",
+    "LBL_Names": "lbl_upstr"
+  },
+  {
+    "Deutsch": "Pumpe",
+    "Englisch": "off pump",
+    "LBL_Names": "lbl_Pumpe1"
+  },
+  {
+    "Deutsch": "Düse",
+    "Englisch": "die",
+    "LBL_Names": "lbl_Duese"
+  },
+  {
+    "Deutsch": "v.Filter",
+    "Englisch": "upstr. filter",
+    "LBL_Names": "lbl_vFilter"
+  },
+  {
+    "Deutsch": "n. Filter",
+    "Englisch": "downstr. filter",
+    "LBL_Names": "lbl_nFilter"
+  },
+  {
+    "Deutsch": "Sieb-",
+    "Englisch": "filter",
+    "LBL_Names": "lbl_Sieb"
+  },
+  {
+    "Deutsch": "feihnheit",
+    "Englisch": "fineness",
+    "LBL_Names": "lbl_Feinheit"
+  },
+  {
+    "Deutsch": "Schnecken",
+    "Englisch": "Screw",
+    "LBL_Names": "lbl_Schnecken"
+  },
+  {
+    "Deutsch": "-kühlung",
+    "Englisch": "cooling",
+    "LBL_Names": "lbl_kuehlung"
+  },
+  {
+    "Deutsch": "ist",
+    "Englisch": "actual",
+    "LBL_Names": "lbl_Ist"
+  },
+  {
+    "Deutsch": "Einzugs-",
+    "Englisch": "Feed zone",
+    "LBL_Names": "lbl_Einzugs"
+  },
+  {
+    "Deutsch": "-kühlung",
+    "Englisch": "cooling",
+    "LBL_Names": "lbl_kuehlung2"
+  },
+  {
+    "Deutsch": "ist",
+    "Englisch": "actual",
+    "LBL_Names": "lbl_Ist2"
+  },
+  {
+    "Deutsch": "Visko",
+    "Englisch": "Visco",
+    "LBL_Names": "lbl_Visko"
+  },
+  {
+    "Deutsch": "Durchsatz",
+    "Englisch": "Throughput",
+    "LBL_Names": "lbl_Durchsatz"
+  },
+  {
+    "Deutsch": "Unterschrift Kunde",
+    "Englisch": "Signature customer",
+    "LBL_Names": "lbl_UnterschriftKunde"
+  },
+  {
+    "Deutsch": "Ort, Datum, Unterschrift Verfahrenstechnicker",
+    "Englisch": "Place, Date, Signature commissioner",
+    "LBL_Names": "lbl_Unterschriftverfahrenstechnicker"
+  } 
+]

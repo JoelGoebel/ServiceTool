@@ -1,0 +1,730 @@
+[
+  {
+    "Zelle": "G3",
+    "Feldname": "tb_Kunde_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "G4",
+    "Feldname": "tb_Ansprechpartner_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "G5",
+    "Feldname": "tb_Aufbau_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "G7",
+    "Feldname": "tb_Material_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "AF3",
+    "Feldname": "tb_ExtruderTyp_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "AF5",
+    "Feldname": "tb_Seriennummer_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "AF8",
+    "Feldname": "tb_Endprodukt_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "G8",
+    "Feldname": "tb_Beschaffenheit_ibnProtokoll_MRS"
+  },
+  {
+    "Zelle": "D13",
+    "Feldname": "tb_Bezeichnung_HZ_1"
+  },
+  {
+    "Zelle": "F13",
+    "Feldname": "tb_Bezeichnung_HZ_2"
+  },
+  {
+    "Zelle": "H13",
+    "Feldname": "tb_Bezeichnung_HZ_3"
+  },
+  {
+    "Zelle": "J13",
+    "Feldname": "tb_Bezeichnung_HZ_4"
+  },
+  {
+    "Zelle": "L13",
+    "Feldname": "tb_Bezeichnung_HZ_5"
+  },
+  {
+    "Zelle": "N13",
+    "Feldname": "tb_Bezeichnung_HZ_6"
+  },
+  {
+    "Zelle": "P13",
+    "Feldname": "tb_Bezeichnung_HZ_7"
+  },
+  {
+    "Zelle": "R13",
+    "Feldname": "tb_Bezeichnung_HZ_8"
+  },
+  {
+    "Zelle": "T13",
+    "Feldname": "tb_Bezeichnung_HZ_9"
+  },
+  {
+    "Zelle": "V13",
+    "Feldname": "tb_Bezeichnung_HZ_10"
+  },
+  {
+    "Zelle": "X13",
+    "Feldname": "tb_Bezeichnung_HZ_11"
+  },
+  {
+    "Zelle": "Z13",
+    "Feldname": "tb_Bezeichnung_HZ_12"
+  },
+  {
+    "Zelle": "AB13",
+    "Feldname": "tb_Bezeichnung_HZ_13"
+  },
+  {
+    "Zelle": "AD13",
+    "Feldname": "tb_Bezeichnung_HZ_14"
+  },
+  {
+    "Zelle": "AF13",
+    "Feldname": "tb_Bezeichnung_HZ_15"
+  },
+  {
+    "Zelle": "AH13",
+    "Feldname": "tb_Bezeichnung_HZ_16"
+  },
+  {
+    "Zelle": "AJ13",
+    "Feldname": "tb_Bezeichnung_HZ_17"
+  },
+  {
+    "Zelle": "AL13",
+    "Feldname": "tb_Bezeichnung_HZ_18"
+  },
+  {
+    "Zelle": "AN13",
+    "Feldname": "tb_Bezeichnung_HZ_19"
+  },
+  {
+    "Zelle": "AP13",
+    "Feldname": "tb_Bezeichnung_HZ_20"
+  },
+  {
+    "Zelle": "AR13",
+    "Feldname": "tb_Bezeichnung_HZ_21"
+  },
+  {
+    "Zelle": "AT13",
+    "Feldname": "tb_Bezeichnung_HZ_22"
+  },
+  {
+    "Zelle": "AV13",
+    "Feldname": "tb_Bezeichnung_HZ_23"
+  },
+  {
+    "Zelle": "AX13",
+    "Feldname": "tb_Bezeichnung_HZ_24"
+  },
+  {
+    "Zelle": "AZ13",
+    "Feldname": "tb_Bezeichnung_HZ_25"
+  },
+  {
+    "Zelle": "BB13",
+    "Feldname": "tb_Bezeichnung_HZ_26"
+  },
+  {
+    "Zelle": "D15",
+    "Feldname": "tb_IstWert_Temp_HZ_1"
+  },
+  {
+    "Zelle": "F15",
+    "Feldname": "tb_IstWert_Temp_HZ_2"
+  },
+  {
+    "Zelle": "H15",
+    "Feldname": "tb_IstWert_Temp_HZ_3"
+  },
+  {
+    "Zelle": "J15",
+    "Feldname": "tb_IstWert_Temp_HZ_4"
+  },
+  {
+    "Zelle": "L15",
+    "Feldname": "tb_IstWert_Temp_HZ_5"
+  },
+  {
+    "Zelle": "N15",
+    "Feldname": "tb_IstWert_Temp_HZ_6"
+  },
+  {
+    "Zelle": "P15",
+    "Feldname": "tb_IstWert_Temp_HZ_7"
+  },
+  {
+    "Zelle": "R15",
+    "Feldname": "tb_IstWert_Temp_HZ_8"
+  },
+  {
+    "Zelle": "T15",
+    "Feldname": "tb_IstWert_Temp_HZ_9"
+  },
+  {
+    "Zelle": "V15",
+    "Feldname": "tb_IstWert_Temp_HZ_10"
+  },
+  {
+    "Zelle": "X15",
+    "Feldname": "tb_IstWert_Temp_HZ_11"
+  },
+  {
+    "Zelle": "Z15",
+    "Feldname": "tb_IstWert_Temp_HZ_12"
+  },
+  {
+    "Zelle": "AB15",
+    "Feldname": "tb_IstWert_Temp_HZ_13"
+  },
+  {
+    "Zelle": "AD15",
+    "Feldname": "tb_IstWert_Temp_HZ_14"
+  },
+  {
+    "Zelle": "AF15",
+    "Feldname": "tb_IstWert_Temp_HZ_15"
+  },
+  {
+    "Zelle": "AH15",
+    "Feldname": "tb_IstWert_Temp_HZ_16"
+  },
+  {
+    "Zelle": "AJ15",
+    "Feldname": "tb_IstWert_Temp_HZ_17"
+  },
+  {
+    "Zelle": "AL15",
+    "Feldname": "tb_IstWert_Temp_HZ_18"
+  },
+  {
+    "Zelle": "AN15",
+    "Feldname": "tb_IstWert_Temp_HZ_19"
+  },
+  {
+    "Zelle": "AP15",
+    "Feldname": "tb_IstWert_Temp_HZ_20"
+  },
+  {
+    "Zelle": "AR15",
+    "Feldname": "tb_IstWert_Temp_HZ_21"
+  },
+  {
+    "Zelle": "AT15",
+    "Feldname": "tb_IstWert_Temp_HZ_22"
+  },
+  {
+    "Zelle": "AV15",
+    "Feldname": "tb_IstWert_Temp_HZ_23"
+  },
+  {
+    "Zelle": "AX15",
+    "Feldname": "tb_IstWert_Temp_HZ_24"
+  },
+  {
+    "Zelle": "AZ15",
+    "Feldname": "tb_IstWert_Temp_HZ_25"
+  },
+  {
+    "Zelle": "BB15",
+    "Feldname": "tb_IstWert_Temp_HZ_26"
+  },
+  {
+    "Zelle": "D17",
+    "Feldname": "tb_SollWert_Temp_HZ_1"
+  },
+  {
+    "Zelle": "F17",
+    "Feldname": "tb_SollWert_Temp_HZ_2"
+  },
+  {
+    "Zelle": "H17",
+    "Feldname": "tb_SollWert_Temp_HZ_3"
+  },
+  {
+    "Zelle": "J17",
+    "Feldname": "tb_SollWert_Temp_HZ_4"
+  },
+  {
+    "Zelle": "L17",
+    "Feldname": "tb_SollWert_Temp_HZ_5"
+  },
+  {
+    "Zelle": "N17",
+    "Feldname": "tb_SollWert_Temp_HZ_6"
+  },
+  {
+    "Zelle": "P17",
+    "Feldname": "tb_SollWert_Temp_HZ_7"
+  },
+  {
+    "Zelle": "R17",
+    "Feldname": "tb_SollWert_Temp_HZ_8"
+  },
+  {
+    "Zelle": "T17",
+    "Feldname": "tb_SollWert_Temp_HZ_9"
+  },
+  {
+    "Zelle": "V17",
+    "Feldname": "tb_SollWert_Temp_HZ_10"
+  },
+  {
+    "Zelle": "X17",
+    "Feldname": "tb_SollWert_Temp_HZ_11"
+  },
+  {
+    "Zelle": "Z17",
+    "Feldname": "tb_SollWert_Temp_HZ_12"
+  },
+  {
+    "Zelle": "AB17",
+    "Feldname": "tb_SollWert_Temp_HZ_13"
+  },
+  {
+    "Zelle": "AD17",
+    "Feldname": "tb_SollWert_Temp_HZ_14"
+  },
+  {
+    "Zelle": "AF17",
+    "Feldname": "tb_SollWert_Temp_HZ_15"
+  },
+  {
+    "Zelle": "AH17",
+    "Feldname": "tb_SollWert_Temp_HZ_16"
+  },
+  {
+    "Zelle": "AJ17",
+    "Feldname": "tb_SollWert_Temp_HZ_17"
+  },
+  {
+    "Zelle": "AL17",
+    "Feldname": "tb_SollWert_Temp_HZ_18"
+  },
+  {
+    "Zelle": "AN17",
+    "Feldname": "tb_SollWert_Temp_HZ_19"
+  },
+  {
+    "Zelle": "AP17",
+    "Feldname": "tb_SollWert_Temp_HZ_20"
+  },
+  {
+    "Zelle": "AR17",
+    "Feldname": "tb_SollWert_Temp_HZ_21"
+  },
+  {
+    "Zelle": "AT17",
+    "Feldname": "tb_SollWert_Temp_HZ_22"
+  },
+  {
+    "Zelle": "AV17",
+    "Feldname": "tb_SollWert_Temp_HZ_23"
+  },
+  {
+    "Zelle": "AX17",
+    "Feldname": "tb_SollWert_Temp_HZ_24"
+  },
+  {
+    "Zelle": "AZ17",
+    "Feldname": "tb_SollWert_Temp_HZ_25"
+  },
+  {
+    "Zelle": "BB17",
+    "Feldname": "tb_SollWert_Temp_HZ_26"
+  },
+  {
+    "Zelle": "H20",
+    "Feldname": "CH_Kuehlung_Einzug"
+  },
+  {
+    "Zelle": "H22",
+    "Feldname": "CH_SchneckenKuehlung"
+  },
+  {
+    "Zelle": "H24",
+    "Feldname": "CH_Industriekuehler_Vakuum"
+  },
+  {
+    "Zelle": "P20",
+    "Feldname": "TB_Bemerkung"
+  },
+  {
+    "Zelle": "E30",
+    "Feldname": "TB_Extruder"
+  },
+  {
+    "Zelle": "E33",
+    "Feldname": "TB_Viskosimeter"
+  },
+  {
+    "Zelle": "E35",
+    "Feldname": "TB_Vakuum"
+  },
+  {
+    "Zelle": "AB30",
+    "Feldname": "TB_Sonstige_Einstellparameter"
+  },
+  {
+    "Zelle": "C43",
+    "Feldname": "TB_Zeit_1_ProPara"
+  },
+  {
+    "Zelle": "C45",
+    "Feldname": "TB_Zeit_2_ProPara"
+  },
+  {
+    "Zelle": "C47",
+    "Feldname": "TB_Zeit_3_ProPara"
+  },
+  {
+    "Zelle": "C49",
+    "Feldname": "TB_Zeit_4_ProPara"
+  },
+  {
+    "Zelle": "E43",
+    "Feldname": "TB_Regelung_1_ProPara"
+  },
+  {
+    "Zelle": "E45",
+    "Feldname": "TB_Regelung_2_ProPara"
+  },
+  {
+    "Zelle": "E47",
+    "Feldname": "TB_Regelung_3_ProPara"
+  },
+  {
+    "Zelle": "E49",
+    "Feldname": "TB_Regelung_4_ProPara"
+  },
+  {
+    "Zelle": "G43",
+    "Feldname": "TB_Pumpe_1_ProPara"
+  },
+  {
+    "Zelle": "G45",
+    "Feldname": "TB_Pumpe_2_ProPara"
+  },
+  {
+    "Zelle": "G47",
+    "Feldname": "TB_Pumpe_3_ProPara"
+  },
+  {
+    "Zelle": "G49",
+    "Feldname": "TB_Pumpe_4_ProPara"
+  },
+  {
+    "Zelle": "I43",
+    "Feldname": "TB_Auslastung_1_ProPara"
+  },
+  {
+    "Zelle": "I45",
+    "Feldname": "TB_Auslastung_2_ProPara"
+  },
+  {
+    "Zelle": "I47",
+    "Feldname": "TB_Auslastung_3_ProPara"
+  },
+  {
+    "Zelle": "I49",
+    "Feldname": "TB_Auslastung_4_ProPara"
+  },
+  {
+    "Zelle": "K43",
+    "Feldname": "TB_Drehzahl_Soll_1_ProPara"
+  },
+  {
+    "Zelle": "K45",
+    "Feldname": "TB_Drehzahl_Soll_2_ProPara"
+  },
+  {
+    "Zelle": "K47",
+    "Feldname": "TB_Drehzahl_Soll_3_ProPara"
+  },
+  {
+    "Zelle": "K49",
+    "Feldname": "TB_Drehzahl_Soll_4_ProPara"
+  },
+  {
+    "Zelle": "M43",
+    "Feldname": "TB_Drehzahl_MinMax_1_ProPara"
+  },
+  {
+    "Zelle": "M45",
+    "Feldname": "TB_Drehzahl_MinMax_2_ProPara"
+  },
+  {
+    "Zelle": "M47",
+    "Feldname": "TB_Drehzahl_MinMax_3_ProPara"
+  },
+  {
+    "Zelle": "M49",
+    "Feldname": "TB_Drehzahl_MinMax_4_ProPara"
+  },
+  {
+    "Zelle": "O43",
+    "Feldname": "TB_Auslastung2_1_ProPara"
+  },
+  {
+    "Zelle": "O45",
+    "Feldname": "TB_Auslastung2_2_ProPara"
+  },
+  {
+    "Zelle": "O47",
+    "Feldname": "TB_Auslastung2_3_ProPara"
+  },
+  {
+    "Zelle": "O49",
+    "Feldname": "TB_Auslastung2_4_ProPara"
+  },
+  {
+    "Zelle": "Q43",
+    "Feldname": "TB_Vakuum_1_ProPara"
+  },
+  {
+    "Zelle": "Q45",
+    "Feldname": "TB_Vakuum_2_ProPara"
+  },
+  {
+    "Zelle": "Q47",
+    "Feldname": "TB_Vakuum_3_ProPara"
+  },
+  {
+    "Zelle": "Q49",
+    "Feldname": "TB_Vakuum_4_ProPara"
+  },
+  {
+    "Zelle": "S43",
+    "Feldname": "TB_Viskosimeter_Viskositaet_1_ProPara"
+  },
+  {
+    "Zelle": "S45",
+    "Feldname": "TB_Viskosimeter_Viskositaet_2_ProPara"
+  },
+  {
+    "Zelle": "S47",
+    "Feldname": "TB_Viskosimeter_Viskositaet_3_ProPara"
+  },
+  {
+    "Zelle": "S49",
+    "Feldname": "TB_Viskosimeter_Viskositaet_4_ProPara"
+  },
+  {
+    "Zelle": "U43",
+    "Feldname": "TB_Viskosimeter_Scherung_1_ProPara"
+  },
+  {
+    "Zelle": "U45",
+    "Feldname": "TB_Viskosimeter_Scherung_2_ProPara"
+  },
+  {
+    "Zelle": "U47",
+    "Feldname": "TB_Viskosimeter_Scherung_3_ProPara"
+  },
+  {
+    "Zelle": "U49",
+    "Feldname": "TB_Viskosimeter_Scherung_4_ProPara"
+  },
+  {
+    "Zelle": "W43",
+    "Feldname": "TB_MP1_1_ProPara"
+  },
+  {
+    "Zelle": "W45",
+    "Feldname": "TB_MP1_2_ProPara"
+  },
+  {
+    "Zelle": "W47",
+    "Feldname": "TB_MP1_3_ProPara"
+  },
+  {
+    "Zelle": "W49",
+    "Feldname": "TB_MP1_4_ProPara"
+  },
+  {
+    "Zelle": "Y43",
+    "Feldname": "TB_MP2_1_ProPara"
+  },
+  {
+    "Zelle": "Y45",
+    "Feldname": "TB_MP2_2_ProPara"
+  },
+  {
+    "Zelle": "Y47",
+    "Feldname": "TB_MP2_3_ProPara"
+  },
+  {
+    "Zelle": "Y49",
+    "Feldname": "TB_MP2_4_ProPara"
+  },
+  {
+    "Zelle": "AA43",
+    "Feldname": "TB_MP3_1_ProPara"
+  },
+  {
+    "Zelle": "AA45",
+    "Feldname": "TB_MP3_2_ProPara"
+  },
+  {
+    "Zelle": "AA47",
+    "Feldname": "TB_MP3_3_ProPara"
+  },
+  {
+    "Zelle": "AA49",
+    "Feldname": "TB_MP3_4_ProPara"
+  },
+  {
+    "Zelle": "AC43",
+    "Feldname": "TB_MP4_1_ProPara"
+  },
+  {
+    "Zelle": "AC45",
+    "Feldname": "TB_MP4_2_ProPara"
+  },
+  {
+    "Zelle": "AC47",
+    "Feldname": "TB_MP4_3_ProPara"
+  },
+  {
+    "Zelle": "AC49",
+    "Feldname": "TB_MP4_4_ProPara"
+  },
+  {
+    "Zelle": "AE43",
+    "Feldname": "TB_MP5_1_ProPara"
+  },
+  {
+    "Zelle": "AE45",
+    "Feldname": "TB_MP5_2_ProPara"
+  },
+  {
+    "Zelle": "AE47",
+    "Feldname": "TB_MP5_3_ProPara"
+  },
+  {
+    "Zelle": "AE49",
+    "Feldname": "TB_MP5_4_ProPara"
+  },
+  {
+    "Zelle": "AG43",
+    "Feldname": "TB_Filter_1_ProPara"
+  },
+  {
+    "Zelle": "AG45",
+    "Feldname": "TB_Filter_2_ProPara"
+  },
+  {
+    "Zelle": "AG47",
+    "Feldname": "TB_Filter_3_ProPara"
+  },
+  {
+    "Zelle": "AG49",
+    "Feldname": "TB_Filter_4_ProPara"
+  },
+  {
+    "Zelle": "AK43",
+    "Feldname": "TB_Siebfeinheit_1_ProPara"
+  },
+  {
+    "Zelle": "AK45",
+    "Feldname": "TB_Siebfeinheit_2_ProPara"
+  },
+  {
+    "Zelle": "AK47",
+    "Feldname": "TB_Siebfeinheit_3_ProPara"
+  },
+  {
+    "Zelle": "AK49",
+    "Feldname": "TB_Siebfeinheit_4_ProPara"
+  },
+  {
+    "Zelle": "AM43",
+    "Feldname": "TB_Schneckenkuehlung_1_ProPara"
+  },
+  {
+    "Zelle": "AM45",
+    "Feldname": "TB_Schneckenkuehlung_2_ProPara"
+  },
+  {
+    "Zelle": "AM47",
+    "Feldname": "TB_Schneckenkuehlung_3_ProPara"
+  },
+  {
+    "Zelle": "AM49",
+    "Feldname": "TB_Schneckenkuehlung_4_ProPara"
+  },
+  {
+    "Zelle": "AO43",
+    "Feldname": "TB_Einzugskuehlung_1_ProPara"
+  },
+  {
+    "Zelle": "Ao45",
+    "Feldname": "TB_Einzugskuehlung_2_ProPara"
+  },
+  {
+    "Zelle": "AO47",
+    "Feldname": "TB_Einzugskuehlung_3_ProPara"
+  },
+  {
+    "Zelle": "AO49",
+    "Feldname": "TB_Einzugskuehlung_4_ProPara"
+  },
+  {
+    "Zelle": "AQ43",
+    "Feldname": "TB_TM_Filter_1_ProPara"
+  },
+  {
+    "Zelle": "AQ45",
+    "Feldname": "TB_TM_Filter_2_ProPara"
+  },
+  {
+    "Zelle": "AQ47",
+    "Feldname": "TB_TM_Filter_3_ProPara"
+  },
+  {
+    "Zelle": "AQ49",
+    "Feldname": "TB_TM_Filter_4_ProPara"
+  },
+  {
+    "Zelle": "AS43",
+    "Feldname": "TB_TM_Visko_1_ProPara"
+  },
+  {
+    "Zelle": "AS45",
+    "Feldname": "TB_TM_Visko_2_ProPara"
+  },
+  {
+    "Zelle": "AS47",
+    "Feldname": "TB_TM_Visko_3_ProPara"
+  },
+  {
+    "Zelle": "AS49",
+    "Feldname": "TB_TM_Visko_4_ProPara"
+  },
+  {
+    "Zelle": "AU43",
+    "Feldname": "TB_Durchsatz_1_ProPara"
+  },
+  {
+    "Zelle": "AU45",
+    "Feldname": "TB_Durchsatz_2_ProPara"
+  },
+  {
+    "Zelle": "AU47",
+    "Feldname": "TB_Durchsatz_3_ProPara"
+  },
+  {
+    "Zelle": "AU49",
+    "Feldname": "TB_Durchsatz_4_ProPara"
+  }
+]

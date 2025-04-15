@@ -1,0 +1,1263 @@
+﻿<UserControl x:Class="ServiceTool.Inbetriebnahmeprotokoll_MRS"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServiceTool"
+             mc:Ignorable="d" 
+             d:DesignHeight="1600" d:DesignWidth="1300">
+    <UserControl.Resources>
+        <!-- Stildefinition für alle Labels -->
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#B7D7B3"/>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer Margin="0,0,0,0">
+        <Grid Background="#FF969696">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--5-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--10-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--15-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="1.15*"/>
+                <ColumnDefinition/>
+                <!--20-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--25-->
+                <ColumnDefinition Width="1.15*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--30-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--35-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--40-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--45-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--50-->
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--55-->
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--5-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--10-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--15-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--20-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--25-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--30-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--35-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--40-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--45-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--50-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--55-->
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="55" Margin="0,0,0,5">
+                <Label x:Name="lbl_InbetriebnahmeprotokollMRS" Content="Inbetriebnahmeprotokoll MRS" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="20"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,0,1" Grid.Column="47" Grid.ColumnSpan="6" Grid.Row="1" Grid.RowSpan="1"  Margin="0,0,0,5">
+                <Label>
+                    <Image Source="Bilder/gneuss_png_1.png"/>
+                </Label>
+            </Border>
+            <!--____________________________________________________________________________________________________-->
+            
+            <!--Auftrag Informationen-->
+            <Border Grid.Row="2" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,1,0,1">
+                <Label x:Name="lbl_Kunde" Content="Kunde:"  HorizontalContentAlignment="Center" />
+            </Border>            
+            <Border Grid.Row="3" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_Ansprechpartner" Content="Ansprechparnter" HorizontalContentAlignment="Center"/>
+            </Border>            
+            <Border Grid.Row="4" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_Versuchsaufbau" Content="Versuchsaufbau" HorizontalContentAlignment="Center" />
+            </Border>            
+            <Border Grid.Row="5" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_Material" Content="Material/Rezeptur" HorizontalContentAlignment="Center" />
+            </Border>            
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Kunde_ibnProtokoll_MRS" TabIndex="0"/>
+            </Border>            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Ansprechpartner_ibnProtokoll_MRS" TabIndex="1"/>
+            </Border>            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Aufbau_ibnProtokoll_MRS" TabIndex="2"/>
+            </Border>            
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Material_ibnProtokoll_MRS" TabIndex="3"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="23" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,1,0,1">
+                <Label x:Name="lbl_ExtruderTyp" Content="Extruder Typ" HorizontalContentAlignment="Center"/>
+            </Border>            
+            <Border Grid.Row="3" Grid.Column="23" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_SerienNr" Content="Seriennummer" HorizontalContentAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="4" Grid.Column="23" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_Endprodukt" Content="Endprodukt" HorizontalContentAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="5" Grid.Column="23" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1,0,0,1">
+                <Label x:Name="lbl_Beschaffenheit" Content="Beschaffenheit" HorizontalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="29" Grid.Row="2" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_ExtruderTyp_ibnProtokoll_MRS" TabIndex="4"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Column="29" Grid.Row="3" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Seriennummer_ibnProtokoll_MRS" TabIndex="5"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Column="29" Grid.Row="4" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Endprodukt_ibnProtokoll_MRS" TabIndex="6"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Column="29" Grid.Row="5" Grid.ColumnSpan="15" >
+                <TextBox x:Name="tb_Beschaffenheit_ibnProtokoll_MRS" TabIndex="7"/>
+            </Border>
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="6" Background="#FF969696"/>
+
+            <!--Zwischen zeile -->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="7" Grid.ColumnSpan="55" Background="LightGray">
+                <Label x:Name="lbl_BeheizungKuehlung" Content="Beheizung/Kühlung" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center" />
+            </Border>
+            
+            <!--Lückenfüller-->
+            <Label Grid.Row="8" Background="#FF969696"/>
+            
+            <!--Tabellen Spaltenüberschriften-->
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.ColumnSpan="3" >
+                <Label Content="Nr." x:Name="lbl_Nr"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="2" >
+                <Label Content="HZ 1"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="2" >
+                <Label Content="HZ 2"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="7" Grid.ColumnSpan="2" >
+                <Label Content="HZ 3"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="9" Grid.ColumnSpan="2" >
+                <Label Content="HZ 4"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="11" Grid.ColumnSpan="2" >
+                <Label Content="HZ 5"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="13" Grid.ColumnSpan="2" >
+                <Label Content="HZ 6"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="15" Grid.ColumnSpan="2" >
+                <Label Content="HZ 7"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="17" Grid.ColumnSpan="2" >
+                <Label Content="HZ 8"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="19" Grid.ColumnSpan="2" >
+                <Label Content="HZ 9"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="21" Grid.ColumnSpan="2" >
+                <Label Content="HZ 10"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="23" Grid.ColumnSpan="2" >
+                <Label Content="HZ 11"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="25" Grid.ColumnSpan="2" >
+                <Label Content="HZ 12"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="27" Grid.ColumnSpan="2" >
+                <Label Content="HZ 13"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="29" Grid.ColumnSpan="2" >
+                <Label Content="HZ 14"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="31" Grid.ColumnSpan="2" >
+                <Label Content="HZ 15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="33" Grid.ColumnSpan="2" >
+                <Label Content="HZ 16"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="35" Grid.ColumnSpan="2" >
+                <Label Content="HZ 17"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="37" Grid.ColumnSpan="2" >
+                <Label Content="HZ 18"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="39" Grid.ColumnSpan="2" >
+                <Label Content="HZ 19"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="41" Grid.ColumnSpan="2" >
+                <Label Content="HZ 20"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="43" Grid.ColumnSpan="2" >
+                <Label Content="HZ 21"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="45" Grid.ColumnSpan="2" >
+                <Label Content="HZ 22"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="47" Grid.ColumnSpan="2" >
+                <Label Content="HZ 23"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="49" Grid.ColumnSpan="2" >
+                <Label Content="HZ 24"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="9" Grid.Column="51" Grid.ColumnSpan="2" >
+                <Label Content="HZ 25"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="9" Grid.Column="53" Grid.ColumnSpan="2" >
+                <Label Content="HZ 26"/>
+            </Border>
+            
+            <!--Reihen Beschreibung-->
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="10" Grid.ColumnSpan="3" Grid.RowSpan="2" >
+                <Label Content="Bezeichnung" x:Name="lbl_Bezeichnung"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="12" Grid.ColumnSpan="3" Grid.RowSpan="2" >
+                <Label Content="°C Ist-Wert" x:Name="lbl_IstWert_Temp"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="14" Grid.ColumnSpan="3" Grid.RowSpan="2" >
+                <Label Content="°C Soll-Wert" x:Name="lbl_SollWert_Temp"/>
+            </Border>
+            
+            <!--Zellen der Tabelle-->
+            <!--Zeile Bezeichnung TB-->
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_1" TabIndex="8"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_2" TabIndex="11"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_3" TabIndex="14"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="9" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_4" TabIndex="17"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="11" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_5" TabIndex="20"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="13" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_6" TabIndex="23"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="15" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_7" TabIndex="26"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="17" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_8" TabIndex="29"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="19" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_9" TabIndex="32"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="21" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_10" TabIndex="35"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="23" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_11" TabIndex="38"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="25" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_12" TabIndex="41"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="27" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_13" TabIndex="44"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="29" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_14" TabIndex="47"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="31" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_15" TabIndex="50"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="33" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_16" TabIndex="53"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="35" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_17" TabIndex="56"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="37" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_18" TabIndex="59"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="39" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_19" TabIndex="62"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="41" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_20" TabIndex="65"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="43" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_21" TabIndex="68"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="45" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_22" TabIndex="71"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="47" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_23" TabIndex="74"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="49" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_24" TabIndex="77"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="51" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_25" TabIndex="80"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="10" Grid.Column="53" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_Bezeichnung_HZ_26" TabIndex="83"/>
+            </Border>
+
+            <!--Ist-Wert Zeile TB-->
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_1" TabIndex="9"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_2" TabIndex="12"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_3" TabIndex="15"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="9" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_4" TabIndex="18"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="11" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_5" TabIndex="21"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="13" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_6" TabIndex="24"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="15" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_7" TabIndex="27"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="17" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_8" TabIndex="30"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="19" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_9" TabIndex="33"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="21" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_10" TabIndex="36"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="23" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_11" TabIndex="39"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="25" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_12" TabIndex="42"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="27" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_13" TabIndex="45"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="29" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_14" TabIndex="48"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="31" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_15" TabIndex="51"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="33" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_16" TabIndex="54"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="35" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_17" TabIndex="57"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="37" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_18" TabIndex="60"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="39" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_19" TabIndex="63"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="41" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_20" TabIndex="66"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="43" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_21" TabIndex="69"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="45" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_22" TabIndex="72"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="47" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_23" TabIndex="75"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="49" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_24" TabIndex="78"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="51" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_25" TabIndex="81"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="12" Grid.Column="53" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_IstWert_Temp_HZ_26" TabIndex="84"/>
+            </Border>
+            
+            
+            <!--Zeile Soll Wert Temperatur-->
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_1" TabIndex="10"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_2" TabIndex="13"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_3" TabIndex="16"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="9" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_4" TabIndex="19"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="11" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_5"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="13" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_6" TabIndex="22"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="15" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_7" TabIndex="25"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="17" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_8" TabIndex="28"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="19" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_9" TabIndex="31"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="21" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_10" TabIndex="34"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="23" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_11" TabIndex="37"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="25" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_12" TabIndex="40"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="27" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_13" TabIndex="43"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="29" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_14" TabIndex="46"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="31" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_15" TabIndex="49"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="33" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_16" TabIndex="52"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="35" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_17" TabIndex="55"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="37" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_18" TabIndex="58"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="39" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_19" TabIndex="61"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="41" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_20" TabIndex="64"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="43" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_21" TabIndex="67"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="45" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_22" TabIndex="70"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="47" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_23" TabIndex="73"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="49" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_24" TabIndex="76"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="51" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_25" TabIndex="79"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="14" Grid.Column="53" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                <TextBox x:Name="tb_SollWert_Temp_HZ_26" TabIndex="82"/>
+            </Border>
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="16" Background="#FF969696"/>
+
+            <!--Zusatz Informationen-->
+            <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Row="17" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                <Label Content="Kühlung Einzug" x:Name="lbl_KuehlungEinzug"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Row="19" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                <Label x:Name="lbl_Schneckenkuehlung" Content="Schneckenkühlung"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Row="21" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                <Label x:Name="lbl_IndustriekuehlerVakuum" Content="Industriekühler / Vakuum"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Row="17" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <CheckBox x:Name="CH_Kuehlung_Einzug" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Row="19" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <CheckBox x:Name="CH_SchneckenKuehlung" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="21" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <CheckBox x:Name="CH_Industriekuehler_Vakuum" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+                
+            <Border Grid.Row="17" Grid.Column="10" Grid.ColumnSpan="4" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1,1,0,1">
+                <Label x:Name="lbl_Bemerkung" Content="Bemerkung"/>
+            </Border>
+            <Border Grid.Row="17" Grid.Column="14" Grid.ColumnSpan="40" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1">
+                <TextBox Height="100" TabIndex="83" x:Name="TB_Bemerkung" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </Border>
+            
+            <!--Lückenfüller-->
+            <Label Grid.Row="23" Background="#FF969696"/>
+
+            <!--Steuerung MRS-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="24" Grid.ColumnSpan="55" >
+                <Label x:Name="lbl_SteuerungMRS" Content="Steuerung MRS" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center" />
+            </Border>
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="25" Background="#FF969696"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="26" Grid.ColumnSpan="24">
+                <Label x:Name="lbl_Regelungen" Content="Regelung" FontSize="14" HorizontalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,0" Grid.Row="27" Grid.ColumnSpan="4" Grid.RowSpan="3">
+                <Label Content="Extruder" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Row="30" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <Label x:Name="lbl_Viskosimeter" Content="Viskosimeter" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,1,1,1" Grid.Row="32" Grid.ColumnSpan="4" Grid.RowSpan="3">
+                <Label x:Name="lbl_Vakuum" Content="Vakuum" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="27" Grid.Column="4" Grid.ColumnSpan="20" Grid.RowSpan="3">
+                <TextBox x:Name="TB_Extruder" TabIndex="84" Height="55" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="30" Grid.Column="4" Grid.ColumnSpan="20" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter" TabIndex="85" Height="36" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,1,1" Grid.Row="32" Grid.Column="4" Grid.ColumnSpan="20" Grid.RowSpan="3">
+                <TextBox x:Name="TB_Vakuum" Height="55" TabIndex="86" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="26" Grid.Column="26" Grid.ColumnSpan="28" >
+                <Label x:Name="lbl_SonstigeEinstellparameter" Content="Sonstige feste Einstellparameter" FontSize="14" HorizontalContentAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="27" Grid.Column="26" Grid.ColumnSpan="28" Grid.RowSpan="8">
+                <TextBox x:Name="TB_Sonstige_Einstellparameter" TabIndex="87"  TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="White" />
+            </Border>
+
+            <!--Lückenfüller-->
+            <Label Grid.Row="35" Background="#FF969696"/>
+
+            <!--Prozessparameter-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="36" Grid.ColumnSpan="55" Background="LightGray" Margin="0,0,0,5">
+                <Label x:Name="lbl_Prozessparameter" Content="Prozessparameter" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center" />
+            </Border>
+
+            <!--Tabelle Prozessparameter-->
+            <!--Überschriften der Tabelle-->
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Row="38" Grid.ColumnSpan="1" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Nr." x:Name="lbl_Nr1"/>
+                </Grid>                
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Column="1" Grid.Row="38" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Label Grid.Row="0" Content="Zeit" x:Name="lbl_Zeit"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Regelung" x:Name="lbl_Regelung"/>
+                    <Label Grid.Row="2" Content="ein aus" x:Name="lbl_EinAus"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Pumpe" x:Name="lbl_Pumpe"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Auslastung" x:Name="lbl_Auslastung"/>
+                    <Label Grid.Row="2" Content="% / °C"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="10" Grid.ColumnSpan="4" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Drehzahl Extruder" x:Name="lbl_DrehzahlExtruder"/>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0,0,1,0" >
+                        <Label Content="soll" x:Name="lbl_Soll"/>
+                    </Border>
+                    <Label Content="min/max" Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Auslastung" x:Name="lbl_Auslastung2"/>
+                    <Label Grid.Row="2" Content="% / °C"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="17" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Vakuum" x:Name="lbl_Vakuum2"/>
+                    <Label Grid.Row="2" Content="soll / ist" x:Name="lbl_SollIst"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="19" Grid.ColumnSpan="4" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Viskosimeter" x:Name="lbl_Viskosimeter2"/>
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0,0,1,0" >
+                        <Label Content="Viskosität" x:Name="lbl_Viskositaet"/>
+                    </Border>
+                    <Label Content="Scherung" x:Name="lbl_Scherung" Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="23" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="MP1"/>
+                    <Label Grid.Row="1" Content=" " x:Name="lbl_downstr"/>
+                    <Label Grid.Row="2" Content="n.Eintrag" x:Name="lbl_NEintrag"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="25" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="MP2"/>
+                    <Label Grid.Row="1" Content=" " x:Name="lbl_downstr2"/>
+                    <Label Grid.Row="2" Content="n.MRS" x:Name="lbl_NMrs"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="27" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="MP3"/>
+                    <Label Grid.Row="1" Content=" " x:Name="lbl_downstr3"/>
+                    <Label Grid.Row="2" Content="n.Austrag" x:Name="lbl_nAustrag"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="29" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="MP4"/>
+                    <Label Grid.Row="1" Content=" " x:Name="lbl_upstr"/>
+                    <Label Grid.Row="2" Content="v.Pumpe" x:Name="lbl_Pumpe1"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="31" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="MP5"/>
+                    <Label Grid.Row="2" Content="Düse" x:Name="lbl_Duese"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="33" Grid.ColumnSpan="4" Grid.RowSpan="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Filter" HorizontalContentAlignment="Center"/>
+                    <Label Grid.Row="1" Content="v.Filter" x:Name="lbl_vFilter"/>
+                    <Label Grid.Row="1" Grid.Column="1" Content="n.Filter" x:Name="lbl_nFilter"/>
+                    <Label Grid.Row="2" Grid.ColumnSpan="2" Content="∆ P Filter" HorizontalContentAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="37" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Sieb-" x:Name="lbl_Sieb"/>
+                    <Label Grid.Row="1" Content="feinheit" x:Name="lbl_Feinheit"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="39" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Schnecken" x:Name="lbl_Schnecken"/>
+                    <Label Grid.Row="1" Content="-kühlung" x:Name="lbl_kuehlung"/>
+                    <Label Grid.Row="2" Content="ist" x:Name="lbl_Ist" HorizontalContentAlignment="Left"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="41" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Einzugs" x:Name="lbl_Einzugs"/>
+                    <Label Grid.Row="1" Content="-kühlung" x:Name="lbl_kuehlung2"/>
+                    <Label Grid.Row="2" Content="ist" x:Name="lbl_Ist2" HorizontalContentAlignment="Left"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="43" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="TM"/>
+                    <Label Grid.Row="1" Content="Filter"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="45" Grid.ColumnSpan="2" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="TM"/>
+                    <Label Grid.Row="1" Content="Visko" x:Name="lbl_Visko"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,1,1,1" Grid.Row="38" Grid.Column="47" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#FFB7D7B3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Durchsatz" x:Name="lbl_Durchsatz"/>
+                </Grid>
+            </Border>
+
+            <!--Zeilen Nummerierung-->
+            <Border Grid.Row="41" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Grid.Row="1" Content=" "/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="43" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Grid.Row="1" Content=" "/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="45" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Grid.Row="1" Content=" "/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="47" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1,0,1,1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Grid.Row="1" Content=" "/>
+                </Grid>
+            </Border>
+
+
+            <!--Zellen Prozessparameter Tabelle-->
+            <!--Zeile Zeit-->
+            <Border Grid.Column="1" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Zeit_1_ProPara" TabIndex="88"/>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Zeit_2_ProPara" TabIndex="110"/>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Zeit_3_ProPara" TabIndex="132"/>
+            </Border>
+            <Border Grid.Column="1" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Zeit_4_ProPara" TabIndex="154"/>
+            </Border>
+
+            <!--Zeile Regelung ein/aus-->
+            <Border Grid.Column="3" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Regelung_1_ProPara" TabIndex="89"/>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Regelung_2_ProPara" TabIndex="111"/>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Regelung_3_ProPara" TabIndex="133"/>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Regelung_4_ProPara" TabIndex="155"/>
+            </Border>
+            
+            <!--Zeile Pumpe-->
+            <Border Grid.Column="5" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Pumpe_1_ProPara" TabIndex="90"/>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Pumpe_2_ProPara" TabIndex="112"/>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Pumpe_3_ProPara" TabIndex="134"/>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Pumpe_4_ProPara" TabIndex="156"/>
+            </Border>
+            
+            <!--Zeile Auslastung-->
+            <Border Grid.Column="7" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung_1_ProPara" TabIndex="91"/>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung_2_ProPara" TabIndex="113"/>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung_3_ProPara" TabIndex="135"/>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung_4_ProPara" TabIndex="157"/>
+            </Border>
+            
+            <!--Zeile Drehzahl Extruder-->
+            <!--Soll Bereich-->
+            <Border Grid.Column="10" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_Soll_1_ProPara" TabIndex="92"/>
+            </Border>
+            <Border Grid.Column="10" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_Soll_2_ProPara" TabIndex="114"/>
+            </Border>
+            <Border Grid.Column="10" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_Soll_3_ProPara" TabIndex="136"/>
+            </Border>
+            <Border Grid.Column="10" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_Soll_4_ProPara" TabIndex="158"/>
+            </Border>
+            
+            <!--Min/Max Bereich-->
+            <Border Grid.Column="12" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_MinMax_1_ProPara" TabIndex="93"/>
+            </Border>
+            <Border Grid.Column="12" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_MinMax_2_ProPara" TabIndex="115"/>
+            </Border>
+            <Border Grid.Column="12" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_MinMax_3_ProPara" TabIndex="137"/>
+            </Border>
+            <Border Grid.Column="12" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Drehzahl_MinMax_4_ProPara" TabIndex="159"/>
+            </Border>
+
+            <!--Zeile Auslastung 2 -->
+            <Border Grid.Column="14" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung2_1_ProPara" TabIndex="94"/>
+            </Border>
+            <Border Grid.Column="14" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung2_2_ProPara" TabIndex="116"/>
+            </Border>
+            <Border Grid.Column="14" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung2_3_ProPara" TabIndex="138"/>
+            </Border>
+            <Border Grid.Column="14" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Auslastung2_4_ProPara" TabIndex="160"/>
+            </Border>
+            
+            <!--Zeile Vakuum-->
+            <Border Grid.Column="17" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Vakuum_1_ProPara" TabIndex="95"/>
+            </Border>
+            <Border Grid.Column="17" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Vakuum_2_ProPara" TabIndex="117"/>
+            </Border>
+            <Border Grid.Column="17" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Vakuum_3_ProPara" TabIndex="139"/>
+            </Border>
+            <Border Grid.Column="17" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Vakuum_4_ProPara" TabIndex="161"/>
+            </Border>
+            
+            <!--Zeile Viskosimeter-->
+            <!--Bereich Viskosität-->
+            <Border Grid.Column="19" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Viskositaet_1_ProPara" TabIndex="96"/>
+            </Border>
+            <Border Grid.Column="19" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Viskositaet_2_ProPara" TabIndex="118"/>
+            </Border>
+            <Border Grid.Column="19" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Viskositaet_3_ProPara" TabIndex="140"/>
+            </Border>
+            <Border Grid.Column="19" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Viskositaet_4_ProPara" TabIndex="162"/>
+            </Border>
+            
+            <!--Bereich Scherung-->
+            <Border Grid.Column="21" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Scherung_1_ProPara" TabIndex="97"/>
+            </Border>
+            <Border Grid.Column="21" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Scherung_2_ProPara" TabIndex="119"/>
+            </Border>
+            <Border Grid.Column="21" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Scherung_3_ProPara" TabIndex="141"/>
+            </Border>
+            <Border Grid.Column="21" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Viskosimeter_Scherung_4_ProPara" TabIndex="163"/>
+            </Border>
+
+            <!--Zeile MP1 n.Eintrag-->
+            <Border Grid.Column="23" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP1_1_ProPara" TabIndex="98"/>
+            </Border>
+            <Border Grid.Column="23" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP1_2_ProPara" TabIndex="120"/>
+            </Border>
+            <Border Grid.Column="23" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP1_3_ProPara" TabIndex="142"/>
+            </Border>
+            <Border Grid.Column="23" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP1_4_ProPara" TabIndex="164"/>
+            </Border>
+
+            <!--Zeile MP2 n.MRS-->
+            <Border Grid.Column="25" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP2_1_ProPara" TabIndex="99"/>
+            </Border>
+            <Border Grid.Column="25" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP2_2_ProPara" TabIndex="121"/>
+            </Border>
+            <Border Grid.Column="25" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP2_3_ProPara" TabIndex="143"/>
+            </Border>
+            <Border Grid.Column="25" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP2_4_ProPara" TabIndex="165"/>
+            </Border>
+
+            <!--Zeile MP3 n.Austrag-->
+            <Border Grid.Column="27" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP3_1_ProPara" TabIndex="100"/>
+            </Border>
+            <Border Grid.Column="27" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP3_2_ProPara" TabIndex="122"/>
+            </Border>
+            <Border Grid.Column="27" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP3_3_ProPara" TabIndex="144"/>
+            </Border>
+            <Border Grid.Column="27" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP3_4_ProPara" TabIndex="166"/>
+            </Border>
+
+            <!--Zeile MP4 v.Pumpe-->
+            <Border Grid.Column="29" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP4_1_ProPara" TabIndex="101"/>
+            </Border>
+            <Border Grid.Column="29" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP4_2_ProPara" TabIndex="123"/>
+            </Border>
+            <Border Grid.Column="29" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP4_3_ProPara" TabIndex="145"/>
+            </Border>
+            <Border Grid.Column="29" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP4_4_ProPara" TabIndex="167"/>
+            </Border>
+
+            <!--Zeile MP1 Düse-->
+            <Border Grid.Column="31" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP5_1_ProPara" TabIndex="102"/>
+            </Border>
+            <Border Grid.Column="31" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP5_2_ProPara" TabIndex="124"/>
+            </Border>
+            <Border Grid.Column="31" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP5_3_ProPara" TabIndex="146"/>
+            </Border>
+            <Border Grid.Column="31" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_MP5_4_ProPara" TabIndex="168"/>
+            </Border>
+            
+            <!--Zeile Filter-->
+            <Border Grid.Column="33" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Filter_1_ProPara" TabIndex="103"/>
+            </Border>
+            <Border Grid.Column="33" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Filter_2_ProPara" TabIndex="125"/>
+            </Border>
+            <Border Grid.Column="33" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Filter_3_ProPara" TabIndex="147"/>
+            </Border>
+            <Border Grid.Column="33" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Filter_4_ProPara" TabIndex="169"/>
+            </Border>
+            
+            <!--Zeile Siebfeinheit-->
+            <Border Grid.Column="37" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Siebfeinheit_1_ProPara" TabIndex="104"/>
+            </Border>
+            <Border Grid.Column="37" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Siebfeinheit_2_ProPara" TabIndex="126"/>
+            </Border>
+            <Border Grid.Column="37" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Siebfeinheit_3_ProPara" TabIndex="148"/>
+            </Border>
+            <Border Grid.Column="37" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Siebfeinheit_4_ProPara" TabIndex="170"/>
+            </Border>
+            
+            <!--Zeile Schneckenkühlung-->
+            <Border Grid.Column="39" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Schneckenkuehlung_1_ProPara" TabIndex="105"/>
+            </Border>
+            <Border Grid.Column="39" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Schneckenkuehlung_2_ProPara" TabIndex="127"/>
+            </Border>
+            <Border Grid.Column="39" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Schneckenkuehlung_3_ProPara" TabIndex="149"/>
+            </Border>
+            <Border Grid.Column="39" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Schneckenkuehlung_4_ProPara" TabIndex="171"/>
+            </Border>
+            
+            <!--Zeile Einzugskuehlung-->
+            <Border Grid.Column="41" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Einzugskuehlung_1_ProPara" TabIndex="106"/>
+            </Border>
+            <Border Grid.Column="41" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Einzugskuehlung_2_ProPara" TabIndex="128"/>
+            </Border>
+            <Border Grid.Column="41" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Einzugskuehlung_3_ProPara" TabIndex="150"/>
+            </Border>
+            <Border Grid.Column="41" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Einzugskuehlung_4_ProPara" TabIndex="172"/>
+            </Border>
+            
+            <!--Zeile TM Filter-->
+            <Border Grid.Column="43" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Filter_1_ProPara" TabIndex="107"/>
+            </Border>
+            <Border Grid.Column="43" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Filter_2_ProPara" TabIndex="129"/>
+            </Border>
+            <Border Grid.Column="43" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Filter_3_ProPara" TabIndex="151"/>
+            </Border>
+            <Border Grid.Column="43" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Filter_4_ProPara" TabIndex="173"/>
+            </Border>
+            
+            <!--Zeile TM Viko-->
+            <Border Grid.Column="45" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Visko_1_ProPara" TabIndex="108"/>
+            </Border>
+            <Border Grid.Column="45" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Visko_2_ProPara" TabIndex="130"/>
+            </Border>
+            <Border Grid.Column="45" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Visko_3_ProPara" TabIndex="152"/>
+            </Border>
+            <Border Grid.Column="45" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <TextBox x:Name="TB_TM_Visko_4_ProPara" TabIndex="174"/>
+            </Border>
+            
+            <!--Durchsatz-->
+            <Border Grid.Column="47" Grid.Row="41" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Durchsatz_1_ProPara" TabIndex="109"/>
+            </Border>
+            <Border Grid.Column="47" Grid.Row="43" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Durchsatz_2_ProPara" TabIndex="131"/>
+            </Border>
+            <Border Grid.Column="47" Grid.Row="45" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Durchsatz_3_ProPara" TabIndex="153"/>
+            </Border>
+            <Border Grid.Column="47" Grid.Row="47" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <TextBox x:Name="TB_Durchsatz_4_ProPara" TabIndex="175"/>
+            </Border>
+
+            <Label Grid.Row="50" Content="" Background="#FF969696"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="51" Grid.ColumnSpan="18" Grid.Column="4" Grid.RowSpan="2">
+                <InkCanvas x:Name="ic_Unterschrift_Servicetechniker_ibnP_MRS" Grid.RowSpan="2" Height="60"/>
+            </Border>
+            <Label Grid.Column="7" Grid.ColumnSpan="12" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_Unterschriftverfahrenstechnicker" Content="Ort, Datum, Unterschrift Verfahrenstechnicker" Background="#FF969696" HorizontalContentAlignment="Center"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="51" Grid.ColumnSpan="18" Grid.Column="30" Grid.RowSpan="2">
+                <InkCanvas x:Name="ic_Unterschrift_Kunde_ibnP_MRS" Grid.RowSpan="2" Height="60"/>
+            </Border>
+            <Label Grid.Column="33" Grid.ColumnSpan="12" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_UnterschriftKunde" Content="Unterschrift Kunde" HorizontalContentAlignment="Center" Background="#FF969696"/>
+
+            <ComboBox Grid.Column="23" Grid.ColumnSpan="8" x:Name="cb_SiteSwitchIbnP_MRS" SelectionChanged="SiteSelectionChanged">
+                <ComboBoxItem Content="Maschine 1" Visibility="Collapsed" x:Name="cbItem_Site1"/>
+                <ComboBoxItem Content="Maschine 2" Visibility="Collapsed" x:Name="cbItem_Site2"/>
+                <ComboBoxItem Content="Maschine 3" Visibility="Collapsed" x:Name="cbItem_Site3"/>
+                <ComboBoxItem Content="Maschine 4" Visibility="Collapsed" x:Name="cbItem_Site4"/>
+            </ComboBox>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

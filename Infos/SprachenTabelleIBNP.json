@@ -1,0 +1,538 @@
+[
+  {
+    "Deutsch": "Inbetriebnahmeprotokoll",
+    "Englisch": "Comissioning Data Sheet",
+    "LBL_Names": "lbl_IBNP"
+  },
+  {
+    "Deutsch": "Kunde",
+    "Englisch": "Customer",
+    "LBL_Names": "lbl_Kunde"
+  },
+  {
+    "Deutsch": "Ansprechpartner",
+    "Englisch": "Contact",
+    "LBL_Names": "lbl_Ansprechpartner"
+  },
+  {
+    "Deutsch": "Versuchsaufbau",
+    "Englisch": "Line configuration",
+    "LBL_Names": "lbl_Versuchsaufbau"
+  },
+  {
+    "Deutsch": "Material",
+    "Englisch": "Material",
+    "LBL_Names": "lbl_Material"
+  },
+  {
+    "Deutsch": "Viskosität",
+    "Englisch": "Viscosity",
+    "LBL_Names": "lbl_Viskosität"
+  },
+  {
+    "Deutsch": "Filtertyp",
+    "Englisch": "Filtertype",
+    "LBL_Names": "lbl_Filtertyp"
+  },
+  {
+    "Deutsch": "Serien-Nr",
+    "Englisch": "Serial-No.",
+    "LBL_Names": "lbl_SerienNr"
+  },
+  {
+    "Deutsch": "Vorspannung",
+    "Englisch": "Preloading",
+    "LBL_Names": "lbl_Vorspannung"
+  },
+  {
+    "Deutsch": "Unterlegung LR:",
+    "Englisch": "Shim packing",
+    "LBL_Names": "lbl_Unterlegung"
+  },
+  {
+    "Deutsch": "Prozessparameter",
+    "Englisch": "Processing parameters",
+    "LBL_Names": "lbl_Prozessparameter"
+  },
+  {
+    "Deutsch": "Druck P1",
+    "Englisch": "Pressure P1",
+    "LBL_Names": "lbl_DruckP1"
+  },
+  {
+    "Deutsch": "vor Filter",
+    "Englisch": "upstream",
+    "LBL_Names": "lbl_vorFilterP1"
+  },
+  {
+    "Deutsch": "Druck P2",
+    "Englisch": "Pressure P2",
+    "LBL_Names": "lbl_DruckP2"
+  },
+  {
+    "Deutsch": "nach Filter",
+    "Englisch": "downstream",
+    "LBL_Names": "lbl_nachFilterP2"
+  },
+  {
+    "Deutsch": "Masse-",
+    "Englisch": "Melt",
+    "LBL_Names": "lbl_Masse"
+  },
+  {
+    "Deutsch": "Temp.",
+    "Englisch": "temperature",
+    "LBL_Names": "lbl_Temp_Masse"
+  },
+  {
+    "Deutsch": "Pumpe",
+    "Englisch": "Pump",
+    "LBL_Names": "lbl_Pumpe"
+  },
+  {
+    "Deutsch": "Siebe",
+    "Englisch": "Elements",
+    "LBL_Names": "lbl_Siebe1"
+  },
+  {
+    "Deutsch": "Rückspül-",
+    "Englisch": "Back-flush",
+    "LBL_Names": "lbl_Rueckspuel1"
+  },
+  {
+    "Deutsch": "verlust",
+    "Englisch": "loss",
+    "LBL_Names": "lbl_Verlust1"
+  },
+  {
+    "Deutsch": "Rückspül-",
+    "Englisch": "Back-flush",
+    "LBL_Names": "lbl_Rueckspuel2"
+  },
+  {
+    "Deutsch": "verlust",
+    "Englisch": "loss",
+    "LBL_Names": "lbl_Verlust2"
+  },
+  {
+    "Deutsch": "Rs Verlust",
+    "Englisch": "Back-flush",
+    "LBL_Names": "lbl_RSVerlust"
+  },
+  {
+    "Deutsch": "in %",
+    "Englisch": "loss",
+    "LBL_Names": "lbl_inPercent"
+  },
+  {
+    "Deutsch": "von Q",
+    "Englisch": "% of Q",
+    "LBL_Names": "lbl_vonQ"
+  },
+  {
+    "Deutsch": "Hub-",
+    "Englisch": "Stroke",
+    "LBL_Names": "lbl_Hub1"
+  },
+  {
+    "Deutsch": "länge",
+    "Englisch": "length",
+    "LBL_Names": "lbl_laenge1"
+  },
+  {
+    "Deutsch": "Spül-",
+    "Englisch": "Back-flush",
+    "LBL_Names": "lbl_Spuel"
+  },
+  {
+    "Deutsch": "druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_Druck1"
+  },
+  {
+    "Deutsch": "Antriebs-",
+    "Englisch": "Drive",
+    "LBL_Names": "lbl_Antriebs"
+  },
+  {
+    "Deutsch": "kraft",
+    "Englisch": "force",
+    "LBL_Names": "lbl_kraft"
+  },
+  {
+    "Deutsch": "Vor-",
+    "Englisch": "Flooding",
+    "LBL_Names": "lbl_Vor1"
+  },
+  {
+    "Deutsch": "flutpin",
+    "Englisch": "pin",
+    "LBL_Names": "lbl_Flutpin1"
+  },
+  {
+    "Deutsch": "Filtersteuerung",
+    "Englisch": "Screenchanger control",
+    "LBL_Names": "lbl_Filtersteuerung"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Screen",
+    "LBL_Names": "lbl_Filter1"
+  },
+  {
+    "Deutsch": "standzeit",
+    "Englisch": "Life time",
+    "LBL_Names": "lbl_standzeit1"
+  },
+  {
+    "Deutsch": "Flut-",
+    "Englisch": "Flooding",
+    "LBL_Names": "lbl_Flut1"
+  },
+  {
+    "Deutsch": "dauer",
+    "Englisch": "time",
+    "LBL_Names": "lbl_Dauer"
+  },
+  {
+    "Deutsch": "Pause 1",
+    "Englisch": "P. between",
+    "LBL_Names": "lbl_Pause1"
+  },
+  {
+    "Deutsch": "n.1.Nest",
+    "Englisch": "br. Plates",
+    "LBL_Names": "lbl_n1Nest"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Set",
+    "LBL_Names": "lbl_Filter2"
+  },
+  {
+    "Deutsch": "Soll-Druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_SollDruck1"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Min",
+    "LBL_Names": "lbl_Filter3"
+  },
+  {
+    "Deutsch": "Min. Druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_MinDruck1"
+  },
+  {
+    "Deutsch": "Betriebs-",
+    "Englisch": "Mode of",
+    "LBL_Names": "lbl_Betriebs1"
+  },
+  {
+    "Deutsch": "art",
+    "Englisch": "operation",
+    "LBL_Names": "lbl_Art1"
+  },
+  {
+    "Deutsch": "Korrekte Funktion der Steuerung",
+    "Englisch": "correct operation control system",
+    "LBL_Names": "lbl_KorrekteSteuerung"
+  },
+  {
+    "Deutsch": "d blech",
+    "Englisch": "d sheet",
+    "LBL_Names": "lbl_dBlech"
+  },
+  {
+    "Deutsch": "Siebscheibendrehung",
+    "Englisch": "disc rotation",
+    "LBL_Names": "lbl_Siebscheibendrehung"
+  },
+  {
+    "Deutsch": "Antriebskraftmessung",
+    "Englisch": "drive load measurement",
+    "LBL_Names": "lbl_Antriebskraftmessung"
+  },
+  {
+    "Deutsch": "hub Schußkolben",
+    "Englisch": "back flush stroke length",
+    "LBL_Names": "lbl_HubShusskolben"
+  },
+  {
+    "Deutsch": "A.-Hub",
+    "Englisch": "W.stroke",
+    "LBL_Names": "lbl_AHub1"
+  },
+  {
+    "Deutsch": "L.-Hub",
+    "Englisch": "R.stroke",
+    "LBL_Names": "lbl_LHub1"
+  },
+  {
+    "Deutsch": "Takt-",
+    "Englisch": "Cycle",
+    "LBL_Names": "lbl_Takt1"
+  },
+  {
+    "Deutsch": "zeit",
+    "Englisch": "time",
+    "LBL_Names": "lbl_Zeit1"
+  },
+  {
+    "Deutsch": "*A.-Hub",
+    "Englisch": "*W.stroke",
+    "LBL_Names": "lbl_AHub2"
+  },
+  {
+    "Deutsch": "*L.-Hub",
+    "Englisch": "*R.stroke",
+    "LBL_Names": "lbl_LHub2"
+  },
+  {
+    "Deutsch": "S.-Kolben",
+    "Englisch": "P.piston",
+    "LBL_Names": "lbl_SKolben1"
+  },
+  {
+    "Deutsch": "vor",
+    "Englisch": "forward",
+    "LBL_Names": "lbl_Vor2"
+  },
+  {
+    "Deutsch": "S.-Kolben",
+    "Englisch": "P.Piston",
+    "LBL_Names": "lbl_SKolben2"
+  },
+  {
+    "Deutsch": "zurück",
+    "Englisch": "backwards",
+    "LBL_Names": "lbl_zurueck1"
+  },
+  {
+    "Deutsch": "*S.-Kolben",
+    "Englisch": "*P.Piston",
+    "LBL_Names": "lbl_SKolben3"
+  },
+  {
+    "Deutsch": "vor",
+    "Englisch": "forward",
+    "LBL_Names": "lbl_Vor3"
+  },
+  {
+    "Deutsch": "*S.-Kolben",
+    "Englisch": "*P.Piston",
+    "LBL_Names": "lbl_SKolben4"
+  },
+  {
+    "Deutsch": "zurück",
+    "Englisch": "backwards",
+    "LBL_Names": "lbl_zurueck2"
+  },
+  {
+    "Deutsch": "Anzahl",
+    "Englisch": "Number",
+    "LBL_Names": "lbl_Anzahl1"
+  },
+  {
+    "Deutsch": "Siebe",
+    "Englisch": "Filterele.",
+    "LBL_Names": "lbl_Siebe2"
+  },
+  {
+    "Deutsch": "Takte/",
+    "Englisch": "Strokes",
+    "LBL_Names": "lbl_Takte"
+  },
+  {
+    "Deutsch": "Umdreh.",
+    "Englisch": "Revolt.",
+    "LBL_Names": "lbl_Umdrehung"
+  },
+  {
+    "Deutsch": "Schusskolben %",
+    "Englisch": "Purging Pistion %",
+    "LBL_Names": "lbl_Schusskolben"
+  },
+  {
+    "Deutsch": "vor",
+    "Englisch": "forward",
+    "LBL_Names": "lbl_Vor4"
+  },
+  {
+    "Deutsch": "zurück",
+    "Englisch": "backwards",
+    "LBL_Names": "lbl_zurueck3"
+  },
+  {
+    "Deutsch": "A.-Hub",
+    "Englisch": "W.stroke",
+    "LBL_Names": "lbl_AHub3"
+  },
+  {
+    "Deutsch": "L.-Hub",
+    "Englisch": "R.stroke",
+    "LBL_Names": "lbl_LHub3"
+  },
+  {
+    "Deutsch": "Takt-",
+    "Englisch": "Cycle",
+    "LBL_Names": "lbl_Takt2"
+  },
+  {
+    "Deutsch": "zeit",
+    "Englisch": "time",
+    "LBL_Names": "lbl_Zeit2"
+  },
+  {
+    "Deutsch": "Vorflut-",
+    "Englisch": "Flooding",
+    "LBL_Names": "lbl_Vorflut1"
+  },
+  {
+    "Deutsch": "zeit",
+    "Englisch": "time",
+    "LBL_Names": "lbl_Zeit3"
+  },
+  {
+    "Deutsch": "Vorflut-",
+    "Englisch": "Fl. Time",
+    "LBL_Names": "lbl_Vorflut2"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Set",
+    "LBL_Names": "lbl_Filter4"
+  },
+  {
+    "Deutsch": "Soll-Druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_SollDruck2"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Min.",
+    "LBL_Names": "lbl_Filter5"
+  },
+  {
+    "Deutsch": "Min.Druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_MinDruck2"
+  },
+  {
+    "Deutsch": "Betriebs-",
+    "Englisch": "Mode of",
+    "LBL_Names": "lbl_Betriebs2"
+  },
+  {
+    "Deutsch": "art",
+    "Englisch": "operation",
+    "LBL_Names": "lbl_Art2"
+  },
+  {
+    "Deutsch": "Vor/Diff-",
+    "Englisch": "pre/dif-",
+    "LBL_Names": "lbl_VorDiff"
+  },
+  {
+    "Deutsch": "druck",
+    "Englisch": "pressure",
+    "LBL_Names": "lbl_Druck2"
+  },
+  {
+    "Deutsch": "Vorflut.",
+    "Englisch": "Flooding",
+    "LBL_Names": "lbl_Vorflut3"
+  },
+  {
+    "Deutsch": "Maß A",
+    "Englisch": "dim. A",
+    "LBL_Names": "lbl_MassA"
+  },
+  {
+    "Deutsch": "Stellung",
+    "Englisch": "Piston cross",
+    "LBL_Names": "lbl_Stellung"
+  },
+  {
+    "Deutsch": "Rampe",
+    "Englisch": "Section(')",
+    "LBL_Names": "lbl_Rampe"
+  },
+  {
+    "Deutsch": "Ø Ablauf -",
+    "Englisch": "Ø  melt dis-",
+    "LBL_Names": "lbl_Ablauf"
+  },
+  {
+    "Deutsch": "düse(mm)",
+    "Englisch": "charge mm",
+    "LBL_Names": "lbl_Duese"
+  },
+  {
+    "Deutsch": "Spitzenwerte als Fotoanhang dokumentieren",
+    "Englisch": "The maximum values are documented in the photo attachment",
+    "LBL_Names": "lbl_SpitzenAsFoto"
+  },
+  {
+    "Deutsch": "Temperaturprofil in Extrusionsrichtung",
+    "Englisch": "Temperature profile in extrusion direction",
+    "LBL_Names": "lbl_TempProfilExtrusionsRichtung"
+  },
+  {
+    "Deutsch": "Bezeichnung",
+    "Englisch": "Designation",
+    "LBL_Names": "lbl_Bezeichnung"
+  },
+  {
+    "Deutsch": "Unterschrift Kunde",
+    "Englisch": "Signature customer",
+    "LBL_Names": "lbl_UnterschriftKunde"
+  },
+  {
+    "Deutsch": "Ort, Datum, Unterschrift Servicetechnicker",
+    "Englisch": "Place, date, signature service technican",
+    "LBL_Names": "lbl_UnterschriftServicetechnicker"
+  },
+  {
+    "Deutsch": "Nein, weil:",
+    "Englisch": "No, because:",
+    "LBL_Names": "lbl_Nein"
+  },
+  {
+    "Deutsch": "Ja",
+    "Englisch": "Yes",
+    "LBL_Names": "lbl_Ja"
+  },
+  {
+    "Deutsch": "Kundentemperaturmessung (Blocktemperatur) korrekt",
+    "Englisch": "Customer's temperature measurement (block temperature) is correct",
+    "LBL_Names": "lbl_Kundentemperaturmessung"
+  },
+  {
+    "Deutsch": "Druckabschaltung Filtervordruck überprüft/getestet",
+    "Englisch": "Pressure cutoff pre pressure filter checked/tested",
+    "LBL_Names": "lbl_Druckabschlatung"
+  },
+  {
+    "Deutsch": "Eingestellt auf",
+    "Englisch": "Set to",
+    "LBL_Names": "lbl_EingestelltAuf"
+  },
+  {
+    "Deutsch": "Abschaltung elektrisch",
+    "Englisch": "Electric cutoff",
+    "LBL_Names": "lbl_AbschaltungElektrisch"
+  },
+  {
+    "Deutsch": "mechanisch",
+    "Englisch": "Mechanic cutoff",
+    "LBL_Names": "lbl_AbschaltungMechanisch"
+  },
+  {
+    "Deutsch": "Keine Abschaltung(Kunde geschult)",
+    "Englisch": "no  cuttoff(customer is trained)",
+    "LBL_Names": "lbl_KeineAbschaltung"
+  }
+
+]

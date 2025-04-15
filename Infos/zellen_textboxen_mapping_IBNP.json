@@ -1,0 +1,707 @@
+[  
+  {
+    "Zelle": "E7",
+    "Feldname": "tb_Versuchsaufbau_ibnProtokoll"
+  },
+  {
+    "Zelle": "E11",
+    "Feldname": "tb_Viskosität_ibnProtokoll"
+  },
+  {
+    "Zelle": "M9",
+    "Feldname": "tb_Vorspannung_ibnProtokoll"
+  },
+  {
+    "Zelle": "M11",
+    "Feldname": "tb_UnterlegungLR_ibnProtokoll"
+  },
+  {
+    "Zelle": "O11",
+    "Feldname": "tb_UnterlegungZP_ibnProtokoll"
+  },
+  {
+    "Zelle": "B17",
+    "Feldname": "tb_Druck_P1_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "B19",
+    "Feldname": "tb_Druck_P1_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "B21",
+    "Feldname": "tb_Druck_P1_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "B23",
+    "Feldname": "tb_Druck_P1_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "C17",
+    "Feldname": "tb_Druck_P2_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "C19",
+    "Feldname": "tb_Druck_P2_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "C21",
+    "Feldname": "tb_Druck_P2_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "C23",
+    "Feldname": "tb_Druck_P2_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "D17",
+    "Feldname": "tb_p_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "D19",
+    "Feldname": "tb_p_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "D21",
+    "Feldname": "tb_p_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "D23",
+    "Feldname": "tb_p_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "E17",
+    "Feldname": "tb_MasseTemp_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "E19",
+    "Feldname": "tb_MasseTemp_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "E21",
+    "Feldname": "tb_MasseTemp_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "E23",
+    "Feldname": "tb_MasseTemp_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "F17",
+    "Feldname": "tb_nExtruder_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "F19",
+    "Feldname": "tb_nExtruder_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "F21",
+    "Feldname": "tb_nExtruder_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "F23",
+    "Feldname": "tb_nExtruder_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "G17",
+    "Feldname": "tb_Pumpe_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "G19",
+    "Feldname": "tb_Pumpe_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "G21",
+    "Feldname": "tb_Pumpe_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "G23",
+    "Feldname": "tb_Pumpe_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "H17",
+    "Feldname": "tb_Q_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "H19",
+    "Feldname": "tb_Q_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "H21",
+    "Feldname": "tb_Q_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "H23",
+    "Feldname": "tb_Q_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "I17",
+    "Feldname": "tb_Siebe_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "I19",
+    "Feldname": "tb_Siebe_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "I21",
+    "Feldname": "tb_Siebe_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "I23",
+    "Feldname": "tb_Siebe_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "J17",
+    "Feldname": "tb_Rückspülverlust_1x_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "J19",
+    "Feldname": "tb_Rückspülverlust_1x_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "J21",
+    "Feldname": "tb_Rückspülverlust_1x_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "J23",
+    "Feldname": "tb_Rückspülverlust_1x_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "K17",
+    "Feldname": "tb_Rückspülverlust_10x_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "K19",
+    "Feldname": "tb_Rückspülverlust_10x_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "K21",
+    "Feldname": "tb_Rückspülverlust_10x_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "K23",
+    "Feldname": "tb_Rückspülverlust_10x_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "L17",
+    "Feldname": "tb_Rückspülverlust_Prozent_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "L19",
+    "Feldname": "tb_Rückspülverlust_Prozent_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "L21",
+    "Feldname": "tb_Rückspülverlust_Prozent_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "L23",
+    "Feldname": "tb_Rückspülverlust_Prozent_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "M17",
+    "Feldname": "tb_Hub_Länge_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "M19",
+    "Feldname": "tb_Hub_Länge_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "M21",
+    "Feldname": "tb_Hub_Länge_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "M23",
+    "Feldname": "tb_Hub_Länge_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "N17",
+    "Feldname": "tb_Spüldruck_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "N19",
+    "Feldname": "tb_Spüldruck_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "N21",
+    "Feldname": "tb_Spüldruck_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "N23",
+    "Feldname": "tb_Spüldruck_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "O17",
+    "Feldname": "tb_Antrieb_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "O19",
+    "Feldname": "tb_Antrieb_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "O21",
+    "Feldname": "tb_Antrieb_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "O23",
+    "Feldname": "tb_Antrieb_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "P17",
+    "Feldname": "tb_Vorflutpin_1_ibnProtokoll"
+  },
+  {
+    "Zelle": "P19",
+    "Feldname": "tb_Vorflutpin_2_ibnProtokoll"
+  },
+  {
+    "Zelle": "P21",
+    "Feldname": "tb_Vorflutpin_3_ibnProtokoll"
+  },
+  {
+    "Zelle": "P23",
+    "Feldname": "tb_Vorflutpin_4_ibnProtokoll"
+  },
+  {
+    "Zelle": "D39",
+    "Feldname": "tb_FSteuerung_T1_MVA1_ibnProtokoll"
+  },
+  {
+    "Zelle": "D40",
+    "Feldname": "tb_FSteuerung_T1_MVA2_ibnProtokoll"
+  },
+  {
+    "Zelle": "D31",
+    "Feldname": "tb_FSteuerung_T1_RSF_AHub1_ibnProtokoll"
+  },
+  {
+    "Zelle": "D32",
+    "Feldname": "tb_FSteuerung_T1_RSF_AHub2_ibnProtokoll"
+  },
+  {
+    "Zelle": "D35",
+    "Feldname": "tb_FSteuerung_T1_SFX_AHub1_ibnProtokoll"
+  },
+  {
+    "Zelle": "D36",
+    "Feldname": "tb_FSteuerung_T1_SFX_AHub2_ibnProtokoll"
+  },
+  {
+    "Zelle": "E39",
+    "Feldname": "tb_FSteuerung_T2_MVB1_ibnProtokoll"
+  },
+  {
+    "Zelle": "E40",
+    "Feldname": "tb_FSteuerung_T2_MVB2_ibnProtokoll"
+  },
+  {
+    "Zelle": "E31",
+    "Feldname": "tb_FSteuerung_T2_RSF_LHub1_ibnProtokoll"
+  },
+  {
+    "Zelle": "E32",
+    "Feldname": "tb_FSteuerung_T2_RSF_LHub2_ibnProtokoll"
+  },
+  {
+    "Zelle": "E35",
+    "Feldname": "tb_FSteuerung_T2_SFX_LHub1_ibnProtokoll"
+  },
+  {
+    "Zelle": "E36",
+    "Feldname": "tb_FSteuerung_T2_SFX_LHub2_ibnProtokoll"
+  },
+  {
+    "Zelle": "F39",
+    "Feldname": "tb_FSteuerung_T3_Standzeit1_ibnProtokoll"
+  },
+  {
+    "Zelle": "F40",
+    "Feldname": "tb_FSteuerung_T3_Standzeit2_ibnProtokoll"
+  },
+  {
+    "Zelle": "F31",
+    "Feldname": "tb_FSteuerung_T3_RSF_Taktzeit1_ibnProtokoll"
+  },
+  {
+    "Zelle": "F32",
+    "Feldname": "tb_FSteuerung_T3_RSF_Taktzeit2_ibnProtokoll"
+  },
+  {
+    "Zelle": "F35",
+    "Feldname": "tb_FSteuerung_T3_SFX_Taktzeit1_ibnProtokoll"
+  },
+  {
+    "Zelle": "F36",
+    "Feldname": "tb_FSteuerung_T3_SFX_Taktzeit2_ibnProtokoll"
+  },
+  {
+    "Zelle": "G39",
+    "Feldname": "tb_FSteuerung_T4_Flutdauer1_ibnProtokoll"
+  },
+  {
+    "Zelle": "G40",
+    "Feldname": "tb_FSteuerung_T4_Flutdauer2_ibnProtokoll"
+  },
+  {
+    "Zelle": "G31",
+    "Feldname": "tb_FSteuerung_T4_RSF_AHUB1_ibnProtokoll"
+  },
+  {
+    "Zelle": "G32",
+    "Feldname": "tb_FSteuerung_T4_RSF_AHUB2_ibnProtokoll"
+  },
+  {
+    "Zelle": "G35",
+    "Feldname": "tb_FSteuerung_T4_SFX_Vorflutzeit1_ibnProtokoll"
+  },
+  {
+    "Zelle": "G36",
+    "Feldname": "tb_FSteuerung_T4_SFX_Vorflutzeit2_ibnProtokoll"
+  },
+  {
+    "Zelle": "H39",
+    "Feldname": "tb_FSteuerung_T5_Pause1_ibnProtokoll"
+  },
+  {
+    "Zelle": "H40",
+    "Feldname": "tb_FSteuerung_T5_Pause2_ibnProtokoll"
+  },
+  {
+    "Zelle": "H31",
+    "Feldname": "tb_FSteuerung_T5_RSF_LHUB1_ibnProtokoll"
+  },
+  {
+    "Zelle": "H32",
+    "Feldname": "tb_FSteuerung_T5_RSF_LHUB2_ibnProtokoll"
+  },
+  {
+    "Zelle": "H35",
+    "Feldname": "tb_FSteuerung_T5_SFX_VorflutChange1_ibnProtokoll"
+  },
+  {
+    "Zelle": "H36",
+    "Feldname": "tb_FSteuerung_T5_SFX_VorflutChange2_ibnProtokoll"
+  },
+  {
+    "Zelle": "I39",
+    "Feldname": "tb_FSteuerung_T6_SollDruck1_ibnProtokoll"
+  },
+  {
+    "Zelle": "I40",
+    "Feldname": "tb_FSteuerung_T6_SollDruck2_ibnProtokoll"
+  },
+  {
+    "Zelle": "I31",
+    "Feldname": "tb_FSteuerung_T6_RSF_SKolbenVor1_ibnProtokoll"
+  },
+  {
+    "Zelle": "I32",
+    "Feldname": "tb_FSteuerung_T6_RSF_SKolbenVor2_ibnProtokoll"
+  },
+  {
+    "Zelle": "I35",
+    "Feldname": "tb_FSteuerung_T6_SFX_SollDruck1_ibnProtokoll"
+  },
+  {
+    "Zelle": "I36",
+    "Feldname": "tb_FSteuerung_T6_SFX_SollDruck2_ibnProtokoll"
+  },
+  {
+    "Zelle": "J39",
+    "Feldname": "tb_FSteuerung_T7_MinDruck1_ibnProtokoll"
+  },
+  {
+    "Zelle": "J40",
+    "Feldname": "tb_FSteuerung_T7_MinDruck2_ibnProtokoll"
+  },
+  {
+    "Zelle": "J31",
+    "Feldname": "tb_FSteuerung_T7_RSF_SKolbenZurück1_ibnProtokoll"
+  },
+  {
+    "Zelle": "J32",
+    "Feldname": "tb_FSteuerung_T7_RSF_SKolbenZurück2_ibnProtokoll"
+  },
+  {
+    "Zelle": "J35",
+    "Feldname": "tb_FSteuerung_T7_SFX_MinDruck1_ibnProtokoll"
+  },
+  {
+    "Zelle": "J36",
+    "Feldname": "tb_FSteuerung_T7_SFX_MinDruck2_ibnProtokoll"
+  },
+  {
+    "Zelle": "K39",
+    "Feldname": "tb_FSteuerung_T8_Betriebsart1_ibnProtokoll"
+  },
+  {
+    "Zelle": "K40",
+    "Feldname": "tb_FSteuerung_T8_Betriebsart2_ibnProtokoll"
+  },
+  {
+    "Zelle": "K31",
+    "Feldname": "tb_FSteuerung_T8_RSF_SKolbenVor1_ibnProtokoll"
+  },
+  {
+    "Zelle": "K32",
+    "Feldname": "tb_FSteuerung_T8_RSF_SKolbenVor2_ibnProtokoll"
+  },
+  {
+    "Zelle": "K35",
+    "Feldname": "tb_FSteuerung_T8_SFX_Betriebsart1_ibnProtokoll"
+  },
+  {
+    "Zelle": "K36",
+    "Feldname": "tb_FSteuerung_T8_SFX_Betriebsart2_ibnProtokoll"
+  },
+  {
+    "Zelle": "L31",
+    "Feldname": "tb_FSteuerung_T9_RSF_SKolbenZurück1_ibnProtokoll"
+  },
+  {
+    "Zelle": "L32",
+    "Feldname": "tb_FSteuerung_T9_RSF_KolbenZurück2_ibnProtokoll"
+  },
+  {
+    "Zelle": "L35",
+    "Feldname": "tb_FSteuerung_T9_SFX_VorDiffDruck1_ibnProtokoll"
+  },
+  {
+    "Zelle": "L36",
+    "Feldname": "tb_FSteuerung_T9_SFX_VorDiffDruck2_ibnProtokoll"
+  },
+  {
+    "Zelle": "M37",
+    "Feldname": "tb_VIS_KSF_ibnProtokoll"
+  },
+  {
+    "Zelle": "M38",
+    "Feldname": "tb_dBlech_KSF_ibnProtokoll"
+  },
+  {
+    "Zelle": "M39",
+    "Feldname": "tb_kp_KSF_ibnProtokoll"
+  },
+  {
+    "Zelle": "M40",
+    "Feldname": "tb_kk_KSF_ibnProtokoll"
+  },
+  {
+    "Zelle": "M31",
+    "Feldname": "tb_FSteuerung_RSF_AnzahlSiebe1_ibnProtokoll"
+  },
+  {
+    "Zelle": "M32",
+    "Feldname": "tb_FSteuerung_RSF_AnzahlSiebe2_ibnProtokoll"
+  },
+  {
+    "Zelle": "M35",
+    "Feldname": "tb_FSteuerung_SFX_VorflutMaßA1_ibnProtokoll"
+  },
+  {
+    "Zelle": "M36",
+    "Feldname": "tb_FSteuerung_SFX_VorflutMaßA2_ibnProtokoll"
+  },
+  {
+    "Zelle": "N38",
+    "Feldname": "checkB_FSteuerung_Siebscheibendrehung"
+  },
+  {
+    "Zelle": "N39",
+    "Feldname": "checkB_FSteuerung_Antriebskraftmessung"
+  },
+  {
+    "Zelle": "N40",
+    "Feldname": "checkB_FSteuerung_HubSchußkolben"
+  },
+  {
+    "Zelle": "N31",
+    "Feldname": "tb_FSteuerung_RSF_Umdrehung1_ibnProtokoll"
+  },
+  {
+    "Zelle": "N32",
+    "Feldname": "tb_FSteuerung_RSF_Umdrehung2_ibnProtokoll"
+  },
+  {
+    "Zelle": "N35",
+    "Feldname": "tb_FSteuerung_SFX_StellungRampe1_ibnProtokoll"
+  },
+  {
+    "Zelle": "N36",
+    "Feldname": "tb_FSteuerung_SFX_StellungRampe2_ibnProtokoll"
+  },
+  {
+    "Zelle": "O31",
+    "Feldname": "tb_FSteuerung_RSF_SchusskolbenVor1_ibnProtokoll"
+  },
+  {
+    "Zelle": "O32",
+    "Feldname": "tb_FSteuerung_RSF_SchusskobenVor2_ibnProtokoll"
+  },
+  {
+    "Zelle": "O35",
+    "Feldname": "tb_FSteuerung_SFX_Ablauf1_ibnProtokoll"
+  },
+  {
+    "Zelle": "O36",
+    "Feldname": "tb_FSteuerung_SFX_Ablauf2_ibnProtokoll"
+  },
+  {
+    "Zelle": "P31",
+    "Feldname": "tb_FSteuerung_RSF_SchusskolbenZurück1_ibnProtokoll"
+  },
+  {
+    "Zelle": "P32",
+    "Feldname": "tb_FSteuerung_RSF_SchusskolbenZurück2_ibnProtokoll"
+  },
+  {
+    "Zelle": "H41",
+    "Feldname": "checkB_Spitzenwerte_Foto_JA_ibnProtokoll"
+  },
+  {
+    "Zelle": "I41",
+    "Feldname": "checkB_Spitzenwerte_Foto_NEIN_ibnProtokoll"
+  },
+  {
+    "Zelle": "M41",
+    "Feldname": "tb_Fotoanhang_ibnProtokoll"
+  },
+  {
+    "Zelle": "C45",
+    "Feldname": "tb_TempProfil_Zone1_Bezeichnung"
+  },
+  {
+    "Zelle": "C47",
+    "Feldname": "tb_TempProfil_Zone1_Celsius"
+  },
+  {
+    "Zelle": "D45",
+    "Feldname": "tb_TempProfil_Zone2_Bezeichnung"
+  },
+  {
+    "Zelle": "D47",
+    "Feldname": "tb_TempProfil_Zone2_Celsius"
+  },
+  {
+    "Zelle": "E45",
+    "Feldname": "tb_TempProfil_Zone3_Bezeichnung"
+  },
+  {
+    "Zelle": "E47",
+    "Feldname": "tb_TempProfil_Zone3_Celsius"
+  },
+  {
+    "Zelle": "F45",
+    "Feldname": "tb_TempProfil_Zone4_Bezeichnung"
+  },
+  {
+    "Zelle": "F47",
+    "Feldname": "tb_TempProfil_Zone4_Celsius"
+  },
+  {
+    "Zelle": "G45",
+    "Feldname": "tb_TempProfil_Zone5_Bezeichnung"
+  },
+  {
+    "Zelle": "G47",
+    "Feldname": "tb_TempProfil_Zone5_Celsius"
+  },
+  {
+    "Zelle": "H45",
+    "Feldname": "tb_TempProfil_Zone6_Bezeichnung"
+  },
+  {
+    "Zelle": "H47",
+    "Feldname": "tb_TempProfil_Zone6_Celsius"
+  },
+  {
+    "Zelle": "I45",
+    "Feldname": "tb_TempProfil_Zone7_Bezeichnung"
+  },
+  {
+    "Zelle": "I47",
+    "Feldname": "tb_TempProfil_Zone7_Celsius"
+  },
+  {
+    "Zelle": "J45",
+    "Feldname": "tb_TempProfil_Zone8_Bezeichnung"
+  },
+  {
+    "Zelle": "J47",
+    "Feldname": "tb_TempProfil_Zone8_Celsius"
+  },
+  {
+    "Zelle": "K45",
+    "Feldname": "tb_TempProfil_Zone9_Bezeichnung"
+  },
+  {
+    "Zelle": "K47",
+    "Feldname": "tb_TempProfil_Zone9_Celsius"
+  },
+  {
+    "Zelle": "L45",
+    "Feldname": "tb_TempProfil_Zone10_Bezeichnung"
+  },
+  {
+    "Zelle": "L47",
+    "Feldname": "tb_TempProfil_Zone10_Celsius"
+  },
+  {
+    "Zelle": "M45",
+    "Feldname": "tb_TempProfil_Zone11_Bezeichnung"
+  },
+  {
+    "Zelle": "M47",
+    "Feldname": "tb_TempProfil_Zone11_Celsius"
+  },
+  {
+    "Zelle": "N45",
+    "Feldname": "tb_TempProfil_Zone12_Bezeichnung"
+  },
+  {
+    "Zelle": "N47",
+    "Feldname": "tb_TempProfil_Zone12_Celsius"
+  },
+  {
+    "Zelle": "O45",
+    "Feldname": "tb_TempProfil_Zone13_Bezeichnung"
+  },
+  {
+    "Zelle": "O47",
+    "Feldname": "tb_TempProfil_Zone13_Celsius"
+  },
+  {
+    "Zelle": "P45",
+    "Feldname": "tb_TempProfil_Zone14_Bezeichnung"
+  },
+  {
+    "Zelle": "P47",
+    "Feldname": "tb_TempProfil_Zone14_Celsius"
+  },
+  {
+    "Zelle": "A50",
+    "Feldname": "checkB_KTempMessung_ibnProtokoll"
+  },
+  {
+    "Zelle": "A51",
+    "Feldname": "checkB_Druckabschaltung_ibnProtokoll"
+  },
+  {
+    "Zelle": "A52",
+    "Feldname": "checkB_Abschaltung_Elektrisch_ibnProtokoll"
+  },
+  {
+    "Zelle": "F52",
+    "Feldname": "checkB_Abschaltung_mechanisch_ibnProtokoll"
+  },
+  {
+    "Zelle": "J51",
+    "Feldname": "checkB_EingestellteBar_ibnProtokoll"
+  },
+  {
+    "Zelle": "J52",
+    "Feldname": "checkB_KeinAbschaltung_ibnProtokoll"
+  },
+  {
+    "Zelle": "M51",
+    "Feldname": "tb_EingestellteBar_ibnProtokoll"
+  }
+
+]

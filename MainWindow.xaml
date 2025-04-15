@@ -1,0 +1,55 @@
+﻿<Window x:Class="ServiceTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceTool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1020" Width="1920"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"   Background="#FF969696">
+        
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.18*"/>
+            <ColumnDefinition Width="0.012*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="0,0,3,0">
+            <StackPanel>
+                <RadioButton Checked="rbt_Startseite_Checked" FontSize="20" x:Name="rbt_Startseite" Content="Startseite" VerticalContentAlignment="Center" Foreground="Black"/>
+                <RadioButton Checked="rbt_ServiceAnforderung_Checked" FontSize="20" Unchecked="rbt_ServiceAnforderung_UnChecked" VerticalContentAlignment="Center" Visibility="Hidden" x:Name="rbt_ServiceAnforderung" Content="Service Anforderung" Background="White"/>
+                <RadioButton Checked="rbt_Stundennachweis_Checked" FontSize="20" Unchecked="rbt_Stundenachweis_UnChecked" VerticalContentAlignment="Center" Visibility="Hidden" x:Name="rbt_Stundennachweis" Content="Stundennachweis"/>
+                <RadioButton Checked="rbt_InternerBericht_Checked" FontSize="20" Unchecked="rbt_InternerBericht_UnChecked" VerticalContentAlignment="Center" Visibility="Hidden" x:Name="rbt_InternerBericht" Content="Interner Bericht"/>
+                <RadioButton Checked="rbt_InbetriebnahmeProtokoll_Checked" FontSize="20" Unchecked="rbt_InbetriebnahmeProtokoll_UnChecked" VerticalContentAlignment="Center" Visibility="Hidden" x:Name="rbt_InbetriebnahmeProtokoll" Content="Inbetriebnahme Protokoll"/>
+                <RadioButton Content="Inbetriebnahmeprotokoll MRS" FontSize="20" x:Name="rbt_InbetriebnahmeProtokoll_MRS" VerticalContentAlignment="Center" Visibility="Hidden" Unchecked="IbnP_MRS_Speichern" Checked="InbetriebnahmeProtokoll_MRS_Laden" Background="White"/>
+                <RadioButton Content="Speichern" Visibility="Hidden" FontSize="20" VerticalContentAlignment="Center"  x:Name="rbt_Speichern" Foreground="Black" Background="White"/>
+
+
+                <Button x:Name="btn_Anhaege_hinzufuegen" FontSize="20" Visibility="Hidden" Content="Anhänge hinzufügen" Click="Ordner_oeffnen_Anhaenge" Foreground="Black" Background="White"/>
+                <Button x:Name="btn_Auftrag_Download" FontSize="20" Visibility="Hidden" Content="Auftrag Herunterladen" Click="Auftrag_Downloaden" Background="White" Foreground="Black"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="0,0,3,0" Grid.Row="1" Background="#FF969696">
+            <StackPanel VerticalAlignment="Bottom">
+                
+                <Label x:Name="lbl_OnlineOfflineAnzeige" Content="Offline" FontSize="30" Background="Red" BorderBrush="Black" BorderThickness="2" HorizontalContentAlignment="Center"/>
+                <Label Content=" " Height="340"/>
+                <Label Content="Sprache" FontSize="30" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <ComboBox x:Name="CB_Sprache_auswahl" VerticalAlignment="Bottom" FontSize="30">
+                    <ComboBoxItem Content="Deutsch" IsSelected="True"/>
+                    <ComboBoxItem Content="Englisch"/>
+                </ComboBox>
+                
+            </StackPanel>
+        </Border>
+        <ContentControl x:Name="CC" Grid.Column="2" Grid.RowSpan="2"/>
+
+
+    </Grid>
+    
+</Window>
