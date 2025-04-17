@@ -12,7 +12,7 @@
         </Style>
     </UserControl.Resources>
     <ScrollViewer>
-        <Grid Background="#FF969696">
+        <Grid Background="#FF969696" x:Name="Grid_Stunden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="1.5*"/>
@@ -130,6 +130,17 @@
             </Label>
 
             <TextBlock Margin="0,0,0,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="11" TextWrapping="WrapWithOverflow" Text="Stundennachweis &#x0a;Service Visitreport" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
+
+            <ComboBox Grid.Column="9" Grid.ColumnSpan="3" x:Name="cb_Siteswitch_Stunden">
+                <ComboBoxItem Content="Woche 1" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden1" IsSelected="True"/>
+                <ComboBoxItem Content="Woche 2" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden2"/>
+                <ComboBoxItem Content="Woche 3" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden3"/>
+                <ComboBoxItem Content="Woche 4" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden4"/>
+                <ComboBoxItem Content="Woche 5" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden5"/>
+                <ComboBoxItem Content="Woche 6" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden6"/>
+                <ComboBoxItem Content="Woche 7" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden7"/>
+                <ComboBoxItem Content="Woche 8" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden8"/>
+            </ComboBox>
 
             <TextBlock Margin="0,0,0,5" Grid.Row="0" Grid.Column="12" Grid.ColumnSpan="3" HorizontalAlignment="Right" Text="Service-Techniker: &#x0a; Service technican:" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
             <TextBox x:Name="tb_Servicetechiker_Stunden" Margin="0,0,0,5" Grid.Row="0" Grid.Column="15" Grid.ColumnSpan="3" FontSize="17" FontWeight="Bold" Text="tb_Servicetechniker_Anforderung" TextAlignment="Center"/>

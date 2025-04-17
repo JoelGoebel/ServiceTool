@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,23 @@ namespace ServiceTool
     /// </summary>
     public partial class Stundennachweis : UserControl
     {
+        private bool _isInitialized = false;
         public Stundennachweis()
         {
             InitializeComponent();
             TimePicker();
             TimePickerPause();
+            addSiteDependOnOrderTime();
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _isInitialized = true;
+            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+
         }
+
+        
+
 
         private void SetAllDateForThisWeek(object sender, SelectionChangedEventArgs e)
         {
@@ -37,6 +49,139 @@ namespace ServiceTool
             dp_Datum_Fr_Stunden.SelectedDate = DateFirstWeekday.AddDays(4);
             dp_Datum_Sa_Stunden.SelectedDate = DateFirstWeekday.AddDays(5);
             dp_Datum_So_Stunden.SelectedDate = DateFirstWeekday.AddDays(6);
+        }
+
+
+        private void SiteSwitched_Stunden(object sender, SelectionChangedEventArgs e)
+        {
+            if (_isInitialized == false)
+            {
+                return;
+            }
+
+            cb_Siteswitch_Stunden.SelectionChanged -= SiteSwitched_Stunden;
+
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            string LastSelectedItem = cb_Siteswitch_Stunden.SelectionBoxItem.ToString();
+            string selectedItem = cb_Siteswitch_Stunden.SelectedItem.ToString();
+            string selectedItemText = selectedItem.Substring(selectedItem.IndexOf(" ") + 1);
+            string ExcelFilePathLoad = "";
+            string ExcelFilePathSave = "";
+
+            if (LastSelectedItem == "Woche 1")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 2")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_2.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 3")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_3.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 4")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_4.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 5")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_5.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 6")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_6.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 7")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_7.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (LastSelectedItem == "Woche 8")
+            {
+                ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_8.xlsm");
+                mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
+            }
+
+
+            if (selectedItemText == "Woche 1")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 2")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_2.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 3")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_3.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 4")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_4.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 5")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_5.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 6")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_6.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 7")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_7.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+            else if (selectedItemText == "Woche 8")
+            {
+                ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_8.xlsm");
+                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+            }
+
+
+
+            cb_Siteswitch_Stunden.SelectionChanged += SiteSwitched_Stunden;
+        }
+
+        private void addSiteDependOnOrderTime()
+        {
+            TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
+
+            int Weeks = ServiceDurationInDays.Days / 7;
+
+            for (int i = 0; i <= Weeks; i++)
+            {
+                string quellOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_QuelleVorlagen, "Stundennachweis.xlsm");
+                string ZielData = "Stundennachweis_" + i.ToString() + ".xlsm";
+                string zielOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, ZielData);
+
+                if (!File.Exists(zielOrdner))
+                {
+                    File.Copy(quellOrdner, zielOrdner);
+                }
+                int x = i + 1;
+                string item = "cbItem_SiteSwitch_Stunden" + x.ToString();
+                
+                
+
+                ComboBoxItem Item = (ComboBoxItem)Grid_Stunden.FindName(item);
+
+                Item.Visibility = Visibility.Visible;
+
+            }
         }
 
 

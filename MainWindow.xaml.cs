@@ -316,6 +316,11 @@ namespace ServiceTool
             GlobalVariables.Land = sa.tb_Land.Text;
 
             GlobalVariables.Material = sa.tb_Material.Text;
+            if (sa.dp_Besuchsdatum_Start.SelectedDate != null && sa.dp_Besuchsdatum_Ende.SelectedDate != null)
+            {
+                GlobalVariables.StartServiceEinsatz = (DateTime)sa.dp_Besuchsdatum_Start.SelectedDate;
+                GlobalVariables.EndeServiceEinsatz = (DateTime)sa.dp_Besuchsdatum_Ende.SelectedDate;
+            }
         }
 
         private void rbt_Stundennachweis_Checked(object sender, RoutedEventArgs e)

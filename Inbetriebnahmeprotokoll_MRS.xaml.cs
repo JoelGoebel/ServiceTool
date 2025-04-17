@@ -83,12 +83,12 @@ namespace ServiceTool
 
         private void SiteSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           if(_isInitialized == false)
-           {
+            if (_isInitialized == false)
+            {
                 return;
-           }
+            }
 
-           cb_SiteSwitchIbnP_MRS.SelectionChanged -= SiteSelectionChanged;
+            cb_SiteSwitchIbnP_MRS.SelectionChanged -= SiteSelectionChanged;
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string LastSelectedItem = cb_SiteSwitchIbnP_MRS.SelectionBoxItem.ToString();

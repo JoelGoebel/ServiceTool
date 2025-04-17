@@ -56,6 +56,10 @@ namespace ServiceTool
             public static string Pfad_Anhaenge { get; set; }
             public static string Pfad_Unterschriften { get; set; }
             public static bool Online_or_Offline { get; set; } //True = Online, False = Offline
+
+            public static DateTime EndeServiceEinsatz;
+            public static DateTime StartServiceEinsatz;
+
             public static TimeSpan FruehNacht = new TimeSpan(6, 0, 0);
             public static TimeSpan SpaetNacht = new TimeSpan(21, 0, 0);
             public static TimeSpan RegularStd = new TimeSpan(8, 30, 0);
