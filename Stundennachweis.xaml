@@ -131,7 +131,7 @@
 
             <TextBlock Margin="0,0,0,5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="11" TextWrapping="WrapWithOverflow" Text="Stundennachweis &#x0a;Service Visitreport" FontSize="24" TextAlignment="Center" FontWeight="Bold"></TextBlock>
 
-            <ComboBox Grid.Column="9" Grid.ColumnSpan="3" x:Name="cb_Siteswitch_Stunden">
+            <ComboBox Grid.Column="9" Grid.ColumnSpan="3" x:Name="cb_Siteswitch_Stunden" SelectionChanged="SiteSwitched_Stunden" FontSize="20">
                 <ComboBoxItem Content="Woche 1" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden1" IsSelected="True"/>
                 <ComboBoxItem Content="Woche 2" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden2"/>
                 <ComboBoxItem Content="Woche 3" Visibility="Collapsed" x:Name="cbItem_SiteSwitch_Stunden3"/>

@@ -41,6 +41,10 @@ namespace ServiceTool
 
         private void SetAllDateForThisWeek(object sender, SelectionChangedEventArgs e)
         {
+            if(dp_Datum_Mo_Stunden.SelectedDate == null)
+            {
+                return;
+            }
             DateTime DateFirstWeekday = (DateTime)dp_Datum_Mo_Stunden.SelectedDate;
 
             dp_Datum_Di_Stunden.SelectedDate = DateFirstWeekday.AddDays(1);
@@ -113,42 +117,42 @@ namespace ServiceTool
             if (selectedItemText == "Woche 1")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 2")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_2.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 3")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_3.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 4")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_4.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 5")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_5.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 6")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_6.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 7")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_7.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
             else if (selectedItemText == "Woche 8")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_8.xlsm");
-                mainWindow.Laden(ExcelFilePathSave, "Stundennachweis");
+                mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
 
 
@@ -162,17 +166,22 @@ namespace ServiceTool
 
             int Weeks = ServiceDurationInDays.Days / 7;
 
-            for (int i = 0; i <= Weeks; i++)
+            for (int i = 0; i < Weeks; i++)
             {
                 string quellOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_QuelleVorlagen, "Stundennachweis.xlsm");
-                string ZielData = "Stundennachweis_" + i.ToString() + ".xlsm";
-                string zielOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, ZielData);
+                string ZielData = "Stundennachweis.xlsm";
+                int x = i + 1;
+                if (i != 0) 
+                {
+                    ZielData = "Stundennachweis_" + x.ToString() + ".xlsm";
+                }
+                    string zielOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, ZielData);
 
                 if (!File.Exists(zielOrdner))
                 {
                     File.Copy(quellOrdner, zielOrdner);
                 }
-                int x = i + 1;
+                
                 string item = "cbItem_SiteSwitch_Stunden" + x.ToString();
                 
                 
