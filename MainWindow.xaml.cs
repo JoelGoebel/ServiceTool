@@ -39,6 +39,13 @@ namespace ServiceTool
         public MainWindow()
         {
             InitializeComponent();
+
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+
+            this.Width = screenWidth * 0.95;
+            this.Height = screenHeight * 0.95;
+            
             this.Loaded += MainWindow_Loaded;
 
             SaveCellMapping_InDictionarys();
@@ -298,10 +305,22 @@ namespace ServiceTool
             GlobalVariables.Anreise = sa.cb_Anreise.Text;
             GlobalVariables.ServiceTechnicker = sa.tb_Servicetechniker_Anforderung.Text;
 
-            GlobalVariables.Maschiene_1 = sa.cb_Maschinentyp_1.Text;
-            GlobalVariables.Maschiene_2 = sa.cb_Maschinentyp_2.Text;
-            GlobalVariables.Maschiene_3 = sa.cb_Maschinentyp_3.Text;
-            GlobalVariables.Maschiene_4 = sa.cb_Maschinentyp_4.Text;
+            if (sa.cb_Maschinentyp_1.Text != " ")
+            {
+                GlobalVariables.Maschiene_1 = sa.cb_Maschinentyp_1.Text;
+            }
+            if (sa.cb_Maschinentyp_2.Text != " ")
+            {
+                GlobalVariables.Maschiene_2 = sa.cb_Maschinentyp_2.Text;
+            }
+            if (sa.cb_Maschinentyp_3.Text != " ")
+            {
+                GlobalVariables.Maschiene_3 = sa.cb_Maschinentyp_3.Text;
+            }
+            if (sa.cb_Maschinentyp_4.Text != " ")
+            {
+                GlobalVariables.Maschiene_4 = sa.cb_Maschinentyp_4.Text;
+            }
 
             GlobalVariables.Baugroeße_1 = sa.cb_BauGröße_1.Text;
             GlobalVariables.Baugroeße_2 = sa.cb_BauGröße_2.Text;
@@ -1001,6 +1020,10 @@ namespace ServiceTool
             }
         }
 
+        private void CB_Sprache_auswahl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 

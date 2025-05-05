@@ -287,6 +287,7 @@ namespace ServiceTool
                 cb_BauGröße_1.Items.Add("60");
                 cb_BauGröße_1.Items.Add("75");
                 cb_BauGröße_1.Items.Add("90");
+                cb_BauGröße_1.Items.Add("130");
                 cb_BauGröße_1.Items.Add("150");
                 cb_BauGröße_1.Items.Add("175");
                 cb_BauGröße_1.Items.Add("200");
@@ -296,10 +297,12 @@ namespace ServiceTool
             else if(sender == "SF")
             {
                 cb_BauGröße_1.Items.Clear();
+                cb_BauGröße_1.Items.Add("30");
                 cb_BauGröße_1.Items.Add("45");
                 cb_BauGröße_1.Items.Add("60");
                 cb_BauGröße_1.Items.Add("75");
                 cb_BauGröße_1.Items.Add("90");
+                cb_BauGröße_1.Items.Add("130");
                 cb_BauGröße_1.Items.Add("150");
                 cb_BauGröße_1.Items.Add("175");
                 cb_BauGröße_1.Items.Add("200");
@@ -315,6 +318,7 @@ namespace ServiceTool
             else if (sender == "KSF" || sender == "KSFx2")
             {
                 cb_BauGröße_1.Items.Clear();
+                cb_BauGröße_1.Items.Add("30");
                 cb_BauGröße_1.Items.Add("45");
                 cb_BauGröße_1.Items.Add("60");
                 cb_BauGröße_1.Items.Add("75");
@@ -438,6 +442,10 @@ namespace ServiceTool
             {
                 cb_BauGröße_1.Items.Clear();
             }
+            else if (sender == " ")
+            {
+                cb_BauGröße_4.Items.Clear();
+            }
         }
 
         private void Baugroeßen_hinzufügen_2(string sender)
@@ -487,6 +495,7 @@ namespace ServiceTool
                 cb_BauGröße_2.Items.Add("60");
                 cb_BauGröße_2.Items.Add("75");
                 cb_BauGröße_2.Items.Add("90");
+                cb_BauGröße_2.Items.Add("130");
                 cb_BauGröße_2.Items.Add("150");
                 cb_BauGröße_2.Items.Add("175");
                 cb_BauGröße_2.Items.Add("200");
@@ -496,10 +505,12 @@ namespace ServiceTool
             else if (sender == "SF")
             {
                 cb_BauGröße_2.Items.Clear();
+                cb_BauGröße_2.Items.Add("30");
                 cb_BauGröße_2.Items.Add("45");
                 cb_BauGröße_2.Items.Add("60");
                 cb_BauGröße_2.Items.Add("75");
                 cb_BauGröße_2.Items.Add("90");
+                cb_BauGröße_2.Items.Add("130");
                 cb_BauGröße_2.Items.Add("150");
                 cb_BauGröße_2.Items.Add("175");
                 cb_BauGröße_2.Items.Add("200");
@@ -515,6 +526,7 @@ namespace ServiceTool
             else if (sender == "KSF" || sender == "KSFx2")
             {
                 cb_BauGröße_2.Items.Clear();
+                cb_BauGröße_2.Items.Add("30");
                 cb_BauGröße_2.Items.Add("45");
                 cb_BauGröße_2.Items.Add("60");
                 cb_BauGröße_2.Items.Add("75");
@@ -637,6 +649,10 @@ namespace ServiceTool
             {
                 cb_BauGröße_2.Items.Clear();
             }
+            else if (sender == " ")
+            {
+                cb_BauGröße_2.Items.Clear();
+            }
         }
 
         private void Baugroeßen_hinzufügen_3(string sender)
@@ -686,6 +702,7 @@ namespace ServiceTool
                 cb_BauGröße_3.Items.Add("60");
                 cb_BauGröße_3.Items.Add("75");
                 cb_BauGröße_3.Items.Add("90");
+                cb_BauGröße_3.Items.Add("130");
                 cb_BauGröße_3.Items.Add("150");
                 cb_BauGröße_3.Items.Add("175");
                 cb_BauGröße_3.Items.Add("200");
@@ -695,10 +712,12 @@ namespace ServiceTool
             else if (sender == "SF")
             {
                 cb_BauGröße_3.Items.Clear();
+                cb_BauGröße_3.Items.Add("30");
                 cb_BauGröße_3.Items.Add("45");
                 cb_BauGröße_3.Items.Add("60");
                 cb_BauGröße_3.Items.Add("75");
                 cb_BauGröße_3.Items.Add("90");
+                cb_BauGröße_3.Items.Add("130");
                 cb_BauGröße_3.Items.Add("150");
                 cb_BauGröße_3.Items.Add("175");
                 cb_BauGröße_3.Items.Add("200");
@@ -714,6 +733,7 @@ namespace ServiceTool
             else if (sender == "KSF" || sender == "KSFx2")
             {
                 cb_BauGröße_3.Items.Clear();
+                cb_BauGröße_3.Items.Add("30");
                 cb_BauGröße_3.Items.Add("45");
                 cb_BauGröße_3.Items.Add("60");
                 cb_BauGröße_3.Items.Add("75");
@@ -836,6 +856,10 @@ namespace ServiceTool
             {
                 cb_BauGröße_3.Items.Clear();
             }
+            else if (sender == " ")
+            {
+                cb_BauGröße_3.Items.Clear();
+            }
         }
 
         private void Baugroeßen_hinzufügen_4(string sender)
@@ -885,6 +909,7 @@ namespace ServiceTool
                 cb_BauGröße_4.Items.Add("60");
                 cb_BauGröße_4.Items.Add("75");
                 cb_BauGröße_4.Items.Add("90");
+                cb_BauGröße_4.Items.Add("130");
                 cb_BauGröße_4.Items.Add("150");
                 cb_BauGröße_4.Items.Add("175");
                 cb_BauGröße_4.Items.Add("200");
@@ -894,10 +919,12 @@ namespace ServiceTool
             else if (sender == "SF")
             {
                 cb_BauGröße_4.Items.Clear();
+                cb_BauGröße_4.Items.Add("30");
                 cb_BauGröße_4.Items.Add("45");
                 cb_BauGröße_4.Items.Add("60");
                 cb_BauGröße_4.Items.Add("75");
                 cb_BauGröße_4.Items.Add("90");
+                cb_BauGröße_4.Items.Add("130");
                 cb_BauGröße_4.Items.Add("150");
                 cb_BauGröße_4.Items.Add("175");
                 cb_BauGröße_4.Items.Add("200");
@@ -913,6 +940,7 @@ namespace ServiceTool
             else if (sender == "KSF" || sender == "KSFx2")
             {
                 cb_BauGröße_4.Items.Clear();
+                cb_BauGröße_4.Items.Add("30");
                 cb_BauGröße_4.Items.Add("45");
                 cb_BauGröße_4.Items.Add("60");
                 cb_BauGröße_4.Items.Add("75");
@@ -1032,6 +1060,9 @@ namespace ServiceTool
                 cb_BauGröße_4.Items.Add("V1800 (MRS200)");
             }
             else if (sender == "VIS")
+            {
+                cb_BauGröße_4.Items.Clear();
+            } else if (sender == " ")
             {
                 cb_BauGröße_4.Items.Clear();
             }
