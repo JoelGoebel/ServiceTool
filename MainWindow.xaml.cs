@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.Linq;
 using static ServiceTool.MainWindow;
 using System.Xml.Linq;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
 //TODO-List
 // Deutsch Englisch gegenenfalls für den rest auch noch einbauen
 //Anreise spalte Stundennachweis anpassen
@@ -1024,6 +1026,113 @@ namespace ServiceTool
         {
 
         }
+
+        private void Creat_PDF_Dokuments(object sender, EventArgs e) 
+        {
+            MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
+            
+            //Hier werden alle PDF ersellungen getrigerd
+            Create_PDF_Of_Stundennachweis();
+        }
+
+        private void Create_PDF_Of_Stundennachweis()
+        {
+            TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
+
+            int NumberOfStundennachweis = ServiceDurationInDays.Days / 7;
+
+            for (int i = 0; i < NumberOfStundennachweis; i++)
+            {
+                string ExcelFilePath = "";
+                string PDFFilePath = "";
+
+                Stundennachweis_PDF_Data PDF_Data = new Stundennachweis_PDF_Data();
+
+                if (i == 0)
+                {
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
+                    PDFFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.pdf");
+                    using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
+                    {
+                        var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
+
+                        //Werte für den Header der PDF abspeichern
+                        PDF_Data.Customer = worksheet.Cells["C4"].Text;
+                        PDF_Data.ServiceTechnician = worksheet.Cells["P1"].Text;
+                        PDF_Data.Adress1 = worksheet.Cells["M4"].Text;
+                        PDF_Data.Adress2 = worksheet.Cells["M5"].Text;
+                        PDF_Data.ContactPerson = worksheet.Cells["J6"].Text;
+                        PDF_Data.meansofTransport = worksheet.Cells["E8"].Text;
+                        PDF_Data.DateArrivalStart = worksheet.Cells["C10"].Text;
+                        PDF_Data.DateArrivalEnd = worksheet.Cells["H10"].Text;
+                        PDF_Data.TimeArrivalStart = worksheet.Cells["E10"].Text;
+                        PDF_Data.TimeArrivalEnd = worksheet.Cells["J10"].Text;
+                        PDF_Data.BreakArrival = worksheet.Cells["L10"].Text;
+                        PDF_Data.TotalTimeArrival = worksheet.Cells["O10"].Text;
+                        PDF_Data.TotalKilometersArrival = worksheet.Cells["Q10"].Text;
+                        PDF_Data.DateDepartureStart = worksheet.Cells["C12"].Text;
+                        PDF_Data.DateDepartureEnd = worksheet.Cells["H12"].Text;
+                        PDF_Data.TimeDepartureStart = worksheet.Cells["E12"].Text;
+                        PDF_Data.TimeDepartureEnd = worksheet.Cells["J12"].Text;
+                        PDF_Data.BreakDeparture = worksheet.Cells["L12"].Text;
+                        PDF_Data.TotalTimeDeparture = worksheet.Cells["O12"].Text;
+                        PDF_Data.TotalKilometersDeparture = worksheet.Cells["Q12"].Text;
+                        PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
+
+                        for (int x = 0; i < 7; x++)
+                        {
+                            PDF_Data.Arbeitszeit.Add(new StundenTabellenEintrag
+                            {
+                                Date = worksheet.Cells["B" + (x + 17)].Text,
+                                Start = worksheet.Cells["C" + (x + 17)].Text,
+                                End = worksheet.Cells["D" + (x + 17)].Text,
+                                Break = worksheet.Cells["E" + (x + 17)].Text,
+                                StartS2 = worksheet.Cells["C" + (x + 18)].Text,
+                                EndS2 = worksheet.Cells["D" + (x + 18)].Text,
+                                BreakS2 = worksheet.Cells["E" + (x + 18)].Text,
+                                Note = worksheet.Cells["F" + (x + 17)].Text,
+                                NormalStunden = worksheet.Cells["J" + (x + 17)].Text,
+                                OverTime = worksheet.Cells["M" + (x + 17)].Text,
+                                Nightwork = worksheet.Cells["O" + (x + 17)].Text,
+                                TotalHours = worksheet.Cells["Q" + (x + 17)].Text,
+                            });
+                        }
+
+                    }
+                }
+                else
+                {
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_" + (i + 1) + ".xlsm");
+                    using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
+                    {
+                        var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
+                        PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
+
+                        for (int x = 0; i < 7; x++)
+                        {
+                            PDF_Data.Arbeitszeit.Add(new StundenTabellenEintrag
+                            {
+                                Date = worksheet.Cells["B" + (x + 17)].Text,
+                                Start = worksheet.Cells["C" + (x + 17)].Text,
+                                End = worksheet.Cells["D" + (x + 17)].Text,
+                                Break = worksheet.Cells["E" + (x + 17)].Text,
+                                StartS2 = worksheet.Cells["C" + (x + 18)].Text,
+                                EndS2 = worksheet.Cells["D" + (x + 18)].Text,
+                                BreakS2 = worksheet.Cells["E" + (x + 18)].Text,
+                                Note = worksheet.Cells["F" + (x + 17)].Text,
+                                NormalStunden = worksheet.Cells["J" + (x + 17)].Text,
+                                OverTime = worksheet.Cells["M" + (x + 17)].Text,
+                                Nightwork = worksheet.Cells["O" + (x + 17)].Text,
+                                TotalHours = worksheet.Cells["Q" + (x + 17)].Text,
+                            });
+                        }
+                    }
+                }
+                
+            }
+        }
+
+
     }
 }
 
