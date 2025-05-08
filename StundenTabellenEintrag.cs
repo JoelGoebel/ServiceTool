@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceTool
 {
-    class StundenTabellenEintrag
+    public class StundenTabellenEintrag
     {
         public string Date { get; set; }
         public string Start { get; set; }

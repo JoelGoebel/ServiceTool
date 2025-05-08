@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceTool
 {
-    class Stundennachweis_PDF_Data
+    public class Stundennachweis_PDF_Data
     {
         public string Customer { get; set; }
         public string ServiceTechnician { get; set; }
