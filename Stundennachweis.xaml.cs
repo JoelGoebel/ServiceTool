@@ -155,6 +155,21 @@ namespace ServiceTool
                 mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
 
+            tb_Servicetechiker_Stunden.Text = GlobalVariables.ServiceTechnicker;
+            tb_Servicetechiker_Stunden.Focusable = false;
+            tb_Kunde_Stunden.Text = GlobalVariables.Kunde;
+            tb_Kunde_Stunden.Focusable = false;
+            tb_Ansprechpartner_Stunden.Text = GlobalVariables.Ansprechpartner;
+            tb_Ansprechpartner_Stunden.Focusable = false;
+            tb_Anschrift_1_Stunden.Text = GlobalVariables.Anschrift_1;
+            tb_Anschrift_1_Stunden.Focusable = false;
+            tb_Anschrift_2_Stunden.Text = GlobalVariables.Anschrift_2;
+            tb_Anschrift_2_Stunden.Focusable = false;
+            if (GlobalVariables.Anreise != "")
+            {
+                cb_Verkehrsmittel_Stunden.Text = GlobalVariables.Anreise;
+                cb_Verkehrsmittel_Stunden.Focusable = false;
+            }
 
 
             cb_Siteswitch_Stunden.SelectionChanged += SiteSwitched_Stunden;
@@ -163,8 +178,8 @@ namespace ServiceTool
         private void addSiteDependOnOrderTime()
         {
             TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
-
-            int Weeks = ServiceDurationInDays.Days / 7;
+            double weeksnotRounded = ServiceDurationInDays.TotalDays/7;
+            int Weeks = (int)Math.Ceiling(weeksnotRounded);
 
             for (int i = 0; i < Weeks; i++)
             {

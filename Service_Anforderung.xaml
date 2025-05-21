@@ -298,8 +298,7 @@
             <Border Grid.Row="20" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1">
                 <Label Content="Anreise" FontSize="15"  />
             </Border>
-            <ComboBox x:Name="cb_Anreise" Grid.Row="20" Grid.Column="1" SelectionChanged="cb_Anreise_SelectionChanged">
-                <ComboBoxItem IsSelected="True">-bitte auswählen-</ComboBoxItem>
+            <ComboBox x:Name="cb_Anreise" Grid.Row="20" Grid.Column="1" SelectionChanged="cb_Anreise_SelectionChanged">                
                 <ComboBoxItem>PKW</ComboBoxItem>
                 <ComboBoxItem>Flugzeug</ComboBoxItem>
                 <ComboBoxItem>Bahn</ComboBoxItem>

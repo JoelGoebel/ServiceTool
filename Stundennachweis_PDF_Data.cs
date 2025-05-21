@@ -28,9 +28,14 @@ namespace ServiceTool
         public string BreakDeparture { get; set; }
         public string TotalTimeDeparture { get; set; }
         public string TotalKilometersDeparture { get; set; }
-        public List<string> Report { get; set; }
+        public List<string> Report { get; set; } = new List<string>();
 
-        public List<StundenTabellenEintrag> Arbeitszeit { get; set; }
+        public List<StundenTabellenEintrag> Arbeitszeit { get; set; } = new List<StundenTabellenEintrag>();
+
+        public TimeSpan TotalNormalHours { get; set; }
+        public TimeSpan TotalOverTime { get; set; }
+        public TimeSpan TotalNightWork { get; set; }
+        public TimeSpan TotalHours { get; set; }
 
     }
 }

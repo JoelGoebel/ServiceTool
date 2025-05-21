@@ -84,27 +84,27 @@
     "Feldname": "dp_Datum_Mo_Stunden"
   },
   {
-    "Zelle": "B18",
+    "Zelle": "B19",
     "Feldname": "dp_Datum_Di_Stunden"
   },
   {
-    "Zelle": "B19",
+    "Zelle": "B21",
     "Feldname": "dp_Datum_Mi_Stunden"
   },
   {
-    "Zelle": "B20",
+    "Zelle": "B23",
     "Feldname": "dp_Datum_Do_Stunden"
   },
   {
-    "Zelle": "B21",
+    "Zelle": "B25",
     "Feldname": "dp_Datum_Fr_Stunden"
   },
   {
-    "Zelle": "B22",
+    "Zelle": "B27",
     "Feldname": "dp_Datum_Sa_Stunden"
   },
   {
-    "Zelle": "B23",
+    "Zelle": "B29",
     "Feldname": "dp_Datum_So_Stunden"
   },
   {

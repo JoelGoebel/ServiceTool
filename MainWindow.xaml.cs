@@ -18,10 +18,11 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using static ServiceTool.MainWindow;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using PdfSharp.Pdf;
-//using System.Xml.Linq;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateAndTime.Workdays;
+
 //TODO-List
 // Deutsch Englisch gegenenfalls für den rest auch noch einbauen
 //Anreise spalte Stundennachweis anpassen
@@ -380,9 +381,11 @@ namespace ServiceTool
                     sn.tb_Anschrift_1_Stunden.Focusable = false;
                     sn.tb_Anschrift_2_Stunden.Text = GlobalVariables.Anschrift_2;
                     sn.tb_Anschrift_2_Stunden.Focusable = false;
-                    sn.cb_Verkehrsmittel_Stunden.Text = GlobalVariables.Anreise;
-                    sn.cb_Verkehrsmittel_Stunden.Focusable = false;
-
+                    if(GlobalVariables.Anreise != "")
+                    {
+                        sn.cb_Verkehrsmittel_Stunden.Text = GlobalVariables.Anreise;
+                        sn.cb_Verkehrsmittel_Stunden.Focusable = false;
+                    }               
                 }
             }
             else
@@ -842,6 +845,7 @@ namespace ServiceTool
 
                         string Object_bezeichnung = Objectname.Substring(0, 2).ToUpper(); // hier werden die ersten zwei Buchstaben der Object namen abgetrennt da man anhand dessen die Objekttypen unterscheiden kann
 
+                        
                         if (Dokument is FrameworkElement element)
                         {
 
@@ -939,7 +943,9 @@ namespace ServiceTool
 
                         string Object_bezeichnung = Objectname.Substring(0, 2).ToUpper();
 
-                        if(Dokument is FrameworkElement element) 
+                        
+
+                        if (Dokument is FrameworkElement element) 
                         {
                             switch (Object_bezeichnung)
                             {
@@ -1038,16 +1044,229 @@ namespace ServiceTool
 
         private void Create_PDF_Of_Stundennachweis()
         {
-            //TODO Funktion auslagern Name GetDataForStdNachweisPDF
             Stundennachweis_PDF_Data pDF_Data = GetDataForPDF();
+            QuestPDF.Settings.License = LicenseType.Community;
+            string SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.pdf");
 
+            var document = Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Margin(35);
+                    page.Size(PageSizes.A4);
+                    page.PageColor(QuestPDF.Helpers.Colors.White);
+                    page.Header()
+                    .PaddingBottom(10)
+                    .BorderBottom(1)
+                    .Column(column =>
+                    {
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Stundennachweis").FontSize(27).Bold();
+
+                            row.ConstantItem(100)
+                            .AlignRight()
+                            .Image("Bilder/gneuss_png_1.png");
+
+                        });
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Column(col=>
+                            {
+                                col.Item().Text("Auftragsnummer : " + GlobalVariables.AuftragsNR).FontSize(12);
+                                col.Item().Text("Kunde/Customer : " + pDF_Data.Customer).FontSize(12);
+                                col.Item().Text("Contact person : " + pDF_Data.ContactPerson).FontSize(12);
+                            });
+
+
+                            row.RelativeItem().AlignRight().Column(col =>
+                            {
+                                col.Item().Text("Datum : " + DateTime.Now.ToString("dd.MM.yyyy")).FontSize(12);
+                                col.Item().Text("Techniker : " + pDF_Data.ServiceTechnician).FontSize(12);
+                                col.Item().Text("Anschrift : " + pDF_Data.Adress1).FontSize(12);
+                                col.Item().Text("                 " + pDF_Data.Adress2).FontSize(12);
+                            });                            
+                        });
+                        
+                    });
+                    page.Content()
+                    .Column(column =>
+                    {
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Reisezeit/ Traveltime").FontSize(20).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Verkehrsmittel/Means of Transport : " + pDF_Data.meansofTransport).FontSize(12).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+
+                        Func<IContainer, IContainer> headerstyle = c => c
+                            .Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
+                            .BorderBottom(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                            .PaddingVertical(4).PaddingHorizontal(2)
+                            .AlignCenter().AlignMiddle();
+
+                        Func<IContainer, IContainer> cellstyle = c => c
+                            .Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken2)
+                            .AlignCenter().AlignMiddle();
+
+                        column.Item().Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.ConstantColumn(60);
+                                columns.ConstantColumn(70);
+                                columns.ConstantColumn(50);
+                                columns.ConstantColumn(70);
+                                columns.ConstantColumn(50);
+                                columns.ConstantColumn(50);
+                                columns.ConstantColumn(60);
+                                columns.ConstantColumn(70);
+                            });
+
+                            
+                            //Border(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                            table.Header(header =>
+                            {
+                                header.Cell().Text("   ").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Datum/Date Start").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Time Start").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Datum/Date End").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Time End").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Pause/Break").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Total Time").FontSize(14);
+                                header.Cell().Element(headerstyle).Text("Kilometer").FontSize(14);
+                            });
+
+                            
+
+                            table.Cell().Element(cellstyle).Text("Anreise").FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.DateArrivalStart).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TimeArrivalStart).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.DateArrivalEnd).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TimeArrivalEnd).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.BreakArrival).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TotalTimeArrival).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TotalKilometersArrival).FontSize(12);
+
+                            table.Cell().Element(cellstyle).Text("Abfahrt").FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.DateDepartureStart).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TimeDepartureStart).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.DateDepartureEnd).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TimeDepartureEnd).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.BreakDeparture).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TotalTimeDeparture).FontSize(12);
+                            table.Cell().Element(cellstyle).Text(pDF_Data.TotalKilometersDeparture).FontSize(12);
+                                                       
+                        });
+                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                        column.Spacing(5);
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Arbeitszeit / Working time ").FontSize(20).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+
+                        column.Item().Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.ConstantColumn(60);
+                                columns.ConstantColumn(48);
+                                columns.ConstantColumn(48);
+                                columns.ConstantColumn(45);
+                                columns.ConstantColumn(70);
+                                columns.ConstantColumn(60);
+                                columns.ConstantColumn(60);
+                                columns.ConstantColumn(69);
+                                columns.ConstantColumn(50);
+                            });
+
+                            table.Header(header =>
+                            {
+                                header.Cell().Element(headerstyle).Text("Datum/Date").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Time Start").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Time End").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Pause/Break").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Note").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Normal std.").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("overtime").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Nightwork").FontSize(12);
+                                header.Cell().Element(headerstyle).Text("Total Time").FontSize(12);
+                            });
+
+                            foreach(StundenTabellenEintrag workday in pDF_Data.Arbeitszeit)
+                            {
+                                table.Cell().Element(cellstyle).Text(workday.Date).FontSize(10);
+                                table.Cell().Element(cellstyle).Text(workday.Start).FontSize(10);
+                                table.Cell().Element(cellstyle).Text(workday.End).FontSize(10);
+                                table.Cell().Element(cellstyle).Text(workday.Break).FontSize(10);
+                                
+
+                                if (workday.StartS2 != "" && workday.EndS2 != "")
+                                {
+                                    table.Cell().RowSpan(2).Element(cellstyle).Text(workday.Note).FontSize(10);
+                                    table.Cell().RowSpan(2).Element(cellstyle).Text(workday.NormalStunden).FontSize(10);
+                                    table.Cell().RowSpan(2).Element(cellstyle).Text(workday.OverTime).FontSize(10);
+                                    table.Cell().RowSpan(2).Element(cellstyle).Text(workday.Nightwork).FontSize(10);
+                                    table.Cell().RowSpan(2).Element(cellstyle).Text(workday.TotalHours).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text("Schicht 2").FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.StartS2).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.EndS2).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.BreakS2).FontSize(10);
+                                }
+                                else
+                                {
+                                    table.Cell().Element(cellstyle).Text(workday.Note).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.NormalStunden).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.OverTime).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.Nightwork).FontSize(10);
+                                    table.Cell().Element(cellstyle).Text(workday.TotalHours).FontSize(10);
+                                }
+
+                                
+                            }
+                            table.Cell().ColumnSpan(5).Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Black).Background(QuestPDF.Helpers.Colors.Grey.Darken1).AlignRight().Text("Summe");
+                            table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalNormalHours));
+                            table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalOverTime));
+                            table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalNightWork));
+                            table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalHours));
+                        });
+                    });
+                });
+            });
+            document.GeneratePdf(SavePath);
 
         }
+
+        public string FormattedTimeSpanInHHMM(TimeSpan timeSpan)
+        {
+            return Math.Truncate(timeSpan.TotalHours).ToString("00") + ":" + timeSpan.Minutes.ToString("00");
+        }
+
         public Stundennachweis_PDF_Data GetDataForPDF()
         {
             TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
 
-            int NumberOfStundennachweis = ServiceDurationInDays.Days / 7;
+            double weeksnotRounded = ServiceDurationInDays.TotalDays / 7;
+            int NumberOfStundennachweis = (int)Math.Ceiling(weeksnotRounded);
+
+            TimeSpan TotalNormalStd = new TimeSpan();
+            TimeSpan TotalOverTime = new TimeSpan();
+            TimeSpan TotalNightwork = new TimeSpan();
+            TimeSpan TotalTime = new TimeSpan();
+
+
             Stundennachweis_PDF_Data PDF_Data = new Stundennachweis_PDF_Data();
             for (int i = 0; i < NumberOfStundennachweis; i++)
             {
@@ -1088,7 +1307,12 @@ namespace ServiceTool
                         PDF_Data.TotalKilometersDeparture = worksheet.Cells["Q12"].Text;
                         PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
 
-                        for (int x = 0; i < 7; x++)
+                        TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
+                        TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
+                        TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
+                        TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
+
+                        for (int x = 0; x < 14; x+=2)
                         {
                             if(worksheet.Cells["C" + (x + 17)].Text != "")
                             {
@@ -1121,7 +1345,12 @@ namespace ServiceTool
                         var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
                         PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
 
-                        for (int x = 0; i < 7; x++)
+                        TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
+                        TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
+                        TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
+                        TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
+
+                        for (int x = 0; x < 14; x+=2)
                         {
                             if (worksheet.Cells["C" + (x + 17)].Text != "")
                             {
@@ -1145,6 +1374,10 @@ namespace ServiceTool
                     }
                 }
             }
+            PDF_Data.TotalNormalHours = TotalNormalStd;
+            PDF_Data.TotalOverTime = TotalOverTime;
+            PDF_Data.TotalNightWork = TotalNightwork;
+            PDF_Data.TotalHours = TotalTime;
             return PDF_Data;
         }
 
