@@ -794,96 +794,44 @@ namespace ServiceTool
 
         public void SaveSignatureAsImage(InkCanvas inkCanvas, string filePath)
         {
-            if (inkCanvas == null)
-                throw new ArgumentNullException(nameof(inkCanvas));
-            if (string.IsNullOrWhiteSpace(filePath))
-                throw new ArgumentException("Der Dateipfad darf nicht leer sein.", nameof(filePath));
+            // 1. Layout aktualisieren, damit Größen und Striche definitiv bereitstehen
+            inkCanvas.UpdateLayout();  // sicherstellen, dass ActualWidth/Height korrekt:contentReference[oaicite:10]{index=10}
 
-            try
+            int width = (int)inkCanvas.ActualWidth;
+            int height = (int)inkCanvas.ActualHeight;
+            if (width == 0 || height == 0) return; // InkCanvas nicht sichtbar oder keine Größe
+
+            // 2. DrawingVisual erzeugen und darin das InkCanvas "nachmalen"
+            var dv = new DrawingVisual();
+            using (DrawingContext dc = dv.RenderOpen())
             {
-                // 1. Verzeichnis prüfen und ggf. erstellen
-                string directory = Path.GetDirectoryName(filePath);
-                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+                // (Optional) Hintergrund zeichnen, falls InkCanvas einen Hintergrund hat:
+                if (inkCanvas.Background != null)
                 {
-                    Directory.CreateDirectory(directory);
+                    // Hintergrund als Brush füllen (z.B. Farbe) über die ganze Fläche
+                    dc.DrawRectangle(inkCanvas.Background, null, new Rect(0, 0, width, height));
                 }
-
-                // 2. Sicherstellen, dass InkCanvas vollständig gerendert werden kann
-                if (inkCanvas.ActualWidth == 0 || inkCanvas.ActualHeight == 0)
+                // Alle Striche zeichnen – entweder einzeln oder gesamte StrokeCollection:
+                // Variante A: Alle Striche einzeln zeichnen
+                foreach (System.Windows.Ink.Stroke stroke in inkCanvas.Strokes)
                 {
-                    // InkCanvas ist evtl. noch nicht im Layout - nötige Maße berechnen
-                    inkCanvas.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
-                    inkCanvas.Arrange(new Rect(0, 0, inkCanvas.DesiredSize.Width, inkCanvas.DesiredSize.Height));
-                    inkCanvas.UpdateLayout();
+                    stroke.Draw(dc);  // Stroke zeichnet sich selbst mit seinen DrawingAttributes
                 }
-                else
-                {
-                    // Falls bereits im Visual Tree, trotzdem letzte Layout-Updates durchführen
-                    inkCanvas.UpdateLayout();
-                }
+                // Variante B (alternative): inkCanvas.Strokes.Draw(dc);
+            } // DrawingContext auto-close here
 
-                int width = (int)Math.Ceiling(inkCanvas.ActualWidth);
-                int height = (int)Math.Ceiling(inkCanvas.ActualHeight);
-                if (width == 0 || height == 0)
-                {
-                    throw new InvalidOperationException("InkCanvas hat keine Größe oder Inhalt zum Rendern.");
-                }
+            // 3. RenderTargetBitmap mit passendem PixelFormat anlegen und DrawingVisual rendern
+            var rtb = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+            rtb.Render(dv);
 
-                // 3. InkCanvas-Inhalt in RenderTargetBitmap rendern (96 DPI, mit Alpha-Kanal)
-                double dpiX = 96, dpiY = 96;
-                RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, dpiX, dpiY, PixelFormats.Pbgra32);
-                rtb.Render(inkCanvas);
-
-                // 4. RenderTargetBitmap als PNG encodieren und speichern
-                PngBitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(rtb));
-                using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                {
-                    encoder.Save(fs);
-                }
-
-                // (Optional) Erfolgsmeldung oder Logging
-                // MessageBox.Show("Bild erfolgreich gespeichert: " + filePath, "Erfolg", ...);
-            }
-            catch (Exception ex)
+            // 4. Als PNG-Datei speichern
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(rtb));
+            using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
-                // Fehlerbehandlung: Meldung ausgeben (oder Logging verwenden)
-                MessageBox.Show($"Fehler beim Speichern der InkCanvas-Zeichnung:\n{ex.Message}",
-                                "Speicherfehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                encoder.Save(fs);
             }
         }
-
-
-        //private void SaveSignatureAsImage(InkCanvas canvas, string filePath)
-
-        //{
-        //    // Bestimme die Größe des InkCanvas
-        //    int width = (int)canvas.ActualWidth;
-        //    int height = (int)canvas.ActualHeight;
-
-        //    if (width == 0 || height == 0)
-        //    {
-        //        // Fehlerbehandlung oder Log-Nachricht
-        //        return;
-        //    }
-
-        //    // Erstelle eine RenderTargetBitmap, um das InkCanvas zu rendern
-        //    RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
-        //    rtb.Render(canvas);
-
-        //    // Erstelle ein PNG-Encoder und speichere das Bild
-        //    PngBitmapEncoder encoder = new PngBitmapEncoder();
-        //    encoder.Frames.Add(BitmapFrame.Create(rtb));
-
-        //    if (File.Exists(filePath))
-        //    {
-        //        using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-        //        {
-        //            encoder.Save(fs);
-        //        }
-        //    }
-
-        //}  // Funktion um die Signaturren als PNG zu speichern
 
         public void speichern(string ExcelFilePath, string Seite)
         {          
