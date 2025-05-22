@@ -397,10 +397,38 @@ namespace ServiceTool
         {
             if (_blockiereUControlWechsel) return;
             var sn = CC.Content as Stundennachweis;
+            string ExcelFilePath = "";
+            switch (sn.cb_Siteswitch_Stunden.Text)
+            {                
+                case "Woche 1":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm ");
+                    break;
+                case "Woche 2":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_2.xlsm ");
+                    break;
+                case "Woche 3":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_3.xlsm ");
+                    break;
+                case "Woche 4":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_4.xlsm ");
+                    break;
+                case "Woche 5":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_5.xlsm ");
+                    break;
+                case "Woche 6":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_6.xlsm ");
+                    break;
+                case "Woche 7":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_7.xlsm ");
+                    break;
+                case "Woche 8":
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_8.xlsm ");
+                    break;
+            }
 
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
-            string ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner,"Stundennachweis.xlsm ");
+            
 
             speichern(ExcelFilePath, "Stundennachweis");
 
@@ -764,36 +792,98 @@ namespace ServiceTool
             Process.Start("explorer.exe", Pfad_fuerAnhaenge);
         } // Funktion um mit einem Button klick in den Anhang ordner des Auftrags zu gelangen
 
-        private void SaveSignatureAsImage(InkCanvas canvas, string filePath)
-
+        public void SaveSignatureAsImage(InkCanvas inkCanvas, string filePath)
         {
-            // Bestimme die Größe des InkCanvas
-            int width = (int)canvas.ActualWidth;
-            int height = (int)canvas.ActualHeight;
+            if (inkCanvas == null)
+                throw new ArgumentNullException(nameof(inkCanvas));
+            if (string.IsNullOrWhiteSpace(filePath))
+                throw new ArgumentException("Der Dateipfad darf nicht leer sein.", nameof(filePath));
 
-            if (width == 0 || height == 0)
+            try
             {
-                // Fehlerbehandlung oder Log-Nachricht
-                return;
-            }
+                // 1. Verzeichnis prüfen und ggf. erstellen
+                string directory = Path.GetDirectoryName(filePath);
+                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
 
-            // Erstelle eine RenderTargetBitmap, um das InkCanvas zu rendern
-            RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
-            rtb.Render(canvas);
+                // 2. Sicherstellen, dass InkCanvas vollständig gerendert werden kann
+                if (inkCanvas.ActualWidth == 0 || inkCanvas.ActualHeight == 0)
+                {
+                    // InkCanvas ist evtl. noch nicht im Layout - nötige Maße berechnen
+                    inkCanvas.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
+                    inkCanvas.Arrange(new Rect(0, 0, inkCanvas.DesiredSize.Width, inkCanvas.DesiredSize.Height));
+                    inkCanvas.UpdateLayout();
+                }
+                else
+                {
+                    // Falls bereits im Visual Tree, trotzdem letzte Layout-Updates durchführen
+                    inkCanvas.UpdateLayout();
+                }
 
-            // Erstelle ein PNG-Encoder und speichere das Bild
-            PngBitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(rtb));
+                int width = (int)Math.Ceiling(inkCanvas.ActualWidth);
+                int height = (int)Math.Ceiling(inkCanvas.ActualHeight);
+                if (width == 0 || height == 0)
+                {
+                    throw new InvalidOperationException("InkCanvas hat keine Größe oder Inhalt zum Rendern.");
+                }
 
-            if (File.Exists(filePath))
-            {
+                // 3. InkCanvas-Inhalt in RenderTargetBitmap rendern (96 DPI, mit Alpha-Kanal)
+                double dpiX = 96, dpiY = 96;
+                RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, dpiX, dpiY, PixelFormats.Pbgra32);
+                rtb.Render(inkCanvas);
+
+                // 4. RenderTargetBitmap als PNG encodieren und speichern
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(rtb));
                 using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     encoder.Save(fs);
                 }
-            }
 
-        }  // Funktion um die Signaturren als PNG zu speichern
+                // (Optional) Erfolgsmeldung oder Logging
+                // MessageBox.Show("Bild erfolgreich gespeichert: " + filePath, "Erfolg", ...);
+            }
+            catch (Exception ex)
+            {
+                // Fehlerbehandlung: Meldung ausgeben (oder Logging verwenden)
+                MessageBox.Show($"Fehler beim Speichern der InkCanvas-Zeichnung:\n{ex.Message}",
+                                "Speicherfehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        //private void SaveSignatureAsImage(InkCanvas canvas, string filePath)
+
+        //{
+        //    // Bestimme die Größe des InkCanvas
+        //    int width = (int)canvas.ActualWidth;
+        //    int height = (int)canvas.ActualHeight;
+
+        //    if (width == 0 || height == 0)
+        //    {
+        //        // Fehlerbehandlung oder Log-Nachricht
+        //        return;
+        //    }
+
+        //    // Erstelle eine RenderTargetBitmap, um das InkCanvas zu rendern
+        //    RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
+        //    rtb.Render(canvas);
+
+        //    // Erstelle ein PNG-Encoder und speichere das Bild
+        //    PngBitmapEncoder encoder = new PngBitmapEncoder();
+        //    encoder.Frames.Add(BitmapFrame.Create(rtb));
+
+        //    if (File.Exists(filePath))
+        //    {
+        //        using (FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+        //        {
+        //            encoder.Save(fs);
+        //        }
+        //    }
+
+        //}  // Funktion um die Signaturren als PNG zu speichern
 
         public void speichern(string ExcelFilePath, string Seite)
         {          
@@ -1236,11 +1326,111 @@ namespace ServiceTool
 
                                 
                             }
-                            table.Cell().ColumnSpan(5).Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Black).Background(QuestPDF.Helpers.Colors.Grey.Darken1).AlignRight().Text("Summe");
+                            table.Cell().ColumnSpan(5).Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Black).Background(QuestPDF.Helpers.Colors.Grey.Darken1).AlignRight().Text("Summe ");
                             table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalNormalHours));
                             table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalOverTime));
                             table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalNightWork));
                             table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalHours));
+                        });
+
+                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                        column.Spacing(15);
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text(" Bericht / report ").FontSize(20).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+                        column.Item().Row(row =>
+                        {
+                            int countReports = pDF_Data.Report.Count;
+                            string allReports = "";
+                            for (int i = 0; i < countReports; i++)
+                            {
+                                allReports += $"Woche " + (i+1) + ":\n" + pDF_Data.Report[i] + "\n";
+                            }
+                            row.RelativeItem().Text(allReports);
+                        });
+
+                        column.Item().PageBreak();
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Schulung / Training").FontSize(20).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+
+
+                        column.Item().Row(row => {
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Text(pDF_Data.SetupAufbau + " Setup/Aufbau").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.OperatingPrinciple + " Operating principle/Funktionsweise").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.BriefingControlSystem + " Abnahme/Acceptance").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.Sonstiges + " Schulung/Training").FontSize(10).AlignLeft();
+                            });
+
+                            row.Spacing(50);
+
+                            row.RelativeItem().Column(col =>
+                            {
+                                col.Item().Text(pDF_Data.Troubleshooting + " Troubleshooting/Störungsbeseitigung").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.OperationOfWholeEquipment + " Operating of whole Equipment/Bedienung aller Anlagenteile").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.SafetyInstructions + " Safety instructions/Acceptance").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.Sonstiges + " Maintenance/Wartung").FontSize(10).AlignLeft();
+                            });
+                        });
+
+                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                        column.Item().Row(row =>
+                        {
+                            row.RelativeItem().Text("Evaluation / Bewertung").FontSize(20).AlignCenter();
+                        });
+
+                        column.Spacing(5);
+                        //"😊", "😐", "🙁"
+
+                        column.Item().Row(row =>
+                        {
+                            row.AutoItem().Column(col =>
+                            { 
+                                col.Item().Text("Wie zufrieden sind Sie mit dem Service?").FontSize(10).AlignLeft();
+                                col.Item().Text("How satisfied are you with the service?").FontSize(10).AlignLeft();
+                                col.Item().Text(" ").FontSize(10).AlignLeft();
+                                col.Item().Text("Wie zufrieden sind Sie mit dem Gneuß-Support?").FontSize(10).AlignLeft();
+                                col.Item().Text("How satisfied are you with the Gneuß support?").FontSize(10).AlignLeft();
+                            });
+
+                            row.Spacing(15);
+
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Text(pDF_Data.EvaluationProduktGood).FontSize(16).AlignLeft();
+                                col.Item().Text("😊").FontSize(16).AlignLeft();
+                                col.Item().Text(pDF_Data.EvaluationSupportGood).FontSize(16).AlignLeft();
+                            });
+
+                            row.Spacing(15);
+
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Text(pDF_Data.EvaluationProduktMid).FontSize(16).AlignLeft();
+                                col.Item().Text("😐").FontSize(16).AlignLeft();
+                                col.Item().Text(pDF_Data.EvaluationSupportMid).FontSize(16).AlignLeft();
+                            });
+
+                            row.Spacing(15);
+
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Text(pDF_Data.EvaluationProduktBad).FontSize(16).AlignLeft();
+                                col.Item().Text("🙁").FontSize(16).AlignLeft();
+                                col.Item().Text(pDF_Data.EvaluationSupportBad).FontSize(16).AlignLeft();
+                            });
                         });
                     });
                 });
@@ -1306,7 +1496,23 @@ namespace ServiceTool
                         PDF_Data.TotalTimeDeparture = worksheet.Cells["O12"].Text;
                         PDF_Data.TotalKilometersDeparture = worksheet.Cells["Q12"].Text;
                         PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
+                        if (worksheet.Cells["A65"].Text.ToUpper() == "X") { PDF_Data.SetupAufbau = "☑"; } else { PDF_Data.SetupAufbau = "☐"; }
+                        if (worksheet.Cells["A66"].Text.ToUpper() == "X") { PDF_Data.OperatingPrinciple = "☑"; } else { PDF_Data.OperatingPrinciple = "☐"; }
+                        if (worksheet.Cells["A67"].Text.ToUpper() == "X") { PDF_Data.BriefingControlSystem = "☑"; } else { PDF_Data.BriefingControlSystem = "☐"; }
+                        if (worksheet.Cells["A68"].Text.ToUpper() == "X") { PDF_Data.Sonstiges = "☑"; } else { PDF_Data.Sonstiges = "☐"; }
+                        if (worksheet.Cells["G64"].Text.ToUpper() == "X") { PDF_Data.Troubleshooting = "☑"; } else { PDF_Data.Troubleshooting = "☐"; }
+                        if (worksheet.Cells["G65"].Text.ToUpper() == "X") { PDF_Data.OperationOfWholeEquipment = "☑"; } else { PDF_Data.OperationOfWholeEquipment = "☐"; }
+                        if (worksheet.Cells["G66"].Text.ToUpper() == "X") { PDF_Data.SafetyInstructions = "☑"; } else { PDF_Data.SafetyInstructions = "☐"; }
+                        if (worksheet.Cells["G67"].Text.ToUpper() == "X") { PDF_Data.Maintenance = "☑"; } else { PDF_Data.Maintenance = "☐"; }
 
+                        if (worksheet.Cells["K72"].Text.ToUpper() == "X") { PDF_Data.EvaluationProduktGood = "☑"; } else { PDF_Data.EvaluationProduktGood = "☐"; }
+                        if (worksheet.Cells["M72"].Text.ToUpper() == "X") { PDF_Data.EvaluationProduktMid = "☑"; } else { PDF_Data.EvaluationProduktMid = "☐"; }
+                        if (worksheet.Cells["O72"].Text.ToUpper() == "X") { PDF_Data.EvaluationProduktBad = "☑"; } else { PDF_Data.EvaluationProduktBad = "☐"; }
+                        if (worksheet.Cells["K74"].Text.ToUpper() == "X") { PDF_Data.EvaluationSupportGood = "☑"; } else { PDF_Data.EvaluationSupportGood = "☐"; }
+                        if (worksheet.Cells["M74"].Text.ToUpper() == "X") { PDF_Data.EvaluationSupportMid = "☑"; } else { PDF_Data.EvaluationSupportMid = "☐"; }
+                        if (worksheet.Cells["O74"].Text.ToUpper() == "X") { PDF_Data.EvaluationSupportBad = "☑"; } else { PDF_Data.EvaluationSupportBad = "☐"; }
+
+                        //☑☐
                         TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
                         TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
                         TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
@@ -1349,7 +1555,7 @@ namespace ServiceTool
                         TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
                         TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
                         TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
-
+                        
                         for (int x = 0; x < 14; x+=2)
                         {
                             if (worksheet.Cells["C" + (x + 17)].Text != "")

@@ -37,5 +37,20 @@ namespace ServiceTool
         public TimeSpan TotalNightWork { get; set; }
         public TimeSpan TotalHours { get; set; }
 
+        public string SetupAufbau { get; set; }
+        public string OperatingPrinciple { get; set; }
+        public string BriefingControlSystem { get; set; }
+        public string Sonstiges { get; set; }
+        public string Troubleshooting { get; set; }
+        public string OperationOfWholeEquipment { get; set; }
+        public string SafetyInstructions { get; set; }
+        public string Maintenance { get; set; }
+        public string EvaluationProduktGood { get; set; }
+        public string EvaluationProduktMid { get; set; }
+        public string EvaluationProduktBad { get; set; }
+        public string EvaluationSupportGood { get; set; }
+        public string EvaluationSupportMid { get; set; }
+        public string EvaluationSupportBad { get; set; }
+
     }
 }
