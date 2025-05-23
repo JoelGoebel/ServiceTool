@@ -51,6 +51,8 @@ namespace ServiceTool
         public string EvaluationSupportGood { get; set; }
         public string EvaluationSupportMid { get; set; }
         public string EvaluationSupportBad { get; set; }
-
+        public string PlaceCustomerSignature { get; set; }
+        public string Date_Technican_Signature { get; set; }
+        public string Date_Customer_Signature { get; set; }
     }
 }

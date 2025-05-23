@@ -1380,6 +1380,58 @@ namespace ServiceTool
                                 col.Item().Text(pDF_Data.EvaluationSupportBad).FontSize(16).AlignLeft();
                             });
                         });
+                        column.Spacing(10);
+
+                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                        column.Item().Text("Unterschriften / Signatures").FontSize(20).AlignCenter();
+
+                        column.Item().Row(row =>
+                        {
+                            row.AutoItem().Border(1).Column(col =>
+                            {
+
+                                col.Item().Text("Maschinenabnahme gemäß Auftragsbestätigung").FontSize(10).AlignCenter();
+                                col.Spacing(15);
+                                col.Item().Text("Machine acceptance according to order confirmation").FontSize(10).AlignCenter();
+
+                            });
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Width(80).Height(25).Border(1).AlignMiddle().Text("Date / Datum").FontSize(12).AlignCenter();
+                                col.Item().Width(80).Height(40).Border(1).Text(pDF_Data.Date_Technican_Signature).FontSize(10).AlignCenter();
+
+                            });
+                            row.AutoItem().Column(col =>
+                            {
+                                string imagepath_sign_technican = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureemployee.png");
+                                col.Item().Width(140).Height(25).Border(1).AlignMiddle().Text(" Techniker /  Technician").FontSize(12).AlignCenter();
+                                col.Item().Width(140).Height(40).Border(1).AlignRight().Image(imagepath_sign_technican);
+                            });
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.AutoItem().Column(col =>
+                            {                                
+                                col.Spacing(0);
+                                col.Item().Width(120).Height(25).Border(1).AlignMiddle().Text("Place / Ort").FontSize(12).AlignCenter();
+                                col.Item().Width(120).Height(40).Border(1).Text(pDF_Data.PlaceCustomerSignature).FontSize(10).AlignCenter();
+
+                            });
+                            
+                            row.AutoItem().Column(col =>
+                            {
+                                col.Item().Width(100).Height(25).Border(1).AlignMiddle().Text("Date / Datum").FontSize(12).AlignCenter();
+                                col.Item().Width(100).Height(40).Border(1).Text(pDF_Data.Date_Customer_Signature).FontSize(10).AlignCenter();
+                            });
+                            row.AutoItem().Column(col =>
+                            {
+                                string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureCustomer.png");
+                                col.Item().Width(210).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
+                                col.Item().Width(210).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
+                            });
+
+                        });
                     });
                 });
             });
@@ -1460,6 +1512,9 @@ namespace ServiceTool
                         if (worksheet.Cells["M74"].Text.ToUpper() == "X") { PDF_Data.EvaluationSupportMid = "☑"; } else { PDF_Data.EvaluationSupportMid = "☐"; }
                         if (worksheet.Cells["O74"].Text.ToUpper() == "X") { PDF_Data.EvaluationSupportBad = "☑"; } else { PDF_Data.EvaluationSupportBad = "☐"; }
 
+                        PDF_Data.Date_Technican_Signature = worksheet.Cells["G70"].Text;
+                        PDF_Data.Date_Customer_Signature = worksheet.Cells["G77"].Text;
+                        PDF_Data.PlaceCustomerSignature = worksheet.Cells["C76"].Text;
                         //☑☐
                         TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
                         TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
