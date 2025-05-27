@@ -381,7 +381,7 @@ namespace ServiceTool
                     sn.tb_Anschrift_1_Stunden.Focusable = false;
                     sn.tb_Anschrift_2_Stunden.Text = GlobalVariables.Anschrift_2;
                     sn.tb_Anschrift_2_Stunden.Focusable = false;
-                    if(GlobalVariables.Anreise != "")
+                    if(GlobalVariables.Anreise != "" && GlobalVariables.Anreise !="-bitte auswählen-")
                     {
                         sn.cb_Verkehrsmittel_Stunden.Text = GlobalVariables.Anreise;
                         sn.cb_Verkehrsmittel_Stunden.Focusable = false;
@@ -1077,10 +1077,13 @@ namespace ServiceTool
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
             
             //Hier werden alle PDF ersellungen getrigerd
-            Create_PDF_Of_Stundennachweis();
+            //Create_PDF_Of_Stundennachweis();
+            Create_PDF_Of_Inbetriebnahmeprotokoll();
         }
 
         private void Create_PDF_Of_Stundennachweis()
+
+
         {
             Stundennachweis_PDF_Data pDF_Data = GetDataForPDF_StdN();
             QuestPDF.Settings.License = LicenseType.Community;
@@ -1093,14 +1096,11 @@ namespace ServiceTool
                     page.Margin(35);
                     page.Size(PageSizes.A4);
                     page.PageColor(QuestPDF.Helpers.Colors.White);
-                    page.Header()
-                    .PaddingBottom(10)
-                    .BorderBottom(1)
-                    .Column(column =>
+                    page.Header().PaddingBottom(10).BorderBottom(1).Column(column =>
                     {
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Stundennachweis").FontSize(27).Bold();
+                            row.RelativeItem().Text("Stundennachweis\nService visit report").FontSize(27).Bold();
 
                             row.ConstantItem(100)
                             .AlignRight()
@@ -1128,6 +1128,21 @@ namespace ServiceTool
                         });
                         
                     });
+
+                    page.Footer().PaddingTop(10).BorderTop(1).Row(row =>
+                    {
+                        row.RelativeItem().Text("Gneuss Kunststofftechnik GmbH - Moenichhusen 42 - 32549 Bad Oeynhausen - Germany \n                           Phone:+49 57 31/5 30 70 - Fax:+49 57 31/53 07-77").FontSize(9).SemiBold();
+                        row.ConstantItem(100).AlignRight().Text(text =>
+                        {
+                            
+                            text.Span("Seite ").FontSize(9);
+                            text.CurrentPageNumber().FontSize(9); // Aktuelle Seitennummer
+                            text.Span(" von ").FontSize(9);
+                            text.TotalPages().FontSize(9); // Gesamtanzahl der Seiten
+                        });
+                        
+                    });
+
                     page.Content()
                     .Column(column =>
                     {
@@ -1598,13 +1613,10 @@ namespace ServiceTool
 
         public void Create_PDF_Of_Inbetriebnahmeprotokoll()
         {
-
-        }
-        public PDF_Data_InbetriebnahmeProtokoll GetDataForIbnP_PDF()
-        {
-            PDF_Data_InbetriebnahmeProtokoll PDF_Data_IbnP = new PDF_Data_InbetriebnahmeProtokoll();
             int NumberOfIbnP = 0;
-            if(GlobalVariables.Maschiene_1 != "")
+            string ExcelFilePath = "";
+            string SavePath = "";
+            if (GlobalVariables.Maschiene_1 != "")
             {
                 NumberOfIbnP++;
             }
@@ -1622,15 +1634,103 @@ namespace ServiceTool
             }
             for (int i = 0; i < NumberOfIbnP; i++)
             {
-                string ExcelFilePath = "";
+                
                 if (i == 0)
                 {
-                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahmeprotokoll.xlsm");
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll.xlsm");
+                    SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll.pdf");
                 }
                 else
                 {
-                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahmeprotokoll_" + (i + 1) + ".xlsm");
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_" + (i + 1) + ".xlsm");
+                    SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_" + (i + 1) + ".pdf");
                 }
+                PDF_Data_InbetriebnahmeProtokoll pDF_Data = GetDataForIbnP_PDF(ExcelFilePath);
+                QuestPDF.Settings.License = LicenseType.Community;
+                
+                var Dokument = Document.Create(document =>
+                {
+                    document.Page(page =>
+                    {
+                        page.Size(PageSizes.A4);
+                        page.Margin(10);
+                        page.PageColor(QuestPDF.Helpers.Colors.White);
+                        page.Header().PaddingBottom(10).BorderBottom(1).Column(column =>
+                        {
+                            column.Spacing(5);
+                            column.Item().Row(row =>
+                            {
+                                row.RelativeItem().Text("Inbetriebnahmeprotokoll\nCommissioning protocol").FontSize(20).SemiBold().AlignCenter();
+                                row.ConstantItem(100)
+                                .AlignRight()
+                                .Image("Bilder/gneuss_png_1.png");
+                            });
+                            column.Spacing(15);
+                            column.Item().Row(row =>
+                            {
+                                row.RelativeItem().Column(col =>
+                                {
+                                    col.Item().Text("Kunde / Customer: " + pDF_Data.Customer).FontSize(12).AlignLeft();
+                                    col.Item().Text("Ansprechpartner / Contact person: " + pDF_Data.ContactPerson).FontSize(12).AlignLeft();
+                                });
+                                row.RelativeItem().Column(col =>
+                                {
+                                    col.Item().Text("Auftrags-Nr. / Order No.: " + GlobalVariables.AuftragsNR).FontSize(12).AlignLeft();
+                                    col.Item().Text("Serien Nr. / Serial No.: " + pDF_Data.SerialNumber).FontSize(12).AlignLeft();
+                                });
+                            });
+                            column.Item().Text("Maschinenkonfiguration / Line configuration: " + pDF_Data.LineConfiguration).FontSize(12).AlignCenter();
+                        });
+                        page.Footer().PaddingTop(10).BorderTop(1).Row(row =>
+                        {
+                            row.RelativeItem().Text("Gneuss Kunststofftechnik GmbH - Moenichhusen 42 - 32549 Bad Oeynhausen - Germany \n                           Phone:+49 57 31/5 30 70 - Fax:+49 57 31/53 07-77").FontSize(9).SemiBold();
+                            row.ConstantItem(100).AlignRight().Text(text =>
+                            {
+                                text.Span("Seite ").FontSize(9);
+                                text.CurrentPageNumber().FontSize(9); // Aktuelle Seitennummer
+                                text.Span(" von ").FontSize(9);
+                                text.TotalPages().FontSize(9); // Gesamtanzahl der Seiten
+                            });
+
+                        });
+                        page.Content().PaddingVertical(10).Column(column =>
+                        {
+                            column.Item().AlignCenter().Text("Auftragsinformationen / Orderinformation").FontSize(16).Underline();
+                            column.Spacing(5);
+                            column.Item().Row(row =>
+                            {
+                                row.RelativeItem().Column(col =>
+                                {
+
+                                    col.Item().Text("Filtertyp: " + pDF_Data.FilterType).FontSize(12).AlignLeft();
+                                    col.Item().Text("Material: " + pDF_Data.Material).FontSize(12).AlignLeft();
+                                    col.Item().Text("Viskosität: " + pDF_Data.Viscosity).FontSize(12).AlignLeft();
+                                });
+                                row.RelativeItem().Column(col =>
+                                {
+
+                                    col.Item().Text("Vorbelastung: " + pDF_Data.Preloading).FontSize(12).AlignLeft();
+                                    col.Item().Text("Shimpacking LR: " + pDF_Data.ShimpackingLR).FontSize(12).AlignLeft();
+                                    col.Item().Text("Shimpacking ZP: " + pDF_Data.ShimpackingZP).FontSize(12).AlignLeft();
+                                });
+                            });
+                            column.Item().Table(table =>
+                            {
+
+                            });
+                            column.Item().AlignCenter().Text("Prozessparameter / Process parameters").FontSize(16).Underline();
+
+                        });                         
+                    });
+                });
+                Dokument.GeneratePdf(SavePath);
+            }
+            
+        }
+        public PDF_Data_InbetriebnahmeProtokoll GetDataForIbnP_PDF(string ExcelFilePath)
+        {
+            PDF_Data_InbetriebnahmeProtokoll PDF_Data_IbnP = new PDF_Data_InbetriebnahmeProtokoll();
+            
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
                 {
@@ -1831,8 +1931,7 @@ namespace ServiceTool
                     if(worksheet.Cells["J51"].Text.ToUpper() == "X") { PDF_Data_IbnP.SetTo = "☑"; } else { PDF_Data_IbnP.SetTo = "☐"; }
                     PDF_Data_IbnP.SetBar = worksheet.Cells["M51"].Text;
                     if(worksheet.Cells["J52"].Text.ToUpper() == "X") { PDF_Data_IbnP.NoCutoff = "☑"; } else { PDF_Data_IbnP.NoCutoff = "☐"; }
-                }
-            }
+                }            
             return PDF_Data_IbnP;
         }
     }
