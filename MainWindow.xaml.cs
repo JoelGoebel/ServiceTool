@@ -1077,7 +1077,7 @@ namespace ServiceTool
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
 
             //Hier werden alle PDF ersellungen getrigerd
-            //Create_PDF_Of_Stundennachweis();TODO wieder aktivieren wenn PDF fertig ist
+            Create_PDF_Of_Stundennachweis();//TODO wieder aktivieren wenn PDF fertig ist
             Create_PDF_Of_Inbetriebnahmeprotokoll();
         }
 
@@ -1428,7 +1428,7 @@ namespace ServiceTool
                             {
                                 string imagepath_sign_technican = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureemployee.png");
                                 col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Techniker /  Technician").FontSize(12).AlignCenter();
-                                col.Item().Width(265).Height(40).Border(1).AlignRight().Image(imagepath_sign_technican);
+                                if(File.Exists(imagepath_sign_technican))col.Item().Width(265).Height(40).Border(1).AlignRight().Image(imagepath_sign_technican);
                             });
                         });
                         column.Item().Row(row =>
@@ -1450,7 +1450,7 @@ namespace ServiceTool
                             {
                                 string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureCustomer.png");
                                 col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
-                                col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
+                                if (File.Exists(ImagePath_Sign_Kunde)) col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
                             });
 
                         });
@@ -1537,11 +1537,13 @@ namespace ServiceTool
                         PDF_Data.Date_Customer_Signature = worksheet.Cells["G77"].Text;
                         PDF_Data.PlaceCustomerSignature = worksheet.Cells["C76"].Text;
                         //☑☐
-                        TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
-                        TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
-                        TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
-                        TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
-
+                        if (worksheet.Cells["J31"].Text != "") 
+                        { 
+                            TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
+                            TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
+                            TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
+                            TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
+                        }
                         for (int x = 0; x < 14; x+=2)
                         {
                             if(worksheet.Cells["C" + (x + 17)].Text != "")
@@ -1574,11 +1576,13 @@ namespace ServiceTool
                     {
                         var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
                         PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
-
-                        TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
-                        TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
-                        TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
-                        TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
+                        if (worksheet.Cells["J31"].Text != "")
+                        {
+                            TotalNormalStd += TimeSpan.Parse(worksheet.Cells["J31"].Text);
+                            TotalOverTime += TimeSpan.Parse(worksheet.Cells["M31"].Text);
+                            TotalNightwork += TimeSpan.Parse(worksheet.Cells["O31"].Text);
+                            TotalTime += TimeSpan.Parse(worksheet.Cells["Q31"].Text);
+                        }
                         
                         for (int x = 0; x < 14; x+=2)
                         {
@@ -1692,7 +1696,7 @@ namespace ServiceTool
                         });
                         page.Footer().PaddingTop(10).BorderTop(1).Row(row =>
                         {
-                            row.RelativeItem().Text("Gneuss Kunststofftechnik GmbH - Moenichhusen 42 - 32549 Bad Oeynhausen - Germany \n                           Phone:+49 57 31/5 30 70 - Fax:+49 57 31/53 07-77").FontSize(9).SemiBold();
+                            row.RelativeItem().Text("Gneuss Kunststofftechnik GmbH - Moenichhusen 42 - 32549 Bad Oeynhausen - Germany Phone:+49 57 31/5 30 70 - Fax:+49 57 31/53 07-77").FontSize(9).SemiBold();
                             row.ConstantItem(100).AlignRight().Text(text =>
                             {
                                 text.Span("Seite ").FontSize(9);
@@ -1980,7 +1984,7 @@ namespace ServiceTool
 
                                 row.Spacing(5);
 
-                                row.AutoItem().Table(table =>
+                                row.AutoItem().PaddingLeft(5).Table(table =>
                                 {
                                     table.ColumnsDefinition(columns =>
                                     {
@@ -2027,21 +2031,21 @@ namespace ServiceTool
                             {
                                 table.ColumnsDefinition(columns =>
                                 {
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
-                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(70);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
                                 });
 
                                 table.Header(header =>
@@ -2093,21 +2097,23 @@ namespace ServiceTool
 
                             column.Item().Row(row => 
                             {
+                                string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureCustomer.png");
                                 row.AutoItem().AlignLeft().Column(col =>
-                                {
-                                    string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureCustomer.png");
-                                    col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
-                                    col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
+                                {                                    
+                                    col.Item().Width(310).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
+                                    col.Item().Width(310).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
                                 });
-                                row.AutoItem().AlignLeft().Column(col =>
+                                row.AutoItem().PaddingHorizontal(7).Column(col =>
                                 {
                                     //TODO Datum und Ort in der Mitte einfügen vlt noch Klasse und Excel dem entsprechend erweitern
+                                    DateTime SignDate = File.GetCreationTime(ImagePath_Sign_Kunde);
+                                    col.Item().Text("\nDatum / Date: " + SignDate.ToString("dd.MM.yyyy") + "\n  Ort / Place: " + pDF_Data.PlaceSignature).FontSize(12).AlignCenter();
                                 });
                                 row.AutoItem().AlignLeft().Column(col =>
                                 {
                                     string ImagePath_Sign_Mitarbeiter = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureEmployee.png");
-                                    col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Mitarbeiter / Employee").FontSize(12).AlignCenter();
-                                    col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Mitarbeiter);
+                                    col.Item().Width(310).Height(25).Border(1).AlignMiddle().Text(" Mitarbeiter / Employee").FontSize(12).AlignCenter();
+                                    col.Item().Width(310).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Mitarbeiter);
                                 });
                             });
 
