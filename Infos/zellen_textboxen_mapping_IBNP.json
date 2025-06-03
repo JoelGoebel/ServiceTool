@@ -1,11 +1,31 @@
-[  
+[
+  {
+    "Zelle": "E3",
+    "Feldname": "tb_Kunde_ibnProtokoll"
+  },
+  {
+    "Zelle": "E5",
+    "Feldname": "tb_Ansprechpartner_ibnProtokoll"
+  },
   {
     "Zelle": "E7",
     "Feldname": "tb_Versuchsaufbau_ibnProtokoll"
   },
   {
+    "Zelle": "E9",
+    "Feldname": "tb_KundeMaterial_ibnProtokoll"
+  },
+  {
     "Zelle": "E11",
     "Feldname": "tb_Viskosität_ibnProtokoll"
+  },
+  {
+    "Zelle": "M5",
+    "Feldname": "tb_Filtertyp_ibnProtokoll"
+  },
+  {
+    "Zelle": "M7",
+    "Feldname": "tb_SerienNr_ibnProtokoll"
   },
   {
     "Zelle": "M9",

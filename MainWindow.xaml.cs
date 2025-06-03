@@ -572,11 +572,7 @@ namespace ServiceTool
             //Sprache nach auftrag setzen
             SetLanguage("IbnP");
 
-            string ExcelFilePath = "";          
-
-            ibnP.tb_Kunde_ibnProtokoll.Text = GlobalVariables.Kunde;
-            ibnP.tb_Ansprechpartner_ibnProtokoll.Text = GlobalVariables.Ansprechpartner;
-            ibnP.tb_KundeMaterial_ibnProtokoll.Text = GlobalVariables.Material;
+            string ExcelFilePath = "";                 
             
             if(GlobalVariables.Maschiene_1 !="" && GlobalVariables.Maschiene_1 != "MRS" && GlobalVariables.Maschiene_1 != "Jump")
             {
@@ -607,7 +603,9 @@ namespace ServiceTool
                 ibnP.tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_4;
             }
 
-
+            ibnP.tb_Kunde_ibnProtokoll.Text = GlobalVariables.Kunde;
+            ibnP.tb_Ansprechpartner_ibnProtokoll.Text = GlobalVariables.Ansprechpartner;
+            ibnP.tb_KundeMaterial_ibnProtokoll.Text = GlobalVariables.Material;
             isFirstLoad = false;
         }//Ende InbP Laden        
                                  
@@ -618,9 +616,9 @@ namespace ServiceTool
 
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
-            string ImagePath_Sign_Kunde = $@"C:\Users\jgadmin\Documents\Service aufträge\{Auftragsnummer}\Anhänge\Unterschriften\ibnPSignatureCustomer.png";
+            string ImagePath_Sign_Kunde = Path.Combine(GlobalVariables.Pfad_AuftragsOrdner,"Anhaenge\\Unterschriften\\ibnPSignatureCustomer.png");
 
-            string ImagePath_Sign_Technican = $@"C:\Users\jgadmin\Documents\Service aufträge\{Auftragsnummer}\Anhänge\Unterschriften\ibnPSignatureEmployee.png";
+            string ImagePath_Sign_Technican = Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureEmployee.png");
 
             string ExcelFilePath = "";
 
@@ -628,29 +626,31 @@ namespace ServiceTool
             if (lastSelectedSite == "" || lastSelectedSite == GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1)
             {
                 ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll.xlsm");
+                speichern(ExcelFilePath, "IbnP");
                 ibnP.tb_Filtertyp_ibnProtokoll.Text = GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1;
                 ibnP.tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_1;
             }
             else if (lastSelectedSite == GlobalVariables.Maschiene_2 + " " + GlobalVariables.Baugroeße_2)
             {
                 ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_2.xlsm");
+                speichern(ExcelFilePath, "IbnP");
                 ibnP.tb_Filtertyp_ibnProtokoll.Text = GlobalVariables.Maschiene_2 + " " + GlobalVariables.Baugroeße_2;
                 ibnP.tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_2;
             }
             else if (lastSelectedSite == GlobalVariables.Maschiene_3 + " " + GlobalVariables.Baugroeße_3)
             {
                 ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_3.xlsm");
+                speichern(ExcelFilePath, "IbnP");
                 ibnP.tb_Filtertyp_ibnProtokoll.Text = GlobalVariables.Maschiene_3 + " " + GlobalVariables.Baugroeße_3;
                 ibnP.tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_3;
             }
             else if (lastSelectedSite == GlobalVariables.Maschiene_4 + " " + GlobalVariables.Baugroeße_4)
             {
                 ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_4.xlsm");
+                speichern(ExcelFilePath, "IbnP");
                 ibnP.tb_Filtertyp_ibnProtokoll.Text = GlobalVariables.Maschiene_4 + " " + GlobalVariables.Baugroeße_4;
                 ibnP.tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_4;
-            }
-
-            speichern(ExcelFilePath, "IbnP");
+            }           
 
             // Ab hier  allles zum speichern der Signatur
 
@@ -1075,9 +1075,9 @@ namespace ServiceTool
         private void Creat_PDF_Dokuments(object sender, EventArgs e) 
         {
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
-            
+
             //Hier werden alle PDF ersellungen getrigerd
-            //Create_PDF_Of_Stundennachweis();
+            //Create_PDF_Of_Stundennachweis();TODO wieder aktivieren wenn PDF fertig ist
             Create_PDF_Of_Inbetriebnahmeprotokoll();
         }
 
@@ -1219,7 +1219,7 @@ namespace ServiceTool
                             table.Cell().Element(cellstyle).Text(pDF_Data.TotalKilometersDeparture).FontSize(12);
                                                        
                         });
-                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+                        column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
                         column.Spacing(5);
 
@@ -1296,7 +1296,7 @@ namespace ServiceTool
                             table.Cell().Border(1).BorderColor(QuestPDF.Helpers.Colors.Black).Text(" " + FormattedTimeSpanInHHMM(pDF_Data.TotalHours));
                         });
 
-                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+                        column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
                         column.Spacing(15);
 
@@ -1347,7 +1347,7 @@ namespace ServiceTool
                             });
                         });
 
-                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+                        column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
                         column.Item().Row(row =>
                         {
@@ -1397,7 +1397,7 @@ namespace ServiceTool
                         });
                         column.Spacing(10);
 
-                        column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+                        column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
                         column.Item().Text("Unterschriften / Signatures").FontSize(20).AlignCenter();
 
@@ -1650,9 +1650,18 @@ namespace ServiceTool
                 
                 var Dokument = Document.Create(document =>
                 {
+                    Func<IContainer, IContainer> headerstyle = c => c
+                        .Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
+                        .Border(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                        .PaddingVertical(2).AlignCenter().AlignMiddle();
+
+                    Func<IContainer, IContainer> cellstyle = c => c
+                        .Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken2)
+                        .AlignCenter().AlignMiddle();
+
                     document.Page(page =>
                     {
-                        page.Size(PageSizes.A4);
+                        page.Size(PageSizes.A4.Landscape());
                         page.Margin(10);
                         page.PageColor(QuestPDF.Helpers.Colors.White);
                         page.Header().PaddingBottom(10).BorderBottom(1).Column(column =>
@@ -1693,10 +1702,10 @@ namespace ServiceTool
                             });
 
                         });
-                        page.Content().PaddingVertical(10).Column(column =>
+                        page.Content().PaddingVertical(5).Column(column =>
                         {
                             column.Item().AlignCenter().Text("Auftragsinformationen / Orderinformation").FontSize(16).Underline();
-                            column.Spacing(5);
+                            
                             column.Item().Row(row =>
                             {
                                 row.RelativeItem().Column(col =>
@@ -1714,13 +1723,395 @@ namespace ServiceTool
                                     col.Item().Text("Shimpacking ZP: " + pDF_Data.ShimpackingZP).FontSize(12).AlignLeft();
                                 });
                             });
-                            column.Item().Table(table =>
-                            {
 
-                            });
+                            column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
                             column.Item().AlignCenter().Text("Prozessparameter / Process parameters").FontSize(16).Underline();
 
-                        });                         
+                            column.Item().PreventPageBreak().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(25);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                    columns.ConstantColumn(53);
+                                });
+                                table.Header(header =>
+                                {
+                                    header.Cell().Element(headerstyle).Text("lfd.\nNr.\n").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("DruckP1\nvor Fi\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("DruckP2\nnach Fi\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Δp\n \n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Masse\nTemp.\ntm(°C)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("n\nExtruder\n(1/min)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Pumpe\n \n(1/min)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Q\n \n(kg/h)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Siebe\n \n(µm)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Rückspül\nverlust\n1x(gr)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Rückspül\nverlust\n10x(gr)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("RS Verlust\nin %\nvon Q").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Hub\nlänge\n(mm)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Spül-\ndruck\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Antrieb\n \n(bar/kN)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vor-\nflutpin\n(mm)").FontSize(8);
+                                });
+                                for (int x = 0; x < 4; x++)
+                                {
+                                    table.Cell().Element(cellstyle).Text((x + 1).ToString()).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pressure_P1[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pressure_P2[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.P[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MassTemperatur[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.n_Extruder[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pump[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Q[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.FilterElements[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.BackFlushLoss_1gr[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.BackFlushLoss_10gr[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.BackFlushLossInPercent[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.StrokeLength[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.BackFlushPressure[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.DriveForce[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.FloodingPin[x]).FontSize(8);
+                                }
+                            });
+
+                            column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                            column.Item().AlignCenter().Text("Filtersteuerung / Screenchanger control").FontSize(16).Underline();
+                            column.Spacing(5);
+
+                            column.Item().PreventPageBreak().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+
+                                    columns.ConstantColumn(84);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                });
+
+                                table.Header(header =>
+                                {
+                                    header.Cell().Element(headerstyle).Text("RSF Normal\n*Fast Betrieb").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("A.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("L.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Taktzeit\n ").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("*A.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("*L.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("S.-Kolben\nvor").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("S.-Kolben\nzurück").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("*S.-Kolben\nvor").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("*S.-Kolben\nzurück").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Anzahl\nSiebe").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Takte/\nUmdreh.").FontSize(8);
+                                    header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
+                                        .BorderLeft(1).BorderBottom(1).BorderTop(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                                        .PaddingVertical(2).Text("Schuss\nvor    ").AlignRight().FontSize(8);
+                                    header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
+                                        .BorderRight(1).BorderBottom(1).BorderTop(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                                        .PaddingVertical(2).Text("kolben %\n    zurück").AlignLeft().FontSize(8);
+                                });
+                                table.Cell().Element(headerstyle).Text("1").FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke_Filter_RSF_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke_Filter_RSF_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.CycleTime_RSF_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke2_Filter_RSF_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke2_Filter_RSF_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Forward_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Backward_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Forward_2_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Backward_2_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.NumberFilterElements_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.StrokesRevolt_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PuringPiston_Forward_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PuringPiston_Backward_1).FontSize(8);
+                                table.Cell().Element(headerstyle).Text("2").FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke_Filter_RSF_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke_Filter_RSF_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.CycleTime_RSF_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke2_Filter_RSF_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke2_Filter_RSF_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Forward_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Backward_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Forward_2_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PPiston_Backward_2_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.NumberFilterElements_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.StrokesRevolt_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PuringPiston_Forward_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PuringPiston_Backward_2).FontSize(8);
+                            });
+
+                            column.Item().PreventPageBreak().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(84);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(57);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                    columns.ConstantColumn(56);
+                                });
+                                table.Header(header =>
+                                {
+                                    header.Cell().Element(headerstyle).Text("SFX /\nSFXR / SF").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("A.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("L.-Hub\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Takt-\nzeit").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vorflut\nzeit").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vorflut\nChange").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Filter\nSoll-Druck").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Filter\nMin.Druck").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Betriebs-\nart").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vor/Diff\ndruck").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vorflut.\nMaß A").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Stellung\nRampe").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Ø Ablauf -\nDüse(mm)").FontSize(8);
+
+
+                                });
+                                table.Cell().Element(headerstyle).Text("1").FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke_Filter_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke_Filter_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.CycleTime_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_Change_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.SetPressure_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.Min_Pressure_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.ModeOfOperation_SFX_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PreDiff_Pressure_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.Flooding_dim_A_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PistonCrossSection_1).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.MeltDischarge_1).FontSize(8);
+                                table.Cell().Element(headerstyle).Text("2").FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.WStroke_Filter_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.RStroke_Filter_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.CycleTime_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_Change_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.SetPressure_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.Min_Pressure_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.ModeOfOperation_SFX_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PreDiff_Pressure_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.Flooding_dim_A_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.PistonCrossSection_2).FontSize(8);
+                                table.Cell().Element(cellstyle).Text(pDF_Data.MeltDischarge_2).FontSize(8);
+                            });
+
+                            column.Item().PreventPageBreak().Row(row =>
+                            {
+                                row.AutoItem().Table(table =>
+                                {
+                                    table.ColumnsDefinition(columns =>
+                                    {
+                                        columns.ConstantColumn(84);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                        columns.ConstantColumn(57);
+                                    });
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().Element(headerstyle).Text("KSF").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("MV A\n->").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("MV B\n<-").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Filter-\nstandzeit").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Flut-\ndauer").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Pause 1\nn.1.Nest").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Filter\nSoll-Druck").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Filter\nMin. Druck").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Betriebs-\nart").FontSize(8);
+                                    });
+                                    table.Cell().Element(headerstyle).Text("1").FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MV_A_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MV_B_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.ScreenLifeTime_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_KSF_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pbetween_br_Plates_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Set_Pressure_KSF_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Min_Pressure_KSF_1).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Mode_Of_Operation_1).FontSize(8);
+                                    table.Cell().Element(headerstyle).Text("2").FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MV_A_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MV_B_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.ScreenLifeTime_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.FloodingTime_KSF_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pbetween_br_Plates_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Set_Pressure_KSF_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Min_Pressure_KSF_2).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Mode_Of_Operation_2).FontSize(8);
+                                });
+
+                                row.Spacing(5);
+
+                                row.AutoItem().Table(table =>
+                                {
+                                    table.ColumnsDefinition(columns =>
+                                    {
+                                        columns.ConstantColumn(45);
+                                        columns.ConstantColumn(50);
+                                        columns.ConstantColumn(35);
+                                        columns.ConstantColumn(100);
+                                    });
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).BorderLeft(1).Text("Korrekte").FontSize(10).AlignCenter();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).Text("Funktion").FontSize(10).AlignCenter();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).Text("der").FontSize(10).AlignCenter();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderRight(1).BorderTop(1).AlignLeft().Text("Steuerung").FontSize(10).AlignCenter();
+                                    });
+                                    table.Cell().Element(headerstyle).Text("VIS").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.VIS).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Disc_Rotation).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text("Siebscheibendrehung").FontSize(10).AlignCenter();
+                                    table.Cell().Element(headerstyle).Text("d blech").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.dSheet).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.DriveLoadMeasurement).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text("Antreibskraftmessung").FontSize(10).AlignCenter();
+                                    table.Cell().Element(headerstyle).Text("kp").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.KP).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.BackflushStrokeLength).FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text("Hub Schußkolben").FontSize(10).AlignCenter();
+                                    table.Cell().Element(headerstyle).Text("kk").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.KK).FontSize(10).AlignCenter();
+                                });
+                            });
+
+                            column.Item().AlignLeft()
+                            .Text("Spitzenwerte als Fotoanhang dokumentieren" + pDF_Data.PhotoAttachment_Yes + "Ja      " + pDF_Data.PhotoAttachment_No + "Nein, weil: " + pDF_Data.PhotoAttachment_No_Because)
+                            .FontSize(14);
+
+                            column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                            column.Item().AlignCenter().Text("Temperaturprofil in Extrusionsrichtung").FontSize(16).Underline();
+
+                            column.Spacing(5);
+
+                            column.Item().Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                    columns.ConstantColumn(50);
+                                });
+
+                                table.Header(header =>
+                                {
+                                    header.Cell().Element(headerstyle).Text("Zone").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("1").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("2").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("3").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("4").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("5").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("6").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("7").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("8").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("9").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("10").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("11").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("12").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("13").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("14").FontSize(8);
+                                });
+
+                                table.Cell().Element(headerstyle).Text("Bezeichnung").FontSize(8);
+                                for (int X = 0; X < 14; X++)
+                                {
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Designation_Tempprofil[X]).FontSize(8);
+                                }
+                                table.Cell().Element(headerstyle).Text("Temperatur (°C)").FontSize(8);
+                                for (int Y = 0; Y < 14; Y++)
+                                {
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Temperatur_Tempprofil[Y]).FontSize(8);
+                                }
+                            });
+
+                            column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                            column.Item().Row(row => 
+                            {
+                                row.AutoItem().AlignLeft().Text(pDF_Data.Customer_Temperature_Meassurement_korrekt + " Kundentemperaturmessung (Blocktemperatur) korrekt").FontSize(12);
+                                row.Spacing(10);
+                                row.AutoItem().Text(pDF_Data.PressureCutoff + " Druckabschaltung Filtervordruck überprüft/getestet").FontSize(12);
+                                row.Spacing(10);
+                                row.AutoItem().Text(pDF_Data.SetTo + " Eingestellt auf " + pDF_Data.SetBar + " bar").FontSize(12);
+                            });
+                            column.Item().Row(row =>
+                            {
+                                row.AutoItem().AlignCenter().Text("                                      " + pDF_Data.ElectricCutoff + " Abschaltung elektrisch           " + pDF_Data.MechanicCutoff + " Mechanisch           " + pDF_Data.NoCutoff + " Keine Abschaltung(Kunde geschult)");
+                            });
+                            column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
+
+                            column.Item().Row(row => 
+                            {
+                                row.AutoItem().AlignLeft().Column(col =>
+                                {
+                                    string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureCustomer.png");
+                                    col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
+                                    col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
+                                });
+                                row.AutoItem().AlignLeft().Column(col =>
+                                {
+                                    //TODO Datum und Ort in der Mitte einfügen vlt noch Klasse und Excel dem entsprechend erweitern
+                                });
+                                row.AutoItem().AlignLeft().Column(col =>
+                                {
+                                    string ImagePath_Sign_Mitarbeiter = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureEmployee.png");
+                                    col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Mitarbeiter / Employee").FontSize(12).AlignCenter();
+                                    col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Mitarbeiter);
+                                });
+                            });
+
+                        });
                     });
                 });
                 Dokument.GeneratePdf(SavePath);
@@ -1746,66 +2137,66 @@ namespace ServiceTool
                     PDF_Data_IbnP.ShimpackingLR = worksheet.Cells["M11"].Text;
                     PDF_Data_IbnP.ShimpackingZP = worksheet.Cells["O11"].Text;
                     //Prozessparameter
-                    PDF_Data_IbnP.Pressure_P1_1 = worksheet.Cells["B17"].Text;
-                    PDF_Data_IbnP.Pressure_P1_2 = worksheet.Cells["B19"].Text;
-                    PDF_Data_IbnP.Pressure_P1_3 = worksheet.Cells["B21"].Text;
-                    PDF_Data_IbnP.Pressure_P1_4 = worksheet.Cells["B23"].Text;
-                    PDF_Data_IbnP.Pressure_P2_1 = worksheet.Cells["C17"].Text;
-                    PDF_Data_IbnP.Pressure_P2_2 = worksheet.Cells["C19"].Text;
-                    PDF_Data_IbnP.Pressure_P2_3 = worksheet.Cells["C21"].Text;
-                    PDF_Data_IbnP.Pressure_P2_4 = worksheet.Cells["C23"].Text;
-                    PDF_Data_IbnP.P_1 = worksheet.Cells["D17"].Text;
-                    PDF_Data_IbnP.P_2 = worksheet.Cells["D19"].Text;
-                    PDF_Data_IbnP.P_3 = worksheet.Cells["D21"].Text;
-                    PDF_Data_IbnP.P_4 = worksheet.Cells["D23"].Text;
-                    PDF_Data_IbnP.MassTemperatur_1 = worksheet.Cells["E17"].Text;
-                    PDF_Data_IbnP.MassTemperatur_2 = worksheet.Cells["E19"].Text;
-                    PDF_Data_IbnP.MassTemperatur_3 = worksheet.Cells["E21"].Text;
-                    PDF_Data_IbnP.MassTemperatur_4 = worksheet.Cells["E23"].Text;
-                    PDF_Data_IbnP.n_Extruder_1 = worksheet.Cells["F17"].Text;
-                    PDF_Data_IbnP.n_Extruder_2 = worksheet.Cells["F19"].Text;
-                    PDF_Data_IbnP.n_Extruder_3 = worksheet.Cells["F21"].Text;
-                    PDF_Data_IbnP.n_Extruder_4 = worksheet.Cells["F23"].Text;
-                    PDF_Data_IbnP.Pump_1 = worksheet.Cells["G17"].Text;
-                    PDF_Data_IbnP.Pump_2 = worksheet.Cells["G19"].Text;
-                    PDF_Data_IbnP.Pump_3 = worksheet.Cells["G21"].Text;
-                    PDF_Data_IbnP.Pump_4 = worksheet.Cells["G23"].Text;
-                    PDF_Data_IbnP.Q_1 = worksheet.Cells["H17"].Text;
-                    PDF_Data_IbnP.Q_2 = worksheet.Cells["H19"].Text;
-                    PDF_Data_IbnP.Q_3 = worksheet.Cells["H21"].Text;
-                    PDF_Data_IbnP.Q_4 = worksheet.Cells["H23"].Text;
-                    PDF_Data_IbnP.FilterElements_1 = worksheet.Cells["I17"].Text;
-                    PDF_Data_IbnP.FilterElements_2 = worksheet.Cells["I19"].Text;
-                    PDF_Data_IbnP.FilterElements_3 = worksheet.Cells["I21"].Text;
-                    PDF_Data_IbnP.FilterElements_4 = worksheet.Cells["I23"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_1gr_1 = worksheet.Cells["J17"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_1gr_2 = worksheet.Cells["J19"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_1gr_3 = worksheet.Cells["J21"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_1gr_4 = worksheet.Cells["J23"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_10gr_1 = worksheet.Cells["K17"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_10gr_2 = worksheet.Cells["K19"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_10gr_3 = worksheet.Cells["K21"].Text;
-                    PDF_Data_IbnP.BackFlushLoss_10gr_4 = worksheet.Cells["K23"].Text;
-                    PDF_Data_IbnP.BackFlushLossInPercent_1 = worksheet.Cells["L17"].Text;
-                    PDF_Data_IbnP.BackFlushLossInPercent_2 = worksheet.Cells["L19"].Text;
-                    PDF_Data_IbnP.BackFlushLossInPercent_3 = worksheet.Cells["L21"].Text;
-                    PDF_Data_IbnP.BackFlushLossInPercent_4 = worksheet.Cells["L23"].Text;
-                    PDF_Data_IbnP.StrokeLength_1 = worksheet.Cells["M17"].Text;
-                    PDF_Data_IbnP.StrokeLength_2 = worksheet.Cells["M19"].Text;
-                    PDF_Data_IbnP.StrokeLength_3 = worksheet.Cells["M21"].Text;
-                    PDF_Data_IbnP.StrokeLength_4 = worksheet.Cells["M23"].Text;
-                    PDF_Data_IbnP.BackFlushPressure_1 = worksheet.Cells["N17"].Text;
-                    PDF_Data_IbnP.BackFlushPressure_2 = worksheet.Cells["N19"].Text;
-                    PDF_Data_IbnP.BackFlushPressure_3 = worksheet.Cells["N21"].Text;
-                    PDF_Data_IbnP.BackFlushPressure_4 = worksheet.Cells["N23"].Text;
-                    PDF_Data_IbnP.DriveForce_1 = worksheet.Cells["O17"].Text;
-                    PDF_Data_IbnP.DriveForce_2 = worksheet.Cells["O19"].Text;
-                    PDF_Data_IbnP.DriveForce_3 = worksheet.Cells["O21"].Text;
-                    PDF_Data_IbnP.DriveForce_4 = worksheet.Cells["O23"].Text;
-                    PDF_Data_IbnP.FloodingPin_1 = worksheet.Cells["P17"].Text;
-                    PDF_Data_IbnP.FloodingPin_2 = worksheet.Cells["P19"].Text;
-                    PDF_Data_IbnP.FloodingPin_3 = worksheet.Cells["P21"].Text;
-                    PDF_Data_IbnP.FloodingPin_4 = worksheet.Cells["P23"].Text;
+                    PDF_Data_IbnP.Pressure_P1.Add(worksheet.Cells["B17"].Text);
+                    PDF_Data_IbnP.Pressure_P1.Add(worksheet.Cells["B19"].Text);
+                    PDF_Data_IbnP.Pressure_P1.Add(worksheet.Cells["B21"].Text);
+                    PDF_Data_IbnP.Pressure_P1.Add(worksheet.Cells["B23"].Text);
+                    PDF_Data_IbnP.Pressure_P2.Add(worksheet.Cells["C17"].Text);
+                    PDF_Data_IbnP.Pressure_P2.Add(worksheet.Cells["C19"].Text);
+                    PDF_Data_IbnP.Pressure_P2.Add(worksheet.Cells["C21"].Text);
+                    PDF_Data_IbnP.Pressure_P2.Add(worksheet.Cells["C23"].Text);
+                    PDF_Data_IbnP.P.Add(worksheet.Cells["D17"].Text);
+                    PDF_Data_IbnP.P.Add(worksheet.Cells["D19"].Text);
+                    PDF_Data_IbnP.P.Add(worksheet.Cells["D21"].Text);
+                    PDF_Data_IbnP.P.Add(worksheet.Cells["D23"].Text);
+                    PDF_Data_IbnP.MassTemperatur.Add(worksheet.Cells["E17"].Text);
+                    PDF_Data_IbnP.MassTemperatur.Add(worksheet.Cells["E19"].Text);
+                    PDF_Data_IbnP.MassTemperatur.Add(worksheet.Cells["E21"].Text);
+                    PDF_Data_IbnP.MassTemperatur.Add(worksheet.Cells["E23"].Text);
+                    PDF_Data_IbnP.n_Extruder.Add(worksheet.Cells["F17"].Text);
+                    PDF_Data_IbnP.n_Extruder.Add(worksheet.Cells["F19"].Text);
+                    PDF_Data_IbnP.n_Extruder.Add(worksheet.Cells["F21"].Text);
+                    PDF_Data_IbnP.n_Extruder.Add(worksheet.Cells["F23"].Text);
+                    PDF_Data_IbnP.Pump.Add(worksheet.Cells["G17"].Text);
+                    PDF_Data_IbnP.Pump.Add(worksheet.Cells["G19"].Text);
+                    PDF_Data_IbnP.Pump.Add(worksheet.Cells["G21"].Text);
+                    PDF_Data_IbnP.Pump.Add(worksheet.Cells["G23"].Text);
+                    PDF_Data_IbnP.Q.Add(worksheet.Cells["H17"].Text);
+                    PDF_Data_IbnP.Q.Add(worksheet.Cells["H19"].Text);
+                    PDF_Data_IbnP.Q.Add(worksheet.Cells["H21"].Text);
+                    PDF_Data_IbnP.Q.Add(worksheet.Cells["H23"].Text);
+                    PDF_Data_IbnP.FilterElements.Add(worksheet.Cells["I17"].Text);
+                    PDF_Data_IbnP.FilterElements.Add(worksheet.Cells["I19"].Text);
+                    PDF_Data_IbnP.FilterElements.Add(worksheet.Cells["I21"].Text);
+                    PDF_Data_IbnP.FilterElements.Add(worksheet.Cells["I23"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_1gr.Add(worksheet.Cells["J17"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_1gr.Add(worksheet.Cells["J19"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_1gr.Add(worksheet.Cells["J21"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_1gr.Add(worksheet.Cells["J23"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_10gr.Add(worksheet.Cells["K17"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_10gr.Add(worksheet.Cells["K19"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_10gr.Add(worksheet.Cells["K21"].Text);
+                    PDF_Data_IbnP.BackFlushLoss_10gr.Add(worksheet.Cells["K23"].Text);
+                    PDF_Data_IbnP.BackFlushLossInPercent.Add(worksheet.Cells["L17"].Text);
+                    PDF_Data_IbnP.BackFlushLossInPercent.Add(worksheet.Cells["L19"].Text);
+                    PDF_Data_IbnP.BackFlushLossInPercent.Add(worksheet.Cells["L21"].Text);
+                    PDF_Data_IbnP.BackFlushLossInPercent.Add(worksheet.Cells["L23"].Text);
+                    PDF_Data_IbnP.StrokeLength.Add(worksheet.Cells["M17"].Text);
+                    PDF_Data_IbnP.StrokeLength.Add(worksheet.Cells["M19"].Text);
+                    PDF_Data_IbnP.StrokeLength.Add(worksheet.Cells["M21"].Text);
+                    PDF_Data_IbnP.StrokeLength.Add(worksheet.Cells["M23"].Text);
+                    PDF_Data_IbnP.BackFlushPressure.Add(worksheet.Cells["N17"].Text);
+                    PDF_Data_IbnP.BackFlushPressure.Add(worksheet.Cells["N19"].Text);
+                    PDF_Data_IbnP.BackFlushPressure.Add(worksheet.Cells["N21"].Text);
+                    PDF_Data_IbnP.BackFlushPressure.Add(worksheet.Cells["N23"].Text);
+                    PDF_Data_IbnP.DriveForce.Add(worksheet.Cells["O17"].Text);
+                    PDF_Data_IbnP.DriveForce.Add(worksheet.Cells["O19"].Text);
+                    PDF_Data_IbnP.DriveForce.Add(worksheet.Cells["O21"].Text);
+                    PDF_Data_IbnP.DriveForce.Add(worksheet.Cells["O23"].Text);
+                    PDF_Data_IbnP.FloodingPin.Add(worksheet.Cells["P17"].Text);
+                    PDF_Data_IbnP.FloodingPin.Add(worksheet.Cells["P19"].Text);
+                    PDF_Data_IbnP.FloodingPin.Add(worksheet.Cells["P21"].Text);
+                    PDF_Data_IbnP.FloodingPin.Add(worksheet.Cells["P23"].Text);
 
                     //Tabellen für die Maschienen
                     //RSF Normal
@@ -1894,34 +2285,34 @@ namespace ServiceTool
                     PDF_Data_IbnP.PhotoAttachment_No_Because = worksheet.Cells["M41"].Text;
 
                     //Tabelle Temperaturprofil in Extrusionsrichtung
-                    PDF_Data_IbnP.Designation_Zone_1 = worksheet.Cells["C45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_2 = worksheet.Cells["D45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_3 = worksheet.Cells["E45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_4 = worksheet.Cells["F45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_5 = worksheet.Cells["G45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_6 = worksheet.Cells["H45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_7 = worksheet.Cells["I45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_8 = worksheet.Cells["J45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_9 = worksheet.Cells["K45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_10 = worksheet.Cells["L45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_11 = worksheet.Cells["M45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_12 = worksheet.Cells["N45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_13 = worksheet.Cells["O45"].Text;
-                    PDF_Data_IbnP.Designation_Zone_14 = worksheet.Cells["P45"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_1 = worksheet.Cells["C47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_2 = worksheet.Cells["D47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_3 = worksheet.Cells["E47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_4 = worksheet.Cells["F47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_5 = worksheet.Cells["G47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_6 = worksheet.Cells["H47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_7 = worksheet.Cells["I47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_8 = worksheet.Cells["J47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_9 = worksheet.Cells["K47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_10 = worksheet.Cells["L47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_11 = worksheet.Cells["M47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_12 = worksheet.Cells["N47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_13 = worksheet.Cells["O47"].Text;
-                    PDF_Data_IbnP.Temperatur_Zone_14 = worksheet.Cells["P47"].Text;
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["C45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["D45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["E45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["F45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["G45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["H45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["I45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["J45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["K45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["L45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["M45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["N45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["O45"].Text);
+                    PDF_Data_IbnP.Designation_Tempprofil.Add(worksheet.Cells["P45"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["C47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["D47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["E47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["F47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["G47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["H47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["I47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["J47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["K47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["L47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["M47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["N47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["O47"].Text);
+                    PDF_Data_IbnP.Temperatur_Tempprofil.Add(worksheet.Cells["P47"].Text);
 
                     //Questions
                     if(worksheet.Cells["A50"].Text.ToUpper() == "X") { PDF_Data_IbnP.Customer_Temperature_Meassurement_korrekt = "☑"; } else { PDF_Data_IbnP.Customer_Temperature_Meassurement_korrekt = "☐"; }

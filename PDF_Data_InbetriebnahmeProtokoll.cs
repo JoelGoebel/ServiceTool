@@ -20,66 +20,21 @@ namespace ServiceTool
         public string ShimpackingZP { get; set; }
 
         //Prozess Parameters
-        public string Pressure_P1_1 { get; set; }
-        public string Pressure_P1_2 { get; set; }
-        public string Pressure_P1_3 { get; set; }
-        public string Pressure_P1_4 { get; set; }
-        public string Pressure_P2_1 { get; set; }
-        public string Pressure_P2_2 { get; set; }
-        public string Pressure_P2_3 { get; set; }
-        public string Pressure_P2_4 { get; set; }
-        public string P_1 { get; set; }
-        public string P_2 { get; set; }
-        public string P_3 { get; set; }
-        public string P_4 { get; set; }
-        public string MassTemperatur_1 { get; set; }
-        public string MassTemperatur_2 { get; set; }
-        public string MassTemperatur_3 { get; set; }
-        public string MassTemperatur_4 { get; set; }
-        public string n_Extruder_1 { get; set; }
-        public string n_Extruder_2 { get; set; }
-        public string n_Extruder_3 { get; set; }
-        public string n_Extruder_4 { get; set; }
-        public string Pump_1 { get; set; }
-        public string Pump_2 { get; set; }
-        public string Pump_3 { get; set; }
-        public string Pump_4 { get; set; }
-        public string Q_1 { get; set; }
-        public string Q_2 { get; set; }
-        public string Q_3 { get; set; }
-        public string Q_4 { get; set; }
-        public string FilterElements_1 { get; set; }
-        public string FilterElements_2 { get; set; }
-        public string FilterElements_3 { get; set; }
-        public string FilterElements_4 { get; set; }
-        public string BackFlushLoss_1gr_1 { get; set; }
-        public string BackFlushLoss_1gr_2 { get; set; }
-        public string BackFlushLoss_1gr_3 { get; set; }
-        public string BackFlushLoss_1gr_4 { get; set; }
-        public string BackFlushLoss_10gr_1 { get; set; }
-        public string BackFlushLoss_10gr_2 { get; set; }
-        public string BackFlushLoss_10gr_3 { get; set; }
-        public string BackFlushLoss_10gr_4 { get; set; }
-        public string BackFlushLossInPercent_1 { get; set; }
-        public string BackFlushLossInPercent_2 { get; set; }
-        public string BackFlushLossInPercent_3 { get; set; }
-        public string BackFlushLossInPercent_4 { get; set; }
-        public string StrokeLength_1 { get; set; }
-        public string StrokeLength_2 { get; set; }
-        public string StrokeLength_3 { get; set; }
-        public string StrokeLength_4 { get; set; }
-        public string BackFlushPressure_1 { get; set; }
-        public string BackFlushPressure_2 { get; set; }
-        public string BackFlushPressure_3 { get; set; }
-        public string BackFlushPressure_4 { get; set; }
-        public string DriveForce_1 { get; set; }
-        public string DriveForce_2 { get; set; }
-        public string DriveForce_3 { get; set; }
-        public string DriveForce_4 { get; set; }
-        public string FloodingPin_1 { get; set; }
-        public string FloodingPin_2 { get; set; }
-        public string FloodingPin_3 { get; set; }
-        public string FloodingPin_4 { get; set; }
+        public List<string> Pressure_P1 { get; set; } = new List<string>();
+        public List<string> Pressure_P2 { get; set; } = new List<string>();
+        public List<string> P { get; set; } = new List<string>();
+        public List<string> MassTemperatur { get; set; } = new List<string>();
+        public List<string> n_Extruder { get; set; } = new List<string>();
+        public List<string> Pump { get; set; } = new List<string>();
+        public List<string> Q { get; set; } = new List<string>();
+        public List<string> FilterElements { get; set; } = new List<string>();
+        public List<string> BackFlushLoss_1gr { get; set; } = new List<string>();
+        public List<string> BackFlushLoss_10gr { get; set; } = new List<string>();
+        public List<string> BackFlushLossInPercent { get; set; } = new List<string>();
+        public List<string> StrokeLength { get; set; } = new List<string>();
+        public List<string> BackFlushPressure { get; set; } = new List<string>();
+        public List<string> DriveForce { get; set; } = new List<string>();
+        public List<string> FloodingPin { get; set; } = new List<string>();
 
         //Screenchanger Control
         //RSF Normal
@@ -169,34 +124,8 @@ namespace ServiceTool
         public string PhotoAttachment_No_Because { get; set; }
 
         //Temperaturprofil in Extrusionsrichtung
-        public string Designation_Zone_1 { get; set; }
-        public string Designation_Zone_2 { get; set; }
-        public string Designation_Zone_3 { get; set; }
-        public string Designation_Zone_4 { get; set; }
-        public string Designation_Zone_5 { get; set; }
-        public string Designation_Zone_6 { get; set; }
-        public string Designation_Zone_7 { get; set; }
-        public string Designation_Zone_8 { get; set; }
-        public string Designation_Zone_9 { get; set; }
-        public string Designation_Zone_10 { get; set; }
-        public string Designation_Zone_11 { get; set; }
-        public string Designation_Zone_12 { get; set; }
-        public string Designation_Zone_13 { get; set; }
-        public string Designation_Zone_14 { get; set; }
-        public string Temperatur_Zone_1 { get; set; }
-        public string Temperatur_Zone_2 { get; set; }
-        public string Temperatur_Zone_3 { get; set; }
-        public string Temperatur_Zone_4 { get; set; }
-        public string Temperatur_Zone_5 { get; set; }
-        public string Temperatur_Zone_6 { get; set; }
-        public string Temperatur_Zone_7 { get; set; }
-        public string Temperatur_Zone_8 { get; set; }
-        public string Temperatur_Zone_9 { get; set; }
-        public string Temperatur_Zone_10 { get; set; }
-        public string Temperatur_Zone_11 { get; set; }
-        public string Temperatur_Zone_12 { get; set; }
-        public string Temperatur_Zone_13 { get; set; }
-        public string Temperatur_Zone_14 { get; set; }
+        public List<string> Designation_Tempprofil { get; set; } = new List<string>();
+        public List<string> Temperatur_Tempprofil { get; set; } = new List<string>();
         public string Customer_Temperature_Meassurement_korrekt { get; set; }
         public string PressureCutoff { get; set; }
         public string ElectricCutoff { get; set; }
