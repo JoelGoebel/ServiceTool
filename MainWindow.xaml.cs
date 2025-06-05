@@ -1077,8 +1077,9 @@ namespace ServiceTool
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
 
             //Hier werden alle PDF ersellungen getrigerd
-            Create_PDF_Of_Stundennachweis();//TODO wieder aktivieren wenn PDF fertig ist
-            Create_PDF_Of_Inbetriebnahmeprotokoll();
+            //Create_PDF_Of_Stundennachweis();//TODO wieder aktivieren wenn PDF fertig ist
+            //Create_PDF_Of_Inbetriebnahmeprotokoll();
+            Create_PDF_Of_IbnP_MRS();
         }
 
         private void Create_PDF_Of_Stundennachweis()
@@ -1460,11 +1461,6 @@ namespace ServiceTool
             document.GeneratePdf(SavePath);
 
         }
-
-        public string FormattedTimeSpanInHHMM(TimeSpan timeSpan)
-        {
-            return Math.Truncate(timeSpan.TotalHours).ToString("00") + ":" + timeSpan.Minutes.ToString("00");
-        }
         public Stundennachweis_PDF_Data GetDataForPDF_StdN()
         {
             TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
@@ -1620,19 +1616,19 @@ namespace ServiceTool
             int NumberOfIbnP = 0;
             string ExcelFilePath = "";
             string SavePath = "";
-            if (GlobalVariables.Maschiene_1 != "")
+            if (GlobalVariables.Maschiene_1 != "" && GlobalVariables.Maschiene_1 != "MRS" && GlobalVariables.Maschiene_1 != "Jump" && GlobalVariables.Maschiene_1 != "3C-RF")
             {
                 NumberOfIbnP++;
             }
-            if (GlobalVariables.Maschiene_2 != "")
+            if (GlobalVariables.Maschiene_2 != "" && GlobalVariables.Maschiene_2 != "MRS" && GlobalVariables.Maschiene_2 != "Jump" && GlobalVariables.Maschiene_2 != "3C-RF")
             {
                 NumberOfIbnP++;
             }
-            if (GlobalVariables.Maschiene_3 != "")
+            if (GlobalVariables.Maschiene_3 != "" && GlobalVariables.Maschiene_3 != "MRS" && GlobalVariables.Maschiene_3 != "Jump" && GlobalVariables.Maschiene_3 != "3C-RF")
             {
                 NumberOfIbnP++;
             }
-            if (GlobalVariables.Maschiene_4 != "")
+            if (GlobalVariables.Maschiene_4 != "" && GlobalVariables.Maschiene_4 != "MRS" && GlobalVariables.Maschiene_4 != "Jump" && GlobalVariables.Maschiene_4 != "3C-RF")
             {
                 NumberOfIbnP++;
             }
@@ -1668,7 +1664,7 @@ namespace ServiceTool
                         page.Size(PageSizes.A4.Landscape());
                         page.Margin(10);
                         page.PageColor(QuestPDF.Helpers.Colors.White);
-                        page.Header().PaddingBottom(10).BorderBottom(1).Column(column =>
+                        page.Header().PaddingBottom(5).BorderBottom(1).Column(column =>
                         {
                             column.Spacing(5);
                             column.Item().Row(row =>
@@ -1722,7 +1718,7 @@ namespace ServiceTool
                                 row.RelativeItem().Column(col =>
                                 {
 
-                                    col.Item().Text("Vorbelastung: " + pDF_Data.Preloading).FontSize(12).AlignLeft();
+                                    col.Item().Text("Vorspannung: " + pDF_Data.Preloading).FontSize(12).AlignLeft();
                                     col.Item().Text("Shimpacking LR: " + pDF_Data.ShimpackingLR).FontSize(12).AlignLeft();
                                     col.Item().Text("Shimpacking ZP: " + pDF_Data.ShimpackingZP).FontSize(12).AlignLeft();
                                 });
@@ -1896,11 +1892,11 @@ namespace ServiceTool
                                     header.Cell().Element(headerstyle).Text("Takt-\nzeit").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Vorflut\nzeit").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Vorflut\nChange").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vorflut.\nMaß A").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Filter\nSoll-Druck").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Filter\nMin.Druck").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Betriebs-\nart").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Vor/Diff\ndruck").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Vorflut.\nMaß A").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vor/Diff\ndruck").FontSize(8);                                    
                                     header.Cell().Element(headerstyle).Text("Stellung\nRampe").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Ø Ablauf -\nDüse(mm)").FontSize(8);
 
@@ -1953,10 +1949,10 @@ namespace ServiceTool
                                     table.Header(header =>
                                     {
                                         header.Cell().Element(headerstyle).Text("KSF").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("MV A\n->").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("MV B\n<-").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Filter-\nstandzeit").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Flut-\ndauer").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("A-\nHub").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("L-\nHub").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Takt-\nzeit").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text("Vorflut-\nzeit").FontSize(8);
                                         header.Cell().Element(headerstyle).Text("Pause 1\nn.1.Nest").FontSize(8);
                                         header.Cell().Element(headerstyle).Text("Filter\nSoll-Druck").FontSize(8);
                                         header.Cell().Element(headerstyle).Text("Filter\nMin. Druck").FontSize(8);
@@ -1990,15 +1986,15 @@ namespace ServiceTool
                                     {
                                         columns.ConstantColumn(45);
                                         columns.ConstantColumn(50);
-                                        columns.ConstantColumn(35);
-                                        columns.ConstantColumn(100);
+                                        columns.ConstantColumn(40);
+                                        columns.ConstantColumn(120);
                                     });
                                     table.Header(header =>
                                     {
-                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).BorderLeft(1).Text("Korrekte").FontSize(10).AlignCenter();
-                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).Text("Funktion").FontSize(10).AlignCenter();
-                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).Text("der").FontSize(10).AlignCenter();
-                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderRight(1).BorderTop(1).AlignLeft().Text("Steuerung").FontSize(10).AlignCenter();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).BorderLeft(1).Text("VI").FontSize(10).AlignRight();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).BorderRight(1).Text("S").FontSize(10).AlignLeft();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderTop(1).BorderLeft(1).Text("Korrekte ").FontSize(10).AlignCenter();
+                                        header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderBottom(1).BorderRight(1).BorderTop(1).AlignLeft().Text("Funktion der Steuerung").FontSize(10).AlignCenter();
                                     });
                                     table.Cell().Element(headerstyle).Text("VIS").FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.VIS).FontSize(10).AlignCenter();
@@ -2330,6 +2326,301 @@ namespace ServiceTool
                     if(worksheet.Cells["J52"].Text.ToUpper() == "X") { PDF_Data_IbnP.NoCutoff = "☑"; } else { PDF_Data_IbnP.NoCutoff = "☐"; }
                 }            
             return PDF_Data_IbnP;
+        }
+
+        public void Create_PDF_Of_IbnP_MRS()
+        {
+            int NumberOfIbnP = 0;
+            string ExcelFilePath = "";
+            string SavePath = "";
+            if (GlobalVariables.Maschiene_1 == "MRS")
+            {
+                NumberOfIbnP++;
+            }
+            if (GlobalVariables.Maschiene_2 == "MRS")
+            {
+                NumberOfIbnP++;
+            }
+            if (GlobalVariables.Maschiene_3 == "MRS")
+            {
+                NumberOfIbnP++;
+            }
+            if (GlobalVariables.Maschiene_4 == "MRS")
+            {
+                NumberOfIbnP++;
+            }
+            for (int i = 0; i < NumberOfIbnP; i++)
+            {
+                if (i == 0)
+                {
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS.xlsx");
+                    SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS.pdf");
+                }
+                else
+                {
+                    ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS_" + (i + 1) + ".xlsx");
+                    SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS_" + (i + 1) + ".pdf");
+                }
+                
+                PDF_Data_IbnP_MRS pDF_Data = GetDataForIbnP_MRS_PDF(ExcelFilePath);
+                QuestPDF.Settings.License = LicenseType.Community;
+
+                var Dokument = Document.Create(document =>
+                {
+                    Func<IContainer, IContainer> headerstyle = c => c
+                        .Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
+                        .Border(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
+                        .PaddingVertical(2).AlignCenter().AlignMiddle();
+
+                    Func<IContainer, IContainer> cellstyle = c => c
+                        .Border(0.5f).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken2)
+                        .AlignCenter().AlignMiddle();
+
+                    document.Page(page => 
+                    {
+                        page.Size(PageSizes.A4.Landscape());
+                        page.Margin(10);
+                        page.PageColor(QuestPDF.Helpers.Colors.White);
+                        page.Header().PaddingBottom(5).BorderBottom(1).Column(column =>
+                        {
+                            column.Spacing(5);
+                            column.Item().Row(row =>
+                            {
+                                row.RelativeItem().Text("Inbetriebnahmeprotokoll MRS\nCommissioning protocol MRS").FontSize(20).SemiBold().AlignCenter();
+                                row.ConstantItem(100)
+                                .AlignRight()
+                                .Image("Bilder/gneuss_png_1.png");
+                            });
+                            column.Item().Row(row => 
+                            {
+                                row.AutoItem().Column(col => 
+                                {
+                                    col.Item().Text("Kunde / Customer : " + pDF_Data.Customer).FontSize(12);
+                                    col.Item().Text("Ansprechpartner / Contact person : " + pDF_Data.ContactPerson).FontSize(12);
+                                    col.Item().Text("Versuchsaufbau / Line configuration : " + pDF_Data.LineConfiguration).FontSize(12);
+                                    col.Item().Text("Material / Rezeptur : " + pDF_Data.Material).FontSize(12);
+                                });
+
+                                row.Spacing(250);
+
+                                row.AutoItem().Column(col => 
+                                {
+                                    col.Item().Text("Extruder-Typ / Extruder type : " + pDF_Data.ExtruderType).FontSize(12);
+                                    col.Item().Text("Seriennummer / Serial number : " + pDF_Data.SerialNumber).FontSize(12);
+                                    col.Item().Text("Endprodukt / Final product : " + pDF_Data.FinalProduct).FontSize(12);
+                                    col.Item().Text("Beschaffenheit / Shape : " + pDF_Data.Shape).FontSize(12);
+                                });
+                            });
+                        });
+                    });
+                });
+                Dokument.GeneratePdf(SavePath);
+            }
+        }
+
+        public PDF_Data_IbnP_MRS GetDataForIbnP_MRS_PDF(string ExcelFilePath)
+        {
+            PDF_Data_IbnP_MRS PDF_Data_IbnP_MRS = new PDF_Data_IbnP_MRS();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
+            {
+                var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
+                PDF_Data_IbnP_MRS.Customer = worksheet.Cells["G3"].Text;
+                PDF_Data_IbnP_MRS.ContactPerson = worksheet.Cells["G4"].Text;
+                PDF_Data_IbnP_MRS.LineConfiguration = worksheet.Cells["G5"].Text;
+                PDF_Data_IbnP_MRS.Material = worksheet.Cells["G7"].Text;
+                PDF_Data_IbnP_MRS.ExtruderType = worksheet.Cells["AF3"].Text;
+                PDF_Data_IbnP_MRS.SerialNumber = worksheet.Cells["AF5"].Text;
+                PDF_Data_IbnP_MRS.FinalProduct = worksheet.Cells["AF8"].Text;
+                PDF_Data_IbnP_MRS.Shape = worksheet.Cells["G8"].Text;
+
+                //Prozessparameter
+                PDF_Data_IbnP_MRS.Time.Add(worksheet.Cells["C15"].Text);
+                PDF_Data_IbnP_MRS.Time.Add(worksheet.Cells["C17"].Text);
+                PDF_Data_IbnP_MRS.Time.Add(worksheet.Cells["C19"].Text);
+                PDF_Data_IbnP_MRS.Time.Add(worksheet.Cells["C21"].Text);
+                PDF_Data_IbnP_MRS.Control.Add(worksheet.Cells["E15"].Text);
+                PDF_Data_IbnP_MRS.Control.Add(worksheet.Cells["E17"].Text);
+                PDF_Data_IbnP_MRS.Control.Add(worksheet.Cells["E19"].Text);
+                PDF_Data_IbnP_MRS.Control.Add(worksheet.Cells["E21"].Text);
+                PDF_Data_IbnP_MRS.Pump.Add(worksheet.Cells["G15"].Text);
+                PDF_Data_IbnP_MRS.Pump.Add(worksheet.Cells["G17"].Text);
+                PDF_Data_IbnP_MRS.Pump.Add(worksheet.Cells["G19"].Text);
+                PDF_Data_IbnP_MRS.Pump.Add(worksheet.Cells["G21"].Text);
+                PDF_Data_IbnP_MRS.Load.Add(worksheet.Cells["I15"].Text);
+                PDF_Data_IbnP_MRS.Load.Add(worksheet.Cells["I17"].Text);
+                PDF_Data_IbnP_MRS.Load.Add(worksheet.Cells["I19"].Text);
+                PDF_Data_IbnP_MRS.Load.Add(worksheet.Cells["I21"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Soll.Add(worksheet.Cells["K15"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Soll.Add(worksheet.Cells["K17"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Soll.Add(worksheet.Cells["K19"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Soll.Add(worksheet.Cells["K21"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Min.Add(worksheet.Cells["M15"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Min.Add(worksheet.Cells["M17"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Min.Add(worksheet.Cells["M19"].Text);
+                PDF_Data_IbnP_MRS.Extruderspeed_Min.Add(worksheet.Cells["M21"].Text);
+                PDF_Data_IbnP_MRS.Load_2.Add(worksheet.Cells["O15"].Text);
+                PDF_Data_IbnP_MRS.Load_2.Add(worksheet.Cells["O17"].Text);
+                PDF_Data_IbnP_MRS.Load_2.Add(worksheet.Cells["O19"].Text);
+                PDF_Data_IbnP_MRS.Load_2.Add(worksheet.Cells["O21"].Text);
+                PDF_Data_IbnP_MRS.Vacuum.Add(worksheet.Cells["Q15"].Text);
+                PDF_Data_IbnP_MRS.Vacuum.Add(worksheet.Cells["Q17"].Text);
+                PDF_Data_IbnP_MRS.Vacuum.Add(worksheet.Cells["Q19"].Text);
+                PDF_Data_IbnP_MRS.Vacuum.Add(worksheet.Cells["Q21"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Viscosity.Add(worksheet.Cells["S15"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Viscosity.Add(worksheet.Cells["S17"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Viscosity.Add(worksheet.Cells["S19"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Viscosity.Add(worksheet.Cells["S21"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Shearrate.Add(worksheet.Cells["U15"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Shearrate.Add(worksheet.Cells["U17"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Shearrate.Add(worksheet.Cells["U19"].Text);
+                PDF_Data_IbnP_MRS.Viscosimeter_Shearrate.Add(worksheet.Cells["U21"].Text);
+                PDF_Data_IbnP_MRS.MP1.Add(worksheet.Cells["W15"].Text);
+                PDF_Data_IbnP_MRS.MP1.Add(worksheet.Cells["W17"].Text);
+                PDF_Data_IbnP_MRS.MP1.Add(worksheet.Cells["W19"].Text);
+                PDF_Data_IbnP_MRS.MP1.Add(worksheet.Cells["W21"].Text);
+                PDF_Data_IbnP_MRS.MP2.Add(worksheet.Cells["Y15"].Text);
+                PDF_Data_IbnP_MRS.MP2.Add(worksheet.Cells["Y17"].Text);
+                PDF_Data_IbnP_MRS.MP2.Add(worksheet.Cells["Y19"].Text);
+                PDF_Data_IbnP_MRS.MP2.Add(worksheet.Cells["Y21"].Text);
+                PDF_Data_IbnP_MRS.MP3.Add(worksheet.Cells["AA15"].Text);
+                PDF_Data_IbnP_MRS.MP3.Add(worksheet.Cells["AA17"].Text);
+                PDF_Data_IbnP_MRS.MP3.Add(worksheet.Cells["AA19"].Text);
+                PDF_Data_IbnP_MRS.MP3.Add(worksheet.Cells["AA21"].Text);
+                PDF_Data_IbnP_MRS.MP4.Add(worksheet.Cells["AC15"].Text);
+                PDF_Data_IbnP_MRS.MP4.Add(worksheet.Cells["AC17"].Text);
+                PDF_Data_IbnP_MRS.MP4.Add(worksheet.Cells["AC19"].Text);
+                PDF_Data_IbnP_MRS.MP4.Add(worksheet.Cells["AC21"].Text);
+                PDF_Data_IbnP_MRS.MP5.Add(worksheet.Cells["AE15"].Text);
+                PDF_Data_IbnP_MRS.MP5.Add(worksheet.Cells["AE17"].Text);
+                PDF_Data_IbnP_MRS.MP5.Add(worksheet.Cells["AE19"].Text);
+                PDF_Data_IbnP_MRS.MP5.Add(worksheet.Cells["AE21"].Text);
+                PDF_Data_IbnP_MRS.Filter_P.Add(worksheet.Cells["AG15"].Text);
+                PDF_Data_IbnP_MRS.Filter_P.Add(worksheet.Cells["AG17"].Text);
+                PDF_Data_IbnP_MRS.Filter_P.Add(worksheet.Cells["AG19"].Text);
+                PDF_Data_IbnP_MRS.Filter_P.Add(worksheet.Cells["AG21"].Text);
+                PDF_Data_IbnP_MRS.FilterFineness.Add(worksheet.Cells["AK15"].Text);
+                PDF_Data_IbnP_MRS.FilterFineness.Add(worksheet.Cells["AK17"].Text);
+                PDF_Data_IbnP_MRS.FilterFineness.Add(worksheet.Cells["AK19"].Text);
+                PDF_Data_IbnP_MRS.FilterFineness.Add(worksheet.Cells["AK21"].Text);
+                PDF_Data_IbnP_MRS.Screwcooling_Actual.Add(worksheet.Cells["AM15"].Text);
+                PDF_Data_IbnP_MRS.Screwcooling_Actual.Add(worksheet.Cells["AM17"].Text);
+                PDF_Data_IbnP_MRS.Screwcooling_Actual.Add(worksheet.Cells["AM19"].Text);
+                PDF_Data_IbnP_MRS.Screwcooling_Actual.Add(worksheet.Cells["AM21"].Text);
+                PDF_Data_IbnP_MRS.Feedzone_Cooling.Add(worksheet.Cells["AO15"].Text);
+                PDF_Data_IbnP_MRS.Feedzone_Cooling.Add(worksheet.Cells["AO17"].Text);
+                PDF_Data_IbnP_MRS.Feedzone_Cooling.Add(worksheet.Cells["AO19"].Text);
+                PDF_Data_IbnP_MRS.Feedzone_Cooling.Add(worksheet.Cells["AO21"].Text);
+                PDF_Data_IbnP_MRS.TM_Filter.Add(worksheet.Cells["AQ15"].Text);
+                PDF_Data_IbnP_MRS.TM_Filter.Add(worksheet.Cells["AQ17"].Text);
+                PDF_Data_IbnP_MRS.TM_Filter.Add(worksheet.Cells["AQ19"].Text);
+                PDF_Data_IbnP_MRS.TM_Filter.Add(worksheet.Cells["AQ21"].Text);
+                PDF_Data_IbnP_MRS.TM_Visco.Add(worksheet.Cells["AS15"].Text);
+                PDF_Data_IbnP_MRS.TM_Visco.Add(worksheet.Cells["AS17"].Text);
+                PDF_Data_IbnP_MRS.TM_Visco.Add(worksheet.Cells["AS19"].Text);
+                PDF_Data_IbnP_MRS.TM_Visco.Add(worksheet.Cells["AS21"].Text);
+                PDF_Data_IbnP_MRS.Throughput.Add(worksheet.Cells["AU15"].Text);
+                PDF_Data_IbnP_MRS.Throughput.Add(worksheet.Cells["AU17"].Text);
+                PDF_Data_IbnP_MRS.Throughput.Add(worksheet.Cells["AU19"].Text);
+                PDF_Data_IbnP_MRS.Throughput.Add(worksheet.Cells["AU21"].Text);
+
+                //Tabelle for Heating and Cooling
+                PDF_Data_IbnP_MRS.HZ1.Add(worksheet.Cells["D27"].Text);
+                PDF_Data_IbnP_MRS.HZ1.Add(worksheet.Cells["D29"].Text);
+                PDF_Data_IbnP_MRS.HZ1.Add(worksheet.Cells["D31"].Text);
+                PDF_Data_IbnP_MRS.HZ2.Add(worksheet.Cells["F27"].Text);
+                PDF_Data_IbnP_MRS.HZ2.Add(worksheet.Cells["F29"].Text);
+                PDF_Data_IbnP_MRS.HZ2.Add(worksheet.Cells["F31"].Text);
+                PDF_Data_IbnP_MRS.HZ3.Add(worksheet.Cells["H27"].Text);
+                PDF_Data_IbnP_MRS.HZ3.Add(worksheet.Cells["H29"].Text);
+                PDF_Data_IbnP_MRS.HZ3.Add(worksheet.Cells["H31"].Text);
+                PDF_Data_IbnP_MRS.HZ4.Add(worksheet.Cells["J27"].Text);
+                PDF_Data_IbnP_MRS.HZ4.Add(worksheet.Cells["J29"].Text);
+                PDF_Data_IbnP_MRS.HZ4.Add(worksheet.Cells["J31"].Text);
+                PDF_Data_IbnP_MRS.HZ5.Add(worksheet.Cells["L27"].Text);
+                PDF_Data_IbnP_MRS.HZ5.Add(worksheet.Cells["L29"].Text);
+                PDF_Data_IbnP_MRS.HZ5.Add(worksheet.Cells["L31"].Text);
+                PDF_Data_IbnP_MRS.HZ6.Add(worksheet.Cells["N27"].Text);
+                PDF_Data_IbnP_MRS.HZ6.Add(worksheet.Cells["N29"].Text);
+                PDF_Data_IbnP_MRS.HZ6.Add(worksheet.Cells["N31"].Text);
+                PDF_Data_IbnP_MRS.HZ7.Add(worksheet.Cells["P27"].Text);
+                PDF_Data_IbnP_MRS.HZ7.Add(worksheet.Cells["P29"].Text);
+                PDF_Data_IbnP_MRS.HZ7.Add(worksheet.Cells["P31"].Text);
+                PDF_Data_IbnP_MRS.HZ8.Add(worksheet.Cells["R27"].Text);
+                PDF_Data_IbnP_MRS.HZ8.Add(worksheet.Cells["R29"].Text);
+                PDF_Data_IbnP_MRS.HZ8.Add(worksheet.Cells["R31"].Text);
+                PDF_Data_IbnP_MRS.HZ9.Add(worksheet.Cells["T27"].Text);
+                PDF_Data_IbnP_MRS.HZ9.Add(worksheet.Cells["T29"].Text);
+                PDF_Data_IbnP_MRS.HZ9.Add(worksheet.Cells["T31"].Text);
+                PDF_Data_IbnP_MRS.HZ10.Add(worksheet.Cells["V27"].Text);
+                PDF_Data_IbnP_MRS.HZ10.Add(worksheet.Cells["V29"].Text);
+                PDF_Data_IbnP_MRS.HZ10.Add(worksheet.Cells["V31"].Text);
+                PDF_Data_IbnP_MRS.HZ11.Add(worksheet.Cells["X27"].Text);
+                PDF_Data_IbnP_MRS.HZ11.Add(worksheet.Cells["X29"].Text);
+                PDF_Data_IbnP_MRS.HZ11.Add(worksheet.Cells["X31"].Text);
+                PDF_Data_IbnP_MRS.HZ12.Add(worksheet.Cells["Z27"].Text);
+                PDF_Data_IbnP_MRS.HZ12.Add(worksheet.Cells["Z29"].Text);
+                PDF_Data_IbnP_MRS.HZ12.Add(worksheet.Cells["Z31"].Text);
+                PDF_Data_IbnP_MRS.HZ13.Add(worksheet.Cells["AB27"].Text);
+                PDF_Data_IbnP_MRS.HZ13.Add(worksheet.Cells["AB29"].Text);
+                PDF_Data_IbnP_MRS.HZ13.Add(worksheet.Cells["AB31"].Text);
+                PDF_Data_IbnP_MRS.HZ14.Add(worksheet.Cells["AD27"].Text);
+                PDF_Data_IbnP_MRS.HZ14.Add(worksheet.Cells["AD29"].Text);
+                PDF_Data_IbnP_MRS.HZ14.Add(worksheet.Cells["AD31"].Text);
+                PDF_Data_IbnP_MRS.HZ15.Add(worksheet.Cells["AF27"].Text);
+                PDF_Data_IbnP_MRS.HZ15.Add(worksheet.Cells["AF29"].Text);
+                PDF_Data_IbnP_MRS.HZ15.Add(worksheet.Cells["AF31"].Text);
+                PDF_Data_IbnP_MRS.HZ16.Add(worksheet.Cells["AH27"].Text);
+                PDF_Data_IbnP_MRS.HZ16.Add(worksheet.Cells["AH29"].Text);
+                PDF_Data_IbnP_MRS.HZ16.Add(worksheet.Cells["AH31"].Text);
+                PDF_Data_IbnP_MRS.HZ17.Add(worksheet.Cells["AJ27"].Text);
+                PDF_Data_IbnP_MRS.HZ17.Add(worksheet.Cells["AJ29"].Text);
+                PDF_Data_IbnP_MRS.HZ17.Add(worksheet.Cells["AJ31"].Text);
+                PDF_Data_IbnP_MRS.HZ18.Add(worksheet.Cells["AL27"].Text);
+                PDF_Data_IbnP_MRS.HZ18.Add(worksheet.Cells["AL29"].Text);
+                PDF_Data_IbnP_MRS.HZ18.Add(worksheet.Cells["AL31"].Text);
+                PDF_Data_IbnP_MRS.HZ19.Add(worksheet.Cells["AN27"].Text);
+                PDF_Data_IbnP_MRS.HZ19.Add(worksheet.Cells["AN29"].Text);
+                PDF_Data_IbnP_MRS.HZ19.Add(worksheet.Cells["AN31"].Text);
+                PDF_Data_IbnP_MRS.HZ20.Add(worksheet.Cells["AP27"].Text);
+                PDF_Data_IbnP_MRS.HZ20.Add(worksheet.Cells["AP29"].Text);
+                PDF_Data_IbnP_MRS.HZ20.Add(worksheet.Cells["AP31"].Text);
+                PDF_Data_IbnP_MRS.HZ21.Add(worksheet.Cells["AR27"].Text);
+                PDF_Data_IbnP_MRS.HZ21.Add(worksheet.Cells["AR29"].Text);
+                PDF_Data_IbnP_MRS.HZ21.Add(worksheet.Cells["AR31"].Text);
+                PDF_Data_IbnP_MRS.HZ22.Add(worksheet.Cells["AT27"].Text);
+                PDF_Data_IbnP_MRS.HZ22.Add(worksheet.Cells["AT29"].Text);
+                PDF_Data_IbnP_MRS.HZ22.Add(worksheet.Cells["AT31"].Text);
+                PDF_Data_IbnP_MRS.HZ23.Add(worksheet.Cells["AV27"].Text);
+                PDF_Data_IbnP_MRS.HZ23.Add(worksheet.Cells["AV29"].Text);
+                PDF_Data_IbnP_MRS.HZ23.Add(worksheet.Cells["AV31"].Text);
+                PDF_Data_IbnP_MRS.HZ24.Add(worksheet.Cells["AX27"].Text);
+                PDF_Data_IbnP_MRS.HZ24.Add(worksheet.Cells["AX29"].Text);
+                PDF_Data_IbnP_MRS.HZ24.Add(worksheet.Cells["AX31"].Text);
+                PDF_Data_IbnP_MRS.HZ25.Add(worksheet.Cells["AZ27"].Text);
+                PDF_Data_IbnP_MRS.HZ25.Add(worksheet.Cells["AZ29"].Text);
+                PDF_Data_IbnP_MRS.HZ25.Add(worksheet.Cells["AZ31"].Text);
+                PDF_Data_IbnP_MRS.HZ26.Add(worksheet.Cells["BB27"].Text);
+                PDF_Data_IbnP_MRS.HZ26.Add(worksheet.Cells["BB29"].Text);
+                PDF_Data_IbnP_MRS.HZ26.Add(worksheet.Cells["BB31"].Text);
+
+                //Extra Info for Heating and Cooling
+                PDF_Data_IbnP_MRS.Cooling_Feeding_Zone = worksheet.Cells["H34"].Text;
+                PDF_Data_IbnP_MRS.Screwcooling = worksheet.Cells["H36"].Text;
+                PDF_Data_IbnP_MRS.ChillerVacuum = worksheet.Cells["H38"].Text;
+                PDF_Data_IbnP_MRS.Remarks = worksheet.Cells["P34"].Text;
+
+                //Control MRS
+                PDF_Data_IbnP_MRS.Extruder = worksheet.Cells["E44"].Text;
+                PDF_Data_IbnP_MRS.Viscosimeter = worksheet.Cells["E47"].Text;
+                PDF_Data_IbnP_MRS.Vacuum_Control = worksheet.Cells["E49"].Text;
+                PDF_Data_IbnP_MRS.OtherFixParameterSettings = worksheet.Cells["AB44"].Text;
+            }
+            return PDF_Data_IbnP_MRS;
+        }
+        public string FormattedTimeSpanInHHMM(TimeSpan timeSpan)
+        {
+            return Math.Truncate(timeSpan.TotalHours).ToString("00") + ":" + timeSpan.Minutes.ToString("00");
         }
     }
 }

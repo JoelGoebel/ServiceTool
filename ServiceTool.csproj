@@ -208,6 +208,7 @@
       <DependentUpon>Inbetriebnahme_Protokoll.xaml</DependentUpon>
     </Compile>
     <Compile Include="IValidierbar.cs" />
+    <Compile Include="PDF_Data_IbnP_MRS.cs" />
     <Compile Include="PDF_Data_InbetriebnahmeProtokoll.cs" />
     <Compile Include="Service_Anforderung.xaml.cs">
       <DependentUpon>Service_Anforderung.xaml</DependentUpon>
