@@ -933,7 +933,7 @@
             <!--Zellen Prozessparameter Tabelle-->
             <!--Zeile Zeit-->
             <Border Grid.Column="1" Grid.Row="12" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <TextBox x:Name="TB_Zeit_1_ProPara" TabIndex="88"/>
+                <TextBox x:Name="TB_Zeit_1_ProPara" TabIndex="88" HorizontalAlignment="Right" Width="45"/>
             </Border>
             <Border Grid.Column="1" Grid.Row="14" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <TextBox x:Name="TB_Zeit_2_ProPara" TabIndex="110"/>
@@ -990,7 +990,7 @@
             <!--Zeile Drehzahl Extruder-->
             <!--Soll Bereich-->
             <Border Grid.Column="10" Grid.Row="12" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <TextBox x:Name="TB_Drehzahl_Soll_1_ProPara" TabIndex="92"/>
+                <TextBox x:Name="TB_Drehzahl_Soll_1_ProPara" TabIndex="92" HorizontalAlignment="Left" Width="45"/>
             </Border>
             <Border Grid.Column="10" Grid.Row="14" BorderBrush="Black" BorderThickness="0,0,1,1" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <TextBox x:Name="TB_Drehzahl_Soll_2_ProPara" TabIndex="114"/>

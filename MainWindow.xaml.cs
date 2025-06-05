@@ -2412,6 +2412,92 @@ namespace ServiceTool
                                 });
                             });
                         });
+                        page.Content().Column(column => 
+                        {
+                            column.Item().Row(row => 
+                            {
+                                row.RelativeItem().Text("Prozessparameter / Process parameters").FontSize(16).SemiBold().AlignCenter().Underline();
+                            });
+                            column.Item().Table(table => 
+                            {
+                                table.ColumnsDefinition(columns => 
+                                {
+                                    columns.ConstantColumn(15);  // Nr.
+                                    columns.ConstantColumn(25);  // Zeit
+                                    columns.ConstantColumn(38);  // Regelung\n\nein aus
+                                    columns.ConstantColumn(30);  // Pumpe
+                                    columns.ConstantColumn(46);  // Auslastung\n\n%°C
+                                    columns.ConstantColumn(35);  // Drehzahl \n\nsoll
+                                    columns.ConstantColumn(35);  // extruder\n\n minmax
+                                    columns.ConstantColumn(46);  // Auslastung\n\n%°C
+                                    columns.ConstantColumn(35);  // Vakuum\n\nsoll ist
+                                    columns.ConstantColumn(75);  // Viskosimeter\n\nViskosity scherung
+                                    columns.ConstantColumn(36);  // MP1\n\nn.Eintrag
+                                    columns.ConstantColumn(28);  // MP2\n\nn.MRS
+                                    columns.ConstantColumn(38);  // MP3\n\nn.Austrag
+                                    columns.ConstantColumn(36);  // MP4\n\nv.Pumpe
+                                    columns.ConstantColumn(25);  // MP5\n\nDüse
+                                    columns.ConstantColumn(70);  // (DoppelSpalte)Filter\nv.Filter n.Filter\n∆ P Filter
+                                    columns.ConstantColumn(32);  // Sieb-\nfeinheit
+                                    columns.ConstantColumn(43);  // Schnecken\n-kühlung\nist
+                                    columns.ConstantColumn(35);  // Einzug\n-kühlung\nist
+                                    columns.ConstantColumn(24);  // TM\nFilter
+                                    columns.ConstantColumn(23);  // TM\nVisko
+                                    columns.ConstantColumn(40);  // Durchsatz
+                                });
+                                table.Header(header => 
+                                {
+                                    header.Cell().Element(headerstyle).Text("Nr.").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Zeit").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Regelung\n\nEin/Aus").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Pumpe").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Auslastung\n\n%/°C").FontSize(8);
+                                    header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1).AlignCenter().AlignMiddle().BorderBottom(1).BorderTop(1).BorderLeft(1).Text("Drehzahl\n\nSoll/Mi").FontSize(8);
+                                    header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1).AlignCenter().AlignMiddle().BorderBottom(1).BorderTop(1).BorderRight(1).Text(" Extruder\n\nn/Max").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Auslastung\n\n%/°C").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Vakuum\n\nSoll/Ist").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Viskosimeter\n\nViskosity/Shear rate").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("MP1\n\nn.Eintrag").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("MP2\n\nn.MRS").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("MP3\n\nn.Austrag").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("MP4\n\nv.Pumpe").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("MP5\n\nDüse").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Filter\n\nv.Filter/n.Filter\n∆ P Filter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Sieb-\nfeinheit").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Schnecken\n-kühlung\nIst").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Einzug\n-kühlung\nIst").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("TM\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("TM\nVisko").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text("Durchsatz").FontSize(8);
+                                });
+                                for(int x = 0; x < 4; x++)
+                                {
+                                    table.Cell().Element(cellstyle).Text((x + 1).ToString()).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Time[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Control[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Pump[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Load[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Extruderspeed_Soll[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Extruderspeed_Min[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Load_2[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Vacuum[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Viscosimeter_Viscosity[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Viscosimeter_Shearrate[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MP1[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MP2[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MP3[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MP4[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.MP5[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Filter_P[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.FilterFineness[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Screwcooling[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Feedzone_Cooling[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.TM_Filter[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.TM_Visco[x]).FontSize(8);
+                                    table.Cell().Element(cellstyle).Text(pDF_Data.Throughput[x]).FontSize(8);
+                                }
+                            });
+                        });
                     });
                 });
                 Dokument.GeneratePdf(SavePath);
