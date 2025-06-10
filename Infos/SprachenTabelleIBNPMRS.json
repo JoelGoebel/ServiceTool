@@ -300,8 +300,14 @@
     "LBL_Names": "lbl_UnterschriftKunde"
   },
   {
-    "Deutsch": "Ort, Datum, Unterschrift Verfahrenstechnicker",
-    "Englisch": "Place, Date, Signature commissioner",
+    "Deutsch": "Unterschrift Verfahrenstechnicker",
+    "Englisch": "Signature commissioner",
     "LBL_Names": "lbl_Unterschriftverfahrenstechnicker"
-  } 
+  },
+  {
+    "Deutsch": "Ort, Datum",
+    "Englisch": "Place, Date",
+    "LBL_Names": "lbl_OrtDatumUnterschrift"
+  }
+
 ]

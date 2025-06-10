@@ -63,6 +63,9 @@ namespace ServiceTool
             public static TimeSpan FruehNacht = new TimeSpan(6, 0, 0);
             public static TimeSpan SpaetNacht = new TimeSpan(21, 0, 0);
             public static TimeSpan RegularStd = new TimeSpan(8, 30, 0);
-        }
+            
+            public static string LastSelectedItem_MRS { get; set; }
+
     }
+}
 

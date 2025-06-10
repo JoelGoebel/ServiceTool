@@ -309,7 +309,7 @@
 
             <!--Reihen Beschreibung-->
             <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="2" >
-                <Label Content="Bezeichnung" x:Name="lbl_Bezeichnung"/>
+                <Label Content="Bezeichnung" x:Name="lbl_Bezeichnung" Margin="1,0,-1,0"/>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1,0,1,1" Grid.Row="25" Grid.ColumnSpan="3" Grid.RowSpan="2" >
                 <Label Content="°C Ist-Wert" x:Name="lbl_IstWert_Temp"/>
@@ -1246,9 +1246,17 @@
             <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="51" Grid.ColumnSpan="18" Grid.Column="4" Grid.RowSpan="2">
                 <InkCanvas x:Name="ic_Unterschrift_Servicetechniker_ibnP_MRS" Grid.RowSpan="2" Height="60"/>
             </Border>
-            <Label Grid.Column="7" Grid.ColumnSpan="12" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_Unterschriftverfahrenstechnicker" Content="Ort, Datum, Unterschrift Verfahrenstechnicker" Background="#FF969696" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="7" Grid.ColumnSpan="12" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_Unterschriftverfahrenstechnicker" Content="Unterschrift Verfahrenstechnicker" Background="#FF969696" HorizontalContentAlignment="Center"/>
 
-            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="51" Grid.ColumnSpan="18" Grid.Column="30" Grid.RowSpan="2">
+            <Border BorderBrush="Black" BorderThickness="0,0,0,0" Grid.Row="51" Grid.ColumnSpan="8" Grid.Column="23" Grid.RowSpan="1">
+                <TextBox x:Name="tb_Place_Of_Signatures"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="52" Grid.ColumnSpan="8" Grid.Column="23" Grid.RowSpan="1">
+                <TextBox x:Name="tb_Date_Of_Signatures"/> 
+            </Border>
+            <Label Grid.Column="23" Grid.ColumnSpan="8" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_OrtDatumUnterschrift" Content="Ort, Datum" HorizontalContentAlignment="Center" Background="#FF969696"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,0,1.3" Grid.Row="51" Grid.ColumnSpan="18" Grid.Column="32" Grid.RowSpan="2">
                 <InkCanvas x:Name="ic_Unterschrift_Kunde_ibnP_MRS" Grid.RowSpan="2" Height="60"/>
             </Border>
             <Label Grid.Column="33" Grid.ColumnSpan="12" Grid.Row="53" FontWeight="Bold" FontSize="12" x:Name="lbl_UnterschriftKunde" Content="Unterschrift Kunde" HorizontalContentAlignment="Center" Background="#FF969696"/>

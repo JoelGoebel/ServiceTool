@@ -81,5 +81,8 @@ namespace ServiceTool
         public string Viscosimeter { get; set; }
         public string Vacuum_Control { get; set; }
         public string OtherFixParameterSettings { get; set; }
+
+        public string Place_Signature { get; set; }
+        public string Date_Signature { get; set; }
     }
 }

@@ -31,6 +31,7 @@ namespace ServiceTool
             {
                 _isInitialized = true;
             }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            GlobalVariables.LastSelectedItem_MRS = cb_SiteSwitchIbnP_MRS.SelectionBoxItem.ToString();
         }
 
         public void FillSiteSwitchComboBox()
@@ -92,10 +93,13 @@ namespace ServiceTool
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             string LastSelectedItem = cb_SiteSwitchIbnP_MRS.SelectionBoxItem.ToString();
+            GlobalVariables.LastSelectedItem_MRS = LastSelectedItem;
             string selectedItem = cb_SiteSwitchIbnP_MRS.SelectedItem.ToString();
             string selectedItemText = selectedItem.Substring(selectedItem.IndexOf(" ") + 1);
             string ExcelFilePathLoad = "";
             string ExcelFilePathSave = "";
+            string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureCustomer_MRS.png");
+            string ImagePath_Sign_Technican = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureEmployee_MRS.png");
 
 
             //Set ExcelfilePath for saving last Selected Site
@@ -103,21 +107,35 @@ namespace ServiceTool
             {
                 ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS.xlsx");
                 mainWindow.speichern(ExcelFilePathSave, "IbnP_MRS");
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Kunde_ibnP_MRS, ImagePath_Sign_Kunde);
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Servicetechniker_ibnP_MRS, ImagePath_Sign_Technican);
             }
             else if (LastSelectedItem == GlobalVariables.Maschiene_2 + " " + GlobalVariables.Baugroeße_2)
             {
                 ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS_2.xlsx");
                 mainWindow.speichern(ExcelFilePathSave, "IbnP_MRS");
+                ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureCustomer_MRS_2.png");
+                ImagePath_Sign_Technican = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureEmployee_MRS_2.png");
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Kunde_ibnP_MRS, ImagePath_Sign_Kunde);
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Servicetechniker_ibnP_MRS, ImagePath_Sign_Technican);
             }
             else if (LastSelectedItem == GlobalVariables.Maschiene_3 + " " + GlobalVariables.Baugroeße_3)
             {
                 ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS_3.xlsx");
                 mainWindow.speichern(ExcelFilePathSave, "IbnP_MRS");
+                ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureCustomer_MRS_3.png");
+                ImagePath_Sign_Technican = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureEmployee_MRS_3.png");
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Kunde_ibnP_MRS, ImagePath_Sign_Kunde);
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Servicetechniker_ibnP_MRS, ImagePath_Sign_Technican);
             }
             else if (LastSelectedItem == GlobalVariables.Maschiene_4 + " " + GlobalVariables.Baugroeße_4)
             {
                 ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Inbetriebnahme_Protokoll_MRS_4.xlsx");
                 mainWindow.speichern(ExcelFilePathSave, "IbnP_MRS");
+                ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureCustomer_MRS_4.png");
+                ImagePath_Sign_Technican = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Anhaenge\\Unterschriften\\ibnPSignatureEmployee_MRS_4.png");
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Kunde_ibnP_MRS, ImagePath_Sign_Kunde);
+                mainWindow.SaveSignatureAsImage(ic_Unterschrift_Servicetechniker_ibnP_MRS, ImagePath_Sign_Technican);
             }
             //Set ExcelfilePath for loading new Selected Site
             if (selectedItemText == "" || selectedItemText == GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1)
