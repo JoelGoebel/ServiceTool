@@ -1,0 +1,828 @@
+[
+  {
+    "Deutsch": "Stundennachweis",
+    "Englisch": "Service Visit report",
+    "VariableName": "ServiceVisitReport"
+  },
+  {
+    "Deutsch": "Kunde : ",
+    "Englisch": "Customer : ",
+    "VariableName": "Customer"
+  },
+  {
+    "Deutsch": "Ansprechpartner : ",
+    "Englisch": "Contact Person : ",
+    "VariableName": "ContactPerson"
+  },
+  {
+    "Deutsch": "Auftragsnummer : ",
+    "Englisch": "Order No. : ",
+    "VariableName": "OrderNo"
+  },
+  {
+    "Deutsch": "Datum : ",
+    "Englisch": "Date : ",
+    "VariableName": "Date"
+  },
+  {
+    "Deutsch": "Technican : ",
+    "Englisch": "Technicker : ",
+    "VariableName": "Technican"
+  },
+  {
+    "Deutsch": "Anschrift : ",
+    "Englisch": "Adress : ",
+    "VariableName": "Adress"
+  },
+  {
+    "Deutsch": "Reisezeit",
+    "Englisch": "Taveltime",
+    "VariableName": "TravelTime"
+  },
+  {
+    "Deutsch": "Verkehrsmittel : ",
+    "Englisch": "Means of transport : ",
+    "VariableName": "MeansOfTransport"
+  },
+  {
+    "Deutsch": "Datum Start",
+    "Englisch": "Date start",
+    "VariableName": "DateStart"
+  },
+  {
+    "Deutsch": "Zeit Start",
+    "Englisch": "Time start",
+    "VariableName": "TimeStart"
+  },
+  {
+    "Deutsch": "Datum Ende",
+    "Englisch": "Date end",
+    "VariableName": "DateEnd"
+  },
+  {
+    "Deutsch": "Zeit Ende",
+    "Englisch": "Time End",
+    "VariableName": "TimeEnd"
+  },
+  {
+    "Deutsch": "Pause",
+    "Englisch": "Break",
+    "VariableName": "Break"
+  },
+  {
+    "Deutsch": "Gesamt Dauer",
+    "Englisch": "Total time",
+    "VariableName": "TotalTime"
+  },
+  {
+    "Deutsch": "Anreise",
+    "Englisch": "Arrival",
+    "VariableName": "Arrival"
+  },
+  {
+    "Deutsch": "Abfahrt",
+    "Englisch": "Departure",
+    "VariableName": "Departure"
+  },
+  {
+    "Deutsch": "Bemerkung",
+    "Englisch": "Note",
+    "VariableName": "Note"
+  },
+  {
+    "Deutsch": "Normal Std.",
+    "Englisch": "Normal hours",
+    "VariableName": "Normalhours"
+  },
+  {
+    "Deutsch": "Überstunden",
+    "Englisch": "Overtime",
+    "VariableName": "OverTime"
+  },
+  {
+    "Deutsch": "Nachtarbeit",
+    "Englisch": "Nightwork",
+    "VariableName": "Nightwork"
+  },
+  {
+    "Deutsch": "Arbeitszeit",
+    "Englisch": "Working time",
+    "VariableName": "WorkingTime"
+  },
+  {
+    "Deutsch": "Summe",
+    "Englisch": "Sum",
+    "VariableName": "Sum"
+  },
+  {
+    "Deutsch": "Bericht",
+    "Englisch": "report",
+    "VariableName": "Report"
+  },
+  {
+    "Deutsch": "Schulung",
+    "Englisch": "Training",
+    "VariableName": "Training"
+  },
+  {
+    "Deutsch": "Aufbau",
+    "Englisch": "Setup",
+    "VariableName": "Setup"
+  },
+  {
+    "Deutsch": "Funktionsweise",
+    "Englisch": "Operatingprinciple",
+    "VariableName": "Operatingprinciple"
+  },
+  {
+    "Deutsch": "Abnahme",
+    "Englisch": "Acceptance",
+    "VariableName": "Acceptance"
+  },
+  {
+    "Deutsch": "Störungsbeseitigung",
+    "Englisch": "Troubleshooting",
+    "VariableName": "Troubleshooting"
+  },
+  {
+    "Deutsch": "Sicherheits Anweisungen",
+    "Englisch": "Safety instructions",
+    "VariableName": "SafetyInstructions"
+  },
+  {
+    "Deutsch": "Bedienung aller Anlagenteile",
+    "Englisch": "Operating of whole equipment",
+    "VariableName": "OperatingOfWholeEquipment"
+  },
+  {
+    "Deutsch": "Wartung",
+    "Englisch": "Maintenance",
+    "VariableName": "Maintenance"
+  },
+  {
+    "Deutsch": "Bewertung",
+    "Englisch": "Evaluation",
+    "VariableName": "Evaluation"
+  },
+  {
+    "Deutsch": "wie zufrieden sind sie mit dem Service?",
+    "Englisch": "How satisfied are you with the Service?",
+    "VariableName": "HowSatisfiedWithTheService"
+  },
+  {
+    "Deutsch": "wie zufrieden sind sie mit dem Gneuß-Support?",
+    "Englisch": "How satisfied with the Gneuß-Support?",
+    "VariableName": "HowSatisfiedWithTheSupport"
+  },
+  {
+    "Deutsch": "Unterschriften",
+    "Englisch": "Signatures",
+    "VariableName": "Signatures"
+  },
+  {
+    "Deutsch": "Maschinen abnahme gemäß Auftragsbestätigung",
+    "Englisch": "Machine acceptance according to order confirmation",
+    "VariableName": "MachineAcceptanceaccordingToOrderConfirmation"
+  },
+  {
+    "Deutsch": "Ort",
+    "Englisch": "Place",
+    "VariableName": "Place"
+  },
+  {
+    "Deutsch": "Inbetriebnahmeprotokoll MRS",
+    "Englisch": "Comissioning data sheet MRS",
+    "VariableName": "ComissioningDataSheetMRS"
+  },
+  {
+    "Deutsch": "Versuchsaufbau : ",
+    "Englisch": "Line configuration : ",
+    "VariableName": "Lineconfiguration"
+  },
+  {
+    "Deutsch": "Extruder Typ",
+    "Englisch": "Extrudertype",
+    "VariableName": "Extrudertype"
+  },
+  {
+    "Deutsch": "Serien Nr.",
+    "Englisch": "Serial No.",
+    "VariableName": "SerialNo"
+  },
+  {
+    "Deutsch": "End Produkt",
+    "Englisch": "Final product",
+    "VariableName": "FinalProduct"
+  },
+  {
+    "Deutsch": "Beschaffenheit",
+    "Englisch": "Shape",
+    "VariableName": "Shape"
+  },
+  {
+    "Deutsch": "Beheizung / Kühlung",
+    "Englisch": "Heating / Cooling",
+    "VariableName": "HeatingCooling"
+  },
+  {
+    "Deutsch": "Nr.",
+    "Englisch": "No.",
+    "VariableName": "No"
+  },
+  {
+    "Deutsch": "Bezeichnung",
+    "Englisch": "Designation",
+    "VariableName": "Designation"
+  },
+  {
+    "Deutsch": "°C Ist-Wert",
+    "Englisch": "°C actual value",
+    "VariableName": "TempActualValue"
+  },
+  {
+    "Deutsch": "°C Soll-Wert",
+    "Englisch": "°C set point",
+    "VariableName": "TempSetPoint"
+  },
+  {
+    "Deutsch": "Kühlung Einzug",
+    "Englisch": "Cooling feeding zone",
+    "VariableName": "CoolingFeedingZone"
+  },
+  {
+    "Deutsch": "Schneckenkühlung",
+    "Englisch": "Screw cooling",
+    "VariableName": "screwCooling"
+  },
+  {
+    "Deutsch": "Industriekühler / Vakuum",
+    "Englisch": "Chiller vacuum",
+    "VariableName": "ChillerVacuum"
+  },
+  {
+    "Deutsch": "Bemerkung",
+    "Englisch": "Remarks",
+    "VariableName": "Remarks"
+  },
+  {
+    "Deutsch": "Steuerung MRS",
+    "Englisch": "Control MRS",
+    "VariableName": "ControlMRS"
+  },
+  {
+    "Deutsch": "Regelung",
+    "Englisch": "Controlloops",
+    "VariableName": "ControlLoops"
+  },
+  {
+    "Deutsch": "Sonstige feste Einstellparameter",
+    "Englisch": "Othe fix parameters",
+    "VariableName": "OtherFixParameter"
+  },
+  {
+    "Deutsch": "Viskosimeter",
+    "Englisch": "Viscosimeter",
+    "VariableName": "Viscosimeter"
+  },
+  {
+    "Deutsch": "Vakuum",
+    "Englisch": "Vacuum",
+    "VariableName": "Vacuum"
+  },
+  {
+    "Deutsch": "Prozessparameter",
+    "Englisch": "Processparameter",
+    "VariableName": "Processparameter"
+  },
+  {
+    "Deutsch": "Zeit",
+    "Englisch": "Time",
+    "VariableName": "Time"
+  },
+  {
+    "Deutsch": "Regelung",
+    "Englisch": "Control",
+    "VariableName": "Control"
+  },
+  {
+    "Deutsch": "ein aus",
+    "Englisch": "on off",
+    "VariableName": "OnOff"
+  },
+  {
+    "Deutsch": "Pumpe",
+    "Englisch": "pump",
+    "VariableName": "Pump"
+  },
+  {
+    "Deutsch": "Auslastung",
+    "Englisch": "load",
+    "VariableName": "Load"
+  },
+  {
+    "Deutsch": "Drehzahl Extruder",
+    "Englisch": "Extruderspeed",
+    "VariableName": "ExtruderSpeed"
+  },
+  {
+    "Deutsch": "Soll",
+    "Englisch": "Set point",
+    "VariableName": "SetPoint"
+  },
+  {
+    "Deutsch": "Soll/Ist",
+    "Englisch": "Set / Act",
+    "VariableName": "SetAct"
+  },
+  {
+    "Deutsch": "Viskosität : ",
+    "Englisch": "viscosity : ",
+    "VariableName": "Viscosity"
+  },
+  {
+    "Deutsch": "Sherung",
+    "Englisch": "Shear rate",
+    "VariableName": "ShearRate"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "downstr.",
+    "VariableName": "downstr"
+  },
+  {
+    "Deutsch": "n. Eintrag",
+    "Englisch": "feed zone",
+    "VariableName": "FeedZone"
+  },
+  {
+    "Deutsch": "n.MRS",
+    "Englisch": "MRS",
+    "VariableName": "MRS"
+  },
+  {
+    "Deutsch": "n.Austrag",
+    "Englisch": "discharge",
+    "VariableName": "Discharge"
+  },
+  {
+    "Deutsch": " ",
+    "Englisch": "upstream",
+    "VariableName": "Upstream"
+  },
+  {
+    "Deutsch": "Pumpe",
+    "Englisch": "off pump",
+    "VariableName": "OffPump"
+  },
+  {
+    "Deutsch": "Düse",
+    "Englisch": "Die",
+    "VariableName": "Die"
+  },
+  {
+    "Deutsch": "v.Filter",
+    "Englisch": "upstr.Filter",
+    "VariableName": "upstrFilter"
+  },
+  {
+    "Deutsch": "n.Filter",
+    "Englisch": "downstr.Filter",
+    "VariableName": "downstrFilter"
+  },
+  {
+    "Deutsch": "Sieb",
+    "Englisch": "filter",
+    "VariableName": "Filter"
+  },
+  {
+    "Deutsch": "Feinheit",
+    "Englisch": "fineness",
+    "VariableName": "Fineness"
+  },
+  {
+    "Deutsch": "Schnecke",
+    "Englisch": "screw",
+    "VariableName": "screw"
+  },
+  {
+    "Deutsch": "Kühlung",
+    "Englisch": "Cooling",
+    "VariableName": "Cooling"
+  },
+  {
+    "Deutsch": "ist",
+    "Englisch": "actual",
+    "VariableName": "Actual"
+  },
+  {
+    "Deutsch": "Visko",
+    "Englisch": "visco",
+    "VariableName": "Visco"
+  },
+  {
+    "Deutsch": "Durchsatz",
+    "Englisch": "Throughput",
+    "VariableName": "Throughput"
+  },
+  {
+    "Deutsch": "Unterschrift Kunde",
+    "Englisch": "Signature Customer",
+    "VariableName": "SignatureCustomer"
+  },
+  {
+    "Deutsch": "Unterschrift Verfahrenstechnicker",
+    "Englisch": "Signature commissioner",
+    "VariableName": "SignatureCommissioner"
+  },
+  {
+    "Deutsch": "Ort,Datum",
+    "Englisch": "Place,Date",
+    "VariableName": "PlaceDate"
+  },
+  {
+    "Deutsch": "Inbetriebnahmeprotokoll",
+    "Englisch": "Commissioning data sheet",
+    "VariableName": "CommissioningDataSheet"
+  },
+  {
+    "Deutsch": "Filtertyp: ",
+    "Englisch": "Filtertype: ",
+    "VariableName": "Filtertype"
+  },
+  {
+    "Deutsch": "Vorspannung : ",
+    "Englisch": "pre loading",
+    "VariableName": "PreLoading"
+  },
+  {
+    "Deutsch": "Unterlegung ",
+    "Englisch": "shim packing ",
+    "VariableName": "ShimPacking"
+  },
+  {
+    "Deutsch": "Prozessparameter",
+    "Englisch": "Processingparameters",
+    "VariableName": "Processingparameters"
+  },
+  {
+    "Deutsch": "Druck P1",
+    "Englisch": "Pressure P1",
+    "VariableName": "PressureP1"
+  },
+  {
+    "Deutsch": "vor Filter",
+    "Englisch": "upstream",
+    "VariableName": "UpstreamVF"
+  },
+  {
+    "Deutsch": "Druck P2",
+    "Englisch": "Pressure P2",
+    "VariableName": "PressureP2"
+  },
+  {
+    "Deutsch": "nach Filter",
+    "Englisch": "downstream",
+    "VariableName": "Downstream"
+  },
+  {
+    "Deutsch": "Masse-",
+    "Englisch": "Melt",
+    "VariableName": "Melt"
+  },
+  {
+    "Deutsch": "Temp.",
+    "Englisch": "temperature",
+    "VariableName": "Temperature"
+  },
+  {
+    "Deutsch": "Siebe",
+    "Englisch": "Elements",
+    "VariableName": "Elements"
+  },
+  {
+    "Deutsch": "Rückspül-",
+    "Englisch": "Back-flush",
+    "VariableName": "BackFlush"
+  },
+  {
+    "Deutsch": "verlust",
+    "Englisch": "loss",
+    "VariableName": "loss"
+  },
+  {
+    "Deutsch": "RS Verlust",
+    "Englisch": "RS-Backflush",
+    "VariableName": "RSBackflush"
+  },
+  {
+    "Deutsch": "in %",
+    "Englisch": "loss",
+    "VariableName": "LossInPercent"
+  },
+  {
+    "Deutsch": "von Q",
+    "Englisch": "% of Q",
+    "VariableName": "PercentOfQ"
+  },
+  {
+    "Deutsch": "Hub",
+    "Englisch": "stroke",
+    "VariableName": "Stroke"
+  },
+  {
+    "Deutsch": "Länge",
+    "Englisch": "Length",
+    "VariableName": "Length"
+  },
+  {
+    "Deutsch": "Spül-",
+    "Englisch": "Backflush",
+    "VariableName": "Back_flush"
+  },
+  {
+    "Deutsch": "Druck",
+    "Englisch": "Pressure",
+    "VariableName": "pressure"
+  },
+  {
+    "Deutsch": "Antriebs-",
+    "Englisch": "Drive-",
+    "VariableName": "Drive"
+  },
+  {
+    "Deutsch": "kraft",
+    "Englisch": "force",
+    "VariableName": "force"
+  },
+  {
+    "Deutsch": "Vor-",
+    "Englisch": "Flooding",
+    "VariableName": "Flooding"
+  },
+  {
+    "Deutsch": "flutpin",
+    "Englisch": "pin",
+    "VariableName": "Pin"
+  },
+  {
+    "Deutsch": "Filtersteuerung",
+    "Englisch": "Screenchanger Control",
+    "VariableName": "ScreenchangerControl"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Screen",
+    "VariableName": "Screen"
+  },
+  {
+    "Deutsch": "Standzeit",
+    "Englisch": "Lifetime",
+    "VariableName": "LifeTime"
+  },
+  {
+    "Deutsch": "Flut-",
+    "Englisch": "Flooding",
+    "VariableName": "Flooding2"
+  },
+  {
+    "Deutsch": "Dauer",
+    "Englisch": "Time",
+    "VariableName": "TimeD"
+  },
+  {
+    "Deutsch": "Pause 1",
+    "Englisch": "P.between",
+    "VariableName": "PBetween"
+  },
+  {
+    "Deutsch": "n.1.Nest",
+    "Englisch": "br.Plates",
+    "VariableName": "brPlates"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Set",
+    "VariableName": "Set"
+  },
+  {
+    "Deutsch": "Soll-Druck",
+    "Englisch": "Set",
+    "VariableName": "Pressure"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Min.",
+    "VariableName": "Min"
+  },
+  {
+    "Deutsch": "Min.Druck",
+    "Englisch": "pressure",
+    "VariableName": "PressureMin"
+  },
+  {
+    "Deutsch": "Betriebs-",
+    "Englisch": "Mode of",
+    "VariableName": "ModeOf"
+  },
+  {
+    "Deutsch": "art",
+    "Englisch": "Operation",
+    "VariableName": "Operation"
+  },
+  {
+    "Deutsch": "Korrekte Funktion der Steuerung",
+    "Englisch": "Correct operation control system",
+    "VariableName": "CorrectOperationControlSystem"
+  },
+  {
+    "Deutsch": "d Blech",
+    "Englisch": "d sheet",
+    "VariableName": "dSheet"
+  },
+  {
+    "Deutsch": "Siebscheibendrehung",
+    "Englisch": "disc rotation",
+    "VariableName": "discRotation"
+  },
+  {
+    "Deutsch": "Antriebskraftmessung",
+    "Englisch": "drive load measurement",
+    "VariableName": "DriveLoadMeasurement"
+  },
+  {
+    "Deutsch": "hub Schußkolben",
+    "Englisch": "backflush stroke length",
+    "VariableName": "BackFlushStrokeLength"
+  },
+  {
+    "Deutsch": "A.-Hub",
+    "Englisch": "W.Stroke",
+    "VariableName": "WStroke"
+  },
+  {
+    "Deutsch": "L.-Hub",
+    "Englisch": "R.Stroke",
+    "VariableName": "RStroke"
+  },
+  {
+    "Deutsch": "Takt-",
+    "Englisch": "Cycle-",
+    "VariableName": "Cycle"
+  },
+  {
+    "Deutsch": "*A.-Hub",
+    "Englisch": "*W.Stroke",
+    "VariableName": "WStroke2"
+  },
+  {
+    "Deutsch": "*L.-Hub",
+    "Englisch": "*R.Stroke",
+    "VariableName": "RStroke2"
+  },
+  {
+    "Deutsch": "S.-Kolben",
+    "Englisch": "P.piston",
+    "VariableName": "PPiston"
+  },
+  {
+    "Deutsch": "vor",
+    "Englisch": "forward",
+    "VariableName": "Forward"
+  },
+  {
+    "Deutsch": "zurück",
+    "Englisch": "backwards",
+    "VariableName": "Backwards"
+  },
+  {
+    "Deutsch": "*S.-Kolben",
+    "Englisch": "*P.Piston",
+    "VariableName": "PPiston2"
+  },
+  {
+    "Deutsch": "vor",
+    "Englisch": "forward",
+    "VariableName": "Forward2"
+  },
+  {
+    "Deutsch": "Anzahl",
+    "Englisch": "Number",
+    "VariableName": "Number"
+  },
+  {
+    "Deutsch": "Siebe",
+    "Englisch": "Filterele.",
+    "VariableName": "FilterEle"
+  },
+  {
+    "Deutsch": "Takte/ ",
+    "Englisch": "strokes",
+    "VariableName": "Strokes"
+  },
+  {
+    "Deutsch": "Umdreh.",
+    "Englisch": "Revolt",
+    "VariableName": "Revolt"
+  },
+  {
+    "Deutsch": "Schusskolben %",
+    "Englisch": "Purging Piston %",
+    "VariableName": "PurgingPiston"
+  },
+  {
+    "Deutsch": "Vorflut-",
+    "Englisch": "Flooding",
+    "VariableName": "Flooding3"
+  },
+  {
+    "Deutsch": "Vorflut-",
+    "Englisch": "Fl.time",
+    "VariableName": "FlTime"
+  },
+  {
+    "Deutsch": "Filter",
+    "Englisch": "Set",
+    "VariableName": "Set2"
+  },
+  {
+    "Deutsch": "Vor/Diff",
+    "Englisch": "pre/diff",
+    "VariableName": "PreDiff"
+  },
+  {
+    "Deutsch": "Maß A",
+    "Englisch": "dim. A",
+    "VariableName": "DimA"
+  },
+  {
+    "Deutsch": "Stellung",
+    "Englisch": "pistoncross",
+    "VariableName": "PistonCross"
+  },
+  {
+    "Deutsch": "Rampe",
+    "Englisch": "Section",
+    "VariableName": "Section"
+  },
+  {
+    "Deutsch": "Ø Ablauf -",
+    "Englisch": "Ø melt dis-",
+    "VariableName": "MeltDis"
+  },
+  {
+    "Deutsch": "düse(mm)",
+    "Englisch": "charge(mm)",
+    "VariableName": "ChargeMM"
+  },
+  {
+    "Deutsch": "Spitzenwerte als Fotoanhang dokumentiert",
+    "Englisch": "The maximum values are documented in the photo attachment",
+    "VariableName": "MaxValueDocumentedAsPhoto"
+  },
+  {
+    "Deutsch": "Temperaturprofil in Extrusionsrichtung",
+    "Englisch": "Temperatureprofile in extrusion direction",
+    "VariableName": "TempProfilInExtrusionsDirection"
+  },
+  {
+    "Deutsch": "Nein,weil:",
+    "Englisch": "No,because:",
+    "VariableName": "NoBecause"
+  },
+  {
+    "Deutsch": "Ja     ",
+    "Englisch": "Yes    ",
+    "VariableName": "Yes"
+  },
+  {
+    "Deutsch": "Kundentemperaturmessung (Blocktemperatur) korrekt",
+    "Englisch": "Customer's temperature measurement (block temperature) is correct",
+    "VariableName": "KundenTempMessung"
+  },
+  {
+    "Deutsch": "Druckabschaltung Filtervordruck überprüft/getestet",
+    "Englisch": "Pressure cutoff pre pressure filter checked/tested",
+    "VariableName": "PressureCutoff"
+  },
+  {
+    "Deutsch": "Eingestellt auf",
+    "Englisch": "Set to",
+    "VariableName": "SetTo"
+  },
+  {
+    "Deutsch": "Abschaltung elektrisch         ",
+    "Englisch": "Electric cutoff               ",
+    "VariableName": "ElectricCutoff"
+  },
+  {
+    "Deutsch": "  mechanisch         ",
+    "Englisch": "  mechanic cutoff         ",
+    "VariableName": "MechanicCutoff"
+  },
+  {
+    "Deutsch": "Keine Abschaltung(Kunde geschult)",
+    "Englisch": "no cutoff(customer is trained)",
+    "VariableName": "NoCutoff"
+  }
+
+]

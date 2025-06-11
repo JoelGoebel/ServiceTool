@@ -162,6 +162,9 @@
   <data name="Pfad_AuftragsOrdner_On" xml:space="preserve">
     <value>\\file02.oeynhausen.gneuss.de\global$\ServiceAuftragsTool\{0}</value>
   </data>
+  <data name="Pfad_LanguageForPDF" xml:space="preserve">
+    <value>Infos\LanguagesForPDF.json</value>
+  </data>
   <data name="Pfad_Signatures_On" xml:space="preserve">
     <value>\\file02.oeynhausen.gneuss.de\global$\ServiceAuftragsTool\{0}\Anhaenge\Unterschriften</value>
   </data>

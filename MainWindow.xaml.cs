@@ -1,27 +1,28 @@
-﻿using OfficeOpenXml;
-using System;
-using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Windows.Threading;
-using System.Windows.Media.TextFormatting;
-using System.Runtime.DesignerServices;
-using System.Data.SqlClient;
-using System.Windows.Controls.Primitives;
-using System.Net.NetworkInformation;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
-using static ServiceTool.MainWindow;
+﻿using Newtonsoft.Json;
+using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateAndTime.Workdays;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.DateAndTime.Workdays;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Reflection;
+using System.Runtime.DesignerServices;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
+using System.Windows.Threading;
+using static ServiceTool.MainWindow;
+using Excel = Microsoft.Office.Interop.Excel;
 
 //TODO-List
 // Deutsch Englisch gegenenfalls für den rest auch noch einbauen
@@ -1113,16 +1114,58 @@ namespace ServiceTool
         private void Creat_PDF_Dokuments(object sender, EventArgs e) 
         {
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
+            EngDe_For_PDF Translations = GetLanguageDataForPDF(); //Lade die Übersetzungen für die PDF Dokumente
+            int LanguageNumber = 0; // Variable um die Sprache zu bestimmen, 0 = Deutsch, 1 = Englisch
+            if (GlobalVariables.Sprache_Kunde == "Deutsch")
+            {
+                LanguageNumber = 1;
+            }
+            else
+            {
+                LanguageNumber = 0;
+            }
+                //Hier werden alle PDF ersellungen getrigerd
+            Create_PDF_Of_Stundennachweis(Translations, LanguageNumber);//TODO wieder aktivieren wenn PDF fertig ist
+            Create_PDF_Of_Inbetriebnahmeprotokoll(Translations, LanguageNumber);
+            Create_PDF_Of_IbnP_MRS(Translations, LanguageNumber);
+        }
+        
+        public EngDe_For_PDF GetLanguageDataForPDF()
+        {
+            string json = File.ReadAllText(Properties.Resources.Pfad_LanguageForPDF);
+        
+            List<TranslationEntryPDF> sprachtabelleEntries = JsonConvert.DeserializeObject<List<TranslationEntryPDF>>(json);
+            EngDe_For_PDF engDe_For_PDF = new EngDe_For_PDF();
 
-            //Hier werden alle PDF ersellungen getrigerd
-            Create_PDF_Of_Stundennachweis();//TODO wieder aktivieren wenn PDF fertig ist
-            Create_PDF_Of_Inbetriebnahmeprotokoll();
-            Create_PDF_Of_IbnP_MRS();
+            foreach(TranslationEntryPDF entry in sprachtabelleEntries)
+            {
+                // Suche Property mit passendem Namen
+                PropertyInfo property = typeof(EngDe_For_PDF).GetProperty(entry.VariableName);
+
+                if (entry.VariableName == "SignatureCutsomer" )
+                {
+                    Console.WriteLine("wambo");
+                }
+
+                if (property != null && property.PropertyType == typeof(List<string>))
+                {
+                    // Hole die Liste aus der Property
+                    var list = (List<string>)property.GetValue(engDe_For_PDF);
+
+                    // Füge die Werte hinzu
+                    list.Add(entry.Deutsch);
+                    list.Add(entry.Englisch);
+                }
+                else
+                {
+                    Console.WriteLine($"Warnung: Property '{entry.VariableName}' nicht gefunden oder falscher Typ!");
+                }
+            }
+
+            return engDe_For_PDF;
         }
 
-        private void Create_PDF_Of_Stundennachweis()
-
-
+        private void Create_PDF_Of_Stundennachweis(EngDe_For_PDF Translations, int LanguageNumber)
         {
             Stundennachweis_PDF_Data pDF_Data = GetDataForPDF_StdN();
             QuestPDF.Settings.License = LicenseType.Community;
@@ -1139,7 +1182,7 @@ namespace ServiceTool
                     {
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Stundennachweis\nService visit report").FontSize(27).Bold();
+                            row.RelativeItem().Text(Translations.ServiceVisitReport[LanguageNumber]).FontSize(27).Bold();
 
                             row.ConstantItem(100)
                             .AlignRight()
@@ -1151,17 +1194,17 @@ namespace ServiceTool
                         {
                             row.RelativeItem().Column(col=>
                             {
-                                col.Item().Text("Auftragsnummer : " + GlobalVariables.AuftragsNR).FontSize(12);
-                                col.Item().Text("Kunde/Customer : " + pDF_Data.Customer).FontSize(12);
-                                col.Item().Text("Contact person : " + pDF_Data.ContactPerson).FontSize(12);
+                                col.Item().Text(Translations.OrderNo[LanguageNumber] + GlobalVariables.AuftragsNR).FontSize(12);
+                                col.Item().Text(Translations.Customer[LanguageNumber] + pDF_Data.Customer).FontSize(12);
+                                col.Item().Text(Translations.ContactPerson[LanguageNumber] + pDF_Data.ContactPerson).FontSize(12);
                             });
 
 
                             row.RelativeItem().AlignRight().Column(col =>
                             {
-                                col.Item().Text("Datum : " + DateTime.Now.ToString("dd.MM.yyyy")).FontSize(12);
-                                col.Item().Text("Techniker : " + pDF_Data.ServiceTechnician).FontSize(12);
-                                col.Item().Text("Anschrift : " + pDF_Data.Adress1).FontSize(12);
+                                col.Item().Text(Translations.Date[LanguageNumber] + DateTime.Now.ToString("dd.MM.yyyy")).FontSize(12);
+                                col.Item().Text(Translations.Technican[LanguageNumber] + pDF_Data.ServiceTechnician).FontSize(12);
+                                col.Item().Text(Translations.Adress[LanguageNumber] + pDF_Data.Adress1).FontSize(12);
                                 col.Item().Text("                 " + pDF_Data.Adress2).FontSize(12);
                             });                            
                         });
@@ -1187,14 +1230,14 @@ namespace ServiceTool
                     {
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Reisezeit/ Traveltime").FontSize(20).AlignCenter();
+                            row.RelativeItem().Text(Translations.TravelTime[LanguageNumber]).FontSize(20).AlignCenter();
                         });
 
                         column.Spacing(5);
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Verkehrsmittel/Means of Transport : " + pDF_Data.meansofTransport).FontSize(12).AlignCenter();
+                            row.RelativeItem().Text(Translations.MeansOfTransport[LanguageNumber] + pDF_Data.meansofTransport).FontSize(12).AlignCenter();
                         });
 
                         column.Spacing(5);
@@ -1228,18 +1271,18 @@ namespace ServiceTool
                             table.Header(header =>
                             {
                                 header.Cell().Text("   ").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Datum/Date Start").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Time Start").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Datum/Date End").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Time End").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Pause/Break").FontSize(14);
-                                header.Cell().Element(headerstyle).Text("Total Time").FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.DateStart[LanguageNumber]).FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.TimeStart[LanguageNumber]).FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.DateEnd[LanguageNumber]).FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.TimeEnd[LanguageNumber]).FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.Break[LanguageNumber]).FontSize(14);
+                                header.Cell().Element(headerstyle).Text(Translations.TotalTime[LanguageNumber]).FontSize(14);
                                 header.Cell().Element(headerstyle).Text("Kilometer").FontSize(14);
                             });
 
                             
 
-                            table.Cell().Element(cellstyle).Text("Anreise").FontSize(12);
+                            table.Cell().Element(cellstyle).Text(Translations.Arrival[LanguageNumber]).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.DateArrivalStart).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.TimeArrivalStart).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.DateArrivalEnd).FontSize(12);
@@ -1248,7 +1291,7 @@ namespace ServiceTool
                             table.Cell().Element(cellstyle).Text(pDF_Data.TotalTimeArrival).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.TotalKilometersArrival).FontSize(12);
 
-                            table.Cell().Element(cellstyle).Text("Abfahrt").FontSize(12);
+                            table.Cell().Element(cellstyle).Text(Translations.Departure[LanguageNumber]).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.DateDepartureStart).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.TimeDepartureStart).FontSize(12);
                             table.Cell().Element(cellstyle).Text(pDF_Data.DateDepartureEnd).FontSize(12);
@@ -1264,7 +1307,7 @@ namespace ServiceTool
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Arbeitszeit / Working time ").FontSize(20).AlignCenter();
+                            row.RelativeItem().Text(Translations.WorkingTime[LanguageNumber]).FontSize(20).AlignCenter();
                         });
 
                         column.Spacing(5);
@@ -1286,15 +1329,15 @@ namespace ServiceTool
 
                             table.Header(header =>
                             {
-                                header.Cell().Element(headerstyle).Text("Datum/Date").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Time Start").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Time End").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Pause/Break").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Note").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Normal std.").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("overtime").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Nightwork").FontSize(12);
-                                header.Cell().Element(headerstyle).Text("Total Time").FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.Date[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.TimeStart[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.TimeEnd[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.Break[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.Note[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.Normalhours[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.OverTime[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.Nightwork[LanguageNumber]).FontSize(12);
+                                header.Cell().Element(headerstyle).Text(Translations.TotalTime[LanguageNumber]).FontSize(12);
                             });
 
                             foreach(StundenTabellenEintrag workday in pDF_Data.Arbeitszeit)
@@ -1341,7 +1384,7 @@ namespace ServiceTool
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text(" Bericht / report ").FontSize(20).AlignCenter();
+                            row.RelativeItem().Text(Translations.Report[LanguageNumber]).FontSize(20).AlignCenter();
                         });
 
                         column.Spacing(5);
@@ -1351,7 +1394,10 @@ namespace ServiceTool
                             string allReports = "";
                             for (int i = 0; i < countReports; i++)
                             {
-                                allReports += $"Woche " + (i+1) + ":\n" + pDF_Data.Report[i] + "\n";
+                                if(LanguageNumber == 0) // Deutsch
+                                    allReports += $"Woche {i+1}:\n" + pDF_Data.Report[i] + "\n";
+                                else // Englisch
+                                    allReports += $"Week " + (i+1) + ":\n" + pDF_Data.Report[i] + "\n";
                             }
                             row.RelativeItem().Text(allReports);
                         });
@@ -1360,7 +1406,7 @@ namespace ServiceTool
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Schulung / Training").FontSize(20).AlignCenter();
+                            row.RelativeItem().Text(Translations.Training[LanguageNumber]).FontSize(20).AlignCenter();
                         });
 
                         column.Spacing(5);
@@ -1369,20 +1415,20 @@ namespace ServiceTool
                         column.Item().Row(row => {
                             row.AutoItem().Column(col =>
                             {
-                                col.Item().Text(pDF_Data.SetupAufbau + " Setup/Aufbau").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.OperatingPrinciple + " Operating principle/Funktionsweise").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.BriefingControlSystem + " Abnahme/Acceptance").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.Sonstiges + " Schulung/Training").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.SetupAufbau + Translations.Setup[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.OperatingPrinciple + Translations.Operatingprinciple[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.BriefingControlSystem + Translations.Acceptance[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.Sonstiges + Translations.Training[LanguageNumber]).FontSize(10).AlignLeft();
                             });
 
                             row.Spacing(50);
 
                             row.RelativeItem().Column(col =>
                             {
-                                col.Item().Text(pDF_Data.Troubleshooting + " Troubleshooting/Störungsbeseitigung").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.OperationOfWholeEquipment + " Operating of whole Equipment/Bedienung aller Anlagenteile").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.SafetyInstructions + " Safety instructions/Acceptance").FontSize(10).AlignLeft();
-                                col.Item().Text(pDF_Data.Sonstiges + " Maintenance/Wartung").FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.Troubleshooting + Translations.Troubleshooting[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.OperationOfWholeEquipment + Translations.OperatingOfWholeEquipment[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.SafetyInstructions + Translations.SafetyInstructions[LanguageNumber]).FontSize(10).AlignLeft();
+                                col.Item().Text(pDF_Data.Sonstiges + Translations.Maintenance[LanguageNumber]).FontSize(10).AlignLeft();
                             });
                         });
 
@@ -1390,7 +1436,7 @@ namespace ServiceTool
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Evaluation / Bewertung").FontSize(20).AlignCenter();
+                            row.RelativeItem().Text(Translations.Evaluation[LanguageNumber]).FontSize(20).AlignCenter();
                         });
 
                         column.Spacing(5);
@@ -1400,11 +1446,9 @@ namespace ServiceTool
                         {
                             row.AutoItem().Column(col =>
                             { 
-                                col.Item().Text("Wie zufrieden sind Sie mit dem Service?").FontSize(10).AlignLeft();
-                                col.Item().Text("How satisfied are you with the service?").FontSize(10).AlignLeft();
+                                col.Item().Text(Translations.HowSatisfiedWithTheService[LanguageNumber]).FontSize(10).AlignLeft();
                                 col.Item().Text(" ").FontSize(10).AlignLeft();
-                                col.Item().Text("Wie zufrieden sind Sie mit dem Gneuß-Support?").FontSize(10).AlignLeft();
-                                col.Item().Text("How satisfied are you with the Gneuß support?").FontSize(10).AlignLeft();
+                                col.Item().Text(Translations.HowSatisfiedWithTheSupport[LanguageNumber]).FontSize(10).AlignLeft();
                             });
 
                             row.Spacing(15);
@@ -1438,15 +1482,11 @@ namespace ServiceTool
 
                         column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
-                        column.Item().Text("Unterschriften / Signatures").FontSize(20).AlignCenter();
+                        column.Item().Text(Translations.Signatures[LanguageNumber]).FontSize(20).AlignCenter();
 
                         column.Item().Row(row =>
                         {
-                            row.RelativeItem().Text("Maschinenabnahme gemäß Auftragsbestätigung").FontSize(10).AlignCenter();
-                        });
-                        column.Item().Row(row =>
-                        {                            
-                            row.RelativeItem().Text("Machine acceptance according to order confirmation").FontSize(10).AlignCenter();
+                            row.RelativeItem().Text(Translations.MachineAcceptanceaccordingToOrderConfirmation[LanguageNumber]).FontSize(10).AlignCenter();
                         });
 
                         column.Item().Row(row =>
@@ -1454,19 +1494,19 @@ namespace ServiceTool
                             row.AutoItem().Border(1).Column(col =>
                             {
                                 col.Spacing(0);
-                                col.Item().Width(135).Height(25).Border(1).AlignMiddle().Text("Place / Ort").FontSize(12).AlignCenter();
+                                col.Item().Width(135).Height(25).Border(1).AlignMiddle().Text(Translations.Place[LanguageNumber]).FontSize(12).AlignCenter();
                                 col.Item().Width(135).Height(40).Border(1).Text(pDF_Data.PlaceCustomerSignature).FontSize(10).AlignCenter();                                
                             });
                             row.AutoItem().Column(col =>
                             {
-                                col.Item().Width(115).Height(25).Border(1).AlignMiddle().Text("Date / Datum").FontSize(12).AlignCenter();
+                                col.Item().Width(115).Height(25).Border(1).AlignMiddle().Text(Translations.PlaceDate[LanguageNumber]).FontSize(12).AlignCenter();
                                 col.Item().Width(115).Height(40).Border(1).Text(pDF_Data.Date_Technican_Signature).FontSize(10).AlignCenter();
 
                             });
                             row.AutoItem().Column(col =>
                             {
                                 string imagepath_sign_technican = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureemployee.png");
-                                col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Techniker /  Technician").FontSize(12).AlignCenter();
+                                col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(Translations.Technican[LanguageNumber]).FontSize(12).AlignCenter();
                                 if(File.Exists(imagepath_sign_technican))col.Item().Width(265).Height(40).Border(1).AlignRight().Image(imagepath_sign_technican);
                             });
                         });
@@ -1475,20 +1515,20 @@ namespace ServiceTool
                             row.AutoItem().Column(col =>
                             {                                
                                 col.Spacing(0);
-                                col.Item().Width(135).Height(25).Border(1).AlignMiddle().Text("Place / Ort").FontSize(12).AlignCenter();
+                                col.Item().Width(135).Height(25).Border(1).AlignMiddle().Text(Translations.Place[LanguageNumber]).FontSize(12).AlignCenter();
                                 col.Item().Width(135).Height(40).Border(1).Text(pDF_Data.PlaceCustomerSignature).FontSize(10).AlignCenter();
 
                             });
                             
                             row.AutoItem().Column(col =>
                             {
-                                col.Item().Width(115).Height(25).Border(1).AlignMiddle().Text("Date / Datum").FontSize(12).AlignCenter();
+                                col.Item().Width(115).Height(25).Border(1).AlignMiddle().Text(Translations.Date[LanguageNumber]).FontSize(12).AlignCenter();
                                 col.Item().Width(115).Height(40).Border(1).Text(pDF_Data.Date_Customer_Signature).FontSize(10).AlignCenter();
                             });
                             row.AutoItem().Column(col =>
                             {
                                 string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "StdNSignatureCustomer.png");
-                                col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
+                                col.Item().Width(265).Height(25).Border(1).AlignMiddle().Text(Translations.Customer[LanguageNumber]).FontSize(12).AlignCenter();
                                 if (File.Exists(ImagePath_Sign_Kunde)) col.Item().Width(265).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
                             });
 
@@ -1649,7 +1689,7 @@ namespace ServiceTool
             return PDF_Data;
         }
 
-        public void Create_PDF_Of_Inbetriebnahmeprotokoll()
+        public void Create_PDF_Of_Inbetriebnahmeprotokoll(EngDe_For_PDF Translations, int LanguageNumber)
         {
             int NumberOfIbnP = 0;
             string ExcelFilePath = "";
@@ -1707,7 +1747,7 @@ namespace ServiceTool
                             column.Spacing(5);
                             column.Item().Row(row =>
                             {
-                                row.RelativeItem().Text("Inbetriebnahmeprotokoll\nCommissioning protocol").FontSize(20).SemiBold().AlignCenter();
+                                row.RelativeItem().Text(Translations.CommissioningDataSheet[LanguageNumber]).FontSize(20).SemiBold().AlignCenter();
                                 row.ConstantItem(100)
                                 .AlignRight()
                                 .Image("Bilder/gneuss_png_1.png");
@@ -1735,23 +1775,23 @@ namespace ServiceTool
                             {
                                 row.RelativeItem().Column(col =>
                                 {
-                                    col.Item().Text("Kunde / Customer: " + pDF_Data.Customer).FontSize(12).AlignLeft();
-                                    col.Item().Text("Ansprechpartner / Contact person: " + pDF_Data.ContactPerson).FontSize(12).AlignLeft();
-                                    col.Item().Text("Auftrags-Nr. / Order No.: " + GlobalVariables.AuftragsNR).FontSize(12).AlignLeft();
-                                    col.Item().Text("Serien Nr. / Serial No.: " + pDF_Data.SerialNumber).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.Customer[LanguageNumber] + pDF_Data.Customer).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.ContactPerson[LanguageNumber] + pDF_Data.ContactPerson).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.OrderNo[LanguageNumber] + GlobalVariables.AuftragsNR).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.SerialNo[LanguageNumber] + pDF_Data.SerialNumber).FontSize(12).AlignLeft();
                                 });
                                 row.RelativeItem().Column(col =>
                                 {
-                                    col.Item().Text("Filtertyp: " + pDF_Data.FilterType).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.Filtertype[LanguageNumber] + pDF_Data.FilterType).FontSize(12).AlignLeft();
                                     col.Item().Text("Material: " + pDF_Data.Material).FontSize(12).AlignLeft();
-                                    col.Item().Text("Viskosität: " + pDF_Data.Viscosity).FontSize(12).AlignLeft();
-                                    column.Item().Text("Maschinenkonfiguration / Line configuration: ").FontSize(12).AlignRight();
+                                    col.Item().Text(Translations.Viscosity[LanguageNumber] + pDF_Data.Viscosity).FontSize(12).AlignLeft();
+                                    column.Item().Text(Translations.Lineconfiguration[LanguageNumber]).FontSize(12).AlignRight();
                                 });
                                 row.RelativeItem().Column(col =>
                                 {
-                                    col.Item().Text("Vorspannung: " + pDF_Data.Preloading).FontSize(12).AlignLeft();
-                                    col.Item().Text("Shimpacking LR: " + pDF_Data.ShimpackingLR).FontSize(12).AlignLeft();
-                                    col.Item().Text("Shimpacking ZP: " + pDF_Data.ShimpackingZP).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.PreLoading[LanguageNumber] + pDF_Data.Preloading).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.ShimPacking[LanguageNumber] + "LR: " + pDF_Data.ShimpackingLR).FontSize(12).AlignLeft();
+                                    col.Item().Text(Translations.ShimPacking[LanguageNumber] + "ZP: " + pDF_Data.ShimpackingZP).FontSize(12).AlignLeft();
                                     column.Item().Text(pDF_Data.LineConfiguration).FontSize(12).AlignLeft();
                                 });
                                 
@@ -1759,7 +1799,7 @@ namespace ServiceTool
 
                             column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
-                            column.Item().AlignCenter().Text("Prozessparameter / Process parameters").FontSize(16).Underline();
+                            column.Item().AlignCenter().Text(Translations.Processingparameters[LanguageNumber]).FontSize(16).Underline();
 
                             column.Item().PreventPageBreak().Table(table =>
                             {
@@ -1785,21 +1825,21 @@ namespace ServiceTool
                                 table.Header(header =>
                                 {
                                     header.Cell().Element(headerstyle).Text("lfd.\nNr.\n").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("DruckP1\nvor Fi\n(bar)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("DruckP2\nnach Fi\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text( Translations.PressureP1[LanguageNumber] + "\n" + Translations.UpstreamVF[LanguageNumber] + "\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.PressureP1[LanguageNumber] + "\n" + Translations.Downstream[LanguageNumber]+ "\n(bar)").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Δp\n \n(bar)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Masse\nTemp.\ntm(°C)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Melt[LanguageNumber] + "\n"+Translations.Temperature[LanguageNumber] + "\ntm(°C)").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("n\nExtruder\n(1/min)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Pumpe\n \n(1/min)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Pump[LanguageNumber] + "\n \n(1/min)").FontSize(8);
                                     header.Cell().Element(headerstyle).Text("Q\n \n(kg/h)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Siebe\n \n(µm)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Rückspül\nverlust\n1x(gr)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Rückspül\nverlust\n10x(gr)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("RS Verlust\nin %\nvon Q").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Hub\nlänge\n(mm)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Spül-\ndruck\n(bar)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Antrieb\n \n(bar/kN)").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Vor-\nflutpin\n(mm)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Elements[LanguageNumber] + "\n \n(µm)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.BackFlush[LanguageNumber] + "\n" + Translations.loss[LanguageNumber] + "\n1x(gr)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.BackFlush[LanguageNumber] + "\n" + Translations.loss[LanguageNumber] + "\n10x(gr)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.RSBackflush[LanguageNumber] + "\n" + Translations.LossInPercent[LanguageNumber] + "\n" + Translations.PercentOfQ[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Stroke[LanguageNumber] + "\n" + Translations.Length[LanguageNumber] + "\n(mm)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Back_flush[LanguageNumber] + "\n" + Translations.pressure[LanguageNumber] + "\n(bar)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Drive[LanguageNumber] + "\n" + Translations.force[LanguageNumber] + "\n(bar/kN)").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Flooding[LanguageNumber] + "\n" + Translations.Pin[LanguageNumber] + "\n(mm)").FontSize(8);
                                 });
                                 for (int x = 0; x < 4; x++)
                                 {
@@ -1824,7 +1864,7 @@ namespace ServiceTool
 
                             column.Item().PaddingVertical(3).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
-                            column.Item().AlignCenter().Text("Filtersteuerung / Screenchanger control").FontSize(16).Underline();
+                            column.Item().AlignCenter().Text(Translations.ScreenchangerControl[LanguageNumber]).FontSize(16).Underline();
                             column.Spacing(5);
 
                             column.Item().PreventPageBreak().Table(table =>
@@ -1851,17 +1891,17 @@ namespace ServiceTool
                                 table.Header(header =>
                                 {
                                     header.Cell().Element(headerstyle).Text("RSF Normal\n*Fast Betrieb").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("A.-Hub\nFilter").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("L.-Hub\nFilter").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Taktzeit\n ").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("*A.-Hub\nFilter").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("*L.-Hub\nFilter").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("S.-Kolben\nvor").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("S.-Kolben\nzurück").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("*S.-Kolben\nvor").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("*S.-Kolben\nzurück").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Anzahl\nSiebe").FontSize(8);
-                                    header.Cell().Element(headerstyle).Text("Takte/\nUmdreh.").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.WStroke[LanguageNumber] + "\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.RStroke[LanguageNumber] + "\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Cycle[LanguageNumber] + "\n ").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.WStroke2[LanguageNumber] + "\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.RStroke2[LanguageNumber] + "\nFilter").FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.PPiston[LanguageNumber] + "\n" + Translations.Forward[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.PPiston[LanguageNumber] + "\n" + Translations.Backwards[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.PPiston2[LanguageNumber] + "\n" + Translations.Forward[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.PPiston2[LanguageNumber] + "\n" + Translations.Backwards[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Number[LanguageNumber] + "\n" + Translations.FilterEle[LanguageNumber]).FontSize(8);
+                                    header.Cell().Element(headerstyle).Text(Translations.Strokes[LanguageNumber] + "\n" + Translations.Revolt[LanguageNumber]).FontSize(8);
                                     header.Cell().Background(QuestPDF.Helpers.Colors.Grey.Lighten2)
                                         .BorderLeft(1).BorderBottom(1).BorderTop(1).BorderColor(QuestPDF.Helpers.Colors.Grey.Darken1)
                                         .PaddingVertical(2).Text("Schuss\nvor    ").AlignRight().FontSize(8);
@@ -1982,14 +2022,14 @@ namespace ServiceTool
                                     table.Header(header =>
                                     {
                                         header.Cell().Element(headerstyle).Text("KSF").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("A-\nHub").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("L-\nHub").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Takt-\nzeit").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Vorflut-\nzeit").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Pause 1\nn.1.Nest").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Filter\nSoll-Druck").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Filter\nMin. Druck").FontSize(8);
-                                        header.Cell().Element(headerstyle).Text("Betriebs-\nart").FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.WStroke[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.RStroke[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.Cycle[LanguageNumber] + "\n" + Translations.Time[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.Flooding3[LanguageNumber] + "\n" + Translations.Time[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.PBetween[LanguageNumber] + "\n" + Translations.brPlates[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.Set[LanguageNumber] + "\n" + Translations.Pressure[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.Min[LanguageNumber] + "\n" +Translations.PressureMin[LanguageNumber]).FontSize(8);
+                                        header.Cell().Element(headerstyle).Text(Translations.ModeOf + "\n" + Translations.Operation[LanguageNumber]).FontSize(8);
                                     });
                                     table.Cell().Element(headerstyle).Text("1").FontSize(8);
                                     table.Cell().Element(cellstyle).Text(pDF_Data.MV_A_1).FontSize(8);
@@ -2032,27 +2072,27 @@ namespace ServiceTool
                                     table.Cell().Element(headerstyle).Text("VIS").FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.VIS).FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.Disc_Rotation).FontSize(10).AlignCenter();
-                                    table.Cell().Element(cellstyle).Text("Siebscheibendrehung").FontSize(10).AlignCenter();
-                                    table.Cell().Element(headerstyle).Text("d blech").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(Translations.discRotation[LanguageNumber]).FontSize(10).AlignCenter();
+                                    table.Cell().Element(headerstyle).Text(Translations.dSheet[LanguageNumber]).FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.dSheet).FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.DriveLoadMeasurement).FontSize(10).AlignCenter();
-                                    table.Cell().Element(cellstyle).Text("Antreibskraftmessung").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(Translations.DriveLoadMeasurement[LanguageNumber]).FontSize(10).AlignCenter();
                                     table.Cell().Element(headerstyle).Text("kp").FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.KP).FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.BackflushStrokeLength).FontSize(10).AlignCenter();
-                                    table.Cell().Element(cellstyle).Text("Hub Schußkolben").FontSize(10).AlignCenter();
+                                    table.Cell().Element(cellstyle).Text(Translations.BackFlushStrokeLength[LanguageNumber]).FontSize(10).AlignCenter();
                                     table.Cell().Element(headerstyle).Text("kk").FontSize(10).AlignCenter();
                                     table.Cell().Element(cellstyle).Text(pDF_Data.KK).FontSize(10).AlignCenter();
                                 });
                             });
 
                             column.Item().AlignLeft()
-                            .Text("Spitzenwerte als Fotoanhang dokumentieren" + pDF_Data.PhotoAttachment_Yes + "Ja      " + pDF_Data.PhotoAttachment_No + "Nein, weil: " + pDF_Data.PhotoAttachment_No_Because)
+                            .Text(Translations.MaxValueDocumentedAsPhoto + pDF_Data.PhotoAttachment_Yes + Translations.Yes[LanguageNumber] + pDF_Data.PhotoAttachment_No + Translations.NoBecause[LanguageNumber] + pDF_Data.PhotoAttachment_No_Because)
                             .FontSize(14);
 
                             column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
-                            column.Item().AlignCenter().Text("Temperaturprofil in Extrusionsrichtung").FontSize(16).Underline();
+                            column.Item().AlignCenter().Text(Translations.TempProfilInExtrusionsDirection[LanguageNumber]).FontSize(16).Underline();
 
                             column.Spacing(5);
 
@@ -2096,12 +2136,12 @@ namespace ServiceTool
                                     header.Cell().Element(headerstyle).Text("14").FontSize(8);
                                 });
 
-                                table.Cell().Element(headerstyle).Text("Bezeichnung").FontSize(8);
+                                table.Cell().Element(headerstyle).Text(Translations.Designation[LanguageNumber]).FontSize(8);
                                 for (int X = 0; X < 14; X++)
                                 {
                                     table.Cell().Element(cellstyle).Text(pDF_Data.Designation_Tempprofil[X]).FontSize(8);
                                 }
-                                table.Cell().Element(headerstyle).Text("Temperatur (°C)").FontSize(8);
+                                table.Cell().Element(headerstyle).Text("Temperature (°C)").FontSize(8);
                                 for (int Y = 0; Y < 14; Y++)
                                 {
                                     table.Cell().Element(cellstyle).Text(pDF_Data.Temperatur_Tempprofil[Y]).FontSize(8);
@@ -2112,15 +2152,15 @@ namespace ServiceTool
 
                             column.Item().Row(row => 
                             {
-                                row.AutoItem().AlignLeft().Text(pDF_Data.Customer_Temperature_Meassurement_korrekt + " Kundentemperaturmessung (Blocktemperatur) korrekt").FontSize(12);
+                                row.AutoItem().AlignLeft().Text(pDF_Data.Customer_Temperature_Meassurement_korrekt + Translations.KundenTempMessung[LanguageNumber]).FontSize(12);
                                 row.Spacing(10);
-                                row.AutoItem().Text(pDF_Data.PressureCutoff + " Druckabschaltung Filtervordruck überprüft/getestet").FontSize(12);
+                                row.AutoItem().Text(pDF_Data.PressureCutoff + Translations.PressureCutoff[LanguageNumber]).FontSize(12);
                                 row.Spacing(10);
-                                row.AutoItem().Text(pDF_Data.SetTo + " Eingestellt auf " + pDF_Data.SetBar + " bar").FontSize(12);
+                                row.AutoItem().Text(pDF_Data.SetTo + Translations.SetTo[LanguageNumber] + pDF_Data.SetBar + " bar").FontSize(12);
                             });
                             column.Item().Row(row =>
                             {
-                                row.AutoItem().AlignCenter().Text("                                      " + pDF_Data.ElectricCutoff + " Abschaltung elektrisch           " + pDF_Data.MechanicCutoff + " Mechanisch           " + pDF_Data.NoCutoff + " Keine Abschaltung(Kunde geschult)");
+                                row.AutoItem().AlignCenter().Text("                                      " + pDF_Data.ElectricCutoff + Translations.ElectricCutoff[LanguageNumber] + pDF_Data.MechanicCutoff + Translations.MechanicCutoff[LanguageNumber] + pDF_Data.NoCutoff + Translations.NoCutoff[LanguageNumber]);
                             });
                             column.Item().PaddingVertical(5).LineHorizontal(1).LineColor(QuestPDF.Helpers.Colors.Black);
 
@@ -2129,14 +2169,14 @@ namespace ServiceTool
                                 string ImagePath_Sign_Kunde = System.IO.Path.Combine(GlobalVariables.Pfad_Unterschriften, "ibnPSignatureCustomer.png");
                                 row.AutoItem().AlignLeft().Column(col =>
                                 {                                    
-                                    col.Item().Width(310).Height(25).Border(1).AlignMiddle().Text(" Kunde / Customer").FontSize(12).AlignCenter();
+                                    col.Item().Width(310).Height(25).Border(1).AlignMiddle().Text(Translations.Customer[LanguageNumber]).FontSize(12).AlignCenter();
                                     col.Item().Width(310).Height(40).Border(1).AlignRight().Image(ImagePath_Sign_Kunde);
                                 });
                                 row.AutoItem().PaddingHorizontal(7).Column(col =>
                                 {
                                     //TODO Datum und Ort in der Mitte einfügen vlt noch Klasse und Excel dem entsprechend erweitern
                                     DateTime SignDate = File.GetCreationTime(ImagePath_Sign_Kunde);
-                                    col.Item().Text("\nDatum / Date: " + SignDate.ToString("dd.MM.yyyy") + "\n  Ort / Place: " + pDF_Data.PlaceSignature).FontSize(12).AlignCenter();
+                                    col.Item().Text("\n" + Translations.Date[LanguageNumber] + SignDate.ToString("dd.MM.yyyy") + "\n" + Translations.Place[LanguageNumber] + pDF_Data.PlaceSignature).FontSize(12).AlignCenter();
                                 });
                                 row.AutoItem().AlignLeft().Column(col =>
                                 {
@@ -2361,7 +2401,7 @@ namespace ServiceTool
             return PDF_Data_IbnP;
         }
 
-        public void Create_PDF_Of_IbnP_MRS()
+        public void Create_PDF_Of_IbnP_MRS(EngDe_For_PDF Translations, int LanguageNumber)
         {
             int NumberOfIbnP = 0;
             string ExcelFilePath = "";

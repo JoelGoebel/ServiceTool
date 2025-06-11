@@ -196,6 +196,15 @@ namespace ServiceTool.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Infos\LanguagesForPDF.json ähnelt.
+        /// </summary>
+        internal static string Pfad_LanguageForPDF {
+            get {
+                return ResourceManager.GetString("Pfad_LanguageForPDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die \\file02.oeynhausen.gneuss.de\global$\ServiceAuftragsTool\{0}\Anhaenge\Unterschriften ähnelt.
         /// </summary>
         internal static string Pfad_Signatures_On {

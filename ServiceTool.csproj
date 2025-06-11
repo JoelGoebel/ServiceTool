@@ -200,6 +200,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CellMaping.cs" />
+    <Compile Include="EngDe_For_PDF.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Inbetriebnahmeprotokoll_MRS.xaml.cs">
       <DependentUpon>Inbetriebnahmeprotokoll_MRS.xaml</DependentUpon>
@@ -226,6 +227,7 @@
     </Compile>
     <Compile Include="Stundennachweis_PDF_Data.cs" />
     <Compile Include="StundenTabellenEintrag.cs" />
+    <Compile Include="TranslationEntryPDF.cs" />
     <Page Include="Inbetriebnahmeprotokoll_MRS.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,6 +302,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Infos\zellen_textboxen_mapping_Stundennachweis.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Infos\LanguagesForPDF.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
