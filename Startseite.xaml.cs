@@ -27,11 +27,14 @@ namespace ServiceTool
         private MainWindow mw;
         public Startseite()//MainWindow mainWindow
         {
+            
             InitializeComponent();
             mw = (MainWindow)Application.Current.MainWindow;
-            var filteredData = GlobalVariables.dt.AsEnumerable();
-            dataGrid.ItemsSource = filteredData.CopyToDataTable().DefaultView;
-
+            if(GlobalVariables.dt != null)
+            {
+                var filteredData = GlobalVariables.dt.AsEnumerable();
+                dataGrid.ItemsSource = filteredData.CopyToDataTable().DefaultView;
+            }
         }
 
         private void btn_AuftragsNr_suchen_Click(object sender, RoutedEventArgs e)
@@ -58,9 +61,10 @@ namespace ServiceTool
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
             PfadeFestlegen();
-
-            Datenabgleich_Database();
-
+            if(GlobalVariables.dt != null) 
+            { 
+                Datenabgleich_Database();
+            }
             AuftragsOrdnerErstellen();
 
             CopyVorlagenInAuftragsOrdner();
@@ -82,6 +86,9 @@ namespace ServiceTool
             {
                 mw.CB_Sprache_auswahl.Text = "Deutsch";
             }
+
+            mw.tb_KundenEmail.Text = GlobalVariables.CustomerEmail;
+
             mw._isInitialized = true;
         }
 
@@ -216,6 +223,7 @@ namespace ServiceTool
                     string temp_Ort = Convert.ToString(DB_Serviceaufträge.Rows[i][9]);
                     GlobalVariables.Anschrift_2 = $@"{temp_PLZ} {temp_Ort}";
                     GlobalVariables.auftraginDB = true;
+                    GlobalVariables.CustomerEmail = Convert.ToString(DB_Serviceaufträge.Rows[i][14]);
                 }
             }
         }

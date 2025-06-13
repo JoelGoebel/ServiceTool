@@ -38,7 +38,7 @@
         <Border BorderBrush="Black" BorderThickness="0,0,3,0" Grid.Row="1" Background="#FF969696">
             <StackPanel VerticalAlignment="Bottom">
                 <TextBox x:Name="tb_KundenEmail" FontSize="30" Margin="0,10"/>
-                <Button x:Name="btn_SendDataToCustomer" Content="An Kunden Senden" FontSize="30"/>
+                <Button x:Name="btn_SendDataToCustomer" Content="An Kunden Senden" FontSize="30" Click="SendPDFToCustomer"/>
                 <Button x:Name="btn_PDF_generieren" Content="PDFs erstellen" FontSize="30" Margin="0,10" Click="Creat_PDF_Dokuments"/>
                 <Label x:Name="lbl_OnlineOfflineAnzeige" Content="Offline" FontSize="30" Background="Red" BorderBrush="Black" BorderThickness="2" HorizontalContentAlignment="Center"/>
                 <Label Content="Sprache" FontSize="30" HorizontalContentAlignment="Center" FontWeight="Bold"/>

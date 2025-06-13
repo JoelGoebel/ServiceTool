@@ -320,9 +320,14 @@
     "VariableName": "Load"
   },
   {
-    "Deutsch": "Drehzahl Extruder",
-    "Englisch": "Extruderspeed",
-    "VariableName": "ExtruderSpeed"
+    "Deutsch": "Drehzahl",
+    "Englisch": "Extruder",
+    "VariableName": "ExtruderDreh"
+  },
+  {
+    "Deutsch": "Extruder",
+    "Englisch": "speed",
+    "VariableName": "Extruder_Speed"
   },
   {
     "Deutsch": "Soll",
@@ -335,13 +340,18 @@
     "VariableName": "SetAct"
   },
   {
+    "Deutsch": "Viskosi",
+    "Englisch": "Voscosi",
+    "VariableName": "Viskosi"
+  },
+  {
     "Deutsch": "Viskosität : ",
     "Englisch": "viscosity : ",
     "VariableName": "Viscosity"
   },
   {
-    "Deutsch": "Sherung",
-    "Englisch": "Shear rate",
+    "Deutsch": "/Sherung",
+    "Englisch": "/Shear rate",
     "VariableName": "ShearRate"
   },
   {
@@ -363,6 +373,11 @@
     "Deutsch": "n.Austrag",
     "Englisch": "discharge",
     "VariableName": "Discharge"
+  },
+  {
+    "Deutsch": "v.Pumpe",
+    "Englisch": "Pump",
+    "VariableName": "VPump"
   },
   {
     "Deutsch": " ",
@@ -390,17 +405,17 @@
     "VariableName": "downstrFilter"
   },
   {
-    "Deutsch": "Sieb",
-    "Englisch": "filter",
+    "Deutsch": "Sieb-",
+    "Englisch": "filter-",
     "VariableName": "Filter"
   },
   {
-    "Deutsch": "Feinheit",
+    "Deutsch": "feinheit",
     "Englisch": "fineness",
     "VariableName": "Fineness"
   },
   {
-    "Deutsch": "Schnecke",
+    "Deutsch": "Schnecken",
     "Englisch": "screw",
     "VariableName": "screw"
   },
@@ -410,7 +425,7 @@
     "VariableName": "Cooling"
   },
   {
-    "Deutsch": "ist",
+    "Deutsch": "Ist",
     "Englisch": "actual",
     "VariableName": "Actual"
   },

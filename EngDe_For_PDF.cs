@@ -72,7 +72,10 @@ namespace ServiceTool
         public List<string> OnOff { get; set; } = new List<string>();
         public List<string> Pump { get; set; } = new List<string>();
         public List<string> Load { get; set; } = new List<string>();
-        public List<string> ExtruderSpeed { get; set; } = new List<string>();
+        public List<string> ExtruderDreh { get; set; } = new List<string>();
+        public List<string> Extruder_Speed { get; set; } = new List<string>();
+        public List<string> Viskosi { get; set; } = new List<string>();
+        public List<string> VPump { get; set; } = new List<string>();
         public List<string> SetPoint { get; set; } = new List<string>();
         public List<string> SetAct { get; set; } = new List<string>();
         public List<string> Viscosity { get; set; } = new List<string>();

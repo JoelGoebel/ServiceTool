@@ -66,6 +66,8 @@ namespace ServiceTool
             
             public static string LastSelectedItem_MRS { get; set; }
 
+            public static string CustomerEmail { get; set; }
+
     }
 }
 

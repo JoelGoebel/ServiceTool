@@ -79,7 +79,11 @@ namespace ServiceTool.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die SELECT TOP(100) PERCENT b.Mandant, b.Belegnummer, b.Belegdatum,b.Sprache, b.A0Empfaenger, b.A0Name1,o.Land,b.A0Land, b.A0PLZ, b.A0Ort,b.A0Strasse, b.USER_ProduktTyp, b.USER_Filternummer FROM dbo.KHKVKBelege AS b inner join obo_land_iso o on o.iso2 = A0Land WHERE(b.Belegkennzeichen IN(&apos;vvb&apos;)) AND(b.Mandant IN(2, 3)) AND b.Belegdatum &gt; getdate()-365 ORDER BY b.Belegnummer ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die SELECT TOP(100) PERCENT b.Mandant, b.Belegnummer, b.Belegdatum,b.Sprache, b.A0Empfaenger, b.A0Name1,o.Land,b.A0Land, b.A0PLZ, b.A0Ort,b.A0Strasse, 
+        ///b.USER_ProduktTyp, b.USER_Filternummer 
+        ///,USER_VersandASP,USER_VersandEmail,USER_VersandTelNr
+        ///FROM dbo.KHKVKBelege AS b inner join obo_land_iso o on o.iso2 = A0Land
+        ///WHERE(b.Belegkennzeichen IN(&apos;vvb&apos;)) AND(b.Mandant IN(2, 3)) AND b.Belegdatum &gt; getdate()-365 ORDER BY b.Belegnummer ähnelt.
         /// </summary>
         internal static string DB_Abfrage {
             get {
