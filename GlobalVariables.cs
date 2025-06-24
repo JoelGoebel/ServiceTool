@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceTool
 {
+    //This is a Class to hold Information that is used in multiple UserControlls
 
         public static class GlobalVariables
         {
@@ -56,18 +57,13 @@ namespace ServiceTool
             public static string Pfad_Anhaenge { get; set; }
             public static string Pfad_Unterschriften { get; set; }
             public static bool Online_or_Offline { get; set; } //True = Online, False = Offline
-
             public static DateTime EndeServiceEinsatz;
             public static DateTime StartServiceEinsatz;
-
             public static TimeSpan FruehNacht = new TimeSpan(6, 0, 0);
             public static TimeSpan SpaetNacht = new TimeSpan(21, 0, 0);
-            public static TimeSpan RegularStd = new TimeSpan(8, 30, 0);
-            
+            public static TimeSpan RegularStd = new TimeSpan(8, 30, 0);            
             public static string LastSelectedItem_MRS { get; set; }
-
             public static string CustomerEmail { get; set; }
-
     }
 }
 

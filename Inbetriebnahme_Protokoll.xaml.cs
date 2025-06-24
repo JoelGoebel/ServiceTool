@@ -24,34 +24,26 @@ namespace ServiceTool
     /// </summary>
     public partial class Inbetriebnahme_Protokoll : UserControl
     {
-        private bool _isInitialized = false;
         public Inbetriebnahme_Protokoll(bool isFirstLoad = false)
         {
             InitializeComponent();
-            _isInitialized = true;
-            
-            FillSiteSwitchComboBox();
-            
-            //this.Loaded += (s, e) => _isInitialized = false;
-            
+            FillSiteSwitchComboBox();//add all The Sites to the Combobox            
         }
-
-
 
         public bool FirstSiteLoadFinished = GlobalVariables._FirstSiteLoadFinished ;
         
         public void FillSiteSwitchComboBox()
-        {           
-
+        {
+            //Deactivate the SelectionChanged Event to prevent the event from being triggered when the ComboBox is filled
             CB_SeiteAuswählen.SelectionChanged -= SiteSelected;
             bool StartSiteSelected = GlobalVariables.StartSiteSelected;
-            //Wenn in den ServiceAnforderungen eine Maschine eingetragen wurde wird der Typ in den Klasse GlobalVariables gespeichert
+            //If a Maschine is selected that is not MRS or Jump, add it to the Combobox
             if (GlobalVariables.Maschiene_1 != "" && GlobalVariables.Maschiene_1 != "MRS" && GlobalVariables.Maschiene_1 != "Jump")
             {
                 CB_Item1_SeiteAuswählen.Content = GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1;
                 CB_Item1_SeiteAuswählen.Visibility = Visibility.Visible;
                 if(StartSiteSelected == false)
-                { 
+                {//If no Site is selected yet, select the first one
                     CB_SeiteAuswählen.SelectedIndex = 0;
                     StartSiteSelected = true;
                 }
@@ -86,32 +78,34 @@ namespace ServiceTool
                     StartSiteSelected = true;
                 }
             }
-
+            // Trandfer the Information to the GlobalVariables Class
             GlobalVariables.StartSiteSelected = StartSiteSelected;
             if(GlobalVariables._FirstSiteLoadFinished == false) 
-            { 
+            {
+                // With the Dispatcher we can ensure that the FirstSiteLoadFinished is set to true after the UI is loaded
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     GlobalVariables._FirstSiteLoadFinished = true;
                     FirstSiteLoadFinished = GlobalVariables._FirstSiteLoadFinished;
                 }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             }
-            CB_SeiteAuswählen.SelectionChanged += SiteSelected;
+            CB_SeiteAuswählen.SelectionChanged += SiteSelected; // Re-activate the SelectionChanged Event after the ComboBox is filled
         }
 
 
         public void SiteSelected(object sender, SelectionChangedEventArgs e)
         {
+            //Check if the FirstSiteLoadFinished is false, if so, do not execute the code
             if (FirstSiteLoadFinished == false)
             {
                 return;
-            }            
-
+            }
+            //Deactivate the SelectionChanged Event to prevent the event from being triggered when the ComboBox is filled
             CB_SeiteAuswählen.SelectionChanged -= SiteSelected;
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            string LastSelectedItem = CB_SeiteAuswählen.SelectionBoxItem.ToString();
-            string selectedItem = CB_SeiteAuswählen.SelectedItem.ToString();
+            string LastSelectedItem = CB_SeiteAuswählen.SelectionBoxItem.ToString(); // Safe the last selected item before changing it
+            string selectedItem = CB_SeiteAuswählen.SelectedItem.ToString(); // Get the currently selected item from the ComboBox
             string selectedItemText = selectedItem.Substring(selectedItem.IndexOf(" ")+1);
             string ExcelFilePathLoad = "";
             string ExcelFilePathSave = "";
@@ -166,7 +160,7 @@ namespace ServiceTool
                 tb_Filtertyp_ibnProtokoll.Text = GlobalVariables.Maschiene_4 + " " + GlobalVariables.Baugroeße_4;
                 tb_SerienNr_ibnProtokoll.Text = GlobalVariables.MaschinenNr_4;
             }
-            
+            //Acivate the SelectionChanged Event again
             CB_SeiteAuswählen.SelectionChanged += SiteSelected;       
         }
 

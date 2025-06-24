@@ -43,43 +43,49 @@ namespace ServiceTool
         public MainWindow()
         {
             InitializeComponent();
-
+            //Set the size of the MainWindow to 95% of the screen size
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
 
             this.Width = screenWidth * 0.95;
             this.Height = screenHeight * 0.95;
-            
+
+            //Sets Variable to true if MainWindow is loaded
             this.Loaded += MainWindow_Loaded;
 
+            //Saves all the Cell Mappings in the GlobalVariables Dictionarys
             SaveCellMapping_InDictionarys();
 
+            //Variables for Language switch
             List<string> Lbl_Names = new List<string>();
             List<string> Lbl_Content_German = new List<string>();
             List<string> Lbl_Content_English = new List<string>();
 
+            //Get the content of the Labels from the JSON file
             GetLabelContent();
 
-
+            //Test if the server is reachable
             bool File_Connection_Test = IstServerErreichbar(Properties.Resources.IP_File02);
             bool DB_Connection_Test = IstServerErreichbar(Properties.Resources.IP_SQL04);
 
             if (File_Connection_Test && DB_Connection_Test)
             {
+                //Funktion to execute the SQL Query and collect the data from the database
                 collect_Data_From_Database();
+                //Set label to Online so that the user knows that the program is online
                 GlobalVariables.Online_or_Offline = true;
                 lbl_OnlineOfflineAnzeige.Content = "Online";
                 lbl_OnlineOfflineAnzeige.Background = Brushes.Green;
             }
             else
             {
+                //Set label to Offline so that the user knows that the program is offline
                 GlobalVariables.Online_or_Offline = false;
                 lbl_OnlineOfflineAnzeige.Content = "Offline";
                 lbl_OnlineOfflineAnzeige.Background = Brushes.Red;
             }
-
+            // Place the Startseite in the Content Control
             CC.Content = new Startseite();
-            //CC.Content = new Inbetriebnahme_Protokoll();
         }
 
 
@@ -94,10 +100,13 @@ namespace ServiceTool
         {
             string UserPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
+            //Read all Data From JSON
             string json = File.ReadAllText(Properties.Resources.Path_LanguageJson_IBNP);
+            //Convert the string in a List of a selfmade class SprachtabelleEntry
             List<SprachtabelleEntry> sprachtabelleEntries = JsonConvert.DeserializeObject<List<SprachtabelleEntry>>(json);
 
-            foreach(SprachtabelleEntry entry in sprachtabelleEntries)
+            //Add all entrys to Languagetable IBNP and IBNP_MRS
+            foreach (SprachtabelleEntry entry in sprachtabelleEntries)
             {
                 sprachtabelle_IBNP.Lbl_Names.Add(entry.LBL_Names);
                 sprachtabelle_IBNP.Lbl_Content_German.Add(entry.Deutsch);
@@ -119,6 +128,7 @@ namespace ServiceTool
         {
             object Dokument = null;
             SprachTabelle sprachtabelle = new SprachTabelle();
+            //Load the correct Document based on the selected page
             switch (Seite)
             {
                 case "IbnP":
@@ -145,10 +155,11 @@ namespace ServiceTool
                     sprachtabelle = sprachtabelle_IBNP_MRS;
                     break;
             }
-
-            if(Dokument is FrameworkElement element) { 
+            // Set the language of the labels in the document based on the selected language
+            if (Dokument is FrameworkElement element) { 
                 foreach (string lblName in sprachtabelle.Lbl_Names)
                 {
+                    // Find the label by its name in the document
                     Label lbl = (Label)element.FindName(lblName);
 
                     if (GlobalVariables.Sprache_Kunde == "D")
@@ -165,6 +176,7 @@ namespace ServiceTool
         }//ENde Set Language
         public void SaveCellMapping_InDictionarys()
         {
+            //Read JSON Files and save the Cell Mappings in the GlobalVariables Dictionarys
             //Cell Mapping for Inbetriebnahme Protokoll
             string json = File.ReadAllText(Properties.Resources.Path_CellMappingIBNP);
             var cellMappings = JsonConvert.DeserializeObject<List<CellMapping>>(json);
@@ -188,6 +200,7 @@ namespace ServiceTool
         }
         public static bool IstServerErreichbar(string serverAdresse, int timeout = 1000)
         {
+            //Check if the server is reachable by sending a ping request
             try
             {
                 using (Ping pingSender = new Ping())
@@ -209,55 +222,64 @@ namespace ServiceTool
         }
         public void collect_Data_From_Database()
         {
-            string Connectionstring = Properties.Resources.Connectionstring;           
-
+            //Set the connection string from the resources
+            string Connectionstring = Properties.Resources.Connectionstring;
+            //Sét the SQL Query from the resources
             string DB_Query = Properties.Resources.DB_Abfrage;
 
+            //Execute the SQL Query and fill the DataTable with the data from the database
             using (SqlConnection connection = new SqlConnection(Connectionstring)) 
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(DB_Query, connection);
                 GlobalVariables.dt = new DataTable();
                 adapter.Fill(GlobalVariables.dt);
             }
+
+            //Write the Data in the Console to make the Deugging easier 
             // Ausgabe der Spaltennamen
-            foreach (DataColumn column in GlobalVariables.dt.Columns)
-            {
-                Console.Write($"{column.ColumnName}\t");
-            }
-            Console.WriteLine();
+            //foreach (DataColumn column in GlobalVariables.dt.Columns)
+            //{
+            //    Console.Write($"{column.ColumnName}\t");
+            //}
+            //Console.WriteLine();
 
             // Ausgabe der Zeilen
-            foreach (DataRow row in GlobalVariables.dt.Rows)
-            {
-                foreach (var item in row.ItemArray)
-                {
-                    Console.Write($"{item}\t");
-                }
-                Console.WriteLine();
-            }
+            //foreach (DataRow row in GlobalVariables.dt.Rows)
+            //{
+            //    foreach (var item in row.ItemArray)
+            //    {
+            //        Console.Write($"{item}\t");
+            //    }
+            //    Console.WriteLine();
+            //}
         }
 
         private void rbt_Startseite_Checked(object sender, RoutedEventArgs e) // wenn der  radiobutton von der Startseite angehackt wird, wird die Startseite erstellt und im Content Control platziert
         {
+            //generate new Startseite if Radiobutton is Collected ( Radiobutton is already checked after starting the Programm)
             if (_blockiereUControlWechsel) return;
             CC.Content = new Startseite();
 
         }
 
+        //Funktion starts after the Radiobutton for Serviceanforderungen is checked
         private void rbt_ServiceAnforderung_Checked(object sender, RoutedEventArgs e)
         {
-            
+            //Create New Document (ServiceAnforderugen) and place it in the Content Control
             var sa = new Service_Anforderung();
             CC.Content = sa;
-                        
+            
+            
             string Auftragsnummer = GlobalVariables.AuftragsNR;                      
 
             string ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner,"Service_Anforderungen.xlsx");
 
+            //load Saved Data from the Excel file into the Service_Anforderung Document
             Laden(ExcelFilePath, "Serviceanforderungen");
 
             sa.tb_Auftragsnummer.Text = GlobalVariables.AuftragsNR;
 
+            //Check íf Auftrag is in DB because the Informations are not in the Variables if not 
             if (GlobalVariables.auftraginDB == true)
             {
                 sa.tb_Anschrift_1_Anforderung.Text = GlobalVariables.Anschrift_1;
@@ -269,21 +291,23 @@ namespace ServiceTool
             GlobalVariables.Land = sa.tb_Land.Text;
 
         }
+        //Funktion gets triggerd after unchecking Radiobutton Serviceanforderungen
         private void rbt_ServiceAnforderung_UnChecked(object sender, RoutedEventArgs e) 
         {
             var sa = CC.Content as Service_Anforderung;
-
+            // Proceed only if the control has been properly initialized
             if (_isInitialized)
             {
 
                 if (sa is IValidierbar validierbar)
                 {
+                    // If required fields are missing, show an error message
                     if (validierbar.HatFehlendePflichtfelder(out string fehlermeldung))
                     {
                         MessageBox.Show(fehlermeldung, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                        // Prevent switching to another UserControl temporarily
                         _blockiereUControlWechsel = true;
-                        
+                        // Schedule re-checking the radio button after the current operation finishes
                         Dispatcher.BeginInvoke(new Action(() =>
                         {
                             rbt_ServiceAnforderung.IsChecked = true;
@@ -299,9 +323,10 @@ namespace ServiceTool
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
             string ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Service_Anforderungen.xlsx");
-
+            // Call the save function with the file path and worksheet name
             speichern(ExcelFilePath, "Serviceanforderungen");
 
+            // Transfer form data into global variables for later use
             GlobalVariables.Kunde = sa.tb_End_Kunde.Text;
             GlobalVariables.Ansprechpartner = sa.tb_Ansprechpartner_Anforderung.Text;
             GlobalVariables.Anschrift_1 = sa.tb_Anschrift_1_Anforderung.Text;
@@ -309,6 +334,7 @@ namespace ServiceTool
             GlobalVariables.Anreise = sa.cb_Anreise.Text;
             GlobalVariables.ServiceTechnicker = sa.tb_Servicetechniker_Anforderung.Text;
 
+            // Only store machine types if the dropdown text is not just a space
             if (sa.cb_Maschinentyp_1.Text != " ")
             {
                 GlobalVariables.Maschiene_1 = sa.cb_Maschinentyp_1.Text;
@@ -326,6 +352,7 @@ namespace ServiceTool
                 GlobalVariables.Maschiene_4 = sa.cb_Maschinentyp_4.Text;
             }
 
+            //Save the machine size and machine number in the global variables
             GlobalVariables.Baugroeße_1 = sa.cb_BauGröße_1.Text;
             GlobalVariables.Baugroeße_2 = sa.cb_BauGröße_2.Text;
             GlobalVariables.Baugroeße_3 = sa.cb_BauGröße_3.Text;
@@ -339,6 +366,8 @@ namespace ServiceTool
             GlobalVariables.Land = sa.tb_Land.Text;
 
             GlobalVariables.Material = sa.tb_Material.Text;
+
+            // If both start and end dates for the visit are selected, save them
             if (sa.dp_Besuchsdatum_Start.SelectedDate != null && sa.dp_Besuchsdatum_Ende.SelectedDate != null)
             {
                 GlobalVariables.StartServiceEinsatz = (DateTime)sa.dp_Besuchsdatum_Start.SelectedDate;
@@ -351,10 +380,7 @@ namespace ServiceTool
             if (_blockiereUControlWechsel) return;
             // Hier wird der Stundennachweis geladen
             var sn = new Stundennachweis();
-            CC.Content = sn;
-
-            //Textboxen die aus den Service anforderungen übernommen werden
-            
+            CC.Content = sn;            
 
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
@@ -398,6 +424,8 @@ namespace ServiceTool
             if (_blockiereUControlWechsel) return;
             var sn = CC.Content as Stundennachweis;
             string ExcelFilePath = "";
+
+            //Set Correct Path depending on the selected week in the ComboBox
             switch (sn.cb_Siteswitch_Stunden.Text)
             {                
                 case "Woche 1":
@@ -823,8 +851,7 @@ namespace ServiceTool
         } // wird beim Start aus geführt um gewisse werte und Objecte vorzuladen damit in anderen Funktionen mit diesen gearbeitet werden kann
         private void Ordner_oeffnen_Anhaenge(object sender, RoutedEventArgs e)
         {
-            string Auftragsnummer = GlobalVariables.AuftragsNR;
-
+            // Save the path for attachments from GlobalVariables
             string Pfad_fuerAnhaenge = GlobalVariables.Pfad_Anhaenge;
 
             Process.Start("explorer.exe", Pfad_fuerAnhaenge);
@@ -832,37 +859,35 @@ namespace ServiceTool
 
         public void SaveSignatureAsImage(InkCanvas inkCanvas, string filePath)
         {
-            // 1. Layout aktualisieren, damit Größen und Striche definitiv bereitstehen
-            inkCanvas.UpdateLayout();  // sicherstellen, dass ActualWidth/Height korrekt:contentReference[oaicite:10]{index=10}
+            //Layout aktualisieren, damit Größen und Striche definitiv bereitstehen
+            inkCanvas.UpdateLayout();  // sicherstellen, dass ActualWidth/Height korrekt
 
             int width = (int)inkCanvas.ActualWidth;
             int height = (int)inkCanvas.ActualHeight;
             if (width == 0 || height == 0) return; // InkCanvas nicht sichtbar oder keine Größe
 
-            // 2. DrawingVisual erzeugen und darin das InkCanvas "nachmalen"
+            //DrawingVisual erzeugen und darin das InkCanvas "nachmalen"
             var dv = new DrawingVisual();
             using (DrawingContext dc = dv.RenderOpen())
             {
-                // (Optional) Hintergrund zeichnen, falls InkCanvas einen Hintergrund hat:
                 if (inkCanvas.Background != null)
                 {
                     // Hintergrund als Brush füllen (z.B. Farbe) über die ganze Fläche
                     dc.DrawRectangle(inkCanvas.Background, null, new Rect(0, 0, width, height));
                 }
-                // Alle Striche zeichnen – entweder einzeln oder gesamte StrokeCollection:
-                // Variante A: Alle Striche einzeln zeichnen
+                // Alle Striche zeichnen
                 foreach (System.Windows.Ink.Stroke stroke in inkCanvas.Strokes)
                 {
                     stroke.Draw(dc);  // Stroke zeichnet sich selbst mit seinen DrawingAttributes
                 }
-                // Variante B (alternative): inkCanvas.Strokes.Draw(dc);
+                
             } // DrawingContext auto-close here
 
-            // 3. RenderTargetBitmap mit passendem PixelFormat anlegen und DrawingVisual rendern
+            //RenderTargetBitmap mit passendem PixelFormat anlegen und DrawingVisual rendern
             var rtb = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(dv);
 
-            // 4. Als PNG-Datei speichern
+            //Als PNG-Datei speichern
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
             using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
@@ -873,108 +898,123 @@ namespace ServiceTool
 
         public void speichern(string ExcelFilePath, string Seite)
         {          
-
+            //make sure that the Data Exists
             if (File.Exists(ExcelFilePath))
             {
-                
-                using (var package = new ExcelPackage(ExcelFilePath))
+                try
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
 
-                    object Dokument = null; // Dokument in dem das Aktuell offene Formular gespeichert wird
-
-                    Dictionary<string, string> CellMappings = new Dictionary<string, string>();
-
-                    switch (Seite)
+                    using (var package = new ExcelPackage(ExcelFilePath))
                     {
-                        case "IbnP":
-                            Dokument = CC.Content as Inbetriebnahme_Protokoll;
-                            CellMappings = GlobalVariables.CellMapping_IbnP;
-                            break;
+                        var worksheet = package.Workbook.Worksheets[0];
 
-                        case "Serviceanforderungen":
-                            Dokument = CC.Content as Service_Anforderung;
-                            CellMappings = GlobalVariables.CellMapping_ServiceAnforderungen;
-                            break;
+                        object Dokument = null; // Dokument in dem das Aktuell offene Formular gespeichert wird
 
-                        case "Stundennachweis":
-                            Dokument = CC.Content as Stundennachweis;
-                            CellMappings = GlobalVariables.CellMapping_Stundenachweis;
-                            break;
+                        //Create a Dictionary for Cell Mappings
+                        Dictionary<string, string> CellMappings = new Dictionary<string, string>();
 
-                        case "Interner_Bericht":
-                            Dokument = CC.Content as Interner_Bericht;
-                            CellMappings = GlobalVariables.CellMapping_InternerBericht;
-                            break;
-
-                        case "IbnP_MRS":
-                            Dokument = CC.Content as Inbetriebnahmeprotokoll_MRS;
-                            CellMappings = GlobalVariables.CellMapping_IBNP_MRS;
-                            break;
-                    }
-
-                    foreach (KeyValuePair<string,string> CellMapping in CellMappings) // Schleife über die Länge des ZellenObjekte Arrays
-                    {
-                        string Zelle = CellMapping.Key;
-
-                        string Objectname = CellMapping.Value;
-
-                        string Object_bezeichnung = Objectname.Substring(0, 2).ToUpper(); // hier werden die ersten zwei Buchstaben der Object namen abgetrennt da man anhand dessen die Objekttypen unterscheiden kann
-
-                        
-                        if (Dokument is FrameworkElement element)
+                        //Switch Funktion for Selecting the right document and CellMappings
+                        switch (Seite)
                         {
+                            case "IbnP":
+                                Dokument = CC.Content as Inbetriebnahme_Protokoll;
+                                CellMappings = GlobalVariables.CellMapping_IbnP;
+                                break;
 
-                            switch (Object_bezeichnung)
+                            case "Serviceanforderungen":
+                                Dokument = CC.Content as Service_Anforderung;
+                                CellMappings = GlobalVariables.CellMapping_ServiceAnforderungen;
+                                break;
+
+                            case "Stundennachweis":
+                                Dokument = CC.Content as Stundennachweis;
+                                CellMappings = GlobalVariables.CellMapping_Stundenachweis;
+                                break;
+
+                            case "Interner_Bericht":
+                                Dokument = CC.Content as Interner_Bericht;
+                                CellMappings = GlobalVariables.CellMapping_InternerBericht;
+                                break;
+
+                            case "IbnP_MRS":
+                                Dokument = CC.Content as Inbetriebnahmeprotokoll_MRS;
+                                CellMappings = GlobalVariables.CellMapping_IBNP_MRS;
+                                break;
+                        }
+
+                        foreach (KeyValuePair<string, string> CellMapping in CellMappings) // Schleife über die Länge des ZellenObjekte Arrays
+                        {
+                            string Zelle = CellMapping.Key;
+
+                            string Objectname = CellMapping.Value;
+
+                            string Object_bezeichnung = Objectname.Substring(0, 2).ToUpper(); // hier werden die ersten zwei Buchstaben der Object namen abgetrennt da man anhand dessen die Objekttypen unterscheiden kann
+
+
+                            if (Dokument is FrameworkElement element)
                             {
-                                case "TB":
-                                    TextBox objekt_tb = element.FindName(Objectname) as TextBox;
-                                    
-                                    worksheet.Cells[Zelle].Value = objekt_tb.Text;
+                                // Select the Correct Objecttype based on the and Object_bezeichnung
+                                switch (Object_bezeichnung)
+                                {
+                                    //If the right Objecttype is found search for the Object in the UserControl and save the Value in the Excel Cell
+                                    case "TB":
+                                        TextBox objekt_tb = element.FindName(Objectname) as TextBox;
 
-                                    break;
+                                        worksheet.Cells[Zelle].Value = objekt_tb.Text;
 
-                                case "CB":
-                                    ComboBox objekt_cb = element.FindName(Objectname) as ComboBox;
+                                        break;
 
-                                    worksheet.Cells[Zelle].Value = objekt_cb.Text;
+                                    case "CB":
+                                        ComboBox objekt_cb = element.FindName(Objectname) as ComboBox;
 
-                                    break;
+                                        worksheet.Cells[Zelle].Value = objekt_cb.Text;
 
-                                case "DP":
-                                    DatePicker objekt_dp = element.FindName(Objectname) as DatePicker;
+                                        break;
 
-                                    worksheet.Cells[Zelle].Value = objekt_dp.Text;
+                                    case "DP":
+                                        DatePicker objekt_dp = element.FindName(Objectname) as DatePicker;
 
-                                    break;
+                                        worksheet.Cells[Zelle].Value = objekt_dp.Text;
 
-                                case "CH":
-                                    CheckBox objekt_ch = element.FindName(Objectname) as CheckBox;
+                                        break;
 
-                                    if (objekt_ch.IsChecked == true)
-                                    {
-                                        worksheet.Cells[Zelle].Value = "X";
-                                    }
-                                    else
-                                    {
-                                        worksheet.Cells[Zelle].Value = "";
-                                    }
-                                    break;
+                                    case "CH":
+                                        CheckBox objekt_ch = element.FindName(Objectname) as CheckBox;
+
+                                        if (objekt_ch.IsChecked == true)
+                                        {
+                                            worksheet.Cells[Zelle].Value = "X";
+                                        }
+                                        else
+                                        {
+                                            worksheet.Cells[Zelle].Value = "";
+                                        }
+                                        break;
+                                }
                             }
                         }
+                        package.Save();
+                        package.Dispose();
                     }
-                    package.Save();
-                    package.Dispose();
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("Die Datei '" + ExcelFilePath + "' kann nicht gespeichert werden. Sie ist möglicherweise noch geöffnet oder schreibgeschützt.\n\n" + ex.Message, "Fehler beim Speichern", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Beim Speichern ist ein Fehler aufgetreten:\n" + ex.Message, "Fehler beim Speichern", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         } // allgemeine Speicherfunktion die auf jedes Dokument anwendbar ist
 
         public void Laden(string ExcelFilePath, string Seite)
-        {           
-
+        {
+            //Check if the Excel file exists at the specified path
             if (File.Exists(ExcelFilePath))
             {
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                //Same as in Save Funktion, with the difference that the values of the Excel-Data are loaded into the UserControl
                 using (var package = new ExcelPackage(ExcelFilePath))
                 {
                     var worksheet = package.Workbook.Worksheets[0];
@@ -1069,12 +1109,15 @@ namespace ServiceTool
 
         private void Auftrag_Downloaden(object sender, RoutedEventArgs e)
         {
-            string Pfad_DokumentOrdner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //Funktion to get all Data of the Current Order and save it in the Local Order Folder. so that the User can work Offline
+            string Pfad_DokumentOrdner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);// Get the path to the user's Documents folder
             string Pfad_Servicetool_Lokal = string.Format(Properties.Resources.Pfad_AuftragsOrdner_Off, GlobalVariables.AuftragsNR);
             string Lokaler_Pfad = System.IO.Path.Combine(Pfad_DokumentOrdner, Pfad_Servicetool_Lokal);
-            
+
+            //Check if the Local Order Folder already exists, if not create it
             if (Directory.Exists(Lokaler_Pfad))
             {
+                //copy all files from the Global Order Folder to the Local Order Folder
                 foreach (string datei in Directory.GetFiles(GlobalVariables.Pfad_AuftragsOrdner))
                 {
                     string DateiName = System.IO.Path.GetFileName(datei);
@@ -1085,6 +1128,7 @@ namespace ServiceTool
                         File.Copy(datei, ZielDateiPfad);
                     }
                 }
+                //Create the Subfolder for Attachments and Signatures if it does not exist
                 Directory.CreateDirectory(Path.Combine(Lokaler_Pfad,"Anhaenge/Unterschriften"));
             }
             else 
@@ -1107,14 +1151,14 @@ namespace ServiceTool
 
         private void CB_Sprache_auswahl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //ToDo need to introduce the Funktion to switch the Language of the Application/Current Window
         }
 
         private void Creat_PDF_Dokuments(object sender, EventArgs e) 
         {
             MessageBox.Show("Stelle sicher das alle Dokumente vollständig ausgefüllt sind!");
-            EngDe_For_PDF Translations = GetLanguageDataForPDF(); //Lade die Übersetzungen für die PDF Dokumente
-            int LanguageNumber = 0; // Variable um die Sprache zu bestimmen, 0 = Deutsch, 1 = Englisch
+            EngDe_For_PDF Translations = GetLanguageDataForPDF(); //Load all Translations for the PDF Documents
+            int LanguageNumber = 0; // Variable to define the Language, 0 = Deutsch, 1 = Englisch
             if (GlobalVariables.Sprache_Kunde == "Deutsch")
             {
                 LanguageNumber = 1;
@@ -1123,8 +1167,8 @@ namespace ServiceTool
             {
                 LanguageNumber = 0;
             }
-                //Hier werden alle PDF ersellungen getrigerd
-            Create_PDF_Of_Stundennachweis(Translations, LanguageNumber);//TODO wieder aktivieren wenn PDF fertig ist
+            //Create all PDF Documents
+            Create_PDF_Of_Stundennachweis(Translations, LanguageNumber);
             Create_PDF_Of_Inbetriebnahmeprotokoll(Translations, LanguageNumber);
             Create_PDF_Of_IbnP_MRS(Translations, LanguageNumber);
         }
@@ -1138,17 +1182,12 @@ namespace ServiceTool
 
             foreach(TranslationEntryPDF entry in sprachtabelleEntries)
             {
-                // Suche Property mit passendem Namen
+                // Search for Property in EngDe_For_PDF class by name
                 PropertyInfo property = typeof(EngDe_For_PDF).GetProperty(entry.VariableName);
-
-                if (entry.VariableName == "SignatureCutsomer" )
-                {
-                    Console.WriteLine("wambo");
-                }
 
                 if (property != null && property.PropertyType == typeof(List<string>))
                 {
-                    // Hole die Liste aus der Property
+                    
                     var list = (List<string>)property.GetValue(engDe_For_PDF);
 
                     // Füge die Werte hinzu
@@ -1160,12 +1199,13 @@ namespace ServiceTool
                     Console.WriteLine($"Warnung: Property '{entry.VariableName}' nicht gefunden oder falscher Typ!");
                 }
             }
-
+            //Return Object of Class for Translations
             return engDe_For_PDF;
         }
 
         private void Create_PDF_Of_Stundennachweis(EngDe_For_PDF Translations, int LanguageNumber)
         {
+            //Save all Information out off the excell data that are needed for the PDF
             Stundennachweis_PDF_Data pDF_Data = GetDataForPDF_StdN();
             QuestPDF.Settings.License = LicenseType.Community;
             string SavePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.pdf");
@@ -1177,16 +1217,15 @@ namespace ServiceTool
                     page.Margin(35);
                     page.Size(PageSizes.A4);
                     page.PageColor(QuestPDF.Helpers.Colors.White);
-                    page.Header().PaddingBottom(10).BorderBottom(1).Column(column =>
+                    page.Header().PaddingBottom(10).BorderBottom(1).Column(column => //Places a Colum in witch the Items are Vertical aligned
                     {
-                        column.Item().Row(row =>
+                        
+                        column.Item().Row(row => // adding a row in witch the Items are Horizontal aligned
                         {
                             row.RelativeItem().Text(Translations.ServiceVisitReport[LanguageNumber]).FontSize(27).Bold();
-
                             row.ConstantItem(100)
                             .AlignRight()
                             .Image("Bilder/gneuss_png_1.png");
-
                         });
 
                         column.Item().Row(row =>
@@ -1540,8 +1579,9 @@ namespace ServiceTool
         }
         public Stundennachweis_PDF_Data GetDataForPDF_StdN()
         {
+            //Calculate the Service Duration in Days
             TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
-
+            //Convert the Service Duration in Days to Weeks
             double weeksnotRounded = ServiceDurationInDays.TotalDays / 7;
             int NumberOfStundennachweis = (int)Math.Ceiling(weeksnotRounded);
 
@@ -1552,23 +1592,20 @@ namespace ServiceTool
 
 
             Stundennachweis_PDF_Data PDF_Data = new Stundennachweis_PDF_Data();
-            for (int i = 0; i < NumberOfStundennachweis; i++)
+            for (int i = 0; i < NumberOfStundennachweis; i++) // Loop through the number of Stundennachweis documents
             {
                 string ExcelFilePath = "";
-                string PDFFilePath = "";
-
                 
-
-                if (i == 0)
+                if (i == 0) // if its is the first document use Stundennachweis.xlsm else count up from StdN_2
                 {
                     ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
-                    PDFFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.pdf");
+                    //implement the License Context for EPPlus
                     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                     using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
                     {
-                        var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
+                        var worksheet = package.Workbook.Worksheets[0]; 
 
-                        //Werte für den Header der PDF abspeichern
+                        //Safe Information for the Header of the PDF
                         PDF_Data.Customer = worksheet.Cells["C4"].Text;
                         PDF_Data.ServiceTechnician = worksheet.Cells["P1"].Text;
                         PDF_Data.Adress1 = worksheet.Cells["M4"].Text;
@@ -1643,11 +1680,11 @@ namespace ServiceTool
                     }
                 }
                 else
-                {
+                {// If its not the first document only add the Workingtime to the Arbeitszeit List Object of the Class
                     ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis_" + (i + 1) + ".xlsm");
                     using (var package = new ExcelPackage(new FileInfo(ExcelFilePath)))
                     {
-                        var worksheet = package.Workbook.Worksheets[0]; // Greife auf das erste Arbeitsblatt zu
+                        var worksheet = package.Workbook.Worksheets[0]; 
                         PDF_Data.Report.Add(worksheet.Cells["A35"].Text);
                         if (worksheet.Cells["J31"].Text != "")
                         {
@@ -1685,7 +1722,7 @@ namespace ServiceTool
             PDF_Data.TotalOverTime = TotalOverTime;
             PDF_Data.TotalNightWork = TotalNightwork;
             PDF_Data.TotalHours = TotalTime;
-            return PDF_Data;
+            return PDF_Data;//return the PDF Data Object with all the information witch are inserted in the Class
         }
 
         public void Create_PDF_Of_Inbetriebnahmeprotokoll(EngDe_For_PDF Translations, int LanguageNumber)
@@ -2948,7 +2985,7 @@ namespace ServiceTool
             return PDF_Data_IbnP_MRS;
         }
         public string FormattedTimeSpanInHHMM(TimeSpan timeSpan)
-        {
+        {//Funktion to Format TimeSpan in HH:MM format
             return Math.Truncate(timeSpan.TotalHours).ToString("00") + ":" + timeSpan.Minutes.ToString("00");
         }
 
@@ -2956,48 +2993,52 @@ namespace ServiceTool
         {
             try
             {
-                // Starte Outlook-Application
+                // Start Outlook-Application
                 Outlook.Application outlookApp = new Outlook.Application();
 
-                // Neue Mail erstellen
+                // Generate new Mail Object
                 Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
 
-                // Empfänger
-                mailItem.To = GlobalVariables.CustomerEmail;//TODO meine Mail durch GlobalVariables.E-Mail_Kunde ersetzen
+                // Recipient
+                mailItem.To = GlobalVariables.CustomerEmail;
 
-                // Betreff
+                // Subject
                 mailItem.Subject = (GlobalVariables.Sprache_Kunde == "DE") ? "Ihre Unterlagen" : "Your Documents";
 
-                // Text
+                // E-Mail Body
                 string bodyText = (GlobalVariables.Sprache_Kunde == "DE") ?
-                    "Sehr geehrte Damen und Herren,\n\nanbei finden Sie die gewünschten Unterlagen im Anhang.\n\nMit freundlichen Grüßen" :
-                    "Dear Sir or Madam,\n\nPlease find attached the requested documents.\n\nKind regards";
+                    "Sehr geehrte Damen und Herren,\r\nanbei übermitteln wir Ihnen die Unterlagen zu dem durchgeführten Service-Einsatz.\r\nMit freundlichen Grüßen,\r\nGneuß Kunststofftechnik GmbH" :
+                    "Dear Sirs,\r\nEnclosed you will find the documents relating to the service visit carried out.\r\nBest regards,\r\nGneuss Kunststofftechnik GmbH";
 
                 mailItem.Body = bodyText;
                 string PdfFilesPath = "";
-                // Hole alle PDFs im angegebenen Ordner
-                if(GlobalVariables.Online_or_Offline)
+                // Set Path Based on the Status of Online or Offline
+                if (GlobalVariables.Online_or_Offline)
                 {
                     PdfFilesPath = Properties.Resources.Pfad_AuftragsOrdner_On;
                 }
                 else
                 {
+
                     PdfFilesPath = Properties.Resources.Pfad_AuftragsOrdner_Off;
                 }
 
+                // Replace Palceholder with actual AuftragsNR
                 PdfFilesPath = string.Format(PdfFilesPath, GlobalVariables.AuftragsNR);
 
+                // Save the PDF file name to the specified path
                 string[] pdfFiles = Directory.GetFiles(PdfFilesPath, "*.pdf");
 
+                //add all PDF files as attachments
                 foreach (var pdfPath in pdfFiles)
                 {
                     mailItem.Attachments.Add(pdfPath);
                 }
 
-                // Mail anzeigen (optional → Benutzer kann prüfen und selbst senden)
+                // Show the mail item to the user for review
                 mailItem.Display();
 
-                // Oder direkt senden (vorsicht: kein Prüfen!)
+                // Or send it directly without displaying(then comment the above line and uncomment the next line)
                 // mailItem.Send();
 
             }

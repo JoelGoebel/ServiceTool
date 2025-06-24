@@ -29,8 +29,9 @@ namespace ServiceTool
         {
             
             InitializeComponent();
-            mw = (MainWindow)Application.Current.MainWindow;
-            if(GlobalVariables.dt != null)
+            mw = (MainWindow)Application.Current.MainWindow;//get the MainWindow Instance in order to acces its Functions
+            //Insert the DataTable into the DataGrid
+            if (GlobalVariables.dt != null)
             {
                 var filteredData = GlobalVariables.dt.AsEnumerable();
                 dataGrid.ItemsSource = filteredData.CopyToDataTable().DefaultView;
@@ -40,7 +41,7 @@ namespace ServiceTool
         private void btn_AuftragsNr_suchen_Click(object sender, RoutedEventArgs e)
         {
             mw._isInitialized = false;
-            ClearGlobalVariables();
+            ClearGlobalVariables();//Reset all Information in GlobalVariables
 
             //Check if User Enterd Auftragsnummer
             if (tb_Auftragsnummer.Text == "" )
@@ -55,13 +56,14 @@ namespace ServiceTool
                 tb_Auftragsnummer.Text = "";
                 return;
             }
-            
 
+            // Safe the Auftragsnummer in GlobalVariables for later use
             GlobalVariables.AuftragsNR = tb_Auftragsnummer.Text;
             string Auftragsnummer = GlobalVariables.AuftragsNR;
 
-            PfadeFestlegen();
-            if(GlobalVariables.dt != null) 
+            PfadeFestlegen(); //Set all Paths for the current OrderNo
+
+            if (GlobalVariables.dt != null) 
             { 
                 Datenabgleich_Database();
             }
@@ -97,24 +99,25 @@ namespace ServiceTool
         // Unterfunktion btn_AuftragsNR_suchen_Click
         private void OfflineDatenAbgleich()
         {
+            //Set Local Paths to work offline
             string Pfad_DokumentOrdner = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string Pfad_Servicetool_Lokal = string.Format(Properties.Resources.Pfad_AuftragsOrdner_Off, GlobalVariables.AuftragsNR);
             string Temp_Pfad_AuftragsOrdner = System.IO.Path.Combine(Pfad_DokumentOrdner, Pfad_Servicetool_Lokal);
 
-            if (Directory.Exists(Temp_Pfad_AuftragsOrdner))
+            if (Directory.Exists(Temp_Pfad_AuftragsOrdner))//Check if the Local Order Folder exists
             {
-                foreach(string datei in Directory.GetFiles(Temp_Pfad_AuftragsOrdner, "*.xls*"))
+                foreach(string datei in Directory.GetFiles(Temp_Pfad_AuftragsOrdner, "*.xls*"))// Do for each Excel Data in the Local Order Folder
                 {
-                    string dateiName = System.IO.Path.GetFileName(datei);
+                    string dateiName = System.IO.Path.GetFileName(datei); //get the Filename of the Excel Data
                     string quellDateiPfad = System.IO.Path.Combine(Temp_Pfad_AuftragsOrdner, dateiName);
                     string zielDateiPfad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, dateiName);
-                    DateTime LastChange_OfflineData = File.GetLastWriteTime(quellDateiPfad);
-                    DateTime LastChange_OnlineData = File.GetLastWriteTime(zielDateiPfad);
+                    DateTime LastChange_OfflineData = File.GetLastWriteTime(quellDateiPfad);//check the last change Date of the Local Data
+                    DateTime LastChange_OnlineData = File.GetLastWriteTime(zielDateiPfad);// check the last change Date of the Online Data
 
-                    if (File.Exists(zielDateiPfad) && dateiName != "Service_Anforderungen.xlsx") 
-                    { 
+                    if (File.Exists(zielDateiPfad) && dateiName != "Service_Anforderungen.xlsx")
+                    { // if the Online Data exists and is not the Service_Anforderungen.xlsx
                         if (LastChange_OfflineData>=LastChange_OnlineData)
-                        {
+                        {//If the Local Data is newer than the Online Data
                             File.Copy(quellDateiPfad,zielDateiPfad,true);
                             OfflineDatenArchivieren(quellDateiPfad, dateiName);
                         }
@@ -138,14 +141,14 @@ namespace ServiceTool
             int Anzahl_ArchivierteDaten = dateien.Length;
 
             if (Anzahl_ArchivierteDaten < 10)
-            {
+            {//If less than 10 files are archived, copy the file to the archive
                 string NutzerArchiveDateiPfad = System.IO.Path.Combine(Nutzer_ArchivPfad, DateiName);
                 if(File.Exists(NutzerArchiveDateiPfad)) { File.Delete(NutzerArchiveDateiPfad); }
                 File.Copy(quellDateiPfad, NutzerArchiveDateiPfad);
                 if (File.Exists(quellDateiPfad)) { File.Delete(quellDateiPfad); }
             }
             else
-            {
+            {//If more than 10 files are archived, delete the oldest file and copy the new file to the archive
                 DirectoryInfo VerzeichnisInfos = new DirectoryInfo(Nutzer_ArchivPfad);
                 FileInfo aeltesteDatei = VerzeichnisInfos.GetFiles().OrderBy(datei => datei.LastWriteTime).FirstOrDefault();
                 File.Delete(aeltesteDatei.FullName);
@@ -154,12 +157,9 @@ namespace ServiceTool
         }
         // Unterfunktion btn_AuftragsNR_suchen_Click
         private void DokumenteEinblenden()
-        {
-            
-            //Kein Sprachen abgleich möglich alle Sichtbar machen
+        {// Set the Visibility of the RadioButtons and Buttons in the MainWindow to Visible.
             mw.rbt_InbetriebnahmeProtokoll.Visibility = Visibility.Visible;
-            mw.rbt_InbetriebnahmeProtokoll_MRS.Visibility = Visibility.Visible;
-            
+            mw.rbt_InbetriebnahmeProtokoll_MRS.Visibility = Visibility.Visible;            
             mw.rbt_ServiceAnforderung.Visibility = Visibility.Visible;
             mw.rbt_Stundennachweis.Visibility = Visibility.Visible;
             mw.rbt_InternerBericht.Visibility = Visibility.Visible;
@@ -167,17 +167,16 @@ namespace ServiceTool
             mw.btn_Anhaege_hinzufuegen.Visibility = Visibility.Visible;
             mw.btn_Auftrag_Download.Visibility = Visibility.Visible;
         }
-
         // Unterfunktion btn_AuftragsNR_suchen_Click
         private void CopyVorlagenInAuftragsOrdner()
         {
-            // Dateien aus dem Quellordner in den Zielordner kopieren
+            // Copy all template files from the source folder to the order folder
             foreach (string datei in Directory.GetFiles(GlobalVariables.Pfad_QuelleVorlagen))
             {
                 string dateiName = System.IO.Path.GetFileName(datei);
                 string zielDateiPfad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, dateiName);
 
-                // Datei kopieren, falls sie nicht schon existiert
+                // Check if Data already exists in the target folder
                 if (!File.Exists(zielDateiPfad))
                 {
                     File.Copy(datei, zielDateiPfad);
@@ -188,7 +187,7 @@ namespace ServiceTool
         // Unterfunktion btn_AuftragsNR_suchen_Click
         private void AuftragsOrdnerErstellen()
         {
-            // Zielordner erstellen, falls sie nicht existieren
+            //Generate the Folder for the current OrderNo if it does not exist
             if (!Directory.Exists(GlobalVariables.Pfad_AuftragsOrdner))
             {
                 Directory.CreateDirectory(GlobalVariables.Pfad_AuftragsOrdner);
@@ -206,12 +205,12 @@ namespace ServiceTool
         private void Datenabgleich_Database()
         {
             DataTable DB_Serviceaufträge = GlobalVariables.dt;
-            int row_count = DB_Serviceaufträge.Rows.Count;
+            int row_count = DB_Serviceaufträge.Rows.Count;// Get the number of rows in the DataTable
 
             for (int i = 0; i < row_count; i++)
             {
                 string DB_AuftragsNR = Convert.ToString(DB_Serviceaufträge.Rows[i][1]);
-
+                //Search for the Order Number in the DataTable if found set the GlobalVariables
                 if (DB_AuftragsNR == GlobalVariables.AuftragsNR)
                 {
                     GlobalVariables.Kunde = Convert.ToString(DB_Serviceaufträge.Rows[i][5]);
@@ -234,17 +233,17 @@ namespace ServiceTool
             string relativerPfad = @"Vorlagen";
             GlobalVariables.Pfad_QuelleVorlagen = System.IO.Path.Combine(basisOrdner, relativerPfad);
 
-            //Das Ergebniss der Vorran gegangenen Pings an Fileserver und DB prüfen
+            //Check if the Server is reachable
             if (GlobalVariables.Online_or_Offline)
             {
-                //Online Pfade setzen
+                // Set Online Paths
                 GlobalVariables.Pfad_AuftragsOrdner = string.Format(Properties.Resources.Pfad_AuftragsOrdner_On, GlobalVariables.AuftragsNR);
                 GlobalVariables.Pfad_Anhaenge = string.Format(Properties.Resources.Pfad_Anhaenge_On, GlobalVariables.AuftragsNR);
                 GlobalVariables.Pfad_Unterschriften = string.Format(Properties.Resources.Pfad_Signatures_On, GlobalVariables.AuftragsNR);
             }
             else
             {
-                //Offline Pfade setzen
+                //Set Offline Paths
                 string Pfad_DokumentOrdner= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 string Pfad_Servicetool_Lokal = string.Format(Properties.Resources.Pfad_AuftragsOrdner_Off, GlobalVariables.AuftragsNR);
                 GlobalVariables.Pfad_AuftragsOrdner = System.IO.Path.Combine(Pfad_DokumentOrdner, Pfad_Servicetool_Lokal);
@@ -265,44 +264,44 @@ namespace ServiceTool
 
         private void OnSearchClick(object sender, RoutedEventArgs e)
         {
-            if(tb_Land_Startseite.Text == "" && tb_KundenFirmenName_Startseite.Text == "" && dp_AbDatum_Startseite.Text == "")
+            //Check if at least one search criteria is entered else Funktion
+            if (tb_Land_Startseite.Text == "" && tb_KundenFirmenName_Startseite.Text == "" && dp_AbDatum_Startseite.Text == "")
             {
                 MessageBox.Show("Bitte geben Sie mindestens ein Suchkriterium ein.");
                 return;
             }
-
+            //Place the DataView of the DataGrid into a variable
             var view = dataGrid.ItemsSource as DataView;
-            DataTable table = view?.ToTable(); // enthält alle gefilterten und sortierten Zeilen
+            DataTable table = view?.ToTable(); // Contains all sorted Data
 
             var filteredData = table?.AsEnumerable(); // als IEnumerable<DataRow>
 
             if (!string.IsNullOrEmpty(tb_Land_Startseite.Text))
-            {
+            {// if Land is enterd as a search criteria and look up the DataTable for it
                 filteredData = filteredData.Where(row => row.Field<string>("Land").ToUpper().Contains(tb_Land_Startseite.Text.ToUpper()));
             }
 
             if (!string.IsNullOrEmpty(tb_KundenFirmenName_Startseite.Text))
-            {
-
+            {// if KundenFirmenName is entered as a search criteria and look up the DataTable for it
                 filteredData = filteredData.Where(row => row.Field<string>("A0Name1").ToUpper().Contains(tb_KundenFirmenName_Startseite.Text.ToUpper()));
             }
 
             if (dp_AbDatum_Startseite.SelectedDate.HasValue)
-            {
-                if(dp_AbDatum_Startseite.SelectedDate.Value <= DateTime.Today) 
-                { 
+            {//Check if a date is selected
+                if(dp_AbDatum_Startseite.SelectedDate.Value <= DateTime.Today)
+                { // Check if the selected date is not in the future. if not filter the DataTable for it
                     var abDatum = dp_AbDatum_Startseite.SelectedDate.Value;
                     filteredData = filteredData.Where(row => row.Field<DateTime>("Belegdatum") >= abDatum);
                 }
                 else
-                {
+                {// If future date is selected show a message box and return
                     MessageBox.Show("Das Datum darf nicht in der Zukunft liegen.");
                     return;
                 }
             }
 
             if (filteredData == null || !filteredData.Any())
-            {
+            {//if no data is found show a message box and return
                 dataGrid.BorderBrush = Brushes.Red;
                 dataGrid.BorderThickness = new Thickness(4);
                 MessageBox.Show("Keine Daten gefunden.");
@@ -312,11 +311,11 @@ namespace ServiceTool
             }
 
             try
-            {
+            {//Try to insert the filtered data into the DataGrid
                 dataGrid.ItemsSource = filteredData.CopyToDataTable().DefaultView;
             }
             catch (InvalidOperationException)
-            {
+            {//if it doesn,t work it means that no data is found
                 dataGrid.BorderBrush = Brushes.Red;
                 dataGrid.BorderThickness = new Thickness(4);
                 MessageBox.Show("Keine Daten gefunden");
@@ -334,15 +333,15 @@ namespace ServiceTool
             }
             DataRowView row = (DataRowView)dataGrid.SelectedItem;
             tb_Auftragsnummer.Text = row.Row.ItemArray[1].ToString();
-            // Setzt den Cursor in die TextBox
+            // Set the Cursor to the TextBox
             tb_Auftragsnummer.Focus();
 
-            // Text markieren
+            // Select all the Text in the TextBox
             tb_Auftragsnummer.SelectAll();
         }
 
         private void AuftragsNrSucheStarten(object sender, KeyEventArgs e)
-        {
+        {//Event for pressing Enter in the Auftragsnummer TextBox
             if (e.Key == Key.Enter)
             {
                 btn_AuftragsNr_suchen_Click(sender, e);
@@ -350,7 +349,7 @@ namespace ServiceTool
         }
 
         private void StarteTabellenFilter(object sender, KeyEventArgs e)
-        {
+        {//Event for pressing Enter in the Search TextBoxes
             if (e.Key == Key.Enter)
             {
                 OnSearchClick(sender, e);
@@ -358,7 +357,7 @@ namespace ServiceTool
         }
     
         private void ClearGlobalVariables()
-        {
+        {//Reset all GlobalVariables to their default values
             GlobalVariables.Kunde = "";
             GlobalVariables.KundenNummer = "";
             GlobalVariables.Sprache_Kunde = "";

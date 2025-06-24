@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ServiceTool
-{
+{   //Language Class for the PDF generation
     public class EngDe_For_PDF
     {
         public List<string> ServiceVisitReport { get; set; } = new List<string>();

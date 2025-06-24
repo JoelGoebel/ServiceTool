@@ -26,7 +26,7 @@ namespace ServiceTool
         {
             InitializeComponent();
             FillSiteSwitchComboBox();
-
+            //
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 _isInitialized = true;
@@ -36,9 +36,9 @@ namespace ServiceTool
 
         public void FillSiteSwitchComboBox()
         {
-
+            //Deactivate SelectionChanged Event to prevent triggering it on initialization
             cb_SiteSwitchIbnP_MRS.SelectionChanged -= SiteSelectionChanged;
-            //Wenn in den ServiceAnforderungen eine Maschine eingetragen wurde wird der Typ in den Klasse GlobalVariables gespeichert
+            //If a Machine witch is entered in the GlobalVariables is Like "MRS" or "Jump", then add it to the ComboBox
             if (GlobalVariables.Maschiene_1 != "" && (GlobalVariables.Maschiene_1 == "MRS" || GlobalVariables.Maschiene_1 == "Jump"))
             {
                 cbItem_Site1.Content = GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1;
@@ -168,7 +168,7 @@ namespace ServiceTool
             }
 
             tb_Kunde_ibnProtokoll_MRS.Text = GlobalVariables.Kunde;
-
+            //Reactivate SelectionChanged Event
             cb_SiteSwitchIbnP_MRS.SelectionChanged += SiteSelectionChanged;
         }
     }
