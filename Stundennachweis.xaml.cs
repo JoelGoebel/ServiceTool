@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using iText.StyledXmlParser.Jsoup.Select;
+using Microsoft.Office.Interop.Excel;
 using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
@@ -502,6 +503,29 @@ namespace ServiceTool
 
         //Eventhandler for the Working hours of all week days Only one is commented because the only difference is that the Changed TimeSpan is different and safed diferently
 
+        private void EnterTotalDayHours(TimeSpan[] Zeiten, string Day)
+        {
+            //TB Basenames
+            string UeberstundenTBName = $"tb_Ueberstunden_{Day}_Stunden";
+            string NormalStdTBName = $"tb_NormalStd_{Day}_Stunden";
+            string GesamtStdTBName = $"tb_GesamtStd_{Day}_Stunden";
+            string NachtarbeitTBName = $"tb_Nachtarbeit_{Day}_Stunden";
+
+            //Find the TextBoxes in the Grid
+            if (this is FrameworkElement element)
+            {
+                System.Windows.Controls.TextBox tb_Ueberstunden = element.FindName(UeberstundenTBName) as System.Windows.Controls.TextBox;
+                System.Windows.Controls.TextBox tb_NormalStd = element.FindName(NormalStdTBName) as System.Windows.Controls.TextBox;
+                System.Windows.Controls.TextBox tb_GesamtStd = element.FindName(GesamtStdTBName) as System.Windows.Controls.TextBox;
+                System.Windows.Controls.TextBox tb_Nachtarbeit = element.FindName(NachtarbeitTBName) as System.Windows.Controls.TextBox;
+
+                tb_Ueberstunden.Text = Zeiten[0].ToString();
+                tb_NormalStd.Text = Zeiten[1].ToString();
+                tb_GesamtStd.Text = Zeiten[2].ToString();
+                tb_Nachtarbeit.Text = Zeiten[3].ToString();
+            }
+        }
+
         //EventHandler Montag
         private void cb_Von_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -511,6 +535,7 @@ namespace ServiceTool
             TimeSpan ArbeitsbeginnS2;
             TimeSpan ArbeitsendeS2;
             TimeSpan PauseS2;
+            
             //Safe all the Information out of the UserControl to Calculate the Working hours
             string temp = cb_Von_Mo_Stunden.SelectedItem as string;
             TimeSpan.TryParse(temp, out Arbeitsbeginn);
@@ -523,11 +548,7 @@ namespace ServiceTool
             //Call the Function to Calculate the Working hours
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            //Pase the calculated values into the TextBoxes
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
         private void cb_Bis_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -549,10 +570,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
         private void cb_Pause_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -574,10 +592,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
         private void cb_Von_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -600,10 +615,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
         private void cb_Bis_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -626,10 +638,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
         private void cb_Pause_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -651,10 +660,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mo_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
 
 
@@ -668,6 +674,8 @@ namespace ServiceTool
             TimeSpan ArbeitsendeS2;
             TimeSpan PauseS2;
 
+            ComboBox cb = (ComboBox)sender;
+            string SenderName = cb.Name;
             string temp = cb_Von_Di_Stunden.SelectedItem as string;
             TimeSpan.TryParse(temp, out Arbeitsbeginn);
             TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
@@ -678,12 +686,9 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
-
+        
         private void cb_Bis_Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TimeSpan Arbeitsbeginn;
@@ -703,10 +708,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
 
         private void cb_Pause_Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -728,10 +730,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
 
         private void cb_Von_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -754,10 +753,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
 
         private void cb_Bis_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -780,10 +776,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
 
         private void cb_Pause_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -805,10 +798,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Di_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Di_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Di_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Di_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Di");
         }
 
 
@@ -833,10 +823,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mi");
         }
 
         private void cb_Bis_Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -858,10 +845,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mi");
         }
 
         private void cb_Pause_Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -883,10 +867,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mi");
         }
 
         private void cb_Von_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -909,10 +890,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mi");
         }
 
         private void cb_Bis_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -935,10 +913,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Mi");
         }
 
         private void cb_Pause_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -960,10 +935,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Mi_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Mi_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Mi_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Mi_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
 
@@ -987,10 +959,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         private void cb_Bis_Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1012,10 +981,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         private void cb_Pause_Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1037,10 +1003,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         private void cb_Von_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1063,10 +1026,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         private void cb_Bis_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1089,10 +1049,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         private void cb_Pause_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1114,10 +1071,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Do_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Do_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Do_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Do");
         }
 
         //EventHandler Freitag
@@ -1140,10 +1094,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
         private void cb_Bis_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1165,10 +1116,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
         private void cb_Pause_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1190,10 +1138,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
         private void cb_Von_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1216,10 +1161,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
         private void cb_Bis_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1242,10 +1184,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
         private void cb_Pause_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1267,10 +1206,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Fr_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Fr_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Fr_Stunden.Text = Zeiten[2].ToString();
-            tb_Nachtarbeit_Fr_Stunden.Text = Zeiten[3].ToString();
+            EnterTotalDayHours(Zeiten, "Fr");
         }
 
 
@@ -1295,10 +1231,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         private void cb_Bis_Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1320,10 +1253,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         private void cb_Pause_Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1345,10 +1275,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         private void cb_Von_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1372,10 +1299,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         private void cb_Bis_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1397,10 +1321,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         private void cb_Pause_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1422,10 +1343,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_Sa_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_Sa_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "Sa");
         }
 
         //EventHandler Sonntag
@@ -1449,10 +1367,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
 
         private void cb_Bis_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1474,10 +1389,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
 
         private void cb_Pause_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1499,10 +1411,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
 
         private void cb_Von_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1526,10 +1435,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
 
         private void cb_Bis_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1551,10 +1457,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
 
         private void cb_Pause_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1576,10 +1479,7 @@ namespace ServiceTool
 
             TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
-            tb_Ueberstunden_So_Stunden.Text = Zeiten[0].ToString();
-            tb_NormalStd_So_Stunden.Text = Zeiten[1].ToString();
-            tb_GesamtStd_So_Stunden.Text = Zeiten[0].ToString();
-            tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
+            EnterTotalDayHours(Zeiten, "So");
         }
         //EventHandler Tage Vorbei
         //End of the Eventhandler for all days
