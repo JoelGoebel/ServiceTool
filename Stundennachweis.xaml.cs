@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,32 +18,26 @@ using System.Windows.Shapes;
 
 namespace ServiceTool
 {
-    /// <summary>
-    /// Interaktionslogik für Window2.xaml
-    /// </summary>
     public partial class Stundennachweis : UserControl
     {
         private bool _isInitialized = false;
         public Stundennachweis()
         {
             InitializeComponent();
-            TimePicker();
-            TimePickerPause();
-            addSiteDependOnOrderTime();
+            TimePicker();//Add all the TimePicker Items to the ComboBoxes for entering the Working hours
+            TimePickerPause();//add all the TimePicker Items to the Pause ComboBoxes
+            addSiteDependOnOrderTime();//Depending on how many weeks the service order takes, add the corresponding number of sites to the ComboBox for switching between the weeks
 
-            Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.BeginInvoke(new System.Action(() =>
             {
                 _isInitialized = true;
             }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
 
         }
 
-        
-
-
         private void SetAllDateForThisWeek(object sender, SelectionChangedEventArgs e)
-        {
-            if(dp_Datum_Mo_Stunden.SelectedDate == null)
+        {//if the Date of the first weekday (Monday) is selected, set all other dates of the week accordingly
+            if (dp_Datum_Mo_Stunden.SelectedDate == null)
             {
                 return;
             }
@@ -55,23 +51,22 @@ namespace ServiceTool
             dp_Datum_So_Stunden.SelectedDate = DateFirstWeekday.AddDays(6);
         }
 
-
         private void SiteSwitched_Stunden(object sender, SelectionChangedEventArgs e)
-        {
+        {//this method is called when the user switches between the weeks in the ComboBox
             if (_isInitialized == false)
             {
                 return;
             }
-
+            //Deactivate the SelectionChanged event to prevent a Loop
             cb_Siteswitch_Stunden.SelectionChanged -= SiteSwitched_Stunden;
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            MainWindow mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
             string LastSelectedItem = cb_Siteswitch_Stunden.SelectionBoxItem.ToString();
             string selectedItem = cb_Siteswitch_Stunden.SelectedItem.ToString();
             string selectedItemText = selectedItem.Substring(selectedItem.IndexOf(" ") + 1);
             string ExcelFilePathLoad = "";
             string ExcelFilePathSave = "";
-
+            //Set the Path for the Excel file to save the data depending on the last selected item in the ComboBox
             if (LastSelectedItem == "Woche 1")
             {
                 ExcelFilePathSave = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
@@ -113,7 +108,7 @@ namespace ServiceTool
                 mainWindow.speichern(ExcelFilePathSave, "Stundennachweis");
             }
 
-
+            //Set the Path for the Excel file to load the data depending on the selected item in the ComboBox
             if (selectedItemText == "Woche 1")
             {
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm");
@@ -155,6 +150,7 @@ namespace ServiceTool
                 mainWindow.Laden(ExcelFilePathLoad, "Stundennachweis");
             }
 
+            //Set all the Information from the GlobalVariables to the TextBoxes and ComboBoxes in the UserControl
             tb_Servicetechiker_Stunden.Text = GlobalVariables.ServiceTechnicker;
             tb_Servicetechiker_Stunden.Focusable = false;
             tb_Kunde_Stunden.Text = GlobalVariables.Kunde;
@@ -171,18 +167,20 @@ namespace ServiceTool
                 cb_Verkehrsmittel_Stunden.Focusable = false;
             }
 
-
+            //Reactivate the SelectionChanged event after the data has been loaded
             cb_Siteswitch_Stunden.SelectionChanged += SiteSwitched_Stunden;
         }
 
         private void addSiteDependOnOrderTime()
         {
+            //Calculate the number of weeks and safe it as a whole number in the variable Weeks
             TimeSpan ServiceDurationInDays = GlobalVariables.EndeServiceEinsatz - GlobalVariables.StartServiceEinsatz;
             double weeksnotRounded = ServiceDurationInDays.TotalDays/7;
             int Weeks = (int)Math.Ceiling(weeksnotRounded);
 
             for (int i = 0; i < Weeks; i++)
             {
+                //Set the Dataname depending on the number of weeks
                 string quellOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_QuelleVorlagen, "Stundennachweis.xlsm");
                 string ZielData = "Stundennachweis.xlsm";
                 int x = i + 1;
@@ -196,10 +194,9 @@ namespace ServiceTool
                 {
                     File.Copy(quellOrdner, zielOrdner);
                 }
-                
-                string item = "cbItem_SiteSwitch_Stunden" + x.ToString();
-                
-                
+
+                //Make the Item Visible depending on the number of weeks
+                string item = "cbItem_SiteSwitch_Stunden" + x.ToString();                
 
                 ComboBoxItem Item = (ComboBoxItem)Grid_Stunden.FindName(item);
 
@@ -208,9 +205,8 @@ namespace ServiceTool
             }
         }
 
-
         private void TimePicker()
-        {
+        {//Function to add all the TimePicker Items to the ComboBoxes for entering the Working hours
             for (int hour = 0; hour < 24; hour++)
             {
                 for (int minute = 0; minute < 60; minute += 15)
@@ -251,7 +247,7 @@ namespace ServiceTool
             }
         }
         private void TimePickerPause()
-        {
+        {//Function to add all the TimePicker Items to the Pause ComboBoxes
             for (int hour = 0; hour < 3.2; hour++)
             {
                 for (int minute = 0; minute < 60; minute += 15)
@@ -283,7 +279,7 @@ namespace ServiceTool
             TimeSpan Ueberstunden = new TimeSpan(0, 0, 0);
             TimeSpan Nachtarbeit = new TimeSpan(0, 0, 0);
             TimeSpan GesamtStd = new TimeSpan(0, 0, 0);
-
+            //Calculate all the Working hours, Normal hours, Overtime and Night work
             if (Arbeitsbeginn != TimeSpan.Zero && Arbeitsende != TimeSpan.Zero)
             {
                 if (Arbeitsbeginn < GlobalVariables.FruehNacht)
@@ -322,7 +318,7 @@ namespace ServiceTool
             {
                 Ueberstunden = NormalStd - GlobalVariables.RegularStd;
             }
-
+            //Safe the calculated values in the array
             Zeiten[1] = NormalStd;
             Zeiten[0] = Ueberstunden;
             Zeiten[3] = Nachtarbeit;
@@ -337,7 +333,7 @@ namespace ServiceTool
             TimeSpan NormalStd = new TimeSpan(0, 0, 0);
             TimeSpan Nachtarbeit = new TimeSpan(0, 0, 0);
             TimeSpan GesamtStd = new TimeSpan(0, 0, 0);
-
+            // Calculate all the Working hours, Normal hours, Overtime and Night work
             if (Arbeitsbeginn != TimeSpan.Zero && Arbeitsende != TimeSpan.Zero)
             {
                 if (Arbeitsbeginn < GlobalVariables.FruehNacht)
@@ -369,7 +365,7 @@ namespace ServiceTool
 
             return Zeiten;
         }
-
+        //EventHandler for Arrival and Departure to Calculate the total travel time every time a ComboBox selection changes
         private void cb_Anreise_Pause_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TimeSpan Gesamt_Anreisedauer;
@@ -502,7 +498,10 @@ namespace ServiceTool
             }
             tb_Abreisedauer_Gesamt_Stunden.Text = Gesamt_Abreisedauer.ToString();
         }
-        
+        //***** End of the EventHandler for Arrival and Departure *****
+
+        //Eventhandler for the Working hours of all week days Only one is commented because the only difference is that the Changed TimeSpan is different and safed diferently
+
         //EventHandler Montag
         private void cb_Von_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -512,7 +511,7 @@ namespace ServiceTool
             TimeSpan ArbeitsbeginnS2;
             TimeSpan ArbeitsendeS2;
             TimeSpan PauseS2;
-            
+            //Safe all the Information out of the UserControl to Calculate the Working hours
             string temp = cb_Von_Mo_Stunden.SelectedItem as string;
             TimeSpan.TryParse(temp, out Arbeitsbeginn);
             TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
@@ -521,8 +520,10 @@ namespace ServiceTool
             TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
             TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
 
+            //Call the Function to Calculate the Working hours
             TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
 
+            //Pase the calculated values into the TextBoxes
             tb_Ueberstunden_Mo_Stunden.Text = Zeiten[0].ToString();
             tb_NormalStd_Mo_Stunden.Text = Zeiten[1].ToString();
             tb_GesamtStd_Mo_Stunden.Text = Zeiten[2].ToString();
@@ -1119,8 +1120,6 @@ namespace ServiceTool
             tb_Nachtarbeit_Do_Stunden.Text = Zeiten[3].ToString();
         }
 
-
-
         //EventHandler Freitag
         private void cb_Von_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1429,7 +1428,6 @@ namespace ServiceTool
             tb_Nachtarbeit_Sa_Stunden.Text = Zeiten[2].ToString();
         }
 
-
         //EventHandler Sonntag
         private void cb_Von_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1584,10 +1582,10 @@ namespace ServiceTool
             tb_Nachtarbeit_So_Stunden.Text = Zeiten[2].ToString();
         }
         //EventHandler Tage Vorbei
-        
+        //End of the Eventhandler for all days
 
         private void GesamtRegStd()
-        {
+        {//Add all normal working hours of the week to a Sum
             TimeSpan Mo;
             TimeSpan Di;
             TimeSpan Mi;
@@ -1605,34 +1603,30 @@ namespace ServiceTool
 
             tb_GesamteWoche_NormalStd_Stunden.Text = Gesamt.ToString();
         }
-
+        // EventHandler to Calculate the total normal working hours for the week
         private void tb_NormalStd_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
-
         private void tb_NormalStd_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
-
         private void tb_NormalStd_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
-
         private void tb_NormalStd_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
-
         private void tb_NormalStd_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
 
         private void GesamtUeberStd()
-        {
+        {//Funktion to Calculate the total overtime hours for the week
             TimeSpan Mo;
             TimeSpan Di;
             TimeSpan Mi;
@@ -1655,44 +1649,38 @@ namespace ServiceTool
 
             tb_GesamteWoche_UeberStd_Stunden.Text = Gesamt.ToString();
         }
-
+        //EventHandler to Calculate the total overtime hours for the week
         private void tb_Ueberstunden_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
-
         private void tb_Ueberstunden_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
 
         private void GesamtNachtStd()
-        {
+        {//Funktion to Calculate the total night work hours for the week
             TimeSpan Mo;
             TimeSpan Di;
             TimeSpan Mi;
@@ -1714,44 +1702,38 @@ namespace ServiceTool
 
             tb_GesamteWoche_NachtStd_Stunden.Text = Gesamt.ToString();
         }
-
+        //EventHandler to Calculate the total night work hours for the week
         private void tb_Nachtarbeit_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
-
         private void tb_Nachtarbeit_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
 
         private void GesamteStd()
-        {
+        {//Funktion to Calculate the total working hours for the week
             TimeSpan Mo;
             TimeSpan Di;
             TimeSpan Mi;
@@ -1773,42 +1755,37 @@ namespace ServiceTool
 
             tb_GesamteWoche_AlleStd_Stunden.Text = Gesamt.ToString();
         }
-
+        //EventHandler to Calculate the total working hours for the week
         private void tb_GesamtStd_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
-
         private void tb_GesamtStd_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }
 
+        //EventHandler to make the second shift visible for each day
         private void Schicht2Hinzufügen_Mo(object sender, RoutedEventArgs e)
         {
             cb_Von_Mo_S2_Stunden.Visibility = Visibility.Visible;

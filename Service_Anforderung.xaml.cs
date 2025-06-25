@@ -39,8 +39,7 @@ namespace ServiceTool
         public bool HatFehlendePflichtfelder(out string fehlermeldung)
         {
             fehlermeldung = string.Empty;
-
-            fehlermeldung = string.Empty;
+             
             if (PrüfeMaschinenBlock(cb_Maschinentyp_1, cb_BauGröße_1, tb_MaschNr_1, out fehlermeldung))
                 return true;
             if (PrüfeMaschinenBlock(cb_Maschinentyp_2, cb_BauGröße_2, tb_MaschNr_2, out fehlermeldung))
@@ -53,11 +52,11 @@ namespace ServiceTool
         }
 
         private bool PrüfeMaschinenBlock(ComboBox Maschinentyp, ComboBox Baugroeße, TextBox Maschinennummer, out string fehlermeldung)
-        {
+        {//A Function to Check if the Machine Blocks where a Typ is Enterd, have also a Size and a Number
             fehlermeldung = "";
 
             if (Maschinentyp.SelectedItem == null)
-                return false; // Block nicht aktiv → keine Pflichtprüfung
+                return false; // Block not active, no check needed
 
             if (Baugroeße.SelectedItem == null)
             {
@@ -71,7 +70,7 @@ namespace ServiceTool
                 return true;
             }
 
-            return false; // alles ok
+            return false; //everything is fine
         }
 
         private void ServiceAnforderungen_Loaded(object sender, RoutedEventArgs e)
@@ -80,29 +79,26 @@ namespace ServiceTool
         }
 
         private void tb_Servicetechniker_Anforderung_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {//if the Text in the TextBox changes, the Global Variable is updated
             if (!_isInitialized) return;
-
             GlobalVariables.ServiceTechnicker = tb_Servicetechniker_Anforderung.Text;
         }
 
         private void tb_Kunde_Anforderung_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {//if the Text in the TextBox changes, the Global Variable is updated
             if (!_isInitialized) return;
-
             GlobalVariables.Kunde = tb_Kunde_Anforderung.Text;
         }
 
         private void tb_Ansprechpartner_Anforderung_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {//if the Text in the TextBox changes, the Global Variable is updated
             if (!_isInitialized) return;
             GlobalVariables.Ansprechpartner = tb_Ansprechpartner_Anforderung.Text;
         }
 
         private void tb_Anschrift_1_Anforderung_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {// if Order is in DB, Safe the Address in the Global Variable
             if (!_isInitialized) return;
-
             if (GlobalVariables.auftraginDB == false)
             {
                 GlobalVariables.Anschrift_1 = tb_Anschrift_1_Anforderung.Text;
@@ -110,7 +106,7 @@ namespace ServiceTool
         }
 
         private void tb_Anschrift_2_Anforderung_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {// if Order is in DB, Safe the Address in the Global Variable
             if (!_isInitialized) return;
 
             if (GlobalVariables.auftraginDB == false)
@@ -120,7 +116,7 @@ namespace ServiceTool
         }
 
         private void cb_Anreise_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {//if the Text in the TextBox changes, the Global Variable is updated
             if (!_isInitialized) return;
 
             GlobalVariables.Anreise = cb_Anreise.Text;
@@ -128,22 +124,18 @@ namespace ServiceTool
        
         private void Maschine_1_TypChanged(object sender, RoutedEventArgs e) 
         {
-            //if (!_isInitialized) return;
-
             ComboBoxItem Item= cb_Maschinentyp_1.SelectedItem as ComboBoxItem;
             string MaschinenTyp = Item.Content.ToString();
-            Baugroeßen_hinzufügen_1(MaschinenTyp);
+            Baugroeßen_hinzufügen_1(MaschinenTyp);//Enters the Baugroeßen in the Combobox, depending on the Typ of Machine
         }
         
         private void Maschinen_vorhanden_2(object sender, RoutedEventArgs e)
         {
-            //if (!_isInitialized) return;
-
             if (cb_Maschinentyp_2.Text != null) 
             { 
                 GlobalVariables.Maschiene_2 = cb_Maschinentyp_2.Text;
                 string Auftragsnummer = GlobalVariables.AuftragsNR;
-
+                //If the Typ is Selected, copy all the Files that are needed for the Maschine to the Order Folder
                 string quellOrdner =System.IO.Path.Combine(GlobalVariables.Pfad_QuelleVorlagen, "Inbetriebnahme_Protokoll.xlsm");
                 string zielOrdner = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner,"Inbetriebnahme_Protokoll_2.xlsm");
                 string quellOrdner2 = System.IO.Path.Combine(GlobalVariables.Pfad_QuelleVorlagen, "interner_Bericht.xlsx");
@@ -165,15 +157,13 @@ namespace ServiceTool
                 }
                 ComboBoxItem Item = cb_Maschinentyp_2.SelectedItem as ComboBoxItem;
                 string MaschinenTyp = Item.Content.ToString();
-                Baugroeßen_hinzufügen_2(MaschinenTyp);
+                Baugroeßen_hinzufügen_2(MaschinenTyp); //add the Baugroeßen to the Combobox, depending on the Typ of Machine
 
             }
         }
         
         private void cb_Maschinentyp_3_TextChanged(object sender, RoutedEventArgs e)
         {
-            //if (!_isInitialized) return;
-
             if (cb_Maschinentyp_3.Text != null)
             {
                 GlobalVariables.Maschiene_3 = cb_Maschinentyp_3.Text;
@@ -207,8 +197,6 @@ namespace ServiceTool
 
         private void cb_Maschinentyp_4_TextChanged(object sender, RoutedEventArgs e)
         {
-            
-
             if (cb_Maschinentyp_4.Text != null)
             {
                 GlobalVariables.Maschiene_4 = cb_Maschinentyp_4.Text;
@@ -241,7 +229,7 @@ namespace ServiceTool
         }
 
         private void Baugroeßen_hinzufügen_1(string sender)
-        {
+        {//Add the Machine Sizes to the Combobox, depending on the Typ of Machine
             if ( sender == "MRS")
             {
                 cb_BauGröße_1.Items.Clear();

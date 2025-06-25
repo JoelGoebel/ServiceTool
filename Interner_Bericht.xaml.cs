@@ -29,7 +29,8 @@ namespace ServiceTool
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 _isInitialized = true;
-                if(CB_Einheit_M.SelectedItem == null)
+                // Set the Default value for the Einheit_M. This will trigger the SelectionChanged Event witch sets the other Einheit Comboboxes to the same value.
+                if (CB_Einheit_M.SelectedItem == null)
                 {
                     CB_Einheit_M.Text = "Nm";
                 }
@@ -39,7 +40,7 @@ namespace ServiceTool
         private void SetNameOfComboBoxItem()
         {
             if (GlobalVariables.Maschiene_1 != "")
-            {
+            { //Set the Content of the ComboBoxItems with the Maschiene and Baugroeße and set the Visibility of the Item to Visible
                 cbItem_InBe_1.Content = GlobalVariables.Maschiene_1 + " " + GlobalVariables.Baugroeße_1;
                 cbItem_InBe_1.Visibility = Visibility.Visible;
                 if(StartSiteselected == false)
@@ -81,12 +82,12 @@ namespace ServiceTool
         }
 
         private void SiteSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        {//Check if the control is initialized to avoid a double event trigger
             if (_isInitialized == false)
             {
                 return;
             }
-
+            //Deaktivate the SelectionChanged Event to avoid a Loop
             cb_SeitenWechselInternerBericht.SelectionChanged -= SiteSelectionChanged;
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -139,7 +140,7 @@ namespace ServiceTool
                 ExcelFilePathLoad = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "interner_Bericht_4.xlsx");
                 mainWindow.Laden(ExcelFilePathLoad, "Interner_Bericht");
             }
-
+            //Reaktivate the SelectionChanged Event
             cb_SeitenWechselInternerBericht.SelectionChanged += SiteSelectionChanged;
         }
 
@@ -152,6 +153,7 @@ namespace ServiceTool
                 ComboBox cb = sender as ComboBox;
                 if (cb.SelectedItem == null) 
                 {
+                    //Set the Default value for the Einheit_M and deaktivate the SelectionChanged Event to avoid a Loop
                     result = "Nm";
                     CB_Einheit_M.SelectionChanged -= CB_Einheit_M_SelectionChanged;
                     CB_Einheit_M.Text = result;
@@ -163,8 +165,7 @@ namespace ServiceTool
                     int index = input.IndexOf(' ');
                     result = index >= 0 ? input.Substring(index + 1) : input;
                 }
-                    
-                
+                //Set all athor Einheit Comboboxes to the same value as the Einheit_M
                 CB_Einheit_T1.Text = result; 
                 CB_Einheit_B1.Text = result;
                 CB_Einheit_T2.Text = result;
@@ -178,11 +179,6 @@ namespace ServiceTool
                 CB_Einheit_Sonstige.Text = result;
                 
             }
-        }
-
-        private void CB_Einheit_M_SelectionChanged1(object sender, SelectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

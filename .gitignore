@@ -10,8 +10,25 @@
 *.userosscache
 *.sln.docstates
 
-# Eigene Einträge
-Properties/Resources.resx
+########################################################
+# ― Projektressourcen ausschließen ―
+#   * Resources.resx  = eigentliche Ressourcendatei
+#   * Resources.*.resx = evtl. sprachspezifische Resx (de, fr …)
+#   * Resources.Designer.cs = automatisch erzeugter Wrapper
+#   * *.Properties.Resources.resources = binäre Satelliten-
+#     dateien, die beim Build unter obj\ entstehen
+########################################################
+
+# alle RESX-Quellen
+**/Properties/Resources.resx
+**/Properties/Resources.*.resx
+
+# automatisch generierter Designer
+**/Properties/Resources.Designer.cs
+
+# Build-Artefakte im obj-Ordner (nur Vorsichtshalber)
+**/*.Properties.Resources.resources
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
