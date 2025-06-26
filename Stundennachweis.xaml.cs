@@ -668,23 +668,7 @@ namespace ServiceTool
             tb_GesamteWoche_NormalStd_Stunden.Text = Gesamt.ToString();
         }
         // EventHandler to Calculate the total normal working hours for the week
-        private void tb_NormalStd_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtRegStd();
-        }
-        private void tb_NormalStd_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtRegStd();
-        }
-        private void tb_NormalStd_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtRegStd();
-        }
-        private void tb_NormalStd_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtRegStd();
-        }
-        private void tb_NormalStd_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
+        private void NormalStd_Changed(object sender, TextChangedEventArgs e)
         {
             GesamtRegStd();
         }
@@ -714,31 +698,7 @@ namespace ServiceTool
             tb_GesamteWoche_UeberStd_Stunden.Text = Gesamt.ToString();
         }
         //EventHandler to Calculate the total overtime hours for the week
-        private void tb_Ueberstunden_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtUeberStd();
-        }
-        private void tb_Ueberstunden_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
+        private void UeberstundenGesamt(object sender, TextChangedEventArgs e)
         {
             GesamtUeberStd();
         }
@@ -767,31 +727,7 @@ namespace ServiceTool
             tb_GesamteWoche_NachtStd_Stunden.Text = Gesamt.ToString();
         }
         //EventHandler to Calculate the total night work hours for the week
-        private void tb_Nachtarbeit_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamtNachtStd();
-        }
-        private void tb_Nachtarbeit_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
+        private void NachtarbeitGesamt(object sender, TextChangedEventArgs e)
         {
             GesamtNachtStd();
         }
@@ -820,31 +756,7 @@ namespace ServiceTool
             tb_GesamteWoche_AlleStd_Stunden.Text = Gesamt.ToString();
         }
         //EventHandler to Calculate the total working hours for the week
-        private void tb_GesamtStd_Mo_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_Di_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_Mi_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_Do_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_Fr_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_Sa_Stunden_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GesamteStd();
-        }
-        private void tb_GesamtStd_So_Stunden_TextChanged(object sender, TextChangedEventArgs e)
+        private void GesamtStdEventHandler(object sender, TextChangedEventArgs e)
         {
             GesamteStd();
         }

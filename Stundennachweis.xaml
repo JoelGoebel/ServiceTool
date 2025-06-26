@@ -392,11 +392,11 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="10" Grid.ColumnSpan="2">
                 <Label Content="Regular working time" HorizontalContentAlignment="Center" FontSize="15"/>
             </Border>
-            <TextBox x:Name="tb_NormalStd_Mo_Stunden" Grid.Row="16" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Mo_Stunden_TextChanged" FontSize="20"/>
-            <TextBox x:Name="tb_NormalStd_Di_Stunden" Grid.Row="18" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Di_Stunden_TextChanged" FontSize="20"/>
-            <TextBox x:Name="tb_NormalStd_Mi_Stunden" Grid.Row="20" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Mi_Stunden_TextChanged" FontSize="20"/>
-            <TextBox x:Name="tb_NormalStd_Do_Stunden" Grid.Row="22" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Do_Stunden_TextChanged" FontSize="20"/>
-            <TextBox x:Name="tb_NormalStd_Fr_Stunden" Grid.Row="24" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="tb_NormalStd_Fr_Stunden_TextChanged" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Mo_Stunden" Grid.Row="16" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="NormalStd_Changed" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Di_Stunden" Grid.Row="18" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="NormalStd_Changed" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Mi_Stunden" Grid.Row="20" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="NormalStd_Changed" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Do_Stunden" Grid.Row="22" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="NormalStd_Changed" FontSize="20"/>
+            <TextBox x:Name="tb_NormalStd_Fr_Stunden" Grid.Row="24" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="NormalStd_Changed" FontSize="20"/>
             <TextBox x:Name="tb_NormalStd_Sa_Stunden" Grid.Row="26" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
             <TextBox x:Name="tb_NormalStd_So_Stunden" Grid.Row="28" Grid.Column="10" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
 
@@ -407,13 +407,13 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="12">
                 <Label Content="Overtime" FontSize="15"/>
             </Border>
-            <TextBox x:Name="tb_Ueberstunden_Mo_Stunden" Grid.Row="16" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_Di_Stunden" Grid.Row="18" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_Mi_Stunden" Grid.Row="20" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_Do_Stunden" Grid.Row="22" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_Fr_Stunden" Grid.Row="24" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_Sa_Stunden" Grid.Row="26" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Ueberstunden_So_Stunden" Grid.Row="28" Grid.Column="12" Grid.RowSpan="2" TextChanged="tb_Ueberstunden_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Mo_Stunden" Grid.Row="16" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Di_Stunden" Grid.Row="18" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Mi_Stunden" Grid.Row="20" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Do_Stunden" Grid.Row="22" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Fr_Stunden" Grid.Row="24" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_Sa_Stunden" Grid.Row="26" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Ueberstunden_So_Stunden" Grid.Row="28" Grid.Column="12" Grid.RowSpan="2" TextChanged="UeberstundenGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
 
             <!--Spalte Nachtarbeit-->
             <Border BorderBrush="Black" BorderThickness="0,1,1,0"  Grid.Row="13" Grid.Column="13">
@@ -422,13 +422,13 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="13">
                 <Label Content="Nightwork Hours" FontSize="15"/>
             </Border>
-            <TextBox x:Name="tb_Nachtarbeit_Mo_Stunden" Grid.Row="16" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_Di_Stunden" Grid.Row="18" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_Mi_Stunden" Grid.Row="20" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_Do_Stunden" Grid.Row="22" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_Fr_Stunden" Grid.Row="24" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_Sa_Stunden" Grid.Row="26" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_Nachtarbeit_So_Stunden" Grid.Row="28" Grid.Column="13" Grid.RowSpan="2" TextChanged="tb_Nachtarbeit_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Mo_Stunden" Grid.Row="16" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Di_Stunden" Grid.Row="18" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Mi_Stunden" Grid.Row="20" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Do_Stunden" Grid.Row="22" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Fr_Stunden" Grid.Row="24" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_Sa_Stunden" Grid.Row="26" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_Nachtarbeit_So_Stunden" Grid.Row="28" Grid.Column="13" Grid.RowSpan="2" TextChanged="NachtarbeitGesamt" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
 
             <!--Spalte Gesamtarbeitszeit-->
             <Border BorderBrush="Black" BorderThickness="0,1,1,0"  Grid.Row="13" Grid.Column="14" Grid.ColumnSpan="3">
@@ -437,13 +437,13 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0"  Grid.Row="14" Grid.Column="14" Grid.ColumnSpan="3">
                 <Label Content="Total" HorizontalContentAlignment="Center" FontSize="15"/>
             </Border>
-            <TextBox x:Name="tb_GesamtStd_Mo_Stunden" Grid.Row="16" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Mo_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_Di_Stunden" Grid.Row="18" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Di_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_Mi_Stunden" Grid.Row="20" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Mi_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_Do_Stunden" Grid.Row="22" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Do_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_Fr_Stunden" Grid.Row="24" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Fr_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_Sa_Stunden" Grid.Row="26" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_Sa_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="tb_GesamtStd_So_Stunden" Grid.Row="28" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="tb_GesamtStd_So_Stunden_TextChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Mo_Stunden" Grid.Row="16" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Di_Stunden" Grid.Row="18" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Mi_Stunden" Grid.Row="20" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Do_Stunden" Grid.Row="22" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Fr_Stunden" Grid.Row="24" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_Sa_Stunden" Grid.Row="26" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="tb_GesamtStd_So_Stunden" Grid.Row="28" Grid.Column="14" Grid.ColumnSpan="3" Grid.RowSpan="2" TextChanged="GesamtStdEventHandler" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
             <!--Gesamte Arbeitszeit untere Spalte-->
             <Label Content="Gesamt/Total" Grid.Row="30" Grid.Column="1" HorizontalContentAlignment="Right" Grid.ColumnSpan="9" FontWeight="Bold" FontSize="15"/>
             <TextBox x:Name="tb_GesamteWoche_NormalStd_Stunden" Grid.Row="30" Grid.Column="10" Grid.ColumnSpan="2" FontSize="15"/>
