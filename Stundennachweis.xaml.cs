@@ -502,7 +502,47 @@ namespace ServiceTool
         //***** End of the EventHandler for Arrival and Departure *****
 
         //Eventhandler for the Working hours of all week days Only one is commented because the only difference is that the Changed TimeSpan is different and safed diferently
+        private TimeSpan[] GetInformationFromComboBoxes(string Day, object sender)
+        {
+            TimeSpan[] WorkingTimeStamps = new TimeSpan[6];
 
+            string Von = $"cb_Von_{Day}_Stunden";
+            string Bis = $"cb_Bis_{Day}_Stunden";
+            string Pause = $"cb_Pause_{Day}_Stunden";
+            string VonS2 = $"cb_Von_{Day}_S2_Stunden";
+            string BisS2 = $"cb_Bis_{Day}_S2_Stunden";
+            string PauseS2 = $"cb_Pause_{Day}_S2_Stunden";
+            string SenderName = ((ComboBox)sender).Name;
+
+            if (this is FrameworkElement element)
+            {
+                //Find the ComboBoxes in the Grid
+                System.Windows.Controls.ComboBox cb_Von = element.FindName(Von) as System.Windows.Controls.ComboBox;
+                System.Windows.Controls.ComboBox cb_Bis = element.FindName(Bis) as System.Windows.Controls.ComboBox;
+                System.Windows.Controls.ComboBox cb_Pause = element.FindName(Pause) as System.Windows.Controls.ComboBox;
+                System.Windows.Controls.ComboBox cb_VonS2 = element.FindName(VonS2) as System.Windows.Controls.ComboBox;
+                System.Windows.Controls.ComboBox cb_BisS2 = element.FindName(BisS2) as System.Windows.Controls.ComboBox;
+                System.Windows.Controls.ComboBox cb_PauseS2 = element.FindName(PauseS2) as System.Windows.Controls.ComboBox;
+
+                //Parse the selected Items to TimeSpan
+                TimeSpan.TryParse(cb_Von.Text, out WorkingTimeStamps[0]);
+                TimeSpan.TryParse(cb_Bis.Text, out WorkingTimeStamps[1]);
+                TimeSpan.TryParse(cb_Pause.Text, out WorkingTimeStamps[2]);
+                TimeSpan.TryParse(cb_VonS2.Text, out WorkingTimeStamps[3]);
+                TimeSpan.TryParse(cb_BisS2.Text, out WorkingTimeStamps[4]);
+                TimeSpan.TryParse(cb_PauseS2.Text, out WorkingTimeStamps[5]);
+
+                if(SenderName == Von) {TimeSpan.TryParse(cb_Von.SelectedItem.ToString(), out WorkingTimeStamps[0]);}
+                if (SenderName == Bis) { TimeSpan.TryParse(cb_Bis.SelectedItem.ToString(), out WorkingTimeStamps[1]); }
+                if (SenderName == Pause) { TimeSpan.TryParse(cb_Pause.SelectedItem.ToString(), out WorkingTimeStamps[2]); }
+                if (SenderName == VonS2) { TimeSpan.TryParse(cb_VonS2.SelectedItem.ToString(), out WorkingTimeStamps[3]); }
+                if (SenderName == BisS2) { TimeSpan.TryParse(cb_BisS2.SelectedItem.ToString(), out WorkingTimeStamps[4]); }
+                if (SenderName == PauseS2) { TimeSpan.TryParse(cb_PauseS2.SelectedItem.ToString(), out WorkingTimeStamps[5]); }
+
+            }
+
+            return WorkingTimeStamps;
+        }
         private void EnterTotalDayHours(TimeSpan[] Zeiten, string Day)
         {
             //TB Basenames
@@ -527,957 +567,81 @@ namespace ServiceTool
         }
 
         //EventHandler Montag
-        private void cb_Von_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-            
-            //Safe all the Information out of the UserControl to Calculate the Working hours
-            string temp = cb_Von_Mo_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mo_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mo_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
+            TimeSpan [] WorkingHours = GetInformationFromComboBoxes("Mo", sender);
 
             //Call the Function to Calculate the Working hours
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
         }
-
-        private void cb_Bis_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mo_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Mo_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mo_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mo_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
-        }
-
-        private void cb_Pause_Mo_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mo_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Mo_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Mo_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
-        }
-
-        private void cb_Von_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            
-            TimeSpan.TryParse(cb_Von_Mo_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mo_Stunden.Text, out Pause);
-            string temp = cb_Von_Mo_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
-        }
-
-        private void cb_Bis_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mo_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mo_Stunden.Text, out Pause);
-            
-            TimeSpan.TryParse(cb_Von_Mo_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Mo_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp , out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mo_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
-        }
-
-        private void cb_Pause_Mo_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mo_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mo_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mo_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mo_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mo_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Mo_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mo"); //Enter the calculated Working hours in the TextBoxes
-        }
-
 
         //EventHandler Dienstag
-        private void cb_Von_Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("Di", sender);
 
-            ComboBox cb = (ComboBox)sender;
-            string SenderName = cb.Name;
-            string temp = cb_Von_Di_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Di_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Di_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Di_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Di_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Di");
         }
-        
-        private void cb_Bis_Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Di_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Di_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Di_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Di_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Di_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Di_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Di");
-        }
-
-        private void cb_Pause_Di_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Di_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Di_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Di_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Di_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Di_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Di");
-        }
-
-        private void cb_Von_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-
-            TimeSpan.TryParse(cb_Von_Di_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Di_Stunden.Text, out Pause);
-            string temp = cb_Von_Di_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Di_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Di_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Di");
-        }
-
-        private void cb_Bis_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Di_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Di_Stunden.Text, out Pause);
-
-            TimeSpan.TryParse(cb_Von_Di_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Di_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Di_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Di");
-        }
-
-        private void cb_Pause_Di_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Di_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Di_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Di_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Di_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Di_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Di_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Di");
-        }
-
-
 
         //EventHandler Mittwoch
-        private void cb_Von_Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("Mi", sender);
 
-            string temp = cb_Von_Mi_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mi_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mi_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mi_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mi_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mi_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Mi");
-        }
-
-        private void cb_Bis_Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mi_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Mi_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mi_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mi_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mi_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mi_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mi");
-        }
-
-        private void cb_Pause_Mi_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mi_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mi_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Mi_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Mi_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mi_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mi_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mi");
-        }
-
-        private void cb_Von_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-
-            TimeSpan.TryParse(cb_Von_Mi_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mi_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mi_Stunden.Text, out Pause);
-            string temp = cb_Von_Mi_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mi_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mi_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mi");
-        }
-
-        private void cb_Bis_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mi_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mi_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mi_Stunden.Text, out Pause);
-
-            TimeSpan.TryParse(cb_Von_Mi_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Mi_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Mi_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Mi");
-        }
-
-        private void cb_Pause_Mi_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Mi_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Mi_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Mi_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Mi_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Mi_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Mi_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
         }
 
 
         //EventHandler Donnerstag
-        private void cb_Von_Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("Do", sender);
 
-            string temp = cb_Von_Do_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Do_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Do_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Do_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Do_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Do_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Do");
         }
 
-        private void cb_Bis_Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Do_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Do_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Do_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Do_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Do_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Do_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
-        }
-
-        private void cb_Pause_Do_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Do_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Do_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Do_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Do_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Do_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Do_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
-        }
-
-        private void cb_Von_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-
-            TimeSpan.TryParse(cb_Von_Do_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Do_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Do_Stunden.Text, out Pause);
-            string temp = cb_Von_Do_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Do_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Do_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
-        }
-
-        private void cb_Bis_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Do_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Do_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Do_Stunden.Text, out Pause);
-
-            TimeSpan.TryParse(cb_Von_Do_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Do_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Do_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
-        }
-
-        private void cb_Pause_Do_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Do_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Do_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Do_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Do_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Do_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Do_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Do");
-        }
 
         //EventHandler Freitag
-        private void cb_Von_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("Fr", sender);
 
-            string temp = cb_Von_Fr_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Fr_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Fr_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Fr_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Fr_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Fr_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Fr");
         }
-
-        private void cb_Bis_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Fr_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Fr_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Fr_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Fr_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Fr_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Fr_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Fr");
-        }
-
-        private void cb_Pause_Fr_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Fr_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Fr_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Fr_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Fr_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Fr_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Fr_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Fr");
-        }
-
-        private void cb_Von_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-
-            TimeSpan.TryParse(cb_Von_Fr_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Fr_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Fr_Stunden.Text, out Pause);
-            string temp = cb_Von_Fr_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Fr_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Fr_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Fr");
-        }
-
-        private void cb_Bis_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Fr_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Fr_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Fr_Stunden.Text, out Pause);
-
-            TimeSpan.TryParse(cb_Von_Fr_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Fr_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Fr_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Fr");
-        }
-
-        private void cb_Pause_Fr_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Fr_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Fr_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Fr_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Fr_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Fr_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Fr_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Fr");
-        }
-
 
         //EventHandler Samstag
-        private void cb_Von_Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("Sa", sender);
 
-            string temp = cb_Von_Sa_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Sa_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Sa_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Sa_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Sa_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Sa_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Sa");
-        }
-
-        private void cb_Bis_Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Sa_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_Sa_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Sa_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Sa_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Sa_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Sa_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Sa");
-        }
-
-        private void cb_Pause_Sa_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Sa_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Sa_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_Sa_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_Sa_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Sa_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Sa_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Sa");
-        }
-
-        private void cb_Von_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            
-            TimeSpan.TryParse(cb_Von_Sa_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Sa_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Sa_Stunden.Text, out Pause);
-            string temp = cb_Von_Sa_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Sa_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Sa_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Sa");
-        }
-
-        private void cb_Bis_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Sa_Stunden.Text, out Arbeitsbeginn);            
-            TimeSpan.TryParse(cb_Bis_Sa_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Sa_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Sa_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_Sa_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_Sa_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "Sa");
-        }
-
-        private void cb_Pause_Sa_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_Sa_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_Sa_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_Sa_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_Sa_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_Sa_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_Sa_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "Sa");
         }
 
         //EventHandler Sonntag
-        private void cb_Von_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
+            TimeSpan[] WorkingHours = GetInformationFromComboBoxes("So", sender);
 
-            string temp = cb_Von_So_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_So_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_So_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_So_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_So_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_So_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "So");
-        }
-
-        private void cb_Bis_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_So_Stunden.Text, out Arbeitsbeginn);
-            string temp = cb_Bis_So_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_So_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_So_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_So_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_So_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "So");
-        }
-
-        private void cb_Pause_So_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_So_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_So_Stunden.Text, out Arbeitsende);
-            string temp = cb_Pause_So_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out Pause);
-            TimeSpan.TryParse(cb_Von_So_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_So_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_So_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "So");
-        }
-
-        private void cb_Von_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-
-            TimeSpan.TryParse(cb_Von_So_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_So_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_So_Stunden.Text, out Pause);
-            string temp = cb_Von_So_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_So_S2_Stunden.Text, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_So_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "So");
-        }
-
-        private void cb_Bis_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_So_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_So_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_So_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_So_S2_Stunden.Text, out ArbeitsbeginnS2);
-            string temp = cb_Bis_So_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out ArbeitsendeS2);
-            TimeSpan.TryParse(cb_Pause_So_S2_Stunden.Text, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
-
-            EnterTotalDayHours(Zeiten, "So");
-        }
-
-        private void cb_Pause_So_S2_Stunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TimeSpan Arbeitsbeginn;
-            TimeSpan Arbeitsende;
-            TimeSpan Pause;
-            TimeSpan ArbeitsbeginnS2;
-            TimeSpan ArbeitsendeS2;
-            TimeSpan PauseS2;
-
-            TimeSpan.TryParse(cb_Von_So_Stunden.Text, out Arbeitsbeginn);
-            TimeSpan.TryParse(cb_Bis_So_Stunden.Text, out Arbeitsende);
-            TimeSpan.TryParse(cb_Pause_So_Stunden.Text, out Pause);
-            TimeSpan.TryParse(cb_Von_So_S2_Stunden.Text, out ArbeitsbeginnS2);
-            TimeSpan.TryParse(cb_Bis_So_S2_Stunden.Text, out ArbeitsendeS2);
-            string temp = cb_Pause_So_S2_Stunden.SelectedItem as string;
-            TimeSpan.TryParse(temp, out PauseS2);
-
-            TimeSpan[] Zeiten = WochendZeitenBerechnen(Arbeitsbeginn, Arbeitsende, Pause, ArbeitsbeginnS2, ArbeitsendeS2, PauseS2);
+            //Call the Function to Calculate the Working hours
+            TimeSpan[] Zeiten = TäglicheArbeitszeitBerechnen(WorkingHours[0], WorkingHours[1], WorkingHours[2], WorkingHours[3], WorkingHours[4], WorkingHours[5]);
 
             EnterTotalDayHours(Zeiten, "So");
         }

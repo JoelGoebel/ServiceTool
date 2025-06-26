@@ -304,20 +304,20 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="3">
                 <Label Content="From" FontSize="15"/>
             </Border>
-            <ComboBox x:Name="cb_Von_Mo_Stunden" TabIndex="13" Grid.Row="16" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mo_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Mo_S2_Stunden" TabIndex="13" Grid.Row="17" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_Di_Stunden" TabIndex="17" Grid.Row="18" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Di_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Di_S2_Stunden" TabIndex="17" Grid.Row="19" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_Mi_Stunden" TabIndex="21" Grid.Row="20" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mi_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Mi_S2_Stunden" TabIndex="21" Grid.Row="21" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_Do_Stunden" TabIndex="25" Grid.Row="22" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Do_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Do_S2_Stunden" TabIndex="25" Grid.Row="23" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_Fr_Stunden" TabIndex="29" Grid.Row="24" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Fr_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Fr_S2_Stunden" TabIndex="29" Grid.Row="25" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_Sa_Stunden" TabIndex="33" Grid.Row="26" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Sa_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_Sa_S2_Stunden" TabIndex="33" Grid.Row="27" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Von_So_Stunden" TabIndex="37" Grid.Row="28" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_So_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Von_So_S2_Stunden" TabIndex="37" Grid.Row="29" Grid.Column="3" FontSize="15" SelectionChanged="cb_Von_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Mo_Stunden" TabIndex="13" Grid.Row="16" Grid.Column="3" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Mo_S2_Stunden" TabIndex="13" Grid.Row="17" Grid.Column="3" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Di_Stunden" TabIndex="17" Grid.Row="18" Grid.Column="3" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Di_S2_Stunden" TabIndex="17" Grid.Row="19" Grid.Column="3" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Mi_Stunden" TabIndex="21" Grid.Row="20" Grid.Column="3" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Mi_S2_Stunden" TabIndex="21" Grid.Row="21" Grid.Column="3" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Do_Stunden" TabIndex="25" Grid.Row="22" Grid.Column="3" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Do_S2_Stunden" TabIndex="25" Grid.Row="23" Grid.Column="3" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Fr_Stunden" TabIndex="29" Grid.Row="24" Grid.Column="3" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Fr_S2_Stunden" TabIndex="29" Grid.Row="25" Grid.Column="3" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_Sa_Stunden" TabIndex="33" Grid.Row="26" Grid.Column="3" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_Sa_S2_Stunden" TabIndex="33" Grid.Row="27" Grid.Column="3" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Von_So_Stunden" TabIndex="37" Grid.Row="28" Grid.Column="3" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Von_So_S2_Stunden" TabIndex="37" Grid.Row="29" Grid.Column="3" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged" Visibility="Collapsed"/>
 
             <!--Spalte Feeeeeiiieraaabeeend-->
             <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="4">
@@ -326,20 +326,20 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="4">
                 <Label Content="To" FontSize="15"/>
             </Border>
-            <ComboBox x:Name="cb_Bis_Mo_Stunden" TabIndex="14" Grid.Row="16" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mo_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Mo_S2_Stunden" TabIndex="14" Grid.Row="17" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_Di_Stunden" TabIndex="18" Grid.Row="18" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Di_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Di_S2_Stunden" TabIndex="18" Grid.Row="19" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_Mi_Stunden" TabIndex="22" Grid.Row="20" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mi_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Mi_S2_Stunden" TabIndex="22" Grid.Row="21" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_Do_Stunden" TabIndex="26" Grid.Row="22" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Do_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Do_S2_Stunden" TabIndex="26" Grid.Row="23" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_Fr_Stunden" TabIndex="30" Grid.Row="24" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Fr_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Fr_S2_Stunden" TabIndex="30" Grid.Row="25" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_Sa_Stunden" TabIndex="34" Grid.Row="26" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Sa_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_Sa_S2_Stunden" TabIndex="34" Grid.Row="27" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Bis_So_Stunden" TabIndex="38" Grid.Row="28" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_So_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Bis_So_S2_Stunden" TabIndex="38" Grid.Row="29" Grid.Column="4" FontSize="15" SelectionChanged="cb_Bis_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Mo_Stunden" TabIndex="14" Grid.Row="16" Grid.Column="4" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Mo_S2_Stunden" TabIndex="14" Grid.Row="17" Grid.Column="4" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Di_Stunden" TabIndex="18" Grid.Row="18" Grid.Column="4" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Di_S2_Stunden" TabIndex="18" Grid.Row="19" Grid.Column="4" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Mi_Stunden" TabIndex="22" Grid.Row="20" Grid.Column="4" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Mi_S2_Stunden" TabIndex="22" Grid.Row="21" Grid.Column="4" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Do_Stunden" TabIndex="26" Grid.Row="22" Grid.Column="4" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Do_S2_Stunden" TabIndex="26" Grid.Row="23" Grid.Column="4" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Fr_Stunden" TabIndex="30" Grid.Row="24" Grid.Column="4" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Fr_S2_Stunden" TabIndex="30" Grid.Row="25" Grid.Column="4" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_Sa_Stunden" TabIndex="34" Grid.Row="26" Grid.Column="4" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_Sa_S2_Stunden" TabIndex="34" Grid.Row="27" Grid.Column="4" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Bis_So_Stunden" TabIndex="38" Grid.Row="28" Grid.Column="4" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Bis_So_S2_Stunden" TabIndex="38" Grid.Row="29" Grid.Column="4" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged" Visibility="Collapsed"/>
 
             <!--Spalte Pause-->
             <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Row="13" Grid.Column="5">
@@ -348,20 +348,20 @@
             <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="14" Grid.Column="5">
                 <Label Content="Break"  FontSize="15"/>
             </Border>
-            <ComboBox x:Name="cb_Pause_Mo_Stunden" TabIndex="15" Grid.Row="16" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mo_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Mo_S2_Stunden" TabIndex="15" Grid.Row="17" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mo_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_Di_Stunden" TabIndex="19" Grid.Row="18" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Di_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Di_S2_Stunden" TabIndex="19" Grid.Row="19" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Di_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_Mi_Stunden" TabIndex="23" Grid.Row="20" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mi_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Mi_S2_Stunden" TabIndex="23" Grid.Row="21" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Mi_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_Do_Stunden" TabIndex="27" Grid.Row="22" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Do_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Do_S2_Stunden" TabIndex="27" Grid.Row="23" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Do_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_Fr_Stunden" TabIndex="31" Grid.Row="24" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Fr_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Fr_S2_Stunden" TabIndex="31" Grid.Row="25" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Fr_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_Sa_Stunden" TabIndex="35" Grid.Row="26" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Sa_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_Sa_S2_Stunden" TabIndex="35" Grid.Row="27" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_Sa_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
-            <ComboBox x:Name="cb_Pause_So_Stunden" TabIndex="39" Grid.Row="28" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_So_Stunden_SelectionChanged"/>
-            <ComboBox x:Name="cb_Pause_So_S2_Stunden" TabIndex="39" Grid.Row="29" Grid.Column="5" FontSize="15" SelectionChanged="cb_Pause_So_S2_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Mo_Stunden" TabIndex="15" Grid.Row="16" Grid.Column="5" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Mo_S2_Stunden" TabIndex="15" Grid.Row="17" Grid.Column="5" FontSize="15" SelectionChanged="Mo_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Di_Stunden" TabIndex="19" Grid.Row="18" Grid.Column="5" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Di_S2_Stunden" TabIndex="19" Grid.Row="19" Grid.Column="5" FontSize="15" SelectionChanged="Di_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Mi_Stunden" TabIndex="23" Grid.Row="20" Grid.Column="5" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Mi_S2_Stunden" TabIndex="23" Grid.Row="21" Grid.Column="5" FontSize="15" SelectionChanged="Mi_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Do_Stunden" TabIndex="27" Grid.Row="22" Grid.Column="5" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Do_S2_Stunden" TabIndex="27" Grid.Row="23" Grid.Column="5" FontSize="15" SelectionChanged="Do_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Fr_Stunden" TabIndex="31" Grid.Row="24" Grid.Column="5" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Fr_S2_Stunden" TabIndex="31" Grid.Row="25" Grid.Column="5" FontSize="15" SelectionChanged="Fr_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_Sa_Stunden" TabIndex="35" Grid.Row="26" Grid.Column="5" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_Sa_S2_Stunden" TabIndex="35" Grid.Row="27" Grid.Column="5" FontSize="15" SelectionChanged="Sa_Stunden_SelectionChanged" Visibility="Collapsed"/>
+            <ComboBox x:Name="cb_Pause_So_Stunden" TabIndex="39" Grid.Row="28" Grid.Column="5" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged"/>
+            <ComboBox x:Name="cb_Pause_So_S2_Stunden" TabIndex="39" Grid.Row="29" Grid.Column="5" FontSize="15" SelectionChanged="So_Stunden_SelectionChanged" Visibility="Collapsed"/>
 
             <!--Spalte Bemerkun/Art der Arbeit-->
             <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.ColumnSpan="4" Grid.Row="13" Grid.Column="6">
