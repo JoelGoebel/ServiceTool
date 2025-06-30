@@ -205,6 +205,7 @@
     </ApplicationDefinition>
     <Compile Include="CellMaping.cs" />
     <Compile Include="EngDe_For_PDF.cs" />
+    <Compile Include="ExportDataWorkingTime.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Inbetriebnahmeprotokoll_MRS.xaml.cs">
       <DependentUpon>Inbetriebnahmeprotokoll_MRS.xaml</DependentUpon>

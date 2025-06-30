@@ -375,6 +375,125 @@ namespace ServiceTool
             }
         }
 
+        private ExportDataWorkingTime GetDataForExport(Stundennachweis sn, string Day)
+        {
+            ExportDataWorkingTime exportData = new ExportDataWorkingTime();
+            
+            exportData.EinsatzDatum_Start = GlobalVariables.StartServiceEinsatz;
+            exportData.EinsatzDatum_Ende = GlobalVariables.EndeServiceEinsatz;
+            exportData.Auftragsnummer = GlobalVariables.AuftragsNR;
+            exportData.ServiceTechnicker = sn.tb_Servicetechiker_Stunden.Text;
+            switch (Day)
+            {
+                case "Mo":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Mo_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Mo_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Mo_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Mo_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Mo_Stunden.Text);
+                    break;
+
+                case "Di":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Di_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Di_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Di_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Di_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Di_Stunden.Text);
+                    break;
+
+                case "Mi":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Mi_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Mi_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Mi_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Mi_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Mi_Stunden.Text);
+                    break;
+
+                case "Do":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Do_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Do_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Do_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Do_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Do_Stunden.Text);
+                    break;
+
+                case "Fr":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Fr_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Fr_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Fr_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Fr_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Fr_Stunden.Text);
+                    break;
+
+                case "Sa":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_Sa_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_Sa_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_Sa_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_Sa_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_Sa_Stunden.Text);
+                    break;
+
+                case "So":
+                    exportData.ArbeitsZeit_Start = TimeSpan.Parse(sn.cb_Von_So_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende = TimeSpan.Parse(sn.cb_Bis_So_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause = TimeSpan.Parse(sn.cb_Pause_So_Stunden.Text);
+                    exportData.ArbeitsZeit_Start_S2 = TimeSpan.Parse(sn.cb_Von_So_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Ende_S2 = TimeSpan.Parse(sn.cb_Bis_So_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_Pause_S2 = TimeSpan.Parse(sn.cb_Pause_So_S2_Stunden.Text);
+                    exportData.ArbeitsZeit_NormalHours = TimeSpan.Parse(sn.tb_NormalStd_So_Stunden.Text);
+                    exportData.ArbeitsZeit_Overtime = TimeSpan.Parse(sn.tb_Ueberstunden_So_Stunden.Text);
+                    exportData.ArbeitsZeit_NightWork = TimeSpan.Parse(sn.tb_Nachtarbeit_So_Stunden.Text);
+                    exportData.ArbeitsZeit_Gesamt = TimeSpan.Parse(sn.tb_GesamtStd_So_Stunden.Text);
+                    break;
+            }
+
+            exportData.AnreiseDatum_Start = (DateTime)sn.dp_AnreiseDatum_Stunden.SelectedDate;
+            exportData.AnreiseDatum_Ende = (DateTime)sn.dp_AnreiseDatumAnkunft_Stunden.SelectedDate;
+            exportData.Anreise_Startzeit = TimeSpan.Parse(sn.cb_Anreise_Fahrtbeginn_Stunden.Text);
+            exportData.Anreise_Endezeit = TimeSpan.Parse(sn.cb_Anreise_Fahrtende_Stunden.Text);
+            exportData.Anreise_Pause = TimeSpan.Parse(sn.cb_Anreise_Pause_Stunden.Text);
+            exportData.Anreise_DauerGesamt = TimeSpan.Parse(sn.tb_Anreisedauer_Gesamt_Stunden.Text);
+            exportData.Anreise_KM = sn.tb_AnreiseWeg_Stunden.Text;
+            exportData.AbreiseDatum_Start = (DateTime)sn.dp_AbreiseDatum_Stunden.SelectedDate;
+            exportData.AbreiseDatum_Ende = (DateTime)sn.dp_AbreiseDatumAnkunft_Stunden.SelectedDate;
+            exportData.Abreise_Startzeit = TimeSpan.Parse(sn.cb_Abreise_Fahrtbeginn_Stunden.Text);
+            exportData.Abreise_Endezeit = TimeSpan.Parse(sn.cb_Abreise_Fahrtende_Stunden.Text);
+            exportData.Abreise_Pause = TimeSpan.Parse(sn.cb_Abreise_Pause_Stunden.Text);
+            exportData.Abreise_DauerGesamt = TimeSpan.Parse(sn.tb_Abreisedauer_Gesamt_Stunden.Text);
+            exportData.Abreise_KM = sn.tb_AbreiseWeg_Stunden.Text;
+
+            return exportData;
+        }
         private void rbt_Stundennachweis_Checked(object sender, RoutedEventArgs e)
         {
             if (_blockiereUControlWechsel) return;
@@ -427,7 +546,7 @@ namespace ServiceTool
 
             //Set Correct Path depending on the selected week in the ComboBox
             switch (sn.cb_Siteswitch_Stunden.Text)
-            {                
+            {
                 case "Woche 1":
                     ExcelFilePath = System.IO.Path.Combine(GlobalVariables.Pfad_AuftragsOrdner, "Stundennachweis.xlsm ");
                     break;
@@ -454,9 +573,37 @@ namespace ServiceTool
                     break;
             }
 
-            string Auftragsnummer = GlobalVariables.AuftragsNR;
+            for (int i = 0; i < 7; i++)
+            {
 
-            
+                string day = "";
+                switch (i)
+                {
+                    case 0:
+                        day = "Mo";
+                        break;
+                    case 1:
+                        day = "Di";
+                        break;
+                    case 2:
+                        day = "Mi";
+                        break;
+                    case 3:
+                        day = "Do";
+                        break;
+                    case 4:
+                        day = "Fr";
+                        break;
+                    case 5:
+                        day = "Sa";
+                        break;
+                    case 6:
+                        day = "So";
+                        break;
+                }
+                ExportDataWorkingTime exportData = GetDataForExport(sn, day);
+                //TODO HIER DENN EXPORT EINBAUEN VARIABLEN ANSPRECHBAR MIT exportData.(SpaltenName)
+            }
 
             speichern(ExcelFilePath, "Stundennachweis");
 
